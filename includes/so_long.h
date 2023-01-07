@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/07 11:00:17 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/01/07 11:51:11 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/01/07 12:28:58 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,5 +39,22 @@ typedef struct s_game
 	// Number of collected coins so far
 	unsigned int	coins;
 }t_game;
+
+t_game	*game_new();
+
+t_map	*map_new(unsigned int length, unsigned int width);
+
+void	game_delete(t_game *game);
+
+void	map_delete(t_map *map);
+
+//! ----------------------------------------------------------------- 
+
+void	read_map(t_game *game, char *filename);
+
+void	matrix_delete(char **matrix);
+
+int		get_map_width(t_game *game, char *filename);
+
 
 #endif
