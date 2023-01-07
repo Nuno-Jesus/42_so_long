@@ -52,7 +52,7 @@ char	*store_chunks(int fd, char *memory)
 	chunk = (char *)malloc(BUFFER_SIZE + 1);
 	if (!chunk)
 		return (NULL);
-	while (bytes > 0 && !ft_strchr(memory, '\n'))
+	while (bytes > 0 && !ft_strchr_mod(memory, '\n'))
 	{
 		bytes = read(fd, chunk, BUFFER_SIZE);
 		if (bytes == 0)

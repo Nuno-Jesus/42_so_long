@@ -24,7 +24,7 @@ size_t	ft_strclen(const char *s, int c)
 	return (i);
 }
 
-char	*ft_strchr(const char *s, int c)
+char	*ft_strchr_mod(const char *s, int c)
 {
 	size_t	i;
 

@@ -27,7 +27,7 @@ GNL = get_next_line
 PRINTF = ft_printf
 
 #_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_ FILES _/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
-OBJS = game.o map.o utils.o
+OBJS = game.o map.o utils.o validator.o
 NAME = so_long
 TARGET = $(addprefix $(SRCS)/, $(OBJS))
 

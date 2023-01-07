@@ -27,7 +27,7 @@ char	*get_next_line(int fd);
 
 size_t	ft_strclen(const char *s, int c);
 
-char	*ft_strchr(const char *s, int c);
+char	*ft_strchr_mod(const char *s, int c);
 
 char	*ft_strndup(const char *s, size_t n);
 
