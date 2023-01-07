@@ -1,4 +1,4 @@
-#! Colors
+#_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_ COLORS _/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
 RESET = \033[0m       # Text Reset
 BLACK = \033[1;30m       # Black
 RED = \033[1;31m         # Red
@@ -9,28 +9,29 @@ PURPLE = \033[1;35m     # Purple
 CYAN = \033[1;36m        # Cyan
 WHITE = \033[1;37m       # White
 
-#! Commands
+#_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_ COMMANDS _/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
 CC = cc
 RM = rm -f
 AR = ar -rc
 
-#! Flags
+
+#_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_ FLAGS _/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
 CFLAGS = -Wall -Wextra -Werror
 MKFLAGS = --no-print-directory
 
-#! Folders
+#_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_ FOLDERS _/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
 DEPS = includes
 SRCS = srcs
 LIBFT = libft
 GNL = get_next_line
 PRINTF = ft_printf
 
-#! Files
-OBJS = game.o
+#_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_ FILES _/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
+OBJS = game.o map.o utils.o
 NAME = so_long
 TARGET = $(addprefix $(SRCS)/, $(OBJS))
 
-#! Rules
+#_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_ RULES _/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
 all: $(NAME)
 
 $(NAME): $(TARGET)

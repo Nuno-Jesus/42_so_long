@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/07 11:00:17 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/01/07 12:28:58 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/01/07 18:10:10 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,29 +32,33 @@ typedef struct s_point
 
 typedef struct s_game
 {
-	// Double pointer map
-	t_map			*map;
-	// Player's position (x,y)
-	t_point			player;
-	// Number of collected coins so far
-	unsigned int	coins;
+	t_map			*map;	// Double pointer map
+	t_point			player;	// Player's position (x,y)
+	unsigned int	coins;	// Number of collected coins so far
 }t_game;
+
+
+//_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_ GAME _/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
 
 t_game	*game_new();
 
-t_map	*map_new(unsigned int length, unsigned int width);
-
 void	game_delete(t_game *game);
+
+//_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_ MAP _/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
+
+t_map	*map_new(unsigned int length, unsigned int width);
 
 void	map_delete(t_map *map);
 
-//! ----------------------------------------------------------------- 
+int		get_map_width(t_game *game, char *filename);
 
 void	read_map(t_game *game, char *filename);
 
+//_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_ UTILS _/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
+
 void	matrix_delete(char **matrix);
 
-int		get_map_width(t_game *game, char *filename);
+void	message(t_game *game, char *text);
 
 
 #endif
