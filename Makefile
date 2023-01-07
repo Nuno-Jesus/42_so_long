@@ -22,9 +22,11 @@ MKFLAGS = --no-print-directory
 DEPS = includes
 SRCS = srcs
 LIBFT = libft
+GNL = get_next_line
+PRINTF = ft_printf
 
 #! Files
-OBJS = map.o point.o
+OBJS = game.o
 NAME = so_long
 TARGET = $(addprefix $(SRCS)/, $(OBJS))
 
@@ -32,20 +34,25 @@ TARGET = $(addprefix $(SRCS)/, $(OBJS))
 all: $(NAME)
 
 $(NAME): $(TARGET)
-	@echo "[${CYAN}Compiling${RESET}] ${GREEN}${RESET}"
 	@make $(MKFLAGS) -C $(LIBFT)
-	$(CC) $(CFLAGS) main.c $(TARGET) $(LIBFT)/libft.a -o $(NAME) -I $(DEPS)
+	@make $(MKFLAGS) -C $(GNL)
+	@echo "[${CYAN}Linking${RESET}] ${GREEN}libft, get_next_line, *.o${RESET}"
+	@$(CC) $(CFLAGS) main.c $(TARGET) $(LIBFT)/libft.a $(GNL)/gnl.a -o $(NAME) -I $(DEPS)
 
 %.o : %.c 
-	$(CC) $(CFLAGS) -c $< -o $@ -I $(DEPS)
+	@echo "[${CYAN}Compiling${RESET}] $(CFLAGS) ${GREEN}$<${RESET}"
+	@$(CC) $(CFLAGS) -c $< -o $@ -I $(DEPS)
 
 clean:
-	@echo "[${CYAN}Cleaning${RESET}] ${GREEN}*.o${RESET}"
 	@make clean $(MKFLAGS) -C $(LIBFT)
+	@make clean $(MKFLAGS) -C $(GNL)
+	@echo "[${CYAN}Cleaning${RESET}] ${GREEN}so_long *.o${RESET}"
 	@$(RM) $(TARGET)
 
 fclean: clean
 	@make fclean $(MKFLAGS) -C $(LIBFT)
+	@make fclean $(MKFLAGS) -C $(GNL)
+	@echo "[${CYAN}Cleaning${RESET}] ${GREEN}so_long${RESET}"
 	@$(RM) $(NAME)
 
 re: fclean all
