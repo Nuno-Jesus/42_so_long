@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/07 11:00:17 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/01/07 18:44:08 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/01/08 15:45:14 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@ typedef struct s_map
 	unsigned int	cols;
 	unsigned int	rows;
 	unsigned int	num_coins;
-	unsigned int	num_walls;
+	unsigned int	num_exits;
+	unsigned int	num_players;
 }t_map;
 
 typedef struct s_point

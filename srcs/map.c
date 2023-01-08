@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/07 18:03:57 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/01/08 13:57:16 by marvin           ###   ########.fr       */
+/*   Updated: 2023/01/08 15:55:11 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,9 @@ void	map_print(t_map *map)
 {
 	printf("Length: %u\n", map->cols);
 	printf("Width: %u\n", map->rows);
+	printf("Players: %u\n", map->num_players);
+	printf("Exits: %u\n", map->num_exits);
+	printf("Coins: %u\n", map->num_coins);
 	for (unsigned int i = 0; i < map->rows; i++)
 		printf("%s\n", map->bytes[i]);
 }
