@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/07 18:04:46 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/01/07 18:04:55 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/01/08 13:57:55 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ void	matrix_delete(char **matrix)
 void	message(t_game *game, char *text)
 {
 	game_delete(game);
+	write(STDOUT_FILENO, "Error\n", 6);
 	write(STDOUT_FILENO, text, strlen(text));
 	exit(EXIT_FAILURE);
 }

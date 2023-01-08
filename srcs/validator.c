@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   validator.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/07 18:11:40 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/01/07 18:49:29 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/01/08 13:57:33 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,5 +29,5 @@ bool	is_rect_map(t_game *game)
 void	validate_map(t_game *game)
 {
 	if (!is_rect_map(game))
-		message(game, "Error\nMap is not rectangular.\n");
+		message(game, "Map is not rectangular.\n");
 }
