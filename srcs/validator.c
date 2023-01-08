@@ -6,13 +6,13 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/07 18:11:40 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/01/08 15:22:00 by marvin           ###   ########.fr       */
+/*   Updated: 2023/01/08 15:32:37 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 
-bool	is_rect_map(t_map *map)
+bool	is_map_rectangular(t_map *map)
 {
 	unsigned int	i;
 	unsigned int	first_len;
@@ -41,12 +41,32 @@ bool	is_map_bounded(t_map *map)
 	return (true);
 }
 
+bool	has_valid_entities(t_map *map)
+{
+	unsigned int	i;
+	unsigned int	k;
+	
+	i = -1;
+	k = -1;
+	while (++i < map->rows)
+	{
+		k = -1;
+		while (++k < map->cols)
+			if (!ft_strchr(ENTITIES, map->bytes[i][k]))
+				return (false);		
+	}
+	return (true);
+}
+
 void	validate_map(t_game *game)
 {
 	if (game->map->rows == 0)
 		message(game, "Map is empty.\n");
-	if (!is_rect_map(game->map))
+	if (!is_map_rectangular(game->map))
 		message(game, "Map is not rectangular.\n");
 	if (!is_map_bounded(game->map))
 		message(game, "Map is not bounded by walls.\n");
+	if (!has_valid_entities(game->map))
+		message(game, "Map has invalid entities.\n");
+	
 }

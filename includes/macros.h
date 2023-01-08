@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/10 11:19:03 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/01/08 15:20:24 by marvin           ###   ########.fr       */
+/*   Updated: 2023/01/08 15:33:41 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,9 @@
 # include "../libft/libft.h"
 # include "../get_next_line/get_next_line.h"
 
-# define COMPONENTS "01CEP"
-# define WALL '1'
+# define ENTITIES "01CEP"
 # define SPACE '0'
+# define WALL '1'
 # define COIN 'C'
 # define EXIT 'E'
 # define PLAYER 'P'
