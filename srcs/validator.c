@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/07 18:11:40 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/01/08 16:05:06 by marvin           ###   ########.fr       */
+/*   Updated: 2023/01/08 17:36:49 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,28 +41,77 @@ bool	is_map_bounded(t_map *map)
 	return (true);
 }
 
-bool	has_valid_entities(t_map *map)
+bool	has_valid_entities(t_game *game)
 {
-	unsigned int i;
-	unsigned int k;
+	unsigned int	i;
+	unsigned int	k;
 
 	i = -1;
-	while (++i < map->rows)
+	while (++i < game->map->rows)
 	{
 		k = -1;
-		while (++k < map->cols)
+		while (++k < game->map->cols)
 		{
-			if (map->bytes[i][k] == PLAYER)
-				map->num_players++;
-			else if (map->bytes[i][k] == EXIT)
-				map->num_exits++;
-			else if (map->bytes[i][k] == COIN)
-				map->num_coins++;
-			else if (!ft_strchr(ENTITIES, map->bytes[i][k]))
+			if (game->map->bytes[i][k] == PLAYER)
+			{
+				game->map->num_players++;
+				game->player = (t_point){k, i};
+			}
+			else if (game->map->bytes[i][k] == EXIT)
+				game->map->num_exits++;
+			else if (game->map->bytes[i][k] == COIN)
+				game->map->num_coins++;
+			else if (!ft_strchr(ENTITIES, game->map->bytes[i][k]))
 				return (false);	
 		}
 	}
-	return (map->num_players == 1 && map->num_exits == 1 && map->num_coins >= 1);
+	return (game->map->num_players == 1 && 
+		game->map->num_exits == 1 && 
+		game->map->num_coins >= 1);
+}
+
+bool	flood_fill(t_map *map, t_point curr, char **maze)
+{
+	static unsigned int	coins = 0;
+	static bool			found_exit = false;
+	
+	if (maze[curr.y][curr.x] == WALL)
+		return (false);
+	else if (maze[curr.y][curr.x] == COIN)
+		coins++;
+	else if (maze[curr.y][curr.x] == EXIT)
+		found_exit = true;
+	maze[curr.y][curr.x] = WALL;
+	flood_fill(map, (t_point){curr.x + 1, curr.y}, maze);
+	flood_fill(map, (t_point){curr.x - 1, curr.y}, maze);
+	flood_fill(map, (t_point){curr.x, curr.y + 1}, maze);
+	flood_fill(map, (t_point){curr.x, curr.y - 1}, maze);
+	return (coins == map->num_coins && found_exit);
+}
+
+bool	has_valid_path(t_game *game)
+{
+	char			**dup;
+	bool			is_valid;
+	unsigned int	i;
+
+	i = 0;
+	dup = ft_calloc(game->map->rows + 1, sizeof(char *));
+	if (!dup)
+		message(game, "Failed allocation on has_valid_path()\n");
+	while (i < game->map->rows)
+	{
+		dup[i] = ft_strdup(game->map->bytes[i]);
+		if (!dup[i])
+		{
+			matrix_delete(dup);
+			message(game, "Failed allocation on has_valid_path()\n");
+		}
+		i++;
+	}
+	is_valid = flood_fill(game->map, game->player, dup);
+	matrix_delete(dup);
+	return (is_valid);
 }
 
 void	validate_map(t_game *game)
@@ -73,6 +122,8 @@ void	validate_map(t_game *game)
 		message(game, "Map is not rectangular.\n");
 	if (!is_map_bounded(game->map))
 		message(game, "Map is not bounded by walls.\n");
-	if (!has_valid_entities(game->map))
+	if (!has_valid_entities(game))
 		message(game, "Map has invalid entities.\n");
+	if (!has_valid_path(game))
+		message(game, "Map has not a traversable path to end the level.\n");		
 }
