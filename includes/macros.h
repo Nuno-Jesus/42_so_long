@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   macros.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/10 11:19:03 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/01/07 18:27:07 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/01/08 15:20:24 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,10 @@
 # include "../get_next_line/get_next_line.h"
 
 # define COMPONENTS "01CEP"
-# define WALL 1
-# define SPACE 0
-# define COIN C
-# define EXIT E
-# define PLAYER P
+# define WALL '1'
+# define SPACE '0'
+# define COIN 'C'
+# define EXIT 'E'
+# define PLAYER 'P'
 
 #endif
