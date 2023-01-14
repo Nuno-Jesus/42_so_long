@@ -17,13 +17,13 @@ AR = ar -rcs
 #_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_ FLAGS _/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
 CFLAGS		= -Wall -Wextra -Werror -O3
 MKFLAGS		= --no-print-directory
-LIBXFLAGS	= -L ./minilibx-linux -lmlx -Ilmlx -lXext -lX11 -lm 
+LIBXFLAGS	= -L ./mlx -lmlx -Ilmlx -lXext -lX11 -lm 
 
 #_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_ FOLDERS _/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
 DEPS	= includes
 SRCS	= srcs
 LIBFT	= libft
-LIBX 	= minilibx-linux
+LIBX 	= mlx
 GNL		= get_next_line
 PRINTF	= ft_printf
 

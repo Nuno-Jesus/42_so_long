@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/07 11:00:17 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/01/08 15:45:14 by marvin           ###   ########.fr       */
+/*   Updated: 2023/01/14 19:48:40 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,16 @@
 # define SO_LONG_H
 
 # include "macros.h"
+
+typedef struct	s_graphic {
+	void	*mlx;
+	void	*win;
+	void	*img;
+	char	*addr;
+	int		bpp;
+	int		line_length;
+	int		endian;
+}				t_graphic;
 
 typedef struct s_map
 {
@@ -23,20 +33,21 @@ typedef struct s_map
 	unsigned int	num_coins;
 	unsigned int	num_exits;
 	unsigned int	num_players;
-}t_map;
+}				t_map;
 
 typedef struct s_point
 {
-	unsigned int x;
-	unsigned int y;
-}t_point;
+	unsigned int	x;
+	unsigned int	y;
+}				t_point;
 
 typedef struct s_game
 {
 	t_map			*map;	// Double pointer map
 	t_point			player;	// Player's position (x,y)
+	t_graphic		graphics;
 	unsigned int	coins;	// Number of collected coins so far
-}t_game;
+}				t_game;
 
 
 //_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_ GAME _/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_

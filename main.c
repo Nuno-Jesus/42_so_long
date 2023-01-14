@@ -6,21 +6,11 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/10 13:04:07 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/01/14 19:40:02 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/01/14 19:53:13 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/so_long.h"
-
-typedef struct	s_graphic {
-	void	*mlx;
-	void	*win;
-	void	*img;
-	char	*addr;
-	int		bpp;
-	int		line_length;
-	int		endian;
-}				t_graphic;
 
 void	my_mlx_pixel_put(t_graphic *data, int x, int y, int color)
 {
@@ -52,6 +42,7 @@ int	main(void)
 	data.addr = mlx_get_data_addr(data.img, &data.bpp, &data.line_length, &data.endian);
 	my_mlx_pixel_put(&data, 5, 5, 0xFF0000);
 	mlx_put_image_to_window(data.mlx, data.win, data.img, 0, 0);
+	// Hook to handle resize
 	mlx_key_hook(data.win, f, &data);
 	mlx_loop(data.mlx);
 }
