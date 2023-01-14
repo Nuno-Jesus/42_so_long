@@ -15,13 +15,15 @@ RM = rm -f
 AR = ar -rcs
 
 #_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_ FLAGS _/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
-CFLAGS	= -Wall -Wextra -Werror
-MKFLAGS = --no-print-directory
+CFLAGS		= -Wall -Wextra -Werror -O3
+MKFLAGS		= --no-print-directory
+LIBXFLAGS	= -L ./minilibx-linux -lmlx -Ilmlx -lXext -lX11 -lm 
 
 #_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_ FOLDERS _/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
 DEPS	= includes
 SRCS	= srcs
 LIBFT	= libft
+LIBX 	= minilibx-linux
 GNL		= get_next_line
 PRINTF	= ft_printf
 
@@ -40,8 +42,12 @@ $(NAME): $(TARGET)
 	@echo "[$(CYAN)Compiling$(RESET)] $(CFLAGS) $(GREEN)get_next_line/*$(RESET)"
 	@make $(MKFLAGS) -C $(GNL)
 	
-	@echo "[$(RED) Linking $(RESET)] $(GREEN)*$(RESET)"
-	@$(CC) $(CFLAGS) main.c $(TARGET) $(LIBFT)/libft.a $(GNL)/gnl.a -o $(NAME) -I $(DEPS)
+	@echo "[$(CYAN)Compiling$(RESET)] $(CFLAGS) $(GREEN)minilibx/*$(RESET)"
+	@make $(MKFLAGS) -C $(LIBX)
+	
+	@echo "[$(CYAN) Linking $(RESET)] $(GREEN)*$(RESET)"
+	@$(CC) $(CFLAGS) main.c $(LIBXFLAGS) $(TARGET) $(LIBFT)/libft.a $(GNL)/libgnl.a -o $(NAME) -I $(DEPS)
+	@echo "$(GREEN)Done.$(RESET)"
 	
 %.o : %.c 
 	@echo "[$(CYAN)Compiling$(RESET)] $(CFLAGS) $(GREEN)$<$(RESET)"
@@ -50,12 +56,14 @@ $(NAME): $(TARGET)
 clean:
 	@make clean $(MKFLAGS) -C $(LIBFT)
 	@make clean $(MKFLAGS) -C $(GNL)
+	@make clean $(MKFLAGS) -C $(LIBX)
 	@echo "[$(RED) Deleted $(RESET)] $(GREEN)*/*.o$(RESET)"
 	@$(RM) $(TARGET)
 
 fclean: clean
 	@make fclean $(MKFLAGS) -C $(LIBFT)
 	@make fclean $(MKFLAGS) -C $(GNL)
+	@make clean $(MKFLAGS) -C $(LIBX)
 	@echo "[$(RED) Deleted $(RESET)] $(GREEN)so_long$(RESET)"
 	@$(RM) $(NAME)
 

@@ -24,7 +24,7 @@ DEPS = .
 TARGET =	get_next_line.o get_next_line_utils.o
 BONUS_TARGET = 	get_next_line_bonus.o get_next_line_utils_bonus.o
 
-NAME = gnl.a
+NAME = libgnl.a
 
 #_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_ RULES _/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
 %.o : %.c

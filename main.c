@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/10 13:04:07 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/01/07 18:49:41 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/01/14 15:44:46 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,11 @@
 int main(int argc, char **argv)
 {
 	(void)argc;
-	
-	char filename[255] = {0};
-	sprintf(filename, "maps/%s.ber", argv[1]);
-	t_game *game = game_new();
-	if (!game)
-		return 0;
-	read_map(game, filename);
-	validate_map(game);
-	map_print(game->map);
-	game_delete(game);
-	return 0;
+	(void)argv;
+	void	*mlx;
+	void	*mlx_win;
+
+	mlx = mlx_init();
+	mlx_win = mlx_new_window(mlx, 1920, 1080, "Hello world!");
+	mlx_loop(mlx);
 }
