@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/10 13:04:07 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/01/16 16:14:03 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/01/16 18:52:04 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,11 +37,12 @@ int	main(void)
 {
 	t_game	g;
 
+	g.map = NULL;
 	g.display.mlx = mlx_init();
 	g.display.win = mlx_new_window(g.display.mlx, 512, 512, "Hello world!");
 	g.display.img = mlx_new_image(g.display.mlx, 512, 512);
-	g.display.addr = mlx_get_data_addr(g.display.img, &g.display.bpp, &g.display.line_length, &g.display.endian);
-	my_mlx_pixel_put(&g.display, 5, 5, 0xFF0000);
+	g.display.addr = mlx_get_data_addr(g.display.img, &(g.display.bpp), &(g.display.line_length), &(g.display.endian));
+	my_mlx_pixel_put(&(g.display), 5, 5, 0xFF0000);
 	mlx_put_image_to_window(g.display.mlx, g.display.win, g.display.img, 0, 0);
 	mlx_key_hook(g.display.win, handler, &g);
 	mlx_loop(g.display.mlx);
