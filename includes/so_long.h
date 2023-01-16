@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/07 11:00:17 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/01/16 16:07:45 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/01/16 19:09:43 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,11 +66,11 @@ void	map_print(t_map *map);
 	 	
 int		get_map_width(t_game *game, char *filename);
 
-void	read_map(t_game *game, char *filename);
+void	map_read(t_game *game, char *filename);
 
 //_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/= VALIDATOR =\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
 
-void	validate_map(t_game *game);
+void	map_validate(t_game *game);
 
 //_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_ UTILS _/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
 
