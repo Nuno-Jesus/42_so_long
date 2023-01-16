@@ -17,13 +17,13 @@ AR = ar -rcs
 #_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_ FLAGS _/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
 CFLAGS		= -Wall -Wextra -Werror -O3
 MKFLAGS		= --no-print-directory
-LIBXFLAGS	= -L ./minilibx-linux -lmlx -Ilmlx -lXext -lX11 -lm 
+LIBXFLAGS	= -L ./mlx -lmlx -Ilmlx -lXext -lX11 -lm 
 
 #_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_ FOLDERS _/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
 DEPS	= includes
 SRCS	= srcs
 LIBFT	= libft
-LIBX 	= minilibx-linux
+LIBX 	= mlx
 GNL		= get_next_line
 PRINTF	= ft_printf
 
@@ -36,35 +36,37 @@ TARGET	= $(addprefix $(SRCS)/, $(OBJS))
 all: $(NAME)
 
 $(NAME): $(TARGET)
-	@echo "[$(CYAN)Compiling$(RESET)] $(CFLAGS) $(GREEN)libft/*$(RESET)"
-	@make $(MKFLAGS) -C $(LIBFT)
+	echo "[$(CYAN)Compiling$(RESET)] $(CFLAGS) $(GREEN)libft/*$(RESET)"
+	make $(MKFLAGS) -C $(LIBFT)
 	
-	@echo "[$(CYAN)Compiling$(RESET)] $(CFLAGS) $(GREEN)get_next_line/*$(RESET)"
-	@make $(MKFLAGS) -C $(GNL)
+	echo "[$(CYAN)Compiling$(RESET)] $(CFLAGS) $(GREEN)get_next_line/*$(RESET)"
+	make $(MKFLAGS) -C $(GNL)
 	
-	@echo "[$(CYAN)Compiling$(RESET)] $(CFLAGS) $(GREEN)minilibx/*$(RESET)"
-	@make $(MKFLAGS) -C $(LIBX)
+	echo "[$(CYAN)Compiling$(RESET)] $(CFLAGS) $(GREEN)minilibx/*$(RESET)"
+	make $(MKFLAGS) -C $(LIBX)
 	
-	@echo "[$(CYAN) Linking $(RESET)] $(GREEN)*$(RESET)"
-	@$(CC) $(CFLAGS) main.c $(LIBXFLAGS) $(TARGET) $(LIBFT)/libft.a $(GNL)/libgnl.a -o $(NAME) -I $(DEPS)
-	@echo "$(GREEN)Done.$(RESET)"
+	echo "[$(CYAN) Linking $(RESET)] $(GREEN)*$(RESET)"
+	$(CC) $(CFLAGS) main.c $(TARGET) $(LIBXFLAGS) $(LIBFT)/libft.a $(GNL)/libgnl.a -o $(NAME) -I $(DEPS)
+	
+	echo "$(GREEN)Done.$(RESET)"
 	
 %.o : %.c 
-	@echo "[$(CYAN)Compiling$(RESET)] $(CFLAGS) $(GREEN)$<$(RESET)"
-	@$(CC) $(CFLAGS) -c $< -o $@ -I $(DEPS)
+	echo "[$(CYAN)Compiling$(RESET)] $(CFLAGS) $(GREEN)$<$(RESET)"
+	$(CC) $(CFLAGS) -c $< -o $@ -I $(DEPS)
 
 clean:
-	@make clean $(MKFLAGS) -C $(LIBFT)
-	@make clean $(MKFLAGS) -C $(GNL)
-	@make clean $(MKFLAGS) -C $(LIBX)
-	@echo "[$(RED) Deleted $(RESET)] $(GREEN)*/*.o$(RESET)"
-	@$(RM) $(TARGET)
+	make clean $(MKFLAGS) -C $(LIBFT)
+	make clean $(MKFLAGS) -C $(GNL)
+	make clean $(MKFLAGS) -C $(LIBX)
+	echo "[$(RED) Deleted $(RESET)] $(GREEN)*/*.o$(RESET)"
+	$(RM) $(TARGET)
 
 fclean: clean
-	@make fclean $(MKFLAGS) -C $(LIBFT)
-	@make fclean $(MKFLAGS) -C $(GNL)
-	@make clean $(MKFLAGS) -C $(LIBX)
-	@echo "[$(RED) Deleted $(RESET)] $(GREEN)so_long$(RESET)"
-	@$(RM) $(NAME)
+	make fclean $(MKFLAGS) -C $(LIBFT)
+	make fclean $(MKFLAGS) -C $(GNL)
+	make clean $(MKFLAGS) -C $(LIBX)
+	echo "[$(RED) Deleted $(RESET)] $(GREEN)so_long$(RESET)"
+	$(RM) $(NAME)
 
+.SILENT:
 re: fclean all

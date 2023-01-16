@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/07 11:53:02 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/01/07 18:05:06 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/01/16 18:35:00 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,10 @@ void	game_delete(t_game *game)
 {
 	if (!game)
 		return ;
+	if (game->display.img)
+		mlx_destroy_image(game->display.mlx, game->display.img);
+	mlx_destroy_window(game->display.mlx, game->display.win);
+	mlx_destroy_display(game->display.mlx);
 	map_delete(game->map);
 	free(game);
 }

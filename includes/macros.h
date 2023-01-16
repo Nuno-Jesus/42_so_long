@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/10 11:19:03 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/01/14 18:37:52 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/01/16 18:23:35 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 
 # include "../libft/libft.h"
 # include "../get_next_line/get_next_line.h"
-# include "../minilibx-linux/mlx.h"
+# include "../mlx/mlx.h"
 
 # define KEYPRESS (1L << 0)
 # define ESC 65307
