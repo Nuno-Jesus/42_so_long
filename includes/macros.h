@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/10 11:19:03 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/01/16 18:23:35 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/01/17 15:26:53 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,18 +27,29 @@
 # include "../get_next_line/get_next_line.h"
 # include "../mlx/mlx.h"
 
-# define KEYPRESS (1L << 0)
-# define ESC 65307
-# define W 119
-# define A 97
-# define S 115
-# define D 100
-
 # define ENTITIES "01CEP"
-# define SPACE '0'
-# define WALL '1'
-# define COIN 'C'
-# define EXIT 'E'
-# define PLAYER 'P'
+
+typedef enum e_entity
+{
+	SPACE = '0',
+	WALL = '1',
+	COIN = 'C',
+	EXIT = 'E',
+	PLAYER = 'P'
+} t_entity;
+
+typedef enum e_key
+{
+	ESC = 65307,
+	W = 119,
+	A = 97,
+	S = 115,
+	D = 100
+} t_key;
+
+typedef enum e_event
+{
+	KEYPRESS = (1L << 0)
+}t_event;
 
 #endif
