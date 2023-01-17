@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/10 13:04:07 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/01/16 19:17:51 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/01/17 15:21:31 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,20 +43,28 @@ bool is_valid(char *filename)
 	return (ft_strnstr(filename + (len - 4), ".ber", 4) != NULL);	
 }
 
-int game_init(char *filename)
+void graphics_init(t_game *g)
 {
-	t_game g;
+	g->display.mlx = mlx_init();
+	if (!g->display.mlx)
+		message(g, "Failed allocation on mlx pointer\n");
+	g->display.win = mlx_new_window(g->display.mlx, 512, 512, "so_long");
+	if (!g->display.win)
+		message(g, "Failed allocation on window pointer");
+}	
+	
 
-	ft_bzero(&g, sizeof(t_game));
-	map_read(&g, filename);
-	map_validate(&g);
-	map_print(g.map);
-	game_delete(&g);
-	/* g.display.mlx = mlx_init();
-	if (!g.display.mlx)
-		message(&g, "Failed allocation on mlx pointer\n");
-	g.display.win = ... */
-	return 1;
+void game_init(char *filename)
+{
+	t_game game;
+
+	ft_bzero(&game, sizeof(t_game));
+	map_read(&game, filename);
+	map_validate(&game);
+	//map_print(game.map);
+	graphics_init(&game);
+	mlx_key_hook(game.display.win, handler, &game);
+	mlx_loop(game.display.mlx);
 }
 
 int	main(int argc, char **argv)
@@ -66,17 +74,4 @@ int	main(int argc, char **argv)
 	if (!is_valid(argv[1]))
 		message(NULL, "Filename must end in \".ber\".\n");
 	game_init(argv[1]);	
-	/* 
-	g.display.mlx = mlx_init();
-	g.display.win = mlx_new_window(g.display.mlx, 512, 512, "so_long");
-	g.display.img = mlx_new_image(g.display.mlx, 512, 512);
-	g.display.addr = mlx_get_data_addr(g.display.img, &(g.display.bpp), &(g.display.line_length), &(g.display.endian));
-	map_read(&g, argv[1]);
-	map_validate(&g);
-	map_print(g.map);
-	my_mlx_pixel_put(&g.display, 5, 5, 0xFF0000);
-	mlx_put_image_to_window(g.display.mlx, g.display.win, g.display.img, 0, 0);
-	mlx_key_hook(g.display.win, handler, &g);
-	mlx_loop(g.display.mlx);
-	 */
 }

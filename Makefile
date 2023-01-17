@@ -42,9 +42,6 @@ $(NAME): $(TARGET)
 	echo "[$(CYAN)Compiling$(RESET)] $(CFLAGS) $(GREEN)get_next_line/*$(RESET)"
 	make $(MKFLAGS) -C $(GNL)
 	
-	echo "[$(CYAN)Compiling$(RESET)] $(CFLAGS) $(GREEN)minilibx/*$(RESET)"
-	make $(MKFLAGS) -C $(LIBX)
-	
 	echo "[$(CYAN) Linking $(RESET)] $(GREEN)*$(RESET)"
 	$(CC) $(CFLAGS) main.c $(TARGET) $(LIBXFLAGS) $(LIBFT)/libft.a $(GNL)/libgnl.a -o $(NAME) -I $(DEPS)
 	
@@ -57,14 +54,12 @@ $(NAME): $(TARGET)
 clean:
 	make clean $(MKFLAGS) -C $(LIBFT)
 	make clean $(MKFLAGS) -C $(GNL)
-	make clean $(MKFLAGS) -C $(LIBX)
 	echo "[$(RED) Deleted $(RESET)] $(GREEN)*/*.o$(RESET)"
 	$(RM) $(TARGET)
 
 fclean: clean
 	make fclean $(MKFLAGS) -C $(LIBFT)
 	make fclean $(MKFLAGS) -C $(GNL)
-	make clean $(MKFLAGS) -C $(LIBX)
 	echo "[$(RED) Deleted $(RESET)] $(GREEN)so_long$(RESET)"
 	$(RM) $(NAME)
 
