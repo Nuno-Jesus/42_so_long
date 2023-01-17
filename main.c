@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/10 13:04:07 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/01/17 15:21:31 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/01/17 16:03:25 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ void game_init(char *filename)
 	//map_print(game.map);
 	graphics_init(&game);
 	mlx_key_hook(game.display.win, handler, &game);
+	mlx_hook(game.display.win, CLOSE_WINDOW, 0, quit, &game);
 	mlx_loop(game.display.mlx);
 }
 
