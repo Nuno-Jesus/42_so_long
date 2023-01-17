@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/10 13:04:07 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/01/17 16:03:25 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/01/17 16:37:47 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ int handler(int keycode, t_game *game)
 {
 	if (keycode == ESC)
 		quit(game);
+	printf("%d\n", keycode);
 	return (keycode);
 }
 
@@ -53,7 +54,6 @@ void graphics_init(t_game *g)
 		message(g, "Failed allocation on window pointer");
 }	
 	
-
 void game_init(char *filename)
 {
 	t_game game;

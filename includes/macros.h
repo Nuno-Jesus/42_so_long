@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/10 11:19:03 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/01/17 16:02:26 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/01/17 16:37:58 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ typedef enum e_key
 
 typedef enum e_event
 {
-	CLOSE_WINDOW = 17, 
+	CLOSE_WINDOW = 17,
 }t_event;
 
 #endif

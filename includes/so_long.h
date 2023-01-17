@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/07 11:00:17 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/01/16 19:09:43 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/01/17 16:05:26 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ typedef struct	s_graphics {
 	void	*win;
 	void	*img;
 	char	*addr;
+	int		height;
+	int		width;
 	int		bpp;
 	int		line_length;
 	int		endian;
