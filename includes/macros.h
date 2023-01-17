@@ -28,10 +28,28 @@
 # include "../mlx/mlx.h"
 
 # define ENTITIES "01CEP"
-# define SPACE '0'
-# define WALL '1'
-# define COIN 'C'
-# define EXIT 'E'
-# define PLAYER 'P'
+
+typedef enum e_entity
+{
+	SPACE = '0',
+	WALL = '1',
+	COIN = 'C',
+	EXIT = 'E',
+	PLAYER = 'P'
+} t_entity;
+
+typedef enum e_key
+{
+	ESC = 65307,
+	W = 119,
+	A = 97,
+	S = 115,
+	D = 100
+} t_key;
+
+typedef enum e_event
+{
+	CLOSE_WINDOW = 17,
+}t_event;
 
 #endif

@@ -15,15 +15,19 @@
 
 # include "macros.h"
 
-typedef struct	s_graphic {
+
+typedef struct	s_graphics {
 	void	*mlx;
 	void	*win;
 	void	*img;
 	char	*addr;
+	int		height;
+	int		width;
 	int		bpp;
 	int		line_length;
 	int		endian;
-}				t_graphic;
+}				t_graphics;
+
 
 typedef struct s_map
 {
@@ -45,7 +49,7 @@ typedef struct s_game
 {
 	t_map			*map;	// Double pointer map
 	t_point			player;	// Player's position (x,y)
-	t_graphic		graphics;
+	t_graphics		display;
 	unsigned int	coins;	// Number of collected coins so far
 }				t_game;
 
@@ -66,11 +70,11 @@ void	map_print(t_map *map);
 	 	
 int		get_map_width(t_game *game, char *filename);
 
-void	read_map(t_game *game, char *filename);
+void	map_read(t_game *game, char *filename);
 
 //_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/= VALIDATOR =\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
 
-void	validate_map(t_game *game);
+void	map_validate(t_game *game);
 
 //_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_ UTILS _/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
 

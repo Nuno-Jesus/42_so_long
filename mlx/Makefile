@@ -19,4 +19,5 @@ do_configure	:
 clean	:
 	@./configure clean
 
+.SILENT:
 re	: clean all
