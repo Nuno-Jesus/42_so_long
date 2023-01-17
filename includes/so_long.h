@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/07 11:00:17 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/01/17 16:05:26 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/01/14 19:48:40 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define SO_LONG_H
 
 # include "macros.h"
+
 
 typedef struct	s_graphics {
 	void	*mlx;
@@ -27,6 +28,7 @@ typedef struct	s_graphics {
 	int		endian;
 }				t_graphics;
 
+
 typedef struct s_map
 {
 	char			**bytes;
@@ -39,8 +41,8 @@ typedef struct s_map
 
 typedef struct s_point
 {
-	unsigned int x;
-	unsigned int y;
+	unsigned int	x;
+	unsigned int	y;
 }				t_point;
 
 typedef struct s_game
