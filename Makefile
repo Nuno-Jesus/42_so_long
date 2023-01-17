@@ -18,13 +18,15 @@ AR = ar -rcs
 CFLAGS		= -Wall -Wextra -Werror -O3
 MKFLAGS		= --no-print-directory
 LIBXFLAGS	= -L ./mlx -lmlx -Ilmlx -lXext -lX11 -lm 
+LIBFTFLAGS	= -L ./libft -lft
+GNLFLAGS	= -L ./get_next_line -lgnl
 
 #_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_ FOLDERS _/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
 DEPS	= includes
 SRCS	= srcs
 LIBFT	= libft
-LIBX 	= mlx
 GNL		= get_next_line
+LIBX 	= mlx
 PRINTF	= ft_printf
 
 #_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_ FILES _/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
@@ -43,7 +45,7 @@ $(NAME): $(TARGET)
 	make $(MKFLAGS) -C $(GNL)
 	
 	echo "[$(CYAN) Linking $(RESET)] $(GREEN)*$(RESET)"
-	$(CC) $(CFLAGS) main.c $(TARGET) $(LIBXFLAGS) $(LIBFT)/libft.a $(GNL)/libgnl.a -o $(NAME) -I $(DEPS)
+	$(CC) $(CFLAGS) main.c $(TARGET) $(LIBFTFLAGS) $(GNLFLAGS) $(LIBXFLAGS) -o $(NAME)
 	
 	echo "$(GREEN)Done.$(RESET)"
 	
