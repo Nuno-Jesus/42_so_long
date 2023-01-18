@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/07 11:00:17 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/01/14 19:48:40 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/01/18 15:17:06 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,27 @@
 
 # include "macros.h"
 
+typedef struct s_point
+{
+	unsigned int	x;
+	unsigned int	y;
+}				t_point;
+
+typedef struct s_map
+{
+	char			**bytes;
+	unsigned int	cols;
+	unsigned int	rows;
+	unsigned int	num_coins;
+	unsigned int	num_exits;
+	unsigned int	num_players;
+}				t_map;
+
+typedef struct	s_sprite{
+	void	*img;
+	int		width;
+	int		height;
+}				t_sprite;
 
 typedef struct	s_graphics {
 	void	*mlx;
@@ -28,29 +49,13 @@ typedef struct	s_graphics {
 	int		endian;
 }				t_graphics;
 
-
-typedef struct s_map
-{
-	char			**bytes;
-	unsigned int	cols;
-	unsigned int	rows;
-	unsigned int	num_coins;
-	unsigned int	num_exits;
-	unsigned int	num_players;
-}				t_map;
-
-typedef struct s_point
-{
-	unsigned int	x;
-	unsigned int	y;
-}				t_point;
-
 typedef struct s_game
 {
-	t_map			*map;	// Double pointer map
-	t_point			player;	// Player's position (x,y)
-	t_graphics		display;
-	unsigned int	coins;	// Number of collected coins so far
+	t_map			*map;	
+	t_point			player;	
+	t_graphics		disp;
+	t_sprite 		*sprites;
+	unsigned int	coins;
 }				t_game;
 
 
@@ -68,18 +73,20 @@ void	map_delete(t_map *map);
 
 void	map_print(t_map *map);
 	 	
-int		get_map_width(t_game *game, char *filename);
+int		get_map_height(t_game *game, char *filename);
 
-void	map_read(t_game *game, char *filename);
+void	read_map(t_game *game, char *filename);
 
 //_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/= VALIDATOR =\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
 
-void	map_validate(t_game *game);
+void	validate_map(t_game *game);
 
 //_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_ UTILS _/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
 
 void	matrix_delete(char **matrix);
 
 void	message(t_game *game, char *text);
+
+void	delete_sprites(t_game *g);
 
 #endif

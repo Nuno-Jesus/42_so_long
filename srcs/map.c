@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/07 18:03:57 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/01/17 21:26:31 by crypto           ###   ########.fr       */
+/*   Updated: 2023/01/18 13:59:02 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ int	get_num_lines(t_game *game, char *filename)
 	return (lines);
 }
 
-void	map_read(t_game *game, char *filename)
+void	read_map(t_game *game, char *filename)
 {
 	int	fd;
 	char	*tmp;

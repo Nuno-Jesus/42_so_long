@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/07 18:11:40 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/01/16 19:09:43 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/01/18 13:59:10 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,7 +114,7 @@ bool	has_valid_path(t_game *game)
 	return (is_valid);
 }
 
-void	map_validate(t_game *game)
+void	validate_map(t_game *game)
 {
 	if (game->map->rows == 0)
 		message(game, "Map is empty.\n");
