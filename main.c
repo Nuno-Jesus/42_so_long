@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/10 13:04:07 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/01/17 16:37:47 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/01/18 13:46:27 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,10 +49,34 @@ void graphics_init(t_game *g)
 	g->display.mlx = mlx_init();
 	if (!g->display.mlx)
 		message(g, "Failed allocation on mlx pointer\n");
-	g->display.win = mlx_new_window(g->display.mlx, 512, 512, "so_long");
+	g->display.win = mlx_new_window(g->display.mlx, 32 * g->map->cols, 32 * g->map->rows, "so_long");
+	printf("Window size (cols/rows): %u/%u\n", 32 * g->map->cols, 32 * g->map->rows);
 	if (!g->display.win)
 		message(g, "Failed allocation on window pointer");
 }	
+
+void	map_display(t_game *g)
+{
+	int	width;
+	int height;
+	
+	(void)width;
+	(void)height;
+	
+	void *wall = mlx_xpm_file_to_image(g->display.mlx, "xpm/wall1.xpm", &width, &height);
+	if (!wall)
+		message(g, "Failed allocation on map tile");
+	printf("Map size (cols/rows): %u/%u\n", g->map->cols, g->map->rows);
+	for (unsigned int y = 0; y < g->map->rows; y++)
+	{
+		for (unsigned int x = 0; x < g->map->cols; x++)
+		{			
+			if (g->map->bytes[y][x] == WALL)
+				mlx_put_image_to_window(g->display.mlx, g->display.win, wall, x * 32, y * 32);
+		}		
+	}
+	mlx_destroy_image(g->display.mlx, wall);
+}
 	
 void game_init(char *filename)
 {
@@ -61,8 +85,9 @@ void game_init(char *filename)
 	ft_bzero(&game, sizeof(t_game));
 	map_read(&game, filename);
 	map_validate(&game);
-	//map_print(game.map);
+	map_print(game.map);
 	graphics_init(&game);
+	map_display(&game);
 	mlx_key_hook(game.display.win, handler, &game);
 	mlx_hook(game.display.win, CLOSE_WINDOW, 0, quit, &game);
 	mlx_loop(game.display.mlx);

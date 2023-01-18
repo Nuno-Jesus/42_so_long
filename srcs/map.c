@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/07 18:03:57 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/01/16 19:03:49 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/01/17 21:26:31 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	map_print(t_map *map)
 		printf("%s\n", map->bytes[i]);
 }
 
-int	get_map_width(t_game *game, char *filename)
+int	get_num_lines(t_game *game, char *filename)
 {
 	int		fd;
 	int		lines;
@@ -78,7 +78,7 @@ void	map_read(t_game *game, char *filename)
 	unsigned int	i;
 
 	i = 0;
-	game->map = map_new(0, get_map_width(game, filename));
+	game->map = map_new(0, get_num_lines(game, filename));
 	if (!game->map)
 		message(game, "Allocation error on game->map\n");
 	fd = open(filename, O_RDONLY);
