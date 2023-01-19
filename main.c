@@ -50,7 +50,6 @@ void init_graphics(t_game *g)
 	if (!g->disp.mlx)
 		message(g, "Failed allocation on mlx pointer\n");
 	g->disp.win = mlx_new_window(g->disp.mlx, 32 * g->map->cols, 32 * g->map->rows, "so_long");
-	printf("Window size (cols/rows): %u/%u\n", 32 * g->map->cols, 32 * g->map->rows);
 	if (!g->disp.win)
 		message(g, "Failed allocation on window pointer");
 }
@@ -62,22 +61,19 @@ void	delete_sprites(t_game *g)
 	i = 0;
 	printf("Array %p\n", g->sprites);
 	while (i < NUM_SPRITES)
-	{
-		printf("%d - %p\n", i, g->sprites[i].img);
 		mlx_destroy_image(g->disp.mlx, g->sprites[i++].img);
-	}
 	free(g->sprites);
 }
 
 void	load_sprites(t_game *g)
 {
-	g->sprites = malloc(1 * sizeof(t_sprite));
+	g->sprites = malloc(NUM_SPRITES * sizeof(t_sprite));
 	if (!g->sprites)
 		message(g, "Failed allocation on sprites array\n");
 	g->sprites[I_WALL].img = mlx_xpm_file_to_image(g->disp.mlx, F_WALL, &(g->sprites[I_WALL].width), &(g->sprites[I_WALL].height));
-	//g->sprites[I_SPACE].img = mlx_xpm_file_to_image(g->disp.mlx, F_SPACE, g->sprites[I_SPACE].width, g->sprites[I_SPACE].height);
-	//g->sprites[I_COIN].img = mlx_xpm_file_to_image(g->disp.mlx, F_COIN, g->sprites[I_COIN].width, g->sprites[I_COIN].height);
-	//g->sprites[I_EXIT].img = mlx_xpm_file_to_image(g->disp.mlx, F_EXIT, g->sprites[I_EXIT].width, g->sprites[I_EXIT].height);
+	g->sprites[I_SPACE].img = mlx_xpm_file_to_image(g->disp.mlx, F_SPACE, &(g->sprites[I_SPACE].width), &(g->sprites[I_SPACE].height));
+	g->sprites[I_COIN].img = mlx_xpm_file_to_image(g->disp.mlx, F_COIN, &(g->sprites[I_COIN].width), &(g->sprites[I_COIN].height));
+	g->sprites[I_EXIT].img = mlx_xpm_file_to_image(g->disp.mlx, F_EXIT, &(g->sprites[I_EXIT].width), &(g->sprites[I_EXIT].height));
 	//g->sprites[I_PLAYER].img = mlx_xpm_file_to_image(g->disp.mlx, F_PLAYER, g->sprites[I_PLAYER].width, g->sprites[I_PLAYER].height);
 }
 
@@ -86,18 +82,18 @@ void	render_tile(t_game *g, int x, int y)
 	t_sprite sp;
 	
 	if (g->map->bytes[y][x] == WALL)
-	{
 		sp = g->sprites[I_WALL];
-		mlx_put_image_to_window(g->disp.mlx, g->disp.win, sp.img, x * sp.width, y * sp.height);
-	}
-	/* else if (g->map->bytes[y][x] == COIN)
+	else if (g->map->bytes[y][x] == COIN)
 		sp = g->sprites[I_COIN];
 	else if (g->map->bytes[y][x] == EXIT)
 		sp = g->sprites[I_EXIT];
 	else if (g->map->bytes[y][x] == SPACE)
 		sp = g->sprites[I_SPACE];
-	else if (g->map->bytes[y][x] == PLAYER)
+    else
+        return ;
+	/* else if (g->map->bytes[y][x] == PLAYER)
 		sp = g->sprites[I_PLAYER]; */
+    mlx_put_image_to_window(g->disp.mlx, g->disp.win, sp.img, x * sp.width, y * sp.height);
 }
 
 void	render_map(t_game *g)

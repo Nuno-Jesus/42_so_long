@@ -27,14 +27,13 @@
 # include "../get_next_line/get_next_line.h"
 # include "../mlx/mlx.h"
 
-# define NUM_SPRITES	1
+# define NUM_SPRITES	4
 # define ENTITIES		"01CEP"
 # define F_SPACE		"xpm/space.xpm"
 # define F_WALL			"xpm/wall.xpm"
 # define F_COIN			"xpm/coin.xpm"
 # define F_EXIT			"xpm/exit.xpm"
 # define F_PLAYER		"xpm/player.xpm"
-# define OFFSET(x)		(x * 32)
 
 typedef enum e_entity
 {
