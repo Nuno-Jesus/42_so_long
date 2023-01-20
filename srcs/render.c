@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 14:19:00 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/01/20 14:19:17 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/01/20 14:37:36 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	render_tile(t_game *g, int x, int y)
 {
 	t_sprite	sp;
-	
+
 	if (g->map->bytes[y][x] == WALL)
 		sp = g->sp[W1];
 	else if (g->map->bytes[y][x] == COIN)
@@ -26,11 +26,12 @@ void	render_tile(t_game *g, int x, int y)
 		sp = g->sp[S1];
 	else if (g->map->bytes[y][x] == PLAYER)
 		sp = g->sp[P1];
-    mlx_put_image_to_window(g->disp.mlx, g->disp.win, sp.img, x * sp.width, y * sp.height);
+	mlx_put_image_to_window(g->disp.mlx, g->disp.win, sp.img, \
+		x * sp.width, y * sp.height);
 }
 
 void	render_map(t_game *g)
-{		
+{
 	unsigned int	x;
 	unsigned int	y;
 

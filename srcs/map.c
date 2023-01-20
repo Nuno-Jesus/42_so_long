@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/07 18:03:57 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/01/20 14:24:47 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/01/20 14:33:14 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 t_map	*map_new(unsigned int cols, unsigned int rows)
 {
 	t_map	*map;
-	
+
 	map = ft_calloc(1, sizeof(t_map));
 	if (!map)
 		return (NULL);
@@ -32,13 +32,16 @@ t_map	*map_new(unsigned int cols, unsigned int rows)
 
 void	map_print(t_map *map)
 {
+	unsigned int	i;
+
+	i = 0;
 	printf("Length: %u\n", map->cols);
 	printf("Width: %u\n", map->rows);
 	printf("Players: %u\n", map->num_players);
 	printf("Exits: %u\n", map->num_exits);
 	printf("Coins: %u\n", map->num_coins);
-	for (unsigned int i = 0; i < map->rows; i++)
-		printf("%s\n", map->bytes[i]);
+	while (i < map->rows)
+		printf("%s\n", map->bytes[i++]);
 }
 
 int	get_num_lines(t_game *game, char *filename)
@@ -46,7 +49,7 @@ int	get_num_lines(t_game *game, char *filename)
 	int		fd;
 	int		lines;
 	char	*tmp;
-	
+
 	lines = 0;
 	fd = open(filename, O_RDONLY);
 	if (fd < 0)
@@ -55,7 +58,7 @@ int	get_num_lines(t_game *game, char *filename)
 	{
 		tmp = get_next_line(fd);
 		if (!tmp)
-			break;
+			break ;
 		lines++;
 		free(tmp);
 	}
@@ -65,8 +68,8 @@ int	get_num_lines(t_game *game, char *filename)
 
 void	read_map(t_game *game, char *filename)
 {
-	int	fd;
-	char	*tmp;
+	int				fd;
+	char			*tmp;
 	unsigned int	i;
 
 	i = 0;
@@ -87,5 +90,4 @@ void	read_map(t_game *game, char *filename)
 		free(tmp);
 	}
 	close(fd);
-
 }

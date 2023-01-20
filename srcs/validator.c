@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/07 18:11:40 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/01/20 14:24:53 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/01/20 14:33:54 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ bool	is_map_rectangular(t_map *map)
 bool	is_map_bounded(t_map *map)
 {
 	unsigned int	i;
-	
+
 	i = -1;
 	while (++i < map->rows)
 		if (map->bytes[i][0] != WALL || map->bytes[i][map->cols - 1] != WALL)
@@ -62,12 +62,12 @@ bool	has_valid_entities(t_game *game)
 			else if (game->map->bytes[i][k] == COIN)
 				game->map->num_coins++;
 			else if (!ft_strchr(ENTITIES, game->map->bytes[i][k]))
-				return (false);	
+				return (false);
 		}
 	}
-	return (game->map->num_players == 1 && 
-		game->map->num_exits == 1 && 
-		game->map->num_coins >= 1);
+	return (game->map->num_players == 1
+		&& game->map->num_exits == 1
+		&& game->map->num_coins >= 1);
 }
 
 bool	has_valid_path(t_game *game)
@@ -106,5 +106,5 @@ void	validate_map(t_game *game)
 	if (!has_valid_entities(game))
 		message(game, "Map has invalid entities.\n");
 	if (!has_valid_path(game))
-		message(game, "Map has not a traversable path to end the level.\n");		
+		message(game, "Map has not a traversable path to end the level.\n");
 }

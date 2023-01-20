@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/07 18:04:46 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/01/20 14:21:08 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/01/20 14:33:59 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	matrix_delete(char **matrix)
 {	
 	size_t	i;
-	
+
 	i = 0;
 	if (!matrix)
 		return ;

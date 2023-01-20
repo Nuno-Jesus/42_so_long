@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 14:20:49 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/01/20 14:20:57 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/01/20 14:30:45 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ bool	flood_fill(t_map *map, t_point curr, char **maze)
 {
 	static unsigned int	coins = 0;
 	static bool			found_exit = false;
-	
+
 	if (maze[curr.y][curr.x] == WALL)
 		return (false);
 	else if (maze[curr.y][curr.x] == COIN)
