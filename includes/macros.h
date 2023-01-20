@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/10 11:19:03 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/01/20 15:55:54 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/01/20 20:43:03 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,15 @@ typedef enum e_key
 
 typedef enum e_event
 {
-	CLOSE_WINDOW = 17,
+	ON_KEYPRESS = 2,
+	ON_CLOSE = 17,
 }				t_event;
+
+typedef enum e_mask
+{
+	KEYPRESS_MASK = (1L << 0),
+	CLOSE_MASK = (1L << 17)
+}			t_mask;
 
 typedef enum e_index
 {

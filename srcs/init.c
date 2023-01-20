@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 14:13:49 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/01/20 15:49:10 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/01/20 20:42:36 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,9 +54,8 @@ void	init_game(char *filename)
 	init_graphics(&g);
 	load_sprites(&g);
 	render_map(&g);
-	printf("Player (x/y): %u/%u\n", g.curr.x, g.curr.y);
-	mlx_key_hook(g.disp.win, kb_hook, &g);
-	mlx_hook(g.disp.win, CLOSE_WINDOW, 0, quit, &g);
+	mlx_hook(g.disp.win, ON_KEYPRESS, KEYPRESS_MASK, kb_hook, &g);
+	mlx_hook(g.disp.win, ON_CLOSE, CLOSE_MASK, quit, &g);
 	mlx_loop_hook(g.disp.mlx, render_frame, &g);
 	mlx_loop(g.disp.mlx);
 }

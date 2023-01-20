@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 14:54:58 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/01/20 17:35:01 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/01/20 17:46:00 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,17 @@ bool	is_valid_movement(t_game *g)
 		&& g->next.x >= 0 && g->next.x < g->map->cols);
 }
 
-void	move_player(t_game *game)
+void	move_player(t_game *g)
 {
 	static t_entity	previous = SPACE;
 	
-	game->map->bytes[game->curr.y][game->curr.x] = previous;
-	previous = game->map->bytes[game->next.y][game->next.x];
-	game->map->bytes[game->next.y][game->next.x] = PLAYER;
-	render_tile(game, game->curr.x, game->curr.y);
-	render_tile(game, game->next.x, game->next.y);
-	game->curr = game->next;
+	g->map->bytes[g->curr.y][g->curr.x] = previous;
+	if (at(g, g->next) != COIN)
+		previous = g->map->bytes[g->next.y][g->next.x];
+	else
+		previous = SPACE;
+	g->map->bytes[g->next.y][g->next.x] = PLAYER;
+	render_tile(g, g->curr.x, g->curr.y);
+	render_tile(g, g->next.x, g->next.y);
+	g->curr = g->next;
 }
