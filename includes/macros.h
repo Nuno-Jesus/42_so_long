@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/10 11:19:03 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/01/20 13:10:18 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/01/20 15:55:54 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,12 +53,12 @@ typedef enum e_key
 	D = 100
 }			t_key;
 
-typedef enum	e_event
+typedef enum e_event
 {
 	CLOSE_WINDOW = 17,
 }				t_event;
 
-typedef enum	e_index
+typedef enum e_index
 {
 	W1,
 	S1,

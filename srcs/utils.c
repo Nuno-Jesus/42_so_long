@@ -6,20 +6,20 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/07 18:04:46 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/01/20 15:40:01 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/01/20 15:49:10 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	swap(char *a, char *b)
+/* void	swap(char *a, char *b)
 {
 	char	aux;
 
 	aux = *a;
 	*a = *b;
 	*b = aux;
-}
+} */
 
 char	at(t_game *g, t_point p)
 {
@@ -45,7 +45,7 @@ void	matrix_delete(char **matrix)
 
 void	message(t_game *game, char *text)
 {
-	game_delete(game);
+	destroy_game(game);
 	ft_putstr_fd("Error\n", STDOUT_FILENO);
 	ft_putstr_fd(text, STDOUT_FILENO);
 	exit(EXIT_FAILURE);

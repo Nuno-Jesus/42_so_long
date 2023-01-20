@@ -6,18 +6,18 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/07 11:53:02 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/01/20 14:36:16 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/01/20 15:51:42 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	game_delete(t_game *game)
+void	destroy_game(t_game *game)
 {
 	if (!game)
 		return ;
 	if (game->sp)
-		delete_sprites(game);
+		destroy_sprites(game);
 	if (game->disp.img)
 		mlx_destroy_image(game->disp.mlx, game->disp.img);
 	if (game->disp.win)
@@ -25,11 +25,11 @@ void	game_delete(t_game *game)
 	if (game->disp.mlx)
 		mlx_destroy_display(game->disp.mlx);
 	if (game->map)
-		map_delete(game->map);
+		destroy_map(game->map);
 	free(game->disp.mlx);
 }
 
-void	delete_sprites(t_game *g)
+void	destroy_sprites(t_game *g)
 {
 	int	i;
 
@@ -39,7 +39,7 @@ void	delete_sprites(t_game *g)
 	free(g->sp);
 }
 
-void	map_delete(t_map *map)
+void	destroy_map(t_map *map)
 {
 	if (!map)
 		return ;

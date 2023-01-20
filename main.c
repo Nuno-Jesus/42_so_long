@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/10 13:04:07 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/01/20 14:29:40 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/01/20 15:49:02 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,5 +28,5 @@ int	main(int argc, char **argv)
 		message(NULL, "Invalid number of parameters.\n");
 	if (!is_filename_valid(argv[1]))
 		message(NULL, "Filename must end in \".ber\".\n");
-	game_init(argv[1]);
+	init_game(argv[1]);
 }

@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 14:13:49 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/01/20 15:23:42 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/01/20 15:49:10 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	quit(t_game *game)
 {
-	game_delete(game);
+	destroy_game(game);
 	exit(EXIT_SUCCESS);
 }
 
@@ -44,7 +44,7 @@ void	init_graphics(t_game *g)
 		message(g, "Failed allocation on window pointer");
 }
 
-void	game_init(char *filename)
+void	init_game(char *filename)
 {
 	t_game	g;
 
