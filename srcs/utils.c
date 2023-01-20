@@ -6,13 +6,13 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/07 18:04:46 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/01/20 20:54:58 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/01/20 22:28:16 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-char	at(t_game *g, t_point p)
+t_entity	at(t_game *g, t_point p)
 {
 	return (g->map->bytes[p.y][p.x]);
 }
@@ -37,8 +37,8 @@ void	matrix_delete(char **matrix)
 void	message(t_game *game, char *text)
 {
 	destroy_game(game);
-	ft_putstr_fd("Error\n", STDOUT_FILENO);
-	ft_putstr_fd(text, STDOUT_FILENO);
+	ft_putstr_fd("Error\n", STDERR_FILENO);
+	ft_putstr_fd(text, STDERR_FILENO);
 	exit(EXIT_FAILURE);
 }
 
