@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/10 11:19:03 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/01/20 21:08:50 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/01/20 22:38:32 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,9 @@
 # define FE1			"xpm/exit.xpm"
 # define FP1			"xpm/player.xpm"
 
+/**
+ * @brief An enumerable type used to map a char to an entity
+ */
 typedef enum e_entity
 {
 	SPACE = '0',
@@ -44,6 +47,9 @@ typedef enum e_entity
 	PLAYER = 'P'
 }			t_entity;
 
+/**
+ * @brief Used to map a keyboard scancode to its given key
+ */
 typedef enum e_key
 {
 	ESC = 65307,
@@ -53,18 +59,27 @@ typedef enum e_key
 	D = 100
 }			t_key;
 
+/**
+ * @brief Maps a mlx hook event number to its given event
+ */
 typedef enum e_event
 {
 	ON_KEYPRESS = 2,
 	ON_CLOSE = 17,
 }				t_event;
 
+/**
+ * @brief Maps a mlx hook event mask number to its given mask
+ */
 typedef enum e_mask
 {
 	KEYPRESS_MASK = (1L << 0),
 	CLOSE_MASK = (1L << 17)
 }			t_mask;
 
+/**
+ * @brief Used to access the right sprite when rendering and loading sprites
+ */
 typedef enum e_index
 {
 	W1,
