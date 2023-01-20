@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/07 18:11:40 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/01/20 15:25:27 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/01/20 15:45:54 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,34 +41,33 @@ bool	is_map_bounded(t_map *map)
 	return (true);
 }
 
-bool	has_valid_entities(t_game *game)
+bool	has_valid_entities(t_game *g)
 {
 	unsigned int	i;
 	unsigned int	k;
 
 	i = -1;
-	while (++i < game->map->rows)
+	while (++i < g->map->rows)
 	{
 		k = -1;
-		while (++k < game->map->cols)
+		while (++k < g->map->cols)
 		{
-			if (game->map->bytes[i][k] == PLAYER)
+			if (g->map->bytes[i][k] == PLAYER)
 			{
-				game->map->num_players++;
-				game->curr = (t_point){k, i};
-				game->next = game->curr;
+				g->map->num_players++;
+				g->curr = (t_point){k, i};
+				g->next = g->curr;
 			}
-			else if (game->map->bytes[i][k] == EXIT)
-				game->map->num_exits++;
-			else if (game->map->bytes[i][k] == COIN)
-				game->map->num_coins++;
-			else if (!ft_strchr(ENTITIES, game->map->bytes[i][k]))
+			else if (g->map->bytes[i][k] == EXIT)
+				g->map->num_exits++;
+			else if (g->map->bytes[i][k] == COIN)
+				g->map->num_coins++;
+			else if (!ft_strchr(ENTITIES, g->map->bytes[i][k]))
 				return (false);
 		}
 	}
-	return (game->map->num_players == 1
-		&& game->map->num_exits == 1
-		&& game->map->num_coins >= 1);
+	return (g->map->num_players == 1 && g->map->num_exits == 1
+		&& g->map->num_coins >= 1);
 }
 
 bool	has_valid_path(t_game *game)

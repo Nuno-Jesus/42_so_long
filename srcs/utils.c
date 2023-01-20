@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/07 18:04:46 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/01/20 15:27:25 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/01/20 15:40:01 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,9 @@ void	message(t_game *game, char *text)
 	ft_putstr_fd(text, STDOUT_FILENO);
 	exit(EXIT_FAILURE);
 }
-
+/* 
 void	print_point(t_point *point)
 {
 	printf("%d/%d\n", point->x, point->y);
 }
+ */
