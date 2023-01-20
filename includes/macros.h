@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/10 11:19:03 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/01/18 16:29:13 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/01/20 13:03:14 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@
 # include "../get_next_line/get_next_line.h"
 # include "../mlx/mlx.h"
 
-# define NUM_SPRITES	4
+# define NUM_SPRITES	5
 # define ENTITIES		"01CEP"
 # define F_SPACE		"xpm/space.xpm"
 # define F_WALL			"xpm/wall.xpm"

@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/10 13:04:07 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/01/18 16:39:36 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/01/20 13:05:18 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,6 @@ void	delete_sprites(t_game *g)
 	int	i;
 
 	i = 0;
-	printf("Array %p\n", g->sprites);
 	while (i < NUM_SPRITES)
 		mlx_destroy_image(g->disp.mlx, g->sprites[i++].img);
 	free(g->sprites);
@@ -74,7 +73,7 @@ void	load_sprites(t_game *g)
 	g->sprites[I_SPACE].img = mlx_xpm_file_to_image(g->disp.mlx, F_SPACE, &(g->sprites[I_SPACE].width), &(g->sprites[I_SPACE].height));
 	g->sprites[I_COIN].img = mlx_xpm_file_to_image(g->disp.mlx, F_COIN, &(g->sprites[I_COIN].width), &(g->sprites[I_COIN].height));
 	g->sprites[I_EXIT].img = mlx_xpm_file_to_image(g->disp.mlx, F_EXIT, &(g->sprites[I_EXIT].width), &(g->sprites[I_EXIT].height));
-	//g->sprites[I_PLAYER].img = mlx_xpm_file_to_image(g->disp.mlx, F_PLAYER, g->sprites[I_PLAYER].width, g->sprites[I_PLAYER].height);
+	g->sprites[I_PLAYER].img = mlx_xpm_file_to_image(g->disp.mlx, F_PLAYER, &(g->sprites[I_PLAYER].width), &(g->sprites[I_PLAYER].height));
 }
 
 void	render_tile(t_game *g, int x, int y)
@@ -89,10 +88,8 @@ void	render_tile(t_game *g, int x, int y)
 		sp = g->sprites[I_EXIT];
 	else if (g->map->bytes[y][x] == SPACE)
 		sp = g->sprites[I_SPACE];
-    else
-        return ;
-	/* else if (g->map->bytes[y][x] == PLAYER)
-		sp = g->sprites[I_PLAYER]; */
+	else if (g->map->bytes[y][x] == PLAYER)
+		sp = g->sprites[I_PLAYER];
     mlx_put_image_to_window(g->disp.mlx, g->disp.win, sp.img, x * sp.width, y * sp.height);
 }
 
