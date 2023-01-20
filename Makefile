@@ -30,7 +30,7 @@ LIBX 	= mlx
 PRINTF	= ft_printf
 
 #_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_ FILES _/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
-OBJS	= destroy.o map.o utils.o validator.o render.o init.o algorithms.o
+OBJS	= destroy.o map.o utils.o validator.o render.o init.o algorithms.o move_player.o
 NAME	= so_long
 TARGET	= $(addprefix $(SRCS)/, $(OBJS))
 

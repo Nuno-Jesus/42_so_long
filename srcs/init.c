@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 14:13:49 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/01/20 14:37:47 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/01/20 15:23:42 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,18 @@ int	quit(t_game *game)
 	exit(EXIT_SUCCESS);
 }
 
-int	handler(int keycode, t_game *game)
+int	kb_hook(int keycode, t_game *game)
 {
 	if (keycode == ESC)
 		quit(game);
+	else if (keycode == W)
+		game->next = (t_point){game->curr.x, game->curr.y - 1};
+	else if (keycode == A)
+		game->next = (t_point){game->curr.x - 1, game->curr.y};
+	else if (keycode == S)
+		game->next = (t_point){game->curr.x, game->curr.y + 1};
+	else if (keycode == D)
+		game->next = (t_point){game->curr.x + 1, game->curr.y};
 	return (keycode);
 }
 
@@ -38,17 +46,19 @@ void	init_graphics(t_game *g)
 
 void	game_init(char *filename)
 {
-	t_game	game;
+	t_game	g;
 
-	ft_bzero(&game, sizeof(t_game));
-	read_map(&game, filename);
-	validate_map(&game);
-	init_graphics(&game);
-	load_sprites(&game);
-	render_map(&game);
-	mlx_key_hook(game.disp.win, handler, &game);
-	mlx_hook(game.disp.win, CLOSE_WINDOW, 0, quit, &game);
-	mlx_loop(game.disp.mlx);
+	ft_bzero(&g, sizeof(t_game));
+	read_map(&g, filename);
+	validate_map(&g);
+	init_graphics(&g);
+	load_sprites(&g);
+	render_map(&g);
+	printf("Player (x/y): %u/%u\n", g.curr.x, g.curr.y);
+	mlx_key_hook(g.disp.win, kb_hook, &g);
+	mlx_hook(g.disp.win, CLOSE_WINDOW, 0, quit, &g);
+	mlx_loop_hook(g.disp.mlx, render_frame, &g);
+	mlx_loop(g.disp.mlx);
 }
 
 void	load_sprites(t_game *g)

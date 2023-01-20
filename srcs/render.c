@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 14:19:00 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/01/20 14:37:36 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/01/20 15:37:45 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,4 +42,11 @@ void	render_map(t_game *g)
 		while (++x < g->map->cols)
 			render_tile(g, x, y);
 	}
+}
+
+int	render_frame(t_game *g)
+{
+	if (is_valid_movement(g))
+		move_player(g);
+	return (0);
 }

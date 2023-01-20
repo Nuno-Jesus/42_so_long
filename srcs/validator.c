@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/07 18:11:40 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/01/20 14:33:54 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/01/20 15:25:27 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,8 @@ bool	has_valid_entities(t_game *game)
 			if (game->map->bytes[i][k] == PLAYER)
 			{
 				game->map->num_players++;
-				game->player = (t_point){k, i};
+				game->curr = (t_point){k, i};
+				game->next = game->curr;
 			}
 			else if (game->map->bytes[i][k] == EXIT)
 				game->map->num_exits++;
@@ -90,7 +91,7 @@ bool	has_valid_path(t_game *game)
 		}
 		i++;
 	}
-	is_valid = flood_fill(game->map, game->player, dup);
+	is_valid = flood_fill(game->map, game->curr, dup);
 	matrix_delete(dup);
 	return (is_valid);
 }

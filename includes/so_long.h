@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/07 11:00:17 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/01/20 14:25:54 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/01/20 15:29:59 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,8 @@ typedef struct	s_graphics {
 typedef struct s_game
 {
 	t_map			*map;	
-	t_point			player;	
+	t_point			curr;
+	t_point			next;
 	t_graphics		disp;
 	t_sprite 		*sp;
 	unsigned int	coins;
@@ -79,7 +80,13 @@ void	render_tile(t_game *g, int x, int y);
 
 void	render_map(t_game *g);
 
+int		render_frame(t_game *g);
+
+void	move_player(t_game *game);
+
 bool	flood_fill(t_map *map, t_point curr, char **maze);
+
+bool	is_same_point(t_point p1, t_point p2);
 
 //_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_ MAP _/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
 
@@ -97,6 +104,8 @@ void	read_map(t_game *game, char *filename);
 
 void	validate_map(t_game *game);
 
+bool	is_valid_movement(t_game *g);
+
 //_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_ UTILS _/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
 
 void	matrix_delete(char **matrix);
@@ -104,5 +113,9 @@ void	matrix_delete(char **matrix);
 void	message(t_game *game, char *text);
 
 void	delete_sprites(t_game *g);
+
+char	at(t_game *g, t_point p);
+
+void	print_point(t_point *point);
 
 #endif
