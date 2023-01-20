@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/10 11:19:03 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/01/20 13:03:14 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/01/20 13:10:18 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,11 @@
 
 # define NUM_SPRITES	5
 # define ENTITIES		"01CEP"
-# define F_SPACE		"xpm/space.xpm"
-# define F_WALL			"xpm/wall.xpm"
-# define F_COIN			"xpm/coin.xpm"
-# define F_EXIT			"xpm/exit.xpm"
-# define F_PLAYER		"xpm/player.xpm"
+# define FS1			"xpm/space.xpm"
+# define FW1			"xpm/wall.xpm"
+# define FC1			"xpm/coin.xpm"
+# define FE1			"xpm/exit.xpm"
+# define FP1			"xpm/player.xpm"
 
 typedef enum e_entity
 {
@@ -60,11 +60,11 @@ typedef enum	e_event
 
 typedef enum	e_index
 {
-	I_WALL,
-	I_SPACE,
-	I_COIN,
-	I_EXIT,
-	I_PLAYER,
+	W1,
+	S1,
+	C1,
+	E1,
+	P1,
 }				t_index;
 
 #endif

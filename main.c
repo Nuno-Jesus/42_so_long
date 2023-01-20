@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/10 13:04:07 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/01/20 13:05:18 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/01/20 13:10:11 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,20 +60,20 @@ void	delete_sprites(t_game *g)
 
 	i = 0;
 	while (i < NUM_SPRITES)
-		mlx_destroy_image(g->disp.mlx, g->sprites[i++].img);
-	free(g->sprites);
+		mlx_destroy_image(g->disp.mlx, g->sp[i++].img);
+	free(g->sp);
 }
 
 void	load_sprites(t_game *g)
 {
-	g->sprites = malloc(NUM_SPRITES * sizeof(t_sprite));
-	if (!g->sprites)
+	g->sp = malloc(NUM_SPRITES * sizeof(t_sprite));
+	if (!g->sp)
 		message(g, "Failed allocation on sprites array\n");
-	g->sprites[I_WALL].img = mlx_xpm_file_to_image(g->disp.mlx, F_WALL, &(g->sprites[I_WALL].width), &(g->sprites[I_WALL].height));
-	g->sprites[I_SPACE].img = mlx_xpm_file_to_image(g->disp.mlx, F_SPACE, &(g->sprites[I_SPACE].width), &(g->sprites[I_SPACE].height));
-	g->sprites[I_COIN].img = mlx_xpm_file_to_image(g->disp.mlx, F_COIN, &(g->sprites[I_COIN].width), &(g->sprites[I_COIN].height));
-	g->sprites[I_EXIT].img = mlx_xpm_file_to_image(g->disp.mlx, F_EXIT, &(g->sprites[I_EXIT].width), &(g->sprites[I_EXIT].height));
-	g->sprites[I_PLAYER].img = mlx_xpm_file_to_image(g->disp.mlx, F_PLAYER, &(g->sprites[I_PLAYER].width), &(g->sprites[I_PLAYER].height));
+	g->sp[W1].img = mlx_xpm_file_to_image(g->disp.mlx, FW1, &(g->sp[W1].width), &(g->sp[W1].height));
+	g->sp[S1].img = mlx_xpm_file_to_image(g->disp.mlx, FS1, &(g->sp[S1].width), &(g->sp[S1].height));
+	g->sp[C1].img = mlx_xpm_file_to_image(g->disp.mlx, FC1, &(g->sp[C1].width), &(g->sp[C1].height));
+	g->sp[E1].img = mlx_xpm_file_to_image(g->disp.mlx, FE1, &(g->sp[E1].width), &(g->sp[E1].height));
+	g->sp[P1].img = mlx_xpm_file_to_image(g->disp.mlx, FP1, &(g->sp[P1].width), &(g->sp[P1].height));
 }
 
 void	render_tile(t_game *g, int x, int y)
@@ -81,15 +81,15 @@ void	render_tile(t_game *g, int x, int y)
 	t_sprite sp;
 	
 	if (g->map->bytes[y][x] == WALL)
-		sp = g->sprites[I_WALL];
+		sp = g->sp[W1];
 	else if (g->map->bytes[y][x] == COIN)
-		sp = g->sprites[I_COIN];
+		sp = g->sp[C1];
 	else if (g->map->bytes[y][x] == EXIT)
-		sp = g->sprites[I_EXIT];
+		sp = g->sp[E1];
 	else if (g->map->bytes[y][x] == SPACE)
-		sp = g->sprites[I_SPACE];
+		sp = g->sp[S1];
 	else if (g->map->bytes[y][x] == PLAYER)
-		sp = g->sprites[I_PLAYER];
+		sp = g->sp[P1];
     mlx_put_image_to_window(g->disp.mlx, g->disp.win, sp.img, x * sp.width, y * sp.height);
 }
 

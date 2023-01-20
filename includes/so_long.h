@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/07 11:00:17 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/01/18 15:17:06 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/01/20 13:09:32 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ typedef struct s_game
 	t_map			*map;	
 	t_point			player;	
 	t_graphics		disp;
-	t_sprite 		*sprites;
+	t_sprite 		*sp;
 	unsigned int	coins;
 }				t_game;
 

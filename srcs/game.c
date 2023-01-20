@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/07 11:53:02 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/01/18 16:38:27 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/01/20 13:09:32 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	game_delete(t_game *game)
 {
 	if (!game)
 		return ;
-	if (game->sprites)
+	if (game->sp)
 		delete_sprites(game);
 	if (game->disp.img)
 		mlx_destroy_image(game->disp.mlx, game->disp.img);
