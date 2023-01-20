@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 14:19:00 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/01/20 17:47:29 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/01/20 20:53:36 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,5 @@ int	render_frame(t_game *g)
 	else if (at(g, g->next) == EXIT && g->coins == g->map->num_coins)
 		quit(g);
 	move_player(g);
-	printf("Num coins: %d\n", g->coins);
 	return (0);
 }

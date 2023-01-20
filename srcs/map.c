@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/07 18:03:57 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/01/20 15:52:22 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/01/20 20:54:33 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,20 +28,6 @@ t_map	*map_new(unsigned int cols, unsigned int rows)
 	map->cols = cols;
 	map->rows = rows;
 	return (map);
-}
-
-void	map_print(t_map *map)
-{
-	unsigned int	i;
-
-	i = 0;
-	printf("Length: %u\n", map->cols);
-	printf("Width: %u\n", map->rows);
-	printf("Players: %u\n", map->num_players);
-	printf("Exits: %u\n", map->num_exits);
-	printf("Coins: %u\n", map->num_coins);
-	while (i < map->rows)
-		printf("%s\n", map->bytes[i++]);
 }
 
 int	get_num_lines(t_game *game, char *filename)
@@ -91,3 +77,19 @@ void	read_map(t_game *game, char *filename)
 	}
 	close(fd);
 }
+
+/* 
+void	map_print(t_map *map)
+{
+	unsigned int	i;
+
+	i = 0;
+	printf("Length: %u\n", map->cols);
+	printf("Width: %u\n", map->rows);
+	printf("Players: %u\n", map->num_players);
+	printf("Exits: %u\n", map->num_exits);
+	printf("Coins: %u\n", map->num_coins);
+	while (i < map->rows)
+		printf("%s\n", map->bytes[i++]);
+}
+ */

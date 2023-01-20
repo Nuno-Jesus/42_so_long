@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/07 11:00:17 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/01/20 17:14:50 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/01/20 20:47:15 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ typedef struct s_game
 	t_graphics		disp;
 	t_sprite		*sp;
 	unsigned int	coins;
+	unsigned int	moves;
 }				t_game;
 
 bool	is_filename_valid(char *filename);
