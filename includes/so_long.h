@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/07 11:00:17 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/01/20 17:06:36 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/01/20 17:14:50 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,4 +132,5 @@ char	at(t_game *g, t_point p);
 void	print_point(t_point *point);
 
 bool	is_same_point(t_point p1, t_point p2);
+
 #endif
