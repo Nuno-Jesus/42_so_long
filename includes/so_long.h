@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/07 11:00:17 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/01/20 13:09:32 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/01/20 14:25:54 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,22 @@ typedef struct s_game
 t_game	*game_new();
 
 void	game_delete(t_game *game);
+
+void	game_init(char *filename);
+
+bool	is_filename_valid(char *filename);
+
+void	init_graphics(t_game *g);
+
+void	delete_sprites(t_game *g);
+
+void	load_sprites(t_game *g);
+
+void	render_tile(t_game *g, int x, int y);
+
+void	render_map(t_game *g);
+
+bool	flood_fill(t_map *map, t_point curr, char **maze);
 
 //_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_ MAP _/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
 

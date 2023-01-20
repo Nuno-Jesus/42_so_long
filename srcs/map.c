@@ -6,11 +6,11 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/07 18:03:57 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/01/18 13:59:02 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/01/20 14:24:47 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/so_long.h"
+#include "so_long.h"
 
 t_map	*map_new(unsigned int cols, unsigned int rows)
 {
@@ -28,14 +28,6 @@ t_map	*map_new(unsigned int cols, unsigned int rows)
 	map->cols = cols;
 	map->rows = rows;
 	return (map);
-}
-
-void	map_delete(t_map *map)
-{
-	if (!map)
-		return ;
-	matrix_delete(map->bytes);
-	free(map);
 }
 
 void	map_print(t_map *map)

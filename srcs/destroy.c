@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   game.c                                             :+:      :+:    :+:   */
+/*   destroy.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/07 11:53:02 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/01/20 13:09:32 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/01/20 14:24:39 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/so_long.h"
+#include "so_long.h"
 
 void	game_delete(t_game *game)
 {
@@ -27,4 +27,22 @@ void	game_delete(t_game *game)
 	if (game->map)
 		map_delete(game->map);
 	free(game->disp.mlx);
+}
+
+void	delete_sprites(t_game *g)
+{
+	int	i;
+
+	i = 0;
+	while (i < NUM_SPRITES)
+		mlx_destroy_image(g->disp.mlx, g->sp[i++].img);
+	free(g->sp);
+}
+
+void	map_delete(t_map *map)
+{
+	if (!map)
+		return ;
+	matrix_delete(map->bytes);
+	free(map);
 }

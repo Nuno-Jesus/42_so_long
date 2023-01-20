@@ -30,7 +30,7 @@ LIBX 	= mlx
 PRINTF	= ft_printf
 
 #_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_ FILES _/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
-OBJS	= game.o map.o utils.o validator.o
+OBJS	= destroy.o map.o utils.o validator.o render.o init.o algorithms.o
 NAME	= so_long
 TARGET	= $(addprefix $(SRCS)/, $(OBJS))
 
@@ -45,7 +45,7 @@ $(NAME): $(TARGET)
 	make $(MKFLAGS) -C $(GNL)
 	
 	echo "[$(CYAN) Linking $(RESET)] $(GREEN)*$(RESET)"
-	$(CC) $(CFLAGS) main.c $(TARGET) $(LIBFTFLAGS) $(GNLFLAGS) $(LIBXFLAGS) -o $(NAME)
+	$(CC) $(CFLAGS) main.c $(TARGET) $(LIBFTFLAGS) $(GNLFLAGS) $(LIBXFLAGS) -o $(NAME) -I $(DEPS)
 	
 	echo "$(GREEN)Done.$(RESET)"
 	
