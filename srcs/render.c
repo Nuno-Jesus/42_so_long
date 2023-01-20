@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 14:19:00 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/01/20 20:53:36 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/01/20 21:01:29 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,9 @@ int	render_frame(t_game *g)
 {
 	if (!is_valid_movement(g))
 		return (0);
+	ft_putstr_fd("Number of movements: ", STDOUT_FILENO);
+	ft_putnbr_fd(++g->moves, STDOUT_FILENO);
+	ft_putchar_fd('\n', STDOUT_FILENO);
 	if (at(g, g->next) == COIN)
 		g->coins++;
 	else if (at(g, g->next) == EXIT && g->coins == g->map->num_coins)

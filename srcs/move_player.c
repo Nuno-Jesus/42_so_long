@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 14:54:58 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/01/20 20:52:46 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/01/20 21:01:25 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,4 @@ void	move_player(t_game *g)
 	render_tile(g, g->curr.x, g->curr.y);
 	render_tile(g, g->next.x, g->next.y);
 	g->curr = g->next;
-	ft_putstr_fd("Number of movements: ", STDOUT_FILENO);
-	ft_putnbr_fd(++g->moves, STDOUT_FILENO);
-	ft_putchar_fd('\n', STDOUT_FILENO);
 }
