@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 14:54:58 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/01/20 17:46:00 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/01/20 20:45:29 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ bool	is_valid_movement(t_game *g)
 void	move_player(t_game *g)
 {
 	static t_entity	previous = SPACE;
-	
+
 	g->map->bytes[g->curr.y][g->curr.x] = previous;
 	if (at(g, g->next) != COIN)
 		previous = g->map->bytes[g->next.y][g->next.x];
