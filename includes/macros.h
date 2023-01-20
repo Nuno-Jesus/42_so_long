@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/10 11:19:03 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/01/20 20:43:03 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/01/20 21:08:50 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@
 # include <sys/stat.h>
 # include <fcntl.h>
 
-# include "../libft/libft.h"
-# include "../get_next_line/get_next_line.h"
+# include "libft.h"
+# include "get_next_line.h"
 # include "../mlx/mlx.h"
 
 # define NUM_SPRITES	5

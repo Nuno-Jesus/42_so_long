@@ -22,7 +22,7 @@ LIBFTFLAGS	= -L ./libft -lft
 GNLFLAGS	= -L ./get_next_line -lgnl
 
 #_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_ FOLDERS _/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
-DEPS	= includes
+DEPS	= includes 
 SRCS	= srcs
 LIBFT	= libft
 GNL		= get_next_line
