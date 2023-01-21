@@ -22,17 +22,20 @@ LIBFTFLAGS	= -L ./libft -lft
 GNLFLAGS	= -L ./get_next_line -lgnl
 
 #_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_ FOLDERS _/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
-DEPS	= includes 
-SRCS	= srcs
-LIBFT	= libft
-GNL		= get_next_line
-LIBX 	= mlx
-PRINTF	= ft_printf
+DEPS		= includes 
+SRCS		= srcs
+SRCS_BONUS	= srcs_bonus
+LIBFT		= libft
+GNL			= get_next_line
+LIBX 		= mlx
+PRINTF		= ft_printf
 
 #_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_ FILES _/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
-OBJS	= destroy.o map.o utils.o validator.o render.o init.o algorithms.o move_player.o
-NAME	= so_long
-TARGET	= $(addprefix $(SRCS)/, $(OBJS))
+OBJS			= destroy.o map.o utils.o validator.o render.o init.o algorithms.o move_player.o
+OBJS_BONUS		= destroy.o map.o utils.o validator.o render.o init.o algorithms.o move_player.o
+NAME			= so_long
+TARGET			= $(addprefix $(SRCS)/, $(OBJS))
+TARGET_BONUS	= $(addprefix $(SRCS_BONUS)/, $(OBJS_BONUS))
 
 #_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_ RULES _/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
 all: $(NAME)
@@ -57,13 +60,25 @@ clean:
 	make clean $(MKFLAGS) -C $(LIBFT)
 	make clean $(MKFLAGS) -C $(GNL)
 	echo "[$(RED) Deleted $(RESET)] $(GREEN)*/*.o$(RESET)"
-	$(RM) $(TARGET)
+	$(RM) $(TARGET) $(TARGET_BONUS)
 
 fclean: clean
 	make fclean $(MKFLAGS) -C $(LIBFT)
 	make fclean $(MKFLAGS) -C $(GNL)
 	echo "[$(RED) Deleted $(RESET)] $(GREEN)so_long$(RESET)"
-	$(RM) $(NAME)
+	$(RM) $(NAME) 
+
+bonus: $(TARGET_BONUS)
+	echo "[$(CYAN)Compiling$(RESET)] $(CFLAGS) $(GREEN)libft/*$(RESET)"
+	make $(MKFLAGS) -C $(LIBFT)
+	
+	echo "[$(CYAN)Compiling$(RESET)] $(CFLAGS) $(GREEN)get_next_line/*$(RESET)"
+	make $(MKFLAGS) -C $(GNL)
+	
+	echo "[$(CYAN) Linking $(RESET)] $(GREEN)*$(RESET)"
+	$(CC) $(CFLAGS) main.c $(TARGET_BONUS) $(LIBFTFLAGS) $(GNLFLAGS) $(LIBXFLAGS) -o $(NAME) -I $(DEPS)
+	
+	echo "$(GREEN)Done.$(RESET)"
 
 .SILENT:
 re: fclean all
