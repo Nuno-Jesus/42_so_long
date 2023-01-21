@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 14:13:49 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/01/20 23:08:04 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/01/21 05:56:58 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,12 @@ void	init_graphics(t_game *g)
 	if (!g->disp.mlx)
 		message(g, "Failed allocation on mlx pointer\n");
 	g->disp.win = mlx_new_window(g->disp.mlx, 32 * g->map->cols, \
-		32 * g->map->rows, "so_long");
+		32 * g->map->rows + 32, "so_long");
 	if (!g->disp.win)
-		message(g, "Failed allocation on window pointer");
+		message(g, "Failed allocation on window pointer\n");
+	g->disp.img = mlx_new_image(g->disp.mlx, 8 * g->map->cols, 32);
+	if (!g->disp.img)
+		message(g, "Failed allocation on mlx image pointer\n");
 }
 
 void	init_game(char *filename)
