@@ -6,7 +6,6 @@ This project was graded <strong>100/100</strong>.
 > You know the rules: if a function is not allowed, you can't use it. It sucks right? Well, this is your chance to implement printf()! You'll be able to use it in the following projects, alongside with the other functions you developed so far.
 
 ## 🔧 **Implementation**
-> Unfortunately I implemented the bonus in the same files as the mandatory, so everything will be mixed up
 
 <table>
 	<thead>
@@ -18,7 +17,7 @@ This project was graded <strong>100/100</strong>.
 	</thead>
 	<tbody>
 		<tr>
-			<td rowspan = 11><strong>Mandatory</strong></td>
+			<td rowspan = 8><strong>Mandatory</strong></td>
 			<td>get_next_line/</td>
 			<td>Contains the files from the get_next_line project</td>
 		</tr>
