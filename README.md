@@ -3,7 +3,16 @@ This project was graded <strong>100/100</strong>.
 
 
 ## 📒 **About**
-> You know the rules: if a function is not allowed, you can't use it. It sucks right? Well, this is your chance to implement printf()! You'll be able to use it in the following projects, alongside with the other functions you developed so far.
+This project is one of the 3 possible graphical projects to develop in Rank 02. You'll learn about rendering, sprites, animations, color schemes and game development in 2D. One of the coolest projects in my opinion!
+
+## 🚨 **Disclaimer**
+At 42, the C projects are built following a bunch of rules that enforce good coding style. Some of them are:
+
+	- No for, do while, switch, case or goto are allowed
+	- No more than 25 lines per function and 5 functions per file
+	- No assigns and declarations in the same line (unless static)
+	- No more than 5 variables in 1 function
+	... 
 
 ## 🔧 **Implementation**
 
