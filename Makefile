@@ -34,6 +34,7 @@ PRINTF		= ft_printf
 OBJS			= destroy.o map.o utils.o validator.o render.o init.o algorithms.o move_player.o
 OBJS_BONUS		= destroy.o map.o utils.o validator.o render.o init.o algorithms.o move_player.o
 NAME			= so_long
+NAME_BONUS		= so_long
 TARGET			= $(addprefix $(SRCS)/, $(OBJS))
 TARGET_BONUS	= $(addprefix $(SRCS_BONUS)/, $(OBJS_BONUS))
 
