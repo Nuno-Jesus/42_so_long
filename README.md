@@ -5,6 +5,7 @@ This project was graded <strong>100/100</strong>.
 This project is one of the 3 possible graphical projects to develop in Rank 02. You'll learn about rendering, sprites, animations, color schemes and game development in 2D. One of the coolest projects in my opinion!
 
 ## **Mandatory Part**
+![image](https://user-images.githubusercontent.com/93390807/215877174-71fa5ecb-d5ec-4c92-885f-c506902c32e2.png)
 
 ## **Bonus Part**
 > Still in development eheheh...
