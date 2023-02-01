@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 14:13:49 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/01/21 05:56:58 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/02/01 01:34:00 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,11 +65,19 @@ void	init_game(char *filename)
 
 void	load_sprites(t_game *g)
 {
-	g->sp = malloc(NUM_SPRITES * sizeof(t_sprite));
+	g->sp = malloc(NUM_SPRITES_BONUS * sizeof(t_sprite));
 	if (!g->sp)
 		message(g, "Failed allocation on sprites array\n");
 	g->sp[W1].img = mlx_xpm_file_to_image(g->disp.mlx, FW1,
 			&(g->sp[W1].width), &(g->sp[W1].height));
+	g->sp[W2].img = mlx_xpm_file_to_image(g->disp.mlx, FW2,
+			&(g->sp[W2].width), &(g->sp[W2].height));
+	g->sp[W3].img = mlx_xpm_file_to_image(g->disp.mlx, FW3,
+			&(g->sp[W3].width), &(g->sp[W3].height));
+	g->sp[W4].img = mlx_xpm_file_to_image(g->disp.mlx, FW4,
+			&(g->sp[W4].width), &(g->sp[W4].height));
+	g->sp[W5].img = mlx_xpm_file_to_image(g->disp.mlx, FW5,
+			&(g->sp[W5].width), &(g->sp[W5].height));
 	g->sp[S1].img = mlx_xpm_file_to_image(g->disp.mlx, FS1,
 			&(g->sp[S1].width), &(g->sp[S1].height));
 	g->sp[C1].img = mlx_xpm_file_to_image(g->disp.mlx, FC1,

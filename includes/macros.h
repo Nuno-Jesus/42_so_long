@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   macros.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/10 11:19:03 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/01/21 06:00:56 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/02/01 01:33:40 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,19 @@
 # include "get_next_line.h"
 # include "../mlx/mlx.h"
 
-# define NUM_SPRITES	5
-# define ENTITIES		"01CEP"
-# define FS1			"xpm/space.xpm"
-# define FW1			"xpm/wall.xpm"
-# define FC1			"xpm/coin.xpm"
-# define FE1			"xpm/exit.xpm"
-# define FP1			"xpm/player.xpm"
+# define NUM_SPRITES		5
+# define NUM_SPRITES_BONUS	9
+
+# define ENTITIES	"01CEP"
+# define FW1		"xpm/wall.xpm"
+# define FW2		"xpm/left_wall.xpm"
+# define FW3		"xpm/right_wall.xpm"
+# define FW4		"xpm/upper_left_corner_wall.xpm"
+# define FW5		"xpm/upper_right_corner_wall.xpm"
+# define FS1		"xpm/space.xpm"
+# define FC1		"xpm/coin.xpm"
+# define FE1		"xpm/exit.xpm"
+# define FP1		"xpm/player.xpm"
 
 /**
  * @brief An enumerable type used to map a char to an entity
@@ -87,6 +93,10 @@ typedef enum e_index
 	C1,
 	E1,
 	P1,
+	W2,
+	W3,
+	W4,
+	W5
 }				t_index;
 
 #endif

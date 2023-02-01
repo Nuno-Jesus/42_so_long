@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/07 11:00:17 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/01/21 05:54:51 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/02/01 00:44:24 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -277,7 +277,7 @@ void		read_map(t_game *game, char *filename);
 //DEBUGGING PURPOSES
 void		map_print(t_map *map);
 
-//!_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\ VALIDATOR /=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\
+//!_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\ VALIDATOR /=\_/=\_/=\_/=\_/=\_/=\_/=\_/=
 
 /**
  * @brief Given the read map, it checks if all lines have the same length
