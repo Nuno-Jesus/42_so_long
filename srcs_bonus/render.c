@@ -6,54 +6,53 @@
 /*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 14:19:00 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/02/01 01:59:40 by crypto           ###   ########.fr       */
+/*   Updated: 2023/02/12 11:52:50 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	render_sprite(t_game *g, t_sprite *s, t_point p)
+void	render_sprite(t_game *g, t_sprite *s, t_point p, t_point offset)
 {
 	mlx_put_image_to_window(g->disp.mlx, g->disp.win, s->img, \
-		p.x * s->width, p.y * s->height);
+		offset.x + p.x * s->width, offset.y + p.y * s->height);
 }
 
 void	render_outter_walls(t_game *g)
 {
 	unsigned int	i;
 	
+	i = 0;	
+	while (++i < g->map->cols - 1)
+		render_sprite(g, &g->sp[W1], (t_point){i, 0}, (t_point){0, 0});
 	i = -1;	
 	while (++i < g->map->cols)
-	{
-		render_sprite(g, &g->sp[W1], (t_point){i, 0});
-		render_sprite(g, &g->sp[W1], (t_point){i, g->map->rows - 1});
-	}	
+		render_sprite(g, &g->sp[W1], (t_point){i, g->map->rows - 1}, (t_point){0, 0});
 	i = -1;
 	while (++i < g->map->rows - 1)
 	{
-		render_sprite(g, &g->sp[W2], (t_point){0, i});
-		render_sprite(g, &g->sp[W3], (t_point){g->map->cols - 1, i});
+		render_sprite(g, &g->sp[W2], (t_point){0, i}, (t_point){0, 0});
+		render_sprite(g, &g->sp[W3], (t_point){g->map->cols - 1, i}, (t_point){0, 0});
 	}
 	// render_sprite(g, &g->sp[W1], (t_point){i, g->map->rows - 1});
 	// render_sprite(g, &g->sp[W1], (t_point){i, g->map->rows - 1});
 }
 
-void	render_tile(t_game *g, int x, int y)
+void	render_tile(t_game *g, t_point p)
 {
 	t_sprite	sp;
 
-	if (g->map->bytes[y][x] == WALL)
+	if (g->map->bytes[p.y][p.x] == WALL)
 		sp = g->sp[W1];
-	else if (g->map->bytes[y][x] == COIN)
+	else if (g->map->bytes[p.y][p.x] == COIN)
 		sp = g->sp[C1];
-	else if (g->map->bytes[y][x] == EXIT)
+	else if (g->map->bytes[p.y][p.x] == EXIT)
 		sp = g->sp[E1];
-	else if (g->map->bytes[y][x] == SPACE)
+	else if (g->map->bytes[p.y][p.x] == SPACE)
 		sp = g->sp[S1];
-	else if (g->map->bytes[y][x] == PLAYER)
+	else if (g->map->bytes[p.y][p.x] == PLAYER)
 		sp = g->sp[P1];
-	mlx_put_image_to_window(g->disp.mlx, g->disp.win, sp.img, \
-		x * sp.width, y * sp.height);
+	render_sprite(g, &sp, p, (t_point){0, 0});
 }
 
 void	render_map(t_game *g)
@@ -67,7 +66,7 @@ void	render_map(t_game *g)
 	{
 		x = 0;
 		while (++x < g->map->cols - 1)
-			render_tile(g, x, y);
+			render_tile(g, (t_point){x, y});
 	}
 }
 

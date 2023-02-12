@@ -6,7 +6,7 @@
 /*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 14:54:58 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/02/01 00:44:15 by crypto           ###   ########.fr       */
+/*   Updated: 2023/02/12 11:39:34 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	move_player(t_game *g)
 	else
 		previous = SPACE;
 	g->map->bytes[g->next.y][g->next.x] = PLAYER;
-	render_tile(g, g->curr.x, g->curr.y);
-	render_tile(g, g->next.x, g->next.y);
+	render_tile(g, (t_point){g->curr.x, g->curr.y});
+	render_tile(g, (t_point){g->next.x, g->next.y});
 	g->curr = g->next;
 }
