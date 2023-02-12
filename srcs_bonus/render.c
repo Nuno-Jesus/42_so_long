@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 14:19:00 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/02/12 12:04:34 by crypto           ###   ########.fr       */
+/*   Updated: 2023/02/12 12:29:02 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,72 @@ void	render_outter_walls(t_game *g)
 		render_sprite(g, &g->sp[W2], (t_point){0, i}, (t_point){-16, 0});
 		render_sprite(g, &g->sp[W3], (t_point){g->map->cols - 1, i}, (t_point){-16, 0});
 	}
-	// render_sprite(g, &g->sp[W1], (t_point){i, g->map->rows - 1});
-	// render_sprite(g, &g->sp[W1], (t_point){i, g->map->rows - 1});
+}
+
+void	delete_matrix(int **mat)
+{
+	int i;
+
+	i = 0;
+	while (mat[i])
+		free(mat[i]);
+	free(mat);
+}
+
+void	print_matrix(int **mat, int x, int y)
+{
+	int i;
+	int k;
+	
+	i = -1;
+	while (++i < y)
+	{
+		k = -1;
+		while (++k < x)
+			printf("%d", mat[i][k]);
+		printf("\n");			
+	}
+}
+
+void	fill_binary_matrix(t_game *g, int **mat)
+{
+	int y;
+	int x;
+
+	y = -1;
+
+	while (++y < g->map->rows)
+	{
+		x = -1;
+		while (++x < g->map->cols)
+		{
+			if (g->map->bytes[y][x] == WALL)
+				mat[y + 1][x + 1] = 1;
+		}
+	}
+}
+
+void	render_inner_walls(t_game *g, t_point p)
+{
+	int	i;
+	int	**tmp;
+
+	i = -1;
+	tmp = malloc((g->map->rows + 1) * sizeof(int));
+	if (!tmp)
+		return ;
+	while (++i < g->map->rows)
+	{
+		tmp[i] = ft_calloc(g->map->cols + 1, sizeof(int));
+		if(!tmp[i])
+		{
+			delete_matrix(tmp);
+			return ;
+		}
+	}
+	fill_binary_matrix(g, tmp);
+	print_matrix(tmp, g->map->cols, g->map->rows);
+	exit(1);
 }
 
 void	render_tile(t_game *g, t_point p)
