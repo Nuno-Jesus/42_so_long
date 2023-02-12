@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 14:19:00 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/02/12 12:29:02 by marvin           ###   ########.fr       */
+/*   Updated: 2023/02/12 13:11:33 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,14 +42,14 @@ void	delete_matrix(int **mat)
 
 	i = 0;
 	while (mat[i])
-		free(mat[i]);
+		free(mat[i++]);
 	free(mat);
 }
 
-void	print_matrix(int **mat, int x, int y)
+void	print_matrix(int **mat, unsigned int x, unsigned int y)
 {
-	int i;
-	int k;
+	unsigned int i;
+	unsigned int k;
 	
 	i = -1;
 	while (++i < y)
@@ -63,8 +63,8 @@ void	print_matrix(int **mat, int x, int y)
 
 void	fill_binary_matrix(t_game *g, int **mat)
 {
-	int y;
-	int x;
+	unsigned int y;
+	unsigned int x;
 
 	y = -1;
 
@@ -79,27 +79,59 @@ void	fill_binary_matrix(t_game *g, int **mat)
 	}
 }
 
-void	render_inner_walls(t_game *g, t_point p)
+int	**create_binary_matrix(unsigned int y, unsigned int x)
 {
-	int	i;
-	int	**tmp;
-
+	int				**tmp;
+	unsigned int	i;
+	
 	i = -1;
-	tmp = malloc((g->map->rows + 1) * sizeof(int));
+	tmp = ft_calloc(y + 1, sizeof(int *));
 	if (!tmp)
-		return ;
-	while (++i < g->map->rows)
+		return (NULL);
+	while (++i < y)
 	{
-		tmp[i] = ft_calloc(g->map->cols + 1, sizeof(int));
+		tmp[i] = ft_calloc(x + 2, sizeof(int));
 		if(!tmp[i])
 		{
 			delete_matrix(tmp);
-			return ;
+			return (NULL);
 		}
 	}
+	return (tmp);
+}
+
+int diff(int **mat, t_point p, char dim)
+{
+	if (dim == 'x')
+		return (mat[p.y][p.x - 1] - mat[p.y][p.x + 1]);
+	else
+		return (mat[p.y - 1][p.x] - mat[p.y + 1][p.x]);
+}
+
+void	render_inner_walls(t_game *g)
+{
+	int	**tmp;
+	t_point p;
+
+	tmp = create_binary_matrix(g->map->rows + 2, g->map->cols + 2);
 	fill_binary_matrix(g, tmp);
-	print_matrix(tmp, g->map->cols, g->map->rows);
-	exit(1);
+	print_matrix(tmp, g->map->cols + 2, g->map->rows + 2);
+	p.y = 0;
+	while (++p.y < g->map->rows - 1)
+	{
+		p.x = 0;
+		while (++p.x < g->map->cols - 1)
+		{
+			if (at(g, p) != WALL)
+				continue;
+			if (diff(tmp, (t_point){p.x + 1, p.y + 1}, 'x') == -1 && diff(tmp, (t_point){p.x + 1, p.y + 1}, 'y') == -1)
+				render_sprite(g, &g->sp[W4], p, (t_point){-16, 0});
+			else
+				render_sprite(g, &g->sp[W1], p, (t_point){-16, 0});
+		}
+	}
+	delete_matrix(tmp);
+	// exit(1);
 }
 
 void	render_tile(t_game *g, t_point p)
@@ -107,7 +139,8 @@ void	render_tile(t_game *g, t_point p)
 	t_sprite	sp;
 
 	if (g->map->bytes[p.y][p.x] == WALL)
-		sp = g->sp[W1];
+		return ;
+		// sp = g->sp[W1];
 	else if (g->map->bytes[p.y][p.x] == COIN)
 		sp = g->sp[C1];
 	else if (g->map->bytes[p.y][p.x] == EXIT)
@@ -126,6 +159,7 @@ void	render_map(t_game *g)
 
 	y = 0;
 	render_outter_walls(g);
+	render_inner_walls(g);
 	while (++y < g->map->rows - 1)
 	{
 		x = 0;
