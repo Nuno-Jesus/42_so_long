@@ -6,7 +6,7 @@
 /*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 14:19:00 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/02/12 11:52:50 by crypto           ###   ########.fr       */
+/*   Updated: 2023/02/12 12:04:34 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,15 +24,15 @@ void	render_outter_walls(t_game *g)
 	
 	i = 0;	
 	while (++i < g->map->cols - 1)
-		render_sprite(g, &g->sp[W1], (t_point){i, 0}, (t_point){0, 0});
+		render_sprite(g, &g->sp[W1], (t_point){i, 0}, (t_point){-16, 0});
 	i = -1;	
 	while (++i < g->map->cols)
-		render_sprite(g, &g->sp[W1], (t_point){i, g->map->rows - 1}, (t_point){0, 0});
+		render_sprite(g, &g->sp[W1], (t_point){i, g->map->rows - 1}, (t_point){-16, 0});
 	i = -1;
 	while (++i < g->map->rows - 1)
 	{
-		render_sprite(g, &g->sp[W2], (t_point){0, i}, (t_point){0, 0});
-		render_sprite(g, &g->sp[W3], (t_point){g->map->cols - 1, i}, (t_point){0, 0});
+		render_sprite(g, &g->sp[W2], (t_point){0, i}, (t_point){-16, 0});
+		render_sprite(g, &g->sp[W3], (t_point){g->map->cols - 1, i}, (t_point){-16, 0});
 	}
 	// render_sprite(g, &g->sp[W1], (t_point){i, g->map->rows - 1});
 	// render_sprite(g, &g->sp[W1], (t_point){i, g->map->rows - 1});
@@ -52,7 +52,7 @@ void	render_tile(t_game *g, t_point p)
 		sp = g->sp[S1];
 	else if (g->map->bytes[p.y][p.x] == PLAYER)
 		sp = g->sp[P1];
-	render_sprite(g, &sp, p, (t_point){0, 0});
+	render_sprite(g, &sp, p, (t_point){-16, 0});
 }
 
 void	render_map(t_game *g)

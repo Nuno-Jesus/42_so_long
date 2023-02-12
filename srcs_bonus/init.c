@@ -6,7 +6,7 @@
 /*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 14:13:49 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/02/12 11:21:47 by crypto           ###   ########.fr       */
+/*   Updated: 2023/02/12 12:05:14 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	init_graphics(t_game *g)
 	g->disp.mlx = mlx_init();
 	if (!g->disp.mlx)
 		message(g, "Failed allocation on mlx pointer\n");
-	g->disp.win = mlx_new_window(g->disp.mlx, 32 * g->map->cols, \
+	g->disp.win = mlx_new_window(g->disp.mlx, 32 * (g->map->cols - 1), \
 		32 * g->map->rows + 32, "so_long");
 	if (!g->disp.win)
 		message(g, "Failed allocation on window pointer\n");

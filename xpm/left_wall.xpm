@@ -1,20 +1,20 @@
 # **************************************************************************** #
-#              #
-#         :::      ::::::::    #
-#    left_wall.xpm      :+:      :+:    :+:    #
-#     +:+ +:+         +:+      #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    left_wall.xpm                                      :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
 #    By: crypto <crypto@student.42.fr>              +#+  +:+       +#+         #
-# +#+#+#+#+#+   +#+            #
+#                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/01 01:54:59 by crypto            #+#    #+#              #
-#    Updated: 2023/02/01 01:58:40 by crypto           ###   ########.fr        #
-#              #
+#    Updated: 2023/02/12 12:06:36 by crypto           ###   ########.fr        #
+#                                                                              #
 # **************************************************************************** #
 
 /* XPM */
 static char *dfa67250808f49dceee3b90a24cbccf1xhpMQaBHljJXV95P[] = {
 /* columns rows colors chars-per-pixel */
 "32 32 6 1 ",
-"  c #000000",
+"  c #291E31",
 ". c #5B3144",
 "X c #604847",
 "o c #785853",
@@ -28,36 +28,36 @@ static char *dfa67250808f49dceee3b90a24cbccf1xhpMQaBHljJXV95P[] = {
 "+ c #1188BB",
 "O c #0085AA",
  */
-"++++OOOOOOOOOOOOOOOOOOOOOOOO++++",
-"++++OOOOOOOOOOOOOOOOOOOOOOOO++++",
-"++++OOOOOOOOOOOOOOOOOOOOOOOO++++",
-"++++OOOOOOOOOOOOOOOOOOOOOOOO++++",
-"++++OOOOOOOOOOOOOOOOOOOOOOOO++++",
-"++++OOOOOOOOOOOOOOOOOOOOOOOO++++",
-"++++OOOOOOOOOOOOOOOOOOOOOOOO++++",
-"++++OOOOOOOOOOOOOOOOOOOOOOOO++++",
-"++++oooooooooooooooooooooooo++++",
-"++++oooooooooooooooooooooooo++++",
-"++++oooooooooooooooooooooooo++++",
-"++++oooooooooooooooooooooooo++++",
-"++++OOOOOOOOOOOOOOOOOOOOOOOO++++",
-"++++OOOOOOOOOOOOOOOOOOOOOOOO++++",
-"++++OOOOOOOOOOOOOOOOOOOOOOOO++++",
-"++++OOOOOOOOOOOOOOOOOOOOOOOO++++",
-"++++OOOOOOOOOOOOOOOOOOOOOOOO++++",
-"++++OOOOOOOOOOOOOOOOOOOOOOOO++++",
-"++++OOOOOOOOOOOOOOOOOOOOOOOO++++",
-"++++OOOOOOOOOOOOOOOOOOOOOOOO++++",
-"++++OOOOOOOOOOOOOOOOOOOOOOOO++++",
-"++++OOOOOOOOOOOOOOOOOOOOOOOO++++",
-"++++OOOOOOOOOOOOOOOOOOOOOOOO++++",
-"++++OOOOOOOOOOOOOOOOOOOOOOOO++++",
-"++++oooooooooooooooooooooooo++++",
-"++++oooooooooooooooooooooooo++++",
-"++++oooooooooooooooooooooooo++++",
-"++++oooooooooooooooooooooooo++++",
-"++++OOOOOOOOOOOOOOOOOOOOOOOO++++",
-"++++OOOOOOOOOOOOOOOOOOOOOOOO++++",
-"++++OOOOOOOOOOOOOOOOOOOOOOOO++++",
-"++++OOOOOOOOOOOOOOOOOOOOOOOO++++"
+"                ++++OOOOOOOO++++",
+"                ++++OOOOOOOO++++",
+"                ++++OOOOOOOO++++",
+"                ++++OOOOOOOO++++",
+"                ++++OOOOOOOO++++",
+"                ++++OOOOOOOO++++",
+"                ++++OOOOOOOO++++",
+"                ++++OOOOOOOO++++",
+"                ++++oooooooo++++",
+"                ++++oooooooo++++",
+"                ++++oooooooo++++",
+"                ++++oooooooo++++",
+"                ++++OOOOOOOO++++",
+"                ++++OOOOOOOO++++",
+"                ++++OOOOOOOO++++",
+"                ++++OOOOOOOO++++",
+"                ++++OOOOOOOO++++",
+"                ++++OOOOOOOO++++",
+"                ++++OOOOOOOO++++",
+"                ++++OOOOOOOO++++",
+"                ++++OOOOOOOO++++",
+"                ++++OOOOOOOO++++",
+"                ++++OOOOOOOO++++",
+"                ++++OOOOOOOO++++",
+"                ++++oooooooo++++",
+"                ++++oooooooo++++",
+"                ++++oooooooo++++",
+"                ++++oooooooo++++",
+"                ++++OOOOOOOO++++",
+"                ++++OOOOOOOO++++",
+"                ++++OOOOOOOO++++",
+"                ++++OOOOOOOO++++"
 };
