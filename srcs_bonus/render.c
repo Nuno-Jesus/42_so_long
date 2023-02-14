@@ -6,7 +6,7 @@
 /*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 14:19:00 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/02/12 13:11:33 by crypto           ###   ########.fr       */
+/*   Updated: 2023/02/14 09:45:39 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,6 +126,8 @@ void	render_inner_walls(t_game *g)
 				continue;
 			if (diff(tmp, (t_point){p.x + 1, p.y + 1}, 'x') == -1 && diff(tmp, (t_point){p.x + 1, p.y + 1}, 'y') == -1)
 				render_sprite(g, &g->sp[W4], p, (t_point){-16, 0});
+			else if (diff(tmp, (t_point){p.x + 1, p.y + 1}, 'x') == 1 && diff(tmp, (t_point){p.x + 1, p.y + 1}, 'y') == -1)
+				render_sprite(g, &g->sp[W5], p, (t_point){-16, 0});
 			else
 				render_sprite(g, &g->sp[W1], p, (t_point){-16, 0});
 		}
