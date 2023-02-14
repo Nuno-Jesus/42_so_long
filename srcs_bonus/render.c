@@ -6,7 +6,7 @@
 /*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 14:19:00 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/02/14 09:45:39 by crypto           ###   ########.fr       */
+/*   Updated: 2023/02/14 10:12:32 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -176,7 +176,7 @@ void	render_counter(t_game *g)
 	int		x;
 	int		y;
 
-	x = g->map->cols * 16;
+	x = (g->map->cols - 1) * 16;
 	y = g->map->rows * 32 + 20;
 
 	str = ft_itoa(++g->moves);
