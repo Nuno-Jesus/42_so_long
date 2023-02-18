@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   macros_bonus.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 02:39:20 by marvin            #+#    #+#             */
-/*   Updated: 2023/02/18 02:40:35 by crypto           ###   ########.fr       */
+/*   Updated: 2023/02/18 12:02:47 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,28 +30,28 @@
 # define NUM_SPRITES	22
 
 # define ENTITIES	"01CEP"
-# define FW1		"xpm/bonus/upper_wall.xpm"
-# define FW2		"xpm/bonus/left_wall.xpm"
-# define FW3		"xpm/bonus/right_wall.xpm"
-# define FW4		"xpm/bonus/left_corner_wall.xpm"
-# define FW5		"xpm/bonus/right_corner_wall.xpm"
-# define FW6		"xpm/bonus/lower_wall.xpm"
-# define FW7		"xpm/bonus/one_left_wall.xpm"
-# define FW8		"xpm/bonus/one_right_wall.xpm"
-# define FW9		"xpm/bonus/two_horizontal_wall.xpm"
-# define FW10		"xpm/bonus/two_vertical_wall.xpm"
-# define FW11		"xpm/bonus/edge_upper_wall.xpm"
-# define FW12		"xpm/bonus/edge_lower_wall.xpm"
-# define FW13		"xpm/bonus/edge_left_wall.xpm"
-# define FW14		"xpm/bonus/edge_right_wall.xpm"
-# define FW15		"xpm/bonus/bounded_wall.xpm"
-# define FW16		"xpm/bonus/boundless_wall.xpm"
-# define FW17		"xpm/bonus/corner_lower_left_wall.xpm"
-# define FW18		"xpm/bonus/corner_lower_right_wall.xpm"
-# define FS1		"xpm/bonus/space.xpm"
-# define FC1		"xpm/coin.xpm"
-# define FE1		"xpm/exit.xpm"
-# define FP1		"xpm/player.xpm"
+# define UPPER_WALL		"xpm/bonus/upper_wall.xpm"
+# define LEFT_WALL		"xpm/bonus/left_wall.xpm"
+# define RIGHT_WALL		"xpm/bonus/right_wall.xpm"
+# define CORNER_LEFT		"xpm/bonus/left_corner_wall.xpm"
+# define CORNER_RIGHT		"xpm/bonus/right_corner_wall.xpm"
+# define LOWER_WALL		"xpm/bonus/lower_wall.xpm"
+# define BARRIER_LEFT		"xpm/bonus/one_left_wall.xpm"
+# define BARRIER_RIGHT		"xpm/bonus/one_right_wall.xpm"
+# define PIPE_HORIZONTAL		"xpm/bonus/two_horizontal_wall.xpm"
+# define PIPE_VERTICAL		"xpm/bonus/two_vertical_wall.xpm"
+# define EDGE_UPPER		"xpm/bonus/edge_upper_wall.xpm"
+# define EDGE_LOWER		"xpm/bonus/edge_lower_wall.xpm"
+# define EDGE_LEFT		"xpm/bonus/edge_left_wall.xpm"
+# define EDGE_RIGHT		"xpm/bonus/edge_right_wall.xpm"
+# define BOUNDED		"xpm/bonus/bounded_wall.xpm"
+# define BOUNDLESS		"xpm/bonus/boundless_wall.xpm"
+# define CORNER_LOWER_LEFT		"xpm/bonus/corner_lower_left_wall.xpm"
+# define CORNER_LOWER_RIGHT		"xpm/bonus/corner_lower_right_wall.xpm"
+# define SPACE1		"xpm/bonus/space.xpm"
+# define POTION1		"xpm/coin.xpm"
+# define EXIT1		"xpm/exit.xpm"
+# define PLAYER1	"xpm/player.xpm"
 
 /**
  * @brief An enumerable type used to map a char to an entity
