@@ -6,11 +6,11 @@
 /*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 14:19:00 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/02/14 10:12:32 by crypto           ###   ########.fr       */
+/*   Updated: 2023/02/18 00:16:44 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "so_long_bonus.h"
 
 void	render_sprite(t_game *g, t_sprite *s, t_point p, t_point offset)
 {

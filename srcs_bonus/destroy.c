@@ -6,11 +6,11 @@
 /*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/07 11:53:02 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/02/01 01:34:43 by crypto           ###   ########.fr       */
+/*   Updated: 2023/02/17 21:39:53 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "so_long_bonus.h"
 
 void	destroy_game(t_game *game)
 {
@@ -34,7 +34,7 @@ void	destroy_sprites(t_game *g)
 	int	i;
 
 	i = 0;
-	while (i < NUM_SPRITES_BONUS)
+	while (i < NUM_SPRITES)
 		mlx_destroy_image(g->disp.mlx, g->sp[i++].img);
 	free(g->sp);
 }

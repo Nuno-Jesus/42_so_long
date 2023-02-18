@@ -1,15 +1,3 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    left_wall.xpm                                      :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: crypto <crypto@student.42.fr>              +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2023/02/01 01:54:59 by crypto            #+#    #+#              #
-#    Updated: 2023/02/12 12:06:36 by crypto           ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
-
 /* XPM */
 static char *dfa67250808f49dceee3b90a24cbccf1xhpMQaBHljJXV95P[] = {
 /* columns rows colors chars-per-pixel */
@@ -20,14 +8,6 @@ static char *dfa67250808f49dceee3b90a24cbccf1xhpMQaBHljJXV95P[] = {
 "o c #785853",
 "+ c #90685F",
 "O c #A7856B",
-/* 
-"  c #002244",
-". c #003177",
-"X c #114488",
-"o c #1166AA",
-"+ c #1188BB",
-"O c #0085AA",
- */
 "                ++++OOOOOOOO++++",
 "                ++++OOOOOOOO++++",
 "                ++++OOOOOOOO++++",
