@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 02:39:20 by marvin            #+#    #+#             */
-/*   Updated: 2023/02/18 12:26:16 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/02/18 12:49:30 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@
 # include "get_next_line.h"
 # include "../mlx/mlx.h"
 
-# define NUM_SPRITES	22
+# define NUM_SPRITES	26
 
 # define ENTITIES	"01CEP"
 # define FW1		"xpm/bonus/upper_wall.xpm"
@@ -48,10 +48,14 @@
 # define FW16		"xpm/bonus/boundless_wall.xpm"
 # define FW17		"xpm/bonus/corner_lower_left_wall.xpm"
 # define FW18		"xpm/bonus/corner_lower_right_wall.xpm"
+# define FW19		"xpm/bonus/corner_upper_left_wall_2.xpm"
+# define FW20		"xpm/bonus/corner_upper_right_wall_2.xpm"
+# define FW21		"xpm/bonus/corner_lower_left_wall_2.xpm"
+# define FW22		"xpm/bonus/corner_lower_right_wall_2.xpm"
 # define FS1		"xpm/bonus/space.xpm"
 # define FC1		"xpm/coin.xpm"
 # define FE1		"xpm/exit.xpm"
-# define FP1	"xpm/player.xpm"
+# define FP1		"xpm/player.xpm"
 
 /**
  * @brief An enumerable type used to map a char to an entity
@@ -122,6 +126,10 @@ typedef enum e_index
 	BOUNDLESS,
 	CORNER_DL,
 	CORNER_DR,
+	CORNER_UL_2,
+	CORNER_UR_2,
+	CORNER_DL_2,
+	CORNER_DR_2,
 }				t_index;
 
 #endif

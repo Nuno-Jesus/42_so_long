@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 14:13:49 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/02/18 12:25:33 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/02/18 12:50:11 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,6 +104,14 @@ void	load_sprites(t_game *g)
 			&(g->sp[CORNER_DL].width), &(g->sp[CORNER_DL].height));
 	g->sp[CORNER_DR].img = mlx_xpm_file_to_image(g->disp.mlx, FW18,
 			&(g->sp[CORNER_DR].width), &(g->sp[CORNER_DR].height));	
+	g->sp[CORNER_UL_2].img = mlx_xpm_file_to_image(g->disp.mlx, FW19,
+			&(g->sp[CORNER_UL_2].width), &(g->sp[CORNER_UL_2].height));	
+	g->sp[CORNER_UR_2].img = mlx_xpm_file_to_image(g->disp.mlx, FW20,
+			&(g->sp[CORNER_UR_2].width), &(g->sp[CORNER_UR_2].height));	
+	g->sp[CORNER_DL_2].img = mlx_xpm_file_to_image(g->disp.mlx, FW21,
+			&(g->sp[CORNER_DL_2].width), &(g->sp[CORNER_DL_2].height));	
+	g->sp[CORNER_DR_2].img = mlx_xpm_file_to_image(g->disp.mlx, FW22,
+			&(g->sp[CORNER_DR_2].width), &(g->sp[CORNER_DR_2].height));	
 	g->sp[S1].img = mlx_xpm_file_to_image(g->disp.mlx, FS1,
 			&(g->sp[S1].width), &(g->sp[S1].height));
 	g->sp[C1].img = mlx_xpm_file_to_image(g->disp.mlx, FC1,
