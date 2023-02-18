@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 14:13:49 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/02/18 12:02:54 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/02/18 12:25:33 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,48 +68,48 @@ void	load_sprites(t_game *g)
 	g->sp = malloc(NUM_SPRITES * sizeof(t_sprite));
 	if (!g->sp)
 		message(g, "Failed allocation on sprites array\n");
-	g->sp[W1].img = mlx_xpm_file_to_image(g->disp.mlx, UPPER_WALL,
-			&(g->sp[W1].width), &(g->sp[W1].height));
-	g->sp[W2].img = mlx_xpm_file_to_image(g->disp.mlx, LEFT_WALL,
-			&(g->sp[W2].width), &(g->sp[W2].height));
-	g->sp[W3].img = mlx_xpm_file_to_image(g->disp.mlx, RIGHT_WALL,
-			&(g->sp[W3].width), &(g->sp[W3].height));
-	g->sp[W4].img = mlx_xpm_file_to_image(g->disp.mlx, CORNER_LEFT,
-			&(g->sp[W4].width), &(g->sp[W4].height));
-	g->sp[W5].img = mlx_xpm_file_to_image(g->disp.mlx, CORNER_RIGHT,
-			&(g->sp[W5].width), &(g->sp[W5].height));
-	g->sp[W6].img = mlx_xpm_file_to_image(g->disp.mlx, LOWER_WALL,
-			&(g->sp[W6].width), &(g->sp[W6].height));
-	g->sp[W7].img = mlx_xpm_file_to_image(g->disp.mlx, BARRIER_LEFT,
-			&(g->sp[W7].width), &(g->sp[W7].height));
-	g->sp[W8].img = mlx_xpm_file_to_image(g->disp.mlx, BARRIER_RIGHT,
-			&(g->sp[W8].width), &(g->sp[W8].height));
-	g->sp[W9].img = mlx_xpm_file_to_image(g->disp.mlx, PIPE_HORIZONTAL,
-			&(g->sp[W9].width), &(g->sp[W9].height));
-	g->sp[W10].img = mlx_xpm_file_to_image(g->disp.mlx, PIPE_VERTICAL,
-			&(g->sp[W10].width), &(g->sp[W10].height));
-	g->sp[W11].img = mlx_xpm_file_to_image(g->disp.mlx, EDGE_UPPER,
-			&(g->sp[W11].width), &(g->sp[W11].height));
-	g->sp[W12].img = mlx_xpm_file_to_image(g->disp.mlx, EDGE_LOWER,
-			&(g->sp[W12].width), &(g->sp[W12].height));
-	g->sp[W13].img = mlx_xpm_file_to_image(g->disp.mlx, EDGE_LEFT,
-			&(g->sp[W13].width), &(g->sp[W13].height));
-	g->sp[W14].img = mlx_xpm_file_to_image(g->disp.mlx, EDGE_RIGHT,
-			&(g->sp[W14].width), &(g->sp[W14].height));
-	g->sp[W15].img = mlx_xpm_file_to_image(g->disp.mlx, BOUNDED,
-			&(g->sp[W15].width), &(g->sp[W15].height));
-	g->sp[W16].img = mlx_xpm_file_to_image(g->disp.mlx, BOUNDLESS,
-			&(g->sp[W16].width), &(g->sp[W16].height));
-	g->sp[W17].img = mlx_xpm_file_to_image(g->disp.mlx, CORNER_LOWER_LEFT,
-			&(g->sp[W17].width), &(g->sp[W17].height));
-	g->sp[W18].img = mlx_xpm_file_to_image(g->disp.mlx, CORNER_LOWER_RIGHT,
-			&(g->sp[W18].width), &(g->sp[W18].height));
-	g->sp[S1].img = mlx_xpm_file_to_image(g->disp.mlx, SPACE1,
+	g->sp[WALL_U].img = mlx_xpm_file_to_image(g->disp.mlx, FW1,
+			&(g->sp[WALL_U].width), &(g->sp[WALL_U].height));
+	g->sp[WALL_L].img = mlx_xpm_file_to_image(g->disp.mlx, FW2,
+			&(g->sp[WALL_L].width), &(g->sp[WALL_L].height));
+	g->sp[WALL_R].img = mlx_xpm_file_to_image(g->disp.mlx, FW3,
+			&(g->sp[WALL_R].width), &(g->sp[WALL_R].height));
+	g->sp[CORNER_L].img = mlx_xpm_file_to_image(g->disp.mlx, FW4,
+			&(g->sp[CORNER_L].width), &(g->sp[CORNER_L].height));
+	g->sp[CORNER_R].img = mlx_xpm_file_to_image(g->disp.mlx, FW5,
+			&(g->sp[CORNER_R].width), &(g->sp[CORNER_R].height));
+	g->sp[WALL_D].img = mlx_xpm_file_to_image(g->disp.mlx, FW6,
+			&(g->sp[WALL_D].width), &(g->sp[WALL_D].height));
+	g->sp[BARRIER_L].img = mlx_xpm_file_to_image(g->disp.mlx, FW7,
+			&(g->sp[BARRIER_L].width), &(g->sp[BARRIER_L].height));
+	g->sp[BARRIER_R].img = mlx_xpm_file_to_image(g->disp.mlx, FW8,
+			&(g->sp[BARRIER_R].width), &(g->sp[BARRIER_R].height));
+	g->sp[PIPE_H].img = mlx_xpm_file_to_image(g->disp.mlx, FW9,
+			&(g->sp[PIPE_H].width), &(g->sp[PIPE_H].height));
+	g->sp[PIPE_V].img = mlx_xpm_file_to_image(g->disp.mlx, FW10,
+			&(g->sp[PIPE_V].width), &(g->sp[PIPE_V].height));
+	g->sp[EDGE_U].img = mlx_xpm_file_to_image(g->disp.mlx, FW11,
+			&(g->sp[EDGE_U].width), &(g->sp[EDGE_U].height));
+	g->sp[EDGE_D].img = mlx_xpm_file_to_image(g->disp.mlx, FW12,
+			&(g->sp[EDGE_D].width), &(g->sp[EDGE_D].height));
+	g->sp[EDGE_L].img = mlx_xpm_file_to_image(g->disp.mlx, FW13,
+			&(g->sp[EDGE_L].width), &(g->sp[EDGE_L].height));
+	g->sp[EDGE_R].img = mlx_xpm_file_to_image(g->disp.mlx, FW14,
+			&(g->sp[EDGE_R].width), &(g->sp[EDGE_R].height));
+	g->sp[BOUNDED].img = mlx_xpm_file_to_image(g->disp.mlx, FW15,
+			&(g->sp[BOUNDED].width), &(g->sp[BOUNDED].height));
+	g->sp[BOUNDLESS].img = mlx_xpm_file_to_image(g->disp.mlx, FW16,
+			&(g->sp[BOUNDLESS].width), &(g->sp[BOUNDLESS].height));
+	g->sp[CORNER_DL].img = mlx_xpm_file_to_image(g->disp.mlx, FW17,
+			&(g->sp[CORNER_DL].width), &(g->sp[CORNER_DL].height));
+	g->sp[CORNER_DR].img = mlx_xpm_file_to_image(g->disp.mlx, FW18,
+			&(g->sp[CORNER_DR].width), &(g->sp[CORNER_DR].height));	
+	g->sp[S1].img = mlx_xpm_file_to_image(g->disp.mlx, FS1,
 			&(g->sp[S1].width), &(g->sp[S1].height));
-	g->sp[C1].img = mlx_xpm_file_to_image(g->disp.mlx, POTION1,
+	g->sp[C1].img = mlx_xpm_file_to_image(g->disp.mlx, FC1,
 			&(g->sp[C1].width), &(g->sp[C1].height));
-	g->sp[E1].img = mlx_xpm_file_to_image(g->disp.mlx, EXIT1,
+	g->sp[E1].img = mlx_xpm_file_to_image(g->disp.mlx, FE1,
 			&(g->sp[E1].width), &(g->sp[E1].height));
-	g->sp[P1].img = mlx_xpm_file_to_image(g->disp.mlx, PLAYER1,
+	g->sp[P1].img = mlx_xpm_file_to_image(g->disp.mlx, FP1,
 			&(g->sp[P1].width), &(g->sp[P1].height));
 }

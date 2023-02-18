@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 02:39:13 by marvin            #+#    #+#             */
-/*   Updated: 2023/02/18 02:49:37 by crypto           ###   ########.fr       */
+/*   Updated: 2023/02/18 12:31:38 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,15 +24,15 @@ void	render_outter_walls(t_game *g)
 	
 	i = 0;	
 	while (++i < g->map->cols - 1)
-		render_sprite(g, &g->sp[W1], (t_point){i, 0}, (t_point){-16, 0});
+		render_sprite(g, &g->sp[WALL_U], (t_point){i, 0}, (t_point){-16, 0});
 	i = -1;	
 	while (++i < g->map->cols)
-		render_sprite(g, &g->sp[W1], (t_point){i, g->map->rows - 1}, (t_point){-16, 0});
+		render_sprite(g, &g->sp[WALL_U], (t_point){i, g->map->rows - 1}, (t_point){-16, 0});
 	i = -1;
 	while (++i < g->map->rows - 1)
 	{
-		render_sprite(g, &g->sp[W2], (t_point){0, i}, (t_point){-16, 0});
-		render_sprite(g, &g->sp[W3], (t_point){g->map->cols - 1, i}, (t_point){-16, 0});
+		render_sprite(g, &g->sp[WALL_L], (t_point){0, i}, (t_point){-16, 0});
+		render_sprite(g, &g->sp[WALL_R], (t_point){g->map->cols - 1, i}, (t_point){-16, 0});
 	}
 }
 
@@ -120,36 +120,36 @@ int sum(int **mat, t_point p, char dim)
 int	choose_wall_sprite(t_point p, int **mat)
 {
 	if (diff(mat, p, 'x') == -1 && diff(mat, p, 'y') == -1) //Left corner wall
-		return (W4);
+		return (CORNER_L);
 	if (diff(mat, p, 'x') == 1 && diff(mat, p, 'y') == -1) // Right corner wall
-		return (W5);
-	if (sum(mat, p, 'x') == 2 && diff(mat, p, 'y') == 1) // Left sided wall
-		return (W6);
-	if (diff(mat, p, 'x') == -1 && sum(mat, p, 'y') == 2) // Left sided wall
-		return (W7);
-	if (diff(mat, p, 'x') == 1 && sum(mat, p, 'y') == 2) // Right sided wall
-		return (W8);
-	if (sum(mat, p, 'x') == 2 && sum(mat, p, 'y') == 0) // Left sided wall
-		return (W9);
-	if (sum(mat, p, 'x') == 0 && sum(mat, p, 'y') == 2) // Left sided wall
-		return (W10);
+		return (CORNER_R);
+	if (sum(mat, p, 'x') == 2 && diff(mat, p, 'y') == 1) // Down sided wall
+		return (WALL_D);
+	if (diff(mat, p, 'x') == -1 && sum(mat, p, 'y') == 2) // Barrier left wall
+		return (BARRIER_L);
+	if (diff(mat, p, 'x') == 1 && sum(mat, p, 'y') == 2) // Barrier right wall
+		return (BARRIER_R);
+	if (sum(mat, p, 'x') == 2 && sum(mat, p, 'y') == 0) // Horizontal pipe wall
+		return (PIPE_H);
+	if (sum(mat, p, 'x') == 0 && sum(mat, p, 'y') == 2) // Vertical pipe wall
+		return (PIPE_V);
 	if (sum(mat, p, 'x') == 0 && diff(mat, p, 'y') == -1) // Edge upper wall
-		return (W11);
+		return (EDGE_U);
 	if (sum(mat, p, 'x') == 0 && diff(mat, p, 'y') == 1) // Edge lower wall
-		return (W12);
+		return (EDGE_D);
 	if (diff(mat, p, 'x') == -1 && sum(mat, p, 'y') == 0) // Edge left wall
-		return (W13);
+		return (EDGE_L);
 	if (diff(mat, p, 'x') == 1 && sum(mat, p, 'y') == 0) // Edge right wall
-		return (W14);
+		return (EDGE_R);
 	if (sum(mat, p, 'x') == 0 && sum(mat, p, 'y') == 0) // Boundless wall
-		return (W15);
+		return (BOUNDED);
 	if (sum(mat, p, 'x') == 2 && sum(mat, p, 'y') == 2) // Bounded wall
-		return (W16);
+		return (BOUNDLESS);
 	if (diff(mat, p, 'x') == -1 && diff(mat, p, 'y') == 1) // Corner lower left wall
-		return (W17);
+		return (CORNER_DL);
 	if (diff(mat, p, 'x') == 1 && diff(mat, p, 'y') == 1) // Corner lower right wall
-		return (W18);
-	return (W1);
+		return (CORNER_DR);
+	return (WALL_U);
 }
 
 void	render_inner_walls(t_game *g)
