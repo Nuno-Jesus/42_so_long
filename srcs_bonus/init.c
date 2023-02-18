@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 14:13:49 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/02/18 01:23:49 by marvin           ###   ########.fr       */
+/*   Updated: 2023/02/18 01:44:29 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,10 @@ void	load_sprites(t_game *g)
 			&(g->sp[W7].width), &(g->sp[W7].height));
 	g->sp[W8].img = mlx_xpm_file_to_image(g->disp.mlx, FW8,
 			&(g->sp[W8].width), &(g->sp[W8].height));
+	g->sp[W9].img = mlx_xpm_file_to_image(g->disp.mlx, FW9,
+			&(g->sp[W9].width), &(g->sp[W9].height));
+	g->sp[W10].img = mlx_xpm_file_to_image(g->disp.mlx, FW10,
+			&(g->sp[W10].width), &(g->sp[W10].height));
 	g->sp[S1].img = mlx_xpm_file_to_image(g->disp.mlx, FS1,
 			&(g->sp[S1].width), &(g->sp[S1].height));
 	g->sp[C1].img = mlx_xpm_file_to_image(g->disp.mlx, FC1,
