@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 14:13:49 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/02/17 21:50:53 by crypto           ###   ########.fr       */
+/*   Updated: 2023/02/18 01:23:49 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,10 @@ void	load_sprites(t_game *g)
 			&(g->sp[W5].width), &(g->sp[W5].height));
 	g->sp[W6].img = mlx_xpm_file_to_image(g->disp.mlx, FW6,
 			&(g->sp[W6].width), &(g->sp[W6].height));
+	g->sp[W7].img = mlx_xpm_file_to_image(g->disp.mlx, FW7,
+			&(g->sp[W7].width), &(g->sp[W7].height));
+	g->sp[W8].img = mlx_xpm_file_to_image(g->disp.mlx, FW8,
+			&(g->sp[W8].width), &(g->sp[W8].height));
 	g->sp[S1].img = mlx_xpm_file_to_image(g->disp.mlx, FS1,
 			&(g->sp[S1].width), &(g->sp[S1].height));
 	g->sp[C1].img = mlx_xpm_file_to_image(g->disp.mlx, FC1,
