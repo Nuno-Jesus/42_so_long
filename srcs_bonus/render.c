@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 02:39:13 by marvin            #+#    #+#             */
-/*   Updated: 2023/02/18 17:44:13 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/02/18 18:04:36 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,46 +124,55 @@ int at2(int **mat, t_point p)
 //! Need to change this
 int	choose_wall_sprite(t_point p, int **mat)
 {
-	if (diff(mat, p, 'x') == -1 && diff(mat, p, 'y') == -1 && at2(mat, (t_point){p.x + 1, p.y + 1})) //Left corner wall
+	if (diff(mat, p, 'x') == -1 && diff(mat, p, 'y') == 1 && at2(mat, (t_point){p.x + 1, p.y - 1}))
+		return (CORNER_DL);
+	if (diff(mat, p, 'x') == 1 && diff(mat, p, 'y') == 1 && at2(mat, (t_point){p.x - 1, p.y - 1}))
+		return (CORNER_DR);
+	if (diff(mat, p, 'x') == -1 && diff(mat, p, 'y') == -1 && !at2(mat, (t_point){p.x + 1, p.y + 1}))
+		return (CORNER_UL_2);
+	if (diff(mat, p, 'x') == 1 && diff(mat, p, 'y') == -1 && !at2(mat, (t_point){p.x - 1, p.y + 1}))
+		return (CORNER_UR_2);
+	if (diff(mat, p, 'x') == -1 && diff(mat, p, 'y') == 1 && !at2(mat, (t_point){p.x + 1, p.y - 1}))
+		return (CORNER_DL_2);
+	if (diff(mat, p, 'x') == 1 && diff(mat, p, 'y') == 1 && !at2(mat, (t_point){p.x - 1, p.y - 1}))
+		return (CORNER_DR_2);
+	if (diff(mat, p, 'x') == -1 && sum(mat, p, 'y') == 2 && !mat[p.y - 1][p.x + 1] && !mat[p.y + 1][p.x + 1])
+		return (BARRIER_L_2);
+	if (diff(mat, p, 'x') == 1 && sum(mat, p, 'y') == 2 && !mat[p.y - 1][p.x - 1] && !mat[p.y + 1][p.x - 1])
+		return (BARRIER_R_2);
+	if (!diff(mat, p, 'x') && diff(mat, p, 'y') == -1 && !mat[p.y + 1][p.x - 1] && !mat[p.y + 1][p.x + 1])
+		return (BARRIER_U_2);
+	if (!diff(mat, p, 'x') && diff(mat, p, 'y') == 1 && !mat[p.y - 1][p.x - 1] && !mat[p.y - 1][p.x + 1])
+		return (BARRIER_D_2);
+	if (diff(mat, p, 'x') == -1 && diff(mat, p, 'y') == -1)
 		return (CORNER_L);
-	if (diff(mat, p, 'x') == 1 && diff(mat, p, 'y') == -1 && at2(mat, (t_point){p.x - 1, p.y + 1})) // Right corner wall
+	if (diff(mat, p, 'x') == 1 && diff(mat, p, 'y') == -1)
 		return (CORNER_R);
-	if (sum(mat, p, 'x') == 2 && diff(mat, p, 'y') == 1) // Down sided wall
+	if (sum(mat, p, 'x') == 2 && diff(mat, p, 'y') == 1)
 		return (WALL_D);
-	if (diff(mat, p, 'x') == -1 && sum(mat, p, 'y') == 2) // Barrier left wall
+	if (diff(mat, p, 'x') == -1 && sum(mat, p, 'y') == 2)
 		return (BARRIER_L);
-	if (diff(mat, p, 'x') == 1 && sum(mat, p, 'y') == 2) // Barrier right wall
+	if (diff(mat, p, 'x') == 1 && sum(mat, p, 'y') == 2)
 		return (BARRIER_R);
-	if (sum(mat, p, 'x') == 2 && sum(mat, p, 'y') == 0) // Horizontal pipe wall
+	if (sum(mat, p, 'x') == 2 && sum(mat, p, 'y') == 0)
 		return (PIPE_H);
-	if (sum(mat, p, 'x') == 0 && sum(mat, p, 'y') == 2) // Vertical pipe wall
+	if (sum(mat, p, 'x') == 0 && sum(mat, p, 'y') == 2)
 		return (PIPE_V);
-	if (sum(mat, p, 'x') == 0 && diff(mat, p, 'y') == -1) // Edge upper wall
+	if (sum(mat, p, 'x') == 0 && diff(mat, p, 'y') == -1)
 		return (EDGE_U);
-	if (sum(mat, p, 'x') == 0 && diff(mat, p, 'y') == 1) // Edge lower wall
+	if (sum(mat, p, 'x') == 0 && diff(mat, p, 'y') == 1)
 		return (EDGE_D);
-	if (diff(mat, p, 'x') == -1 && sum(mat, p, 'y') == 0) // Edge left wall
+	if (diff(mat, p, 'x') == -1 && sum(mat, p, 'y') == 0)
 		return (EDGE_L);
-	if (diff(mat, p, 'x') == 1 && sum(mat, p, 'y') == 0) // Edge right wall
+	if (diff(mat, p, 'x') == 1 && sum(mat, p, 'y') == 0)
 		return (EDGE_R);
-	if (sum(mat, p, 'x') == 0 && sum(mat, p, 'y') == 0) // Boundless wall
+	if (sum(mat, p, 'x') == 0 && sum(mat, p, 'y') == 0)
 		return (BOUNDED);
 	if (!diff(mat, p, 'x') && !diff(mat, p, 'y') && !mat[p.y - 1][p.x - 1] && !mat[p.y - 1][p.x + 1] && !mat[p.y + 1][p.x - 1] && !mat[p.y + 1][p.x + 1])
 		return (BOUNDLESS_2);
-	if (sum(mat, p, 'x') == 2 && sum(mat, p, 'y') == 2) // Bounded wall
+	if (sum(mat, p, 'x') == 2 && sum(mat, p, 'y') == 2)
 		return (BOUNDLESS);
-	if (diff(mat, p, 'x') == -1 && diff(mat, p, 'y') == 1 && at2(mat, (t_point){p.x + 1, p.y - 1})) // Corner lower left wall
-		return (CORNER_DL);
-	if (diff(mat, p, 'x') == 1 && diff(mat, p, 'y') == 1 && at2(mat, (t_point){p.x - 1, p.y - 1})) // Corner lower right wall
-		return (CORNER_DR);
-	if (diff(mat, p, 'x') == -1 && diff(mat, p, 'y') == -1 && !at2(mat, (t_point){p.x + 1, p.y + 1})) // Corner lower right wall
-		return (CORNER_UL_2);
-	if (diff(mat, p, 'x') == 1 && diff(mat, p, 'y') == -1 && !at2(mat, (t_point){p.x - 1, p.y + 1})) // Corner lower right wall
-		return (CORNER_UR_2);
-	if (diff(mat, p, 'x') == -1 && diff(mat, p, 'y') == 1 && !at2(mat, (t_point){p.x + 1, p.y - 1})) // Corner lower right wall
-		return (CORNER_DL_2);
-	if (diff(mat, p, 'x') == 1 && diff(mat, p, 'y') == 1 && !at2(mat, (t_point){p.x - 1, p.y - 1})) // Corner lower right wall
-		return (CORNER_DR_2);
+	
 	return (WALL_U);
 }
 

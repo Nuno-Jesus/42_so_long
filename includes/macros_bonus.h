@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 02:39:20 by marvin            #+#    #+#             */
-/*   Updated: 2023/02/18 17:42:53 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/02/18 17:56:04 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@
 # include "get_next_line.h"
 # include "../mlx/mlx.h"
 
-# define NUM_SPRITES	27
+# define NUM_SPRITES	31
 
 # define ENTITIES	"01CEP"
 # define FW1		"xpm/bonus/upper_wall.xpm"
@@ -53,6 +53,10 @@
 # define FW21		"xpm/bonus/corner_lower_left_wall_2.xpm"
 # define FW22		"xpm/bonus/corner_lower_right_wall_2.xpm"
 # define FW23		"xpm/bonus/boundless_2.xpm"
+# define FW24		"xpm/bonus/barrier_upper_2.xpm"
+# define FW25		"xpm/bonus/barrier_lower_2.xpm"
+# define FW26		"xpm/bonus/barrier_left_2.xpm"
+# define FW27		"xpm/bonus/barrier_right_2.xpm"
 # define FS1		"xpm/bonus/space.xpm"
 # define FC1		"xpm/coin.xpm"
 # define FE1		"xpm/exit.xpm"
@@ -131,7 +135,11 @@ typedef enum e_index
 	CORNER_UR_2,
 	CORNER_DL_2,
 	CORNER_DR_2,
-	BOUNDLESS_2
+	BOUNDLESS_2,
+	BARRIER_L_2,
+	BARRIER_R_2,
+	BARRIER_U_2,
+	BARRIER_D_2,
 }				t_index;
 
 #endif
