@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/10 11:19:03 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/02/18 02:01:15 by marvin           ###   ########.fr       */
+/*   Updated: 2023/02/18 02:22:47 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,8 @@
 # define FW12		"xpm/bonus/edge_lower_wall.xpm"
 # define FW13		"xpm/bonus/edge_left_wall.xpm"
 # define FW14		"xpm/bonus/edge_right_wall.xpm"
+# define FW15		"xpm/bonus/bounded_wall.xpm"
+# define FW16		"xpm/bonus/boundless_wall.xpm"
 # define FS1		"xpm/bonus/space.xpm"
 # define FC1		"xpm/coin.xpm"
 # define FE1		"xpm/exit.xpm"
@@ -113,7 +115,9 @@ typedef enum e_index
 	W11,
 	W12,
 	W13,
-	W14
+	W14,
+	W15,
+	W16,
 }				t_index;
 
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 14:19:00 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/02/18 02:05:30 by crypto           ###   ########.fr       */
+/*   Updated: 2023/02/18 02:24:20 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,6 +138,10 @@ int	choose_wall_sprite(t_point p, int **mat)
 		return (W13);
 	if (diff(mat, p, 'x') == 1 && sum(mat, p, 'y') == 0) // Edge right wall
 		return (W14);
+	if (sum(mat, p, 'x') == 2 && sum(mat, p, 'y') == 2) // Bounded wall
+		return (W15);
+	if (sum(mat, p, 'x') == 0 && sum(mat, p, 'y') == 0) // Boundless wall
+		return (W16);
 	return (W1);
 }
 
