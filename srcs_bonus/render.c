@@ -6,7 +6,7 @@
 /*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 14:19:00 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/02/18 00:16:44 by crypto           ###   ########.fr       */
+/*   Updated: 2023/02/18 01:13:39 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,23 +81,23 @@ void	fill_binary_matrix(t_game *g, int **mat)
 
 int	**create_binary_matrix(unsigned int y, unsigned int x)
 {
-	int				**tmp;
+	int				**mat;
 	unsigned int	i;
 	
 	i = -1;
-	tmp = ft_calloc(y + 1, sizeof(int *));
-	if (!tmp)
+	mat = ft_calloc(y + 1, sizeof(int *));
+	if (!mat)
 		return (NULL);
 	while (++i < y)
 	{
-		tmp[i] = ft_calloc(x + 2, sizeof(int));
-		if(!tmp[i])
+		mat[i] = ft_calloc(x + 2, sizeof(int));
+		if(!mat[i])
 		{
-			delete_matrix(tmp);
+			delete_matrix(mat);
 			return (NULL);
 		}
 	}
-	return (tmp);
+	return (mat);
 }
 
 int diff(int **mat, t_point p, char dim)
@@ -108,14 +108,36 @@ int diff(int **mat, t_point p, char dim)
 		return (mat[p.y - 1][p.x] - mat[p.y + 1][p.x]);
 }
 
+int sum(int **mat, t_point p, char dim)
+{
+	if (dim == 'x')
+		return (mat[p.y][p.x - 1] + mat[p.y][p.x + 1]);
+	else
+		return (mat[p.y - 1][p.x] + mat[p.y + 1][p.x]);
+}
+
+int	choose_wall_sprite(t_point p, int **mat)
+{
+	if (diff(mat, p, 'x') == -1 && diff(mat, p, 'y') == -1) //Left corner wall
+		return (W4);
+	if (diff(mat, p, 'x') == 1 && diff(mat, p, 'y') == -1) // Right corner wall
+		return (W5);
+	if (diff(mat, p, 'x') == -1 && sum(mat, p, 'y') == 2) // Left sided wall
+		return (W2);
+	if (diff(mat, p, 'x') == 1 && sum(mat, p, 'y') == 2) // Right sided wall
+		return (W3);
+	return (W1);
+}
+
 void	render_inner_walls(t_game *g)
 {
-	int	**tmp;
+	int	**mat;
+	int index;
 	t_point p;
 
-	tmp = create_binary_matrix(g->map->rows + 2, g->map->cols + 2);
-	fill_binary_matrix(g, tmp);
-	print_matrix(tmp, g->map->cols + 2, g->map->rows + 2);
+	mat = create_binary_matrix(g->map->rows + 2, g->map->cols + 2);
+	fill_binary_matrix(g, mat);
+	print_matrix(mat, g->map->cols + 2, g->map->rows + 2);
 	p.y = 0;
 	while (++p.y < g->map->rows - 1)
 	{
@@ -124,15 +146,11 @@ void	render_inner_walls(t_game *g)
 		{
 			if (at(g, p) != WALL)
 				continue;
-			if (diff(tmp, (t_point){p.x + 1, p.y + 1}, 'x') == -1 && diff(tmp, (t_point){p.x + 1, p.y + 1}, 'y') == -1)
-				render_sprite(g, &g->sp[W4], p, (t_point){-16, 0});
-			else if (diff(tmp, (t_point){p.x + 1, p.y + 1}, 'x') == 1 && diff(tmp, (t_point){p.x + 1, p.y + 1}, 'y') == -1)
-				render_sprite(g, &g->sp[W5], p, (t_point){-16, 0});
-			else
-				render_sprite(g, &g->sp[W1], p, (t_point){-16, 0});
+			index = choose_wall_sprite((t_point){p.x + 1, p.y + 1}, mat);
+			render_sprite(g, &g->sp[index], p, (t_point){-16, 0});
 		}
 	}
-	delete_matrix(tmp);
+	delete_matrix(mat);
 	// exit(1);
 }
 
