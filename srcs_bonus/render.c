@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 02:39:13 by marvin            #+#    #+#             */
-/*   Updated: 2023/02/18 13:14:32 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/02/18 17:44:13 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -148,6 +148,8 @@ int	choose_wall_sprite(t_point p, int **mat)
 		return (EDGE_R);
 	if (sum(mat, p, 'x') == 0 && sum(mat, p, 'y') == 0) // Boundless wall
 		return (BOUNDED);
+	if (!diff(mat, p, 'x') && !diff(mat, p, 'y') && !mat[p.y - 1][p.x - 1] && !mat[p.y - 1][p.x + 1] && !mat[p.y + 1][p.x - 1] && !mat[p.y + 1][p.x + 1])
+		return (BOUNDLESS_2);
 	if (sum(mat, p, 'x') == 2 && sum(mat, p, 'y') == 2) // Bounded wall
 		return (BOUNDLESS);
 	if (diff(mat, p, 'x') == -1 && diff(mat, p, 'y') == 1 && at2(mat, (t_point){p.x + 1, p.y - 1})) // Corner lower left wall
