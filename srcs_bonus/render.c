@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 14:19:00 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/02/18 02:24:20 by marvin           ###   ########.fr       */
+/*   Updated: 2023/02/18 02:36:54 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,6 +142,10 @@ int	choose_wall_sprite(t_point p, int **mat)
 		return (W15);
 	if (sum(mat, p, 'x') == 0 && sum(mat, p, 'y') == 0) // Boundless wall
 		return (W16);
+	if (diff(mat, p, 'x') == -1 && diff(mat, p, 'y') == 1) // Corner lower left wall
+		return (W17);
+	if (diff(mat, p, 'x') == -1 && diff(mat, p, 'y') == -1) // Corner lower right wall
+		return (W18);
 	return (W1);
 }
 

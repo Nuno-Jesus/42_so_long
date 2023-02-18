@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/10 11:19:03 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/02/18 02:22:47 by marvin           ###   ########.fr       */
+/*   Updated: 2023/02/18 02:35:14 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@
 # include "get_next_line.h"
 # include "../mlx/mlx.h"
 
-# define NUM_SPRITES	18
+# define NUM_SPRITES	20
 
 # define ENTITIES	"01CEP"
 # define FW1		"xpm/bonus/upper_wall.xpm"
@@ -46,6 +46,8 @@
 # define FW14		"xpm/bonus/edge_right_wall.xpm"
 # define FW15		"xpm/bonus/bounded_wall.xpm"
 # define FW16		"xpm/bonus/boundless_wall.xpm"
+# define FW17		"xpm/bonus/corner_lower_left_wall.xpm"
+# define FW18		"xpm/bonus/corner_lower_right_wall.xpm"
 # define FS1		"xpm/bonus/space.xpm"
 # define FC1		"xpm/coin.xpm"
 # define FE1		"xpm/exit.xpm"
@@ -118,6 +120,8 @@ typedef enum e_index
 	W14,
 	W15,
 	W16,
+	W17,
+	W18,
 }				t_index;
 
 #endif
