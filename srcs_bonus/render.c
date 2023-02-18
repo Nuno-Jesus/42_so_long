@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/20 14:19:00 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/02/18 02:38:01 by marvin           ###   ########.fr       */
+/*   Created: 2023/02/18 02:39:13 by marvin            #+#    #+#             */
+/*   Updated: 2023/02/18 02:39:15 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,9 +138,9 @@ int	choose_wall_sprite(t_point p, int **mat)
 		return (W13);
 	if (diff(mat, p, 'x') == 1 && sum(mat, p, 'y') == 0) // Edge right wall
 		return (W14);
-	if (sum(mat, p, 'x') == 2 && sum(mat, p, 'y') == 2) // Bounded wall
-		return (W15);
 	if (sum(mat, p, 'x') == 0 && sum(mat, p, 'y') == 0) // Boundless wall
+		return (W15);
+	if (sum(mat, p, 'x') == 2 && sum(mat, p, 'y') == 2) // Bounded wall
 		return (W16);
 	if (diff(mat, p, 'x') == -1 && diff(mat, p, 'y') == 1) // Corner lower left wall
 		return (W17);
