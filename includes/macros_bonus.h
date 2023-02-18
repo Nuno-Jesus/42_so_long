@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   macros_bonus.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/10 11:19:03 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/02/18 00:12:04 by crypto           ###   ########.fr       */
+/*   Updated: 2023/02/18 00:55:38 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,8 @@
 # define FW1		"xpm/bonus/upper_wall.xpm"
 # define FW2		"xpm/bonus/left_wall.xpm"
 # define FW3		"xpm/bonus/right_wall.xpm"
-# define FW4		"xpm/upper_left_corner_wall.xpm"
-# define FW5		"xpm/upper_right_corner_wall.xpm"
+# define FW4		"xpm/bonus/left_corner_wall.xpm"
+# define FW5		"xpm/bonus/right_corner_wall.xpm"
 # define FW6		"xpm/bonus/lower_wall.xpm"
 # define FS1		"xpm/bonus/space.xpm"
 # define FC1		"xpm/coin.xpm"
