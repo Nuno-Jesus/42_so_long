@@ -6,7 +6,7 @@
 /*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 02:39:13 by marvin            #+#    #+#             */
-/*   Updated: 2023/02/18 02:42:27 by crypto           ###   ########.fr       */
+/*   Updated: 2023/02/18 02:49:37 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,6 +116,7 @@ int sum(int **mat, t_point p, char dim)
 		return (mat[p.y - 1][p.x] + mat[p.y + 1][p.x]);
 }
 
+//!Need to change this
 int	choose_wall_sprite(t_point p, int **mat)
 {
 	if (diff(mat, p, 'x') == -1 && diff(mat, p, 'y') == -1) //Left corner wall
