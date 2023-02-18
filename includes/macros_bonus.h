@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   macros_bonus.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 02:39:20 by marvin            #+#    #+#             */
-/*   Updated: 2023/02/18 02:39:22 by marvin           ###   ########.fr       */
+/*   Updated: 2023/02/18 02:40:35 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@
 # include "get_next_line.h"
 # include "../mlx/mlx.h"
 
-# define NUM_SPRITES	20
+# define NUM_SPRITES	22
 
 # define ENTITIES	"01CEP"
 # define FW1		"xpm/bonus/upper_wall.xpm"
