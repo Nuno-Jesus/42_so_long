@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 02:39:13 by marvin            #+#    #+#             */
-/*   Updated: 2023/02/18 18:04:36 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/02/18 18:34:22 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,6 +136,16 @@ int	choose_wall_sprite(t_point p, int **mat)
 		return (CORNER_DL_2);
 	if (diff(mat, p, 'x') == 1 && diff(mat, p, 'y') == 1 && !at2(mat, (t_point){p.x - 1, p.y - 1}))
 		return (CORNER_DR_2);
+	
+	if (!diff(mat, p, 'x') && !diff(mat, p, 'y') && mat[p.y + 1][p.x + 1] && !mat[p.y - 1][p.x - 1] && mat[p.y + 1][p.x - 1] && mat[p.y - 1][p.x + 1])
+		return (CORNER_BUL);
+	if (!diff(mat, p, 'x') && !diff(mat, p, 'y') && mat[p.y + 1][p.x + 1] && mat[p.y - 1][p.x - 1] && mat[p.y + 1][p.x - 1] && !mat[p.y - 1][p.x + 1])
+		return (CORNER_BUR);
+	if (!diff(mat, p, 'x') && !diff(mat, p, 'y') && mat[p.y + 1][p.x + 1] && mat[p.y - 1][p.x - 1] && !mat[p.y + 1][p.x - 1] && mat[p.y - 1][p.x + 1])
+		return (CORNER_BDL);
+	if (!diff(mat, p, 'x') && !diff(mat, p, 'y') && !mat[p.y + 1][p.x + 1] && mat[p.y - 1][p.x - 1] && mat[p.y + 1][p.x - 1] && mat[p.y - 1][p.x + 1])
+		return (CORNER_BDR);
+		
 	if (diff(mat, p, 'x') == -1 && sum(mat, p, 'y') == 2 && !mat[p.y - 1][p.x + 1] && !mat[p.y + 1][p.x + 1])
 		return (BARRIER_L_2);
 	if (diff(mat, p, 'x') == 1 && sum(mat, p, 'y') == 2 && !mat[p.y - 1][p.x - 1] && !mat[p.y + 1][p.x - 1])
