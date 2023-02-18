@@ -6,7 +6,7 @@
 /*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 14:19:00 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/02/18 01:30:18 by crypto           ###   ########.fr       */
+/*   Updated: 2023/02/18 01:47:06 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,10 +124,12 @@ int	choose_wall_sprite(t_point p, int **mat)
 		return (W5);
 	if (diff(mat, p, 'x') == -1 && sum(mat, p, 'y') == 2) // Left sided wall
 		return (W7);
-	if (sum(mat, p, 'x') == 0 && sum(mat, p, 'y') == 2) // Left sided wall
-		return (W7);
 	if (diff(mat, p, 'x') == 1 && sum(mat, p, 'y') == 2) // Right sided wall
 		return (W8);
+	if (sum(mat, p, 'x') == 2 && sum(mat, p, 'y') == 0) // Left sided wall
+		return (W9);
+	if (sum(mat, p, 'x') == 0 && sum(mat, p, 'y') == 2) // Left sided wall
+		return (W10);
 	return (W1);
 }
 
