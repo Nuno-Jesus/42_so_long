@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 14:19:00 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/02/18 02:01:02 by marvin           ###   ########.fr       */
+/*   Updated: 2023/02/18 02:05:30 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,13 +130,13 @@ int	choose_wall_sprite(t_point p, int **mat)
 		return (W9);
 	if (sum(mat, p, 'x') == 0 && sum(mat, p, 'y') == 2) // Left sided wall
 		return (W10);
-	if (diff(mat, p, 'x') == 0 && diff(mat, p, 'y') == -1) // Edge upper wall
+	if (sum(mat, p, 'x') == 0 && diff(mat, p, 'y') == -1) // Edge upper wall
 		return (W11);
-	if (diff(mat, p, 'x') == 0 && diff(mat, p, 'y') == 1) // Edge lower wall
+	if (sum(mat, p, 'x') == 0 && diff(mat, p, 'y') == 1) // Edge lower wall
 		return (W12);
-	if (diff(mat, p, 'x') == -1 && diff(mat, p, 'y') == 0) // Edge left wall
+	if (diff(mat, p, 'x') == -1 && sum(mat, p, 'y') == 0) // Edge left wall
 		return (W13);
-	if (diff(mat, p, 'x') == 1 && diff(mat, p, 'y') == 0) // Edge right wall
+	if (diff(mat, p, 'x') == 1 && sum(mat, p, 'y') == 0) // Edge right wall
 		return (W14);
 	return (W1);
 }
