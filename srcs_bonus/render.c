@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 14:19:00 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/02/18 01:24:04 by marvin           ###   ########.fr       */
+/*   Updated: 2023/02/18 01:30:18 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,6 +123,8 @@ int	choose_wall_sprite(t_point p, int **mat)
 	if (diff(mat, p, 'x') == 1 && diff(mat, p, 'y') == -1) // Right corner wall
 		return (W5);
 	if (diff(mat, p, 'x') == -1 && sum(mat, p, 'y') == 2) // Left sided wall
+		return (W7);
+	if (sum(mat, p, 'x') == 0 && sum(mat, p, 'y') == 2) // Left sided wall
 		return (W7);
 	if (diff(mat, p, 'x') == 1 && sum(mat, p, 'y') == 2) // Right sided wall
 		return (W8);
