@@ -17,7 +17,7 @@ AR = ar -rcs
 #_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_ FLAGS _/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
 CFLAGS		= -Wall -Wextra -Werror
 MKFLAGS		= --no-print-directory
-LIBXFLAGS	= -L ./mlx -lmlx -Ilmlx -lXext -lX11 -lm 
+MLXFLAGS	= -L ./mlx -lmlx -Ilmlx -lXext -lX11 -lm 
 LIBFTFLAGS	= -L ./libft -lft
 GNLFLAGS	= -L ./get_next_line -lgnl
 
@@ -27,7 +27,7 @@ SRCS		= srcs
 SRCS_BONUS	= srcs_bonus
 LIBFT		= libft
 GNL			= get_next_line
-LIBX 		= mlx
+MLX 		= mlx
 PRINTF		= ft_printf
 
 #_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_ FILES _/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
@@ -48,8 +48,11 @@ $(NAME): $(TARGET)
 	echo "[$(CYAN)Compiling$(RESET)] $(CFLAGS) $(GREEN)get_next_line/*$(RESET)"
 	make $(MKFLAGS) -C $(GNL)
 	
+	echo "[$(CYAN)Compiling$(RESET)] $(CFLAGS) $(GREEN)mlx/*$(RESET)"
+	make $(MKFLAGS) -sC $(MLX)
+	
 	echo "[$(CYAN) Linking $(RESET)] $(GREEN)*$(RESET)"
-	$(CC) $(CFLAGS) main.c $(TARGET) $(LIBFTFLAGS) $(GNLFLAGS) $(LIBXFLAGS) -o $(NAME) -I $(DEPS)
+	$(CC) $(CFLAGS) main.c $(TARGET) $(LIBFTFLAGS) $(GNLFLAGS) $(MLXFLAGS) -o $(NAME) -I $(DEPS)
 	
 	echo "$(GREEN)Done.$(RESET)"
 	
@@ -60,6 +63,7 @@ $(NAME): $(TARGET)
 clean:
 	make clean $(MKFLAGS) -C $(LIBFT)
 	make clean $(MKFLAGS) -C $(GNL)
+	make clean $(MKFLAGS) -C $(MLX)
 	echo "[$(RED) Deleted $(RESET)] $(GREEN)*/*.o$(RESET)"
 	$(RM) $(TARGET) $(TARGET_BONUS)
 
@@ -75,9 +79,12 @@ bonus: $(TARGET_BONUS)
 	
 	echo "[$(CYAN)Compiling$(RESET)] $(CFLAGS) $(GREEN)get_next_line/*$(RESET)"
 	make $(MKFLAGS) -C $(GNL)
+
+	echo "[$(CYAN)Compiling$(RESET)] $(CFLAGS) $(GREEN)mlx/*$(RESET)"
+	make $(MKFLAGS) -C $(MLX) 
 	
 	echo "[$(CYAN) Linking $(RESET)] $(GREEN)*$(RESET)"
-	$(CC) $(CFLAGS) main.c $(TARGET_BONUS) $(LIBFTFLAGS) $(GNLFLAGS) $(LIBXFLAGS) -o $(NAME) -I $(DEPS)
+	$(CC) $(CFLAGS) main.c $(TARGET_BONUS) $(LIBFTFLAGS) $(GNLFLAGS) $(MLXFLAGS) -o $(NAME) -I $(DEPS)
 	
 	echo "$(GREEN)Done.$(RESET)"
 
