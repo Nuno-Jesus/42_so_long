@@ -51,6 +51,9 @@ $(NAME): $(OBJ_DIR) $(TARGET)
 	echo "[$(CYAN)Compiling$(RESET)] $(CFLAGS) $(GREEN)get_next_line/*$(RESET)"
 	make $(MKFLAGS) -C $(GNL)
 	
+	echo "[$(CYAN)Compiling$(RESET)] $(CFLAGS) $(GREEN)mlx/*$(RESET)"
+	make $(MKFLAGS) -sC $(MLX)
+	
 	echo "[$(CYAN) Linking $(RESET)] $(GREEN)*$(RESET)"
 	$(CC) $(CFLAGS) main.c $(TARGET) $(LIBFTFLAGS) $(GNLFLAGS) $(MLXFLAGS) -o $(NAME) -I $(DEPS)
 	
@@ -60,23 +63,18 @@ $(OBJ_DIR)/%.o : $(SRCS)/%.c
 	echo "[$(CYAN)Compiling$(RESET)] $(CFLAGS) $(GREEN)$<$(RESET)"
 	$(CC) $(CFLAGS) -c $< -o $@ -I $(DEPS)
 
-$(OBJ_DIR_BONUS)/%.o : $(SRCS_BONUS)/%.c 
-	echo "[$(CYAN)Compiling$(RESET)] $(CFLAGS) $(GREEN)$<$(RESET)"
-	$(CC) $(CFLAGS) -c $< -o $@ -I $(DEPS)
-
 $(OBJ_DIR) :
 	mkdir -p $(OBJ_DIR)
 
-$(OBJ_DIR_BONUS) :
-	mkdir -p $(OBJ_DIR_BONUS)
 
 clean:
 	make clean $(MKFLAGS) -C $(LIBFT)
 	make clean $(MKFLAGS) -C $(GNL)
-	$(RM) $(TARGET) $(TARGET_BONUS)
+	make clean $(MKFLAGS) -C $(MLX)
 	
 	echo "[$(RED) Deleted $(RESET)] $(GREEN)$(OBJ_DIR)$(RESET)"
 	$(RM) $(OBJ_DIR)
+	
 	echo "[$(RED) Deleted $(RESET)] $(GREEN)$(OBJ_DIR_BONUS)$(RESET)"
 	$(RM) $(OBJ_DIR_BONUS)
 
@@ -90,6 +88,13 @@ fclean: clean
 	echo "[$(RED) Deleted $(RESET)] $(GREEN)$(NAME_BONUS)$(RESET)"
 	$(RM) $(NAME_BONUS) 
 
+$(OBJ_DIR_BONUS)/%.o : $(SRCS_BONUS)/%.c 
+	echo "[$(CYAN)Compiling$(RESET)] $(CFLAGS) $(GREEN)$<$(RESET)"
+	$(CC) $(CFLAGS) -c $< -o $@ -I $(DEPS)
+
+$(OBJ_DIR_BONUS) :
+	mkdir -p $(OBJ_DIR_BONUS)
+
 bonus: $(NAME_BONUS) 
 
 $(NAME_BONUS): $(OBJ_DIR_BONUS) $(TARGET_BONUS)
@@ -98,6 +103,9 @@ $(NAME_BONUS): $(OBJ_DIR_BONUS) $(TARGET_BONUS)
 	
 	echo "[$(CYAN)Compiling$(RESET)] $(CFLAGS) $(GREEN)get_next_line/*$(RESET)"
 	make $(MKFLAGS) -C $(GNL)
+
+	echo "[$(CYAN)Compiling$(RESET)] $(CFLAGS) $(GREEN)mlx/*$(RESET)"
+	make $(MKFLAGS) -C $(MLX) 
 	
 	echo "[$(CYAN) Linking $(RESET)] $(GREEN)*$(RESET)"
 	$(CC) $(CFLAGS) main.c $(TARGET_BONUS) $(LIBFTFLAGS) $(GNLFLAGS) $(MLXFLAGS) -o $(NAME_BONUS) -I $(DEPS)
