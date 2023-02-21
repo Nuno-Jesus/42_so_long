@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 02:39:20 by marvin            #+#    #+#             */
-/*   Updated: 2023/02/21 02:09:01 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/02/21 02:50:51 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,43 +31,43 @@
 
 //! Wall sprites
 # define ENTITIES	"01CEP"
-# define FW1		"xpm/bonus/upper_wall.xpm"
-# define FW2		"xpm/bonus/left_wall.xpm"
-# define FW3		"xpm/bonus/right_wall.xpm"
-# define FW4		"xpm/bonus/left_corner_wall.xpm"
-# define FW5		"xpm/bonus/right_corner_wall.xpm"
-# define FW6		"xpm/bonus/lower_wall.xpm"
-# define FW7		"xpm/bonus/one_left_wall.xpm"
-# define FW8		"xpm/bonus/one_right_wall.xpm"
-# define FW9		"xpm/bonus/two_horizontal_wall.xpm"
-# define FW10		"xpm/bonus/two_vertical_wall.xpm"
-# define FW11		"xpm/bonus/edge_upper_wall.xpm"
-# define FW12		"xpm/bonus/edge_lower_wall.xpm"
-# define FW13		"xpm/bonus/edge_left_wall.xpm"
-# define FW14		"xpm/bonus/edge_right_wall.xpm"
-# define FW15		"xpm/bonus/bounded_wall.xpm"
-# define FW16		"xpm/bonus/boundless_wall.xpm"
-# define FW17		"xpm/bonus/corner_lower_left_wall.xpm"
-# define FW18		"xpm/bonus/corner_lower_right_wall.xpm"
-# define FW19		"xpm/bonus/corner_upper_left_wall_2.xpm"
-# define FW20		"xpm/bonus/corner_upper_right_wall_2.xpm"
-# define FW21		"xpm/bonus/corner_lower_left_wall_2.xpm"
-# define FW22		"xpm/bonus/corner_lower_right_wall_2.xpm"
-# define FW23		"xpm/bonus/boundless_2.xpm"
-# define FW24		"xpm/bonus/barrier_upper_2.xpm"
-# define FW25		"xpm/bonus/barrier_lower_2.xpm"
-# define FW26		"xpm/bonus/barrier_left_2.xpm"
-# define FW27		"xpm/bonus/barrier_right_2.xpm"
-# define FW28		"xpm/bonus/corner_boundless_lower_left.xpm"
-# define FW29		"xpm/bonus/corner_boundless_lower_right.xpm"
-# define FW30		"xpm/bonus/corner_boundless_upper_left.xpm"
-# define FW31		"xpm/bonus/corner_boundless_upper_right.xpm"
+# define FW1		"images/bonus/upper_wall.xpm"
+# define FW2		"images/bonus/left_wall.xpm"
+# define FW3		"images/bonus/right_wall.xpm"
+# define FW4		"images/bonus/left_corner_wall.xpm"
+# define FW5		"images/bonus/right_corner_wall.xpm"
+# define FW6		"images/bonus/lower_wall.xpm"
+# define FW7		"images/bonus/one_left_wall.xpm"
+# define FW8		"images/bonus/one_right_wall.xpm"
+# define FW9		"images/bonus/two_horizontal_wall.xpm"
+# define FW10		"images/bonus/two_vertical_wall.xpm"
+# define FW11		"images/bonus/edge_upper_wall.xpm"
+# define FW12		"images/bonus/edge_lower_wall.xpm"
+# define FW13		"images/bonus/edge_left_wall.xpm"
+# define FW14		"images/bonus/edge_right_wall.xpm"
+# define FW15		"images/bonus/bounded_wall.xpm"
+# define FW16		"images/bonus/boundless_wall.xpm"
+# define FW17		"images/bonus/corner_lower_left_wall.xpm"
+# define FW18		"images/bonus/corner_lower_right_wall.xpm"
+# define FW19		"images/bonus/corner_upper_left_wall_2.xpm"
+# define FW20		"images/bonus/corner_upper_right_wall_2.xpm"
+# define FW21		"images/bonus/corner_lower_left_wall_2.xpm"
+# define FW22		"images/bonus/corner_lower_right_wall_2.xpm"
+# define FW23		"images/bonus/boundless_2.xpm"
+# define FW24		"images/bonus/barrier_upper_2.xpm"
+# define FW25		"images/bonus/barrier_lower_2.xpm"
+# define FW26		"images/bonus/barrier_left_2.xpm"
+# define FW27		"images/bonus/barrier_right_2.xpm"
+# define FW28		"images/bonus/corner_boundless_lower_left.xpm"
+# define FW29		"images/bonus/corner_boundless_lower_right.xpm"
+# define FW30		"images/bonus/corner_boundless_upper_left.xpm"
+# define FW31		"images/bonus/corner_boundless_upper_right.xpm"
 
 //! Rest sprites
-# define FS1		"xpm/bonus/space.xpm"
-# define FC1		"xpm/coin.xpm"
-# define FE1		"xpm/exit.xpm"
-# define FP1		"xpm/player.xpm"
+# define FS1		"images/bonus/space.xpm"
+# define FC1		"images/coin.xpm"
+# define FE1		"images/exit.xpm"
+# define FP1		"images/player.xpm"
 
 # define DIFF		0
 # define SUM		1

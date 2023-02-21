@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/10 11:19:03 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/02/21 02:09:01 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/02/21 02:49:24 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,15 +31,15 @@
 # define NUM_SPRITES_BONUS	9
 
 # define ENTITIES	"01CEP"
-# define FW1		"xpm/wall.xpm"
-# define FW2		"xpm/left_wall.xpm"
-# define FW3		"xpm/right_wall.xpm"
-# define FW4		"xpm/upper_left_corner_wall.xpm"
-# define FW5		"xpm/upper_right_corner_wall.xpm"
-# define FS1		"xpm/space.xpm"
-# define FC1		"xpm/coin.xpm"
-# define FE1		"xpm/exit.xpm"
-# define FP1		"xpm/player.xpm"
+# define FW1		"images/wall.xpm"
+# define FW2		"images/left_wall.xpm"
+# define FW3		"images/right_wall.xpm"
+# define FW4		"images/upper_left_corner_wall.xpm"
+# define FW5		"images/upper_right_corner_wall.xpm"
+# define FS1		"images/space.xpm"
+# define FC1		"images/coin.xpm"
+# define FE1		"images/exit.xpm"
+# define FP1		"images/player.xpm"
 
 /**
  * @brief An enumerable type used to map a char to an entity
