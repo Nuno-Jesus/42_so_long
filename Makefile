@@ -115,7 +115,11 @@ $(NAME_BONUS): $(OBJ_DIR_BONUS) $(TARGET_BONUS)
 
 
 re: fclean all
+<<<<<<< HEAD
 
 rebonus: fclean bonus
 
 .SILENT:
+=======
+rebonus: fclean bonus
+>>>>>>> 7fb22f9da027f58500d77d186b2017b0d79caf44

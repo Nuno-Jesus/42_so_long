@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 02:39:20 by marvin            #+#    #+#             */
-/*   Updated: 2023/02/21 18:19:40 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/02/21 18:34:48 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 # include <sys/types.h>
 # include <sys/stat.h>
 # include <fcntl.h>
+# include <time.h>
 
 # include "libft.h"
 # include "get_next_line.h"
@@ -32,39 +33,46 @@
 # define CALLS				250
 # define FPS				8
 
+# define DIFF				0
+# define SUM				1
+# define DIFFSUM			2 
+# define SUMDIFF			3 
+# define NOT_USED			'N'
+
+# define ENTITIES			"01CEP"
+
 //! Wall sprites
-# define ENTITIES	"01CEP"
-# define FW1		"xpm/bonus/upper_wall.xpm"
-# define FW2		"xpm/bonus/left_wall.xpm"
-# define FW3		"xpm/bonus/right_wall.xpm"
-# define FW4		"xpm/bonus/left_corner_wall.xpm"
-# define FW5		"xpm/bonus/right_corner_wall.xpm"
-# define FW6		"xpm/bonus/lower_wall.xpm"
-# define FW7		"xpm/bonus/one_left_wall.xpm"
-# define FW8		"xpm/bonus/one_right_wall.xpm"
-# define FW9		"xpm/bonus/two_horizontal_wall.xpm"
-# define FW10		"xpm/bonus/two_vertical_wall.xpm"
-# define FW11		"xpm/bonus/edge_upper_wall.xpm"
-# define FW12		"xpm/bonus/edge_lower_wall.xpm"
-# define FW13		"xpm/bonus/edge_left_wall.xpm"
-# define FW14		"xpm/bonus/edge_right_wall.xpm"
-# define FW15		"xpm/bonus/bounded_wall.xpm"
-# define FW16		"xpm/bonus/boundless_wall.xpm"
-# define FW17		"xpm/bonus/corner_lower_left_wall.xpm"
-# define FW18		"xpm/bonus/corner_lower_right_wall.xpm"
-# define FW19		"xpm/bonus/corner_upper_left_wall_2.xpm"
-# define FW20		"xpm/bonus/corner_upper_right_wall_2.xpm"
-# define FW21		"xpm/bonus/corner_lower_left_wall_2.xpm"
-# define FW22		"xpm/bonus/corner_lower_right_wall_2.xpm"
-# define FW23		"xpm/bonus/boundless_2.xpm"
-# define FW24		"xpm/bonus/barrier_upper_2.xpm"
-# define FW25		"xpm/bonus/barrier_lower_2.xpm"
-# define FW26		"xpm/bonus/barrier_left_2.xpm"
-# define FW27		"xpm/bonus/barrier_right_2.xpm"
-# define FW28		"xpm/bonus/corner_boundless_lower_left.xpm"
-# define FW29		"xpm/bonus/corner_boundless_lower_right.xpm"
-# define FW30		"xpm/bonus/corner_boundless_upper_left.xpm"
-# define FW31		"xpm/bonus/corner_boundless_upper_right.xpm"
+# define FW1		"images/bonus/walls/upper_wall.xpm"
+# define FW2		"images/bonus/walls/left_wall.xpm"
+# define FW3		"images/bonus/walls/right_wall.xpm"
+# define FW4		"images/bonus/walls/left_corner_wall.xpm"
+# define FW5		"images/bonus/walls/right_corner_wall.xpm"
+# define FW6		"images/bonus/walls/lower_wall.xpm"
+# define FW7		"images/bonus/walls/one_left_wall.xpm"
+# define FW8		"images/bonus/walls/one_right_wall.xpm"
+# define FW9		"images/bonus/walls/two_horizontal_wall.xpm"
+# define FW10		"images/bonus/walls/two_vertical_wall.xpm"
+# define FW11		"images/bonus/walls/edge_upper_wall.xpm"
+# define FW12		"images/bonus/walls/edge_lower_wall.xpm"
+# define FW13		"images/bonus/walls/edge_left_wall.xpm"
+# define FW14		"images/bonus/walls/edge_right_wall.xpm"
+# define FW15		"images/bonus/walls/bounded_wall.xpm"
+# define FW16		"images/bonus/walls/boundless_wall.xpm"
+# define FW17		"images/bonus/walls/corner_lower_left_wall.xpm"
+# define FW18		"images/bonus/walls/corner_lower_right_wall.xpm"
+# define FW19		"images/bonus/walls/corner_upper_left_wall_2.xpm"
+# define FW20		"images/bonus/walls/corner_upper_right_wall_2.xpm"
+# define FW21		"images/bonus/walls/corner_lower_left_wall_2.xpm"
+# define FW22		"images/bonus/walls/corner_lower_right_wall_2.xpm"
+# define FW23		"images/bonus/walls/boundless_2.xpm"
+# define FW24		"images/bonus/walls/barrier_upper_2.xpm"
+# define FW25		"images/bonus/walls/barrier_lower_2.xpm"
+# define FW26		"images/bonus/walls/barrier_left_2.xpm"
+# define FW27		"images/bonus/walls/barrier_right_2.xpm"
+# define FW28		"images/bonus/walls/corner_boundless_lower_left.xpm"
+# define FW29		"images/bonus/walls/corner_boundless_lower_right.xpm"
+# define FW30		"images/bonus/walls/corner_boundless_upper_left.xpm"
+# define FW31		"images/bonus/walls/corner_boundless_upper_right.xpm"
 
 //! Player frames
 # define FP1		"xpm/bonus/player/player_1.xpm"
@@ -79,13 +87,6 @@
 # define FS1		"xpm/bonus/space.xpm"
 # define FC1		"xpm/coin.xpm"
 # define FE1		"xpm/exit.xpm"
-
-# define DIFF		0
-# define SUM		1
-# define DIFFSUM	2 
-# define SUMDIFF	3 
-
-# define NOT_USED	'N'
 
 /**
  * @brief An enumerable type used to map a char to an entity

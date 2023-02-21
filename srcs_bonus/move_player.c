@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   move_player.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 14:54:58 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/02/17 21:39:22 by crypto           ###   ########.fr       */
+/*   Updated: 2023/02/21 03:31:51 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,6 @@ void	move_player(t_game *g)
 		previous = SPACE;
 	g->map->bytes[g->next.y][g->next.x] = PLAYER;
 	render_tile(g, (t_point){g->curr.x, g->curr.y});
-	render_tile(g, (t_point){g->next.x, g->next.y});
+	animate_player(g);
 	g->curr = g->next;
 }
