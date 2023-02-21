@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 14:13:49 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/02/18 12:05:23 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/02/21 00:45:07 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	quit(t_game *game)
 	exit(EXIT_SUCCESS);
 }
 
-int	kb_hook(int keycode, t_game *game)
+int	move_handler(int keycode, t_game *game)
 {
 	if (keycode == ESC)
 		quit(game);
@@ -54,7 +54,7 @@ void	init_game(char *filename)
 	init_graphics(&g);
 	load_sprites(&g);
 	render_map(&g);
-	mlx_hook(g.disp.win, ON_KEYPRESS, KEYPRESS_MASK, kb_hook, &g);
+	mlx_hook(g.disp.win, ON_KEYPRESS, KEYPRESS_MASK, move_handler, &g);
 	mlx_hook(g.disp.win, ON_CLOSE, CLOSE_MASK, quit, &g);
 	mlx_loop_hook(g.disp.mlx, render_frame, &g);
 	mlx_loop(g.disp.mlx);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/07 11:00:17 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/02/12 11:39:01 by crypto           ###   ########.fr       */
+/*   Updated: 2023/02/21 00:45:07 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -191,7 +191,7 @@ int			quit(t_game *game);
  * @param game The t_game struct to use
  * @return int (unused)
  */
-int			kb_hook(int keycode, t_game *game);
+int			move_handler(int keycode, t_game *game);
 
 //!_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/= MOVE_PLAYER =\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
 

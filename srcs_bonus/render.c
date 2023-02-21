@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 02:39:13 by marvin            #+#    #+#             */
-/*   Updated: 2023/02/20 23:57:17 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/02/21 01:20:27 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,20 +100,20 @@ int	**create_binary_matrix(unsigned int y, unsigned int x)
 	return (mat);
 }
 
-int diff(int **mat, t_point p, char dim)
+int diff(int **mat, t_point *p, char dim)
 {
 	if (dim == 'x')
-		return (mat[p.y][p.x - 1] - mat[p.y][p.x + 1]);
+		return (mat[p->y][p->x - 1] - mat[p->y][p->x + 1]);
 	else
-		return (mat[p.y - 1][p.x] - mat[p.y + 1][p.x]);
+		return (mat[p->y - 1][p->x] - mat[p->y + 1][p->x]);
 }
 
-int sum(int **mat, t_point p, char dim)
+int sum(int **mat, t_point *p, char dim)
 {
 	if (dim == 'x')
-		return (mat[p.y][p.x - 1] + mat[p.y][p.x + 1]);
+		return (mat[p->y][p->x - 1] + mat[p->y][p->x + 1]);
 	else
-		return (mat[p.y - 1][p.x] + mat[p.y + 1][p.x]);
+		return (mat[p->y - 1][p->x] + mat[p->y + 1][p->x]);
 }
 
 int at2(int **mat, t_point p)
@@ -121,52 +121,24 @@ int at2(int **mat, t_point p)
 	return (mat[p.y][p.x]);
 }
 
-//! Need to change this
-int	choose_wall_sprite(t_point p, int **mat)
+bool	bin(t_point *p, int **mat, t_point vals, int op)
 {
-	if (diff(mat, p, 'x') == -1 && diff(mat, p, 'y') == 1 && at2(mat, (t_point){p.x + 1, p.y - 1}))
-		return (CORNER_DL);
-	if (diff(mat, p, 'x') == 1 && diff(mat, p, 'y') == 1 && at2(mat, (t_point){p.x - 1, p.y - 1}))
-		return (CORNER_DR);
-	if (diff(mat, p, 'x') == -1 && diff(mat, p, 'y') == -1 && !at2(mat, (t_point){p.x + 1, p.y + 1}))
-		return (CORNER_UL_2);
-	if (diff(mat, p, 'x') == 1 && diff(mat, p, 'y') == -1 && !at2(mat, (t_point){p.x - 1, p.y + 1}))
-		return (CORNER_UR_2);
-	if (diff(mat, p, 'x') == -1 && diff(mat, p, 'y') == 1 && !at2(mat, (t_point){p.x + 1, p.y - 1}))
-		return (CORNER_DL_2);
-	if (diff(mat, p, 'x') == 1 && diff(mat, p, 'y') == 1 && !at2(mat, (t_point){p.x - 1, p.y - 1}))
-		return (CORNER_DR_2);
+	if (op == DIFF)
+		return ((int)vals.y == (mat[p->y - 1][p->x] - mat[p->y + 1][p->x])
+			&& (int)vals.x == (mat[p->y][p->x - 1] - mat[p->y][p->x + 1]));
+	else if (op == SUM)
+		return ((int)vals.y == (mat[p->y - 1][p->x] + mat[p->y + 1][p->x])
+			&& (int)vals.x == (mat[p->y][p->x - 1] + mat[p->y][p->x + 1]));
+	else if (op == DIFFSUM)
+		return ((int)vals.y == (mat[p->y - 1][p->x] + mat[p->y + 1][p->x])
+			&& (int)vals.x == (mat[p->y][p->x - 1] - mat[p->y][p->x + 1]));
+	else
+		return ((int)vals.y == (mat[p->y - 1][p->x] - mat[p->y + 1][p->x])
+			&& (int)vals.x == (mat[p->y][p->x - 1] + mat[p->y][p->x + 1]));
+}
 
-	if (sum(mat, p, 'x') == 0 && diff(mat, p, 'y') == -1)
-		return (EDGE_U);
-	if (sum(mat, p, 'x') == 0 && diff(mat, p, 'y') == 1)
-		return (EDGE_D);
-	if (diff(mat, p, 'x') == -1 && sum(mat, p, 'y') == 0)
-		return (EDGE_L);
-	if (diff(mat, p, 'x') == 1 && sum(mat, p, 'y') == 0)
-		return (EDGE_R);
-	
-	if (!diff(mat, p, 'x') && !diff(mat, p, 'y') && mat[p.y + 1][p.x + 1] && !mat[p.y - 1][p.x - 1] && mat[p.y + 1][p.x - 1] && mat[p.y - 1][p.x + 1])
-		return (CORNER_BUL);
-	if (!diff(mat, p, 'x') && !diff(mat, p, 'y') && mat[p.y + 1][p.x + 1] && mat[p.y - 1][p.x - 1] && mat[p.y + 1][p.x - 1] && !mat[p.y - 1][p.x + 1])
-		return (CORNER_BUR);
-	if (!diff(mat, p, 'x') && !diff(mat, p, 'y') && mat[p.y + 1][p.x + 1] && mat[p.y - 1][p.x - 1] && !mat[p.y + 1][p.x - 1] && mat[p.y - 1][p.x + 1])
-		return (CORNER_BDL);
-	if (!diff(mat, p, 'x') && !diff(mat, p, 'y') && !mat[p.y + 1][p.x + 1] && mat[p.y - 1][p.x - 1] && mat[p.y + 1][p.x - 1] && mat[p.y - 1][p.x + 1])
-		return (CORNER_BDR);
-		
-	if (diff(mat, p, 'x') == -1 && sum(mat, p, 'y') == 2 && !mat[p.y - 1][p.x + 1] && !mat[p.y + 1][p.x + 1])
-		return (BARRIER_L_2);
-	if (diff(mat, p, 'x') == 1 && sum(mat, p, 'y') == 2 && !mat[p.y - 1][p.x - 1] && !mat[p.y + 1][p.x - 1])
-		return (BARRIER_R_2);
-	if (!diff(mat, p, 'x') && diff(mat, p, 'y') == -1 && !mat[p.y + 1][p.x - 1] && !mat[p.y + 1][p.x + 1])
-		return (BARRIER_U_2);
-	if (!diff(mat, p, 'x') && diff(mat, p, 'y') == 1 && !mat[p.y - 1][p.x - 1] && !mat[p.y - 1][p.x + 1])
-		return (BARRIER_D_2);
-	if (diff(mat, p, 'x') == -1 && diff(mat, p, 'y') == -1)
-		return (CORNER_L);
-	if (diff(mat, p, 'x') == 1 && diff(mat, p, 'y') == -1)
-		return (CORNER_R);
+t_sprite_id	pick_wall_sprite_3(t_point *p, int **mat)
+{
 	if (sum(mat, p, 'x') == 2 && diff(mat, p, 'y') == 1)
 		return (WALL_D);
 	if (diff(mat, p, 'x') == -1 && sum(mat, p, 'y') == 2)
@@ -179,18 +151,69 @@ int	choose_wall_sprite(t_point p, int **mat)
 		return (PIPE_V);
 	if (sum(mat, p, 'x') == 0 && sum(mat, p, 'y') == 0)
 		return (BOUNDED);
-	if (!diff(mat, p, 'x') && !diff(mat, p, 'y') && !mat[p.y - 1][p.x - 1] && !mat[p.y - 1][p.x + 1] && !mat[p.y + 1][p.x - 1] && !mat[p.y + 1][p.x + 1])
+	if (!diff(mat, p, 'x') && !diff(mat, p, 'y') && !mat[p->y - 1][p->x - 1] && !mat[p->y - 1][p->x + 1] && !mat[p->y + 1][p->x - 1] && !mat[p->y + 1][p->x + 1])
 		return (BOUNDLESS_2);
 	if (sum(mat, p, 'x') == 2 && sum(mat, p, 'y') == 2)
 		return (BOUNDLESS);
 	return (WALL_U);
 }
 
+t_sprite_id	pick_wall_sprite_2(t_point *p, int **mat)
+{
+	if (!diff(mat, p, 'x') && !diff(mat, p, 'y') && mat[p->y + 1][p->x + 1] && !mat[p->y - 1][p->x - 1] && mat[p->y + 1][p->x - 1] && mat[p->y - 1][p->x + 1])
+		return (CORNER_BUL);
+	if (!diff(mat, p, 'x') && !diff(mat, p, 'y') && mat[p->y + 1][p->x + 1] && mat[p->y - 1][p->x - 1] && mat[p->y + 1][p->x - 1] && !mat[p->y - 1][p->x + 1])
+		return (CORNER_BUR);
+	if (!diff(mat, p, 'x') && !diff(mat, p, 'y') && mat[p->y + 1][p->x + 1] && mat[p->y - 1][p->x - 1] && !mat[p->y + 1][p->x - 1] && mat[p->y - 1][p->x + 1])
+		return (CORNER_BDL);
+	if (!diff(mat, p, 'x') && !diff(mat, p, 'y') && !mat[p->y + 1][p->x + 1] && mat[p->y - 1][p->x - 1] && mat[p->y + 1][p->x - 1] && mat[p->y - 1][p->x + 1])
+		return (CORNER_BDR);
+	if (diff(mat, p, 'x') == -1 && sum(mat, p, 'y') == 2 && !mat[p->y - 1][p->x + 1] && !mat[p->y + 1][p->x + 1])
+		return (BARRIER_L_2);
+	if (diff(mat, p, 'x') == 1 && sum(mat, p, 'y') == 2 && !mat[p->y - 1][p->x - 1] && !mat[p->y + 1][p->x - 1])
+		return (BARRIER_R_2);
+	if (!diff(mat, p, 'x') && diff(mat, p, 'y') == -1 && !mat[p->y + 1][p->x - 1] && !mat[p->y + 1][p->x + 1])
+		return (BARRIER_U_2);
+	if (!diff(mat, p, 'x') && diff(mat, p, 'y') == 1 && !mat[p->y - 1][p->x - 1] && !mat[p->y - 1][p->x + 1])
+		return (BARRIER_D_2);
+	if (diff(mat, p, 'x') == -1 && diff(mat, p, 'y') == -1)
+		return (CORNER_L);
+	if (diff(mat, p, 'x') == 1 && diff(mat, p, 'y') == -1)
+		return (CORNER_R);
+	return (pick_wall_sprite_3(p, mat));
+}
+
+//! Need to change this
+t_sprite_id	pick_wall_sprite(t_point p, int **mat)
+{
+	if (bin(&p, mat, (t_point){-1, 1}, DIFF) && mat[p.y - 1][p.x + 1])
+		return (CORNER_DL);
+	if (bin(&p, mat, (t_point){1, 1}, DIFF) && mat[p.y - 1][p.x - 1])
+		return (CORNER_DR);
+	if (bin(&p, mat, (t_point){-1, -1}, DIFF) && !mat[p.y + 1][p.x + 1])
+		return (CORNER_UL_2);
+	if (bin(&p, mat, (t_point){1, -1}, DIFF) && !mat[p.y + 1][p.x - 1])
+		return (CORNER_UR_2);
+	if (bin(&p, mat, (t_point){-1, 1}, DIFF) && !mat[p.y - 1][p.x + 1])
+		return (CORNER_DL_2);
+	if (bin(&p, mat, (t_point){1, 1}, DIFF) && !mat[p.y - 1][p.x - 1])
+		return (CORNER_DR_2);
+	if (bin(&p, mat, (t_point){0, -1}, SUMDIFF))
+		return (EDGE_U);
+	if (bin(&p, mat, (t_point){0, 1}, SUMDIFF))
+		return (EDGE_D);
+	if (bin(&p, mat, (t_point){-1, 0}, DIFFSUM))
+		return (EDGE_L);
+	if (bin(&p, mat, (t_point){1, 0}, DIFFSUM))
+		return (EDGE_R);
+	return (pick_wall_sprite_2(&p, mat));
+}
+
 void	render_inner_walls(t_game *g)
 {
-	int	**mat;
-	int index;
-	t_point p;
+	int		index;
+	int		**mat;
+	t_point	p;
 
 	mat = create_binary_matrix(g->map->rows + 2, g->map->cols + 2);
 	fill_binary_matrix(g, mat);
@@ -203,7 +226,7 @@ void	render_inner_walls(t_game *g)
 		{
 			if (at(g, p) != WALL)
 				continue;
-			index = choose_wall_sprite((t_point){p.x + 1, p.y + 1}, mat);
+			index = pick_wall_sprite((t_point){p.x + 1, p.y + 1}, mat);
 			render_sprite(g, &g->sp[index], p, (t_point){-16, 0});
 		}
 	}

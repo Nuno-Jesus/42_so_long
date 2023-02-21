@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 21:38:07 by crypto            #+#    #+#             */
-/*   Updated: 2023/02/21 00:37:15 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/02/21 00:45:07 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -191,7 +191,7 @@ int			quit(t_game *game);
  * @param game The t_game struct to use
  * @return int (unused)
  */
-int			kb_hook(int keycode, t_game *game);
+int			move_handler(int keycode, t_game *game);
 //!_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/= LOAD_WALLS =\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
 
 void	load_walls_1(t_game *g);

@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 02:39:20 by marvin            #+#    #+#             */
-/*   Updated: 2023/02/18 18:26:49 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/02/21 01:07:32 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@
 
 # define NUM_SPRITES	35
 
+//! Wall sprites
 # define ENTITIES	"01CEP"
 # define FW1		"xpm/bonus/upper_wall.xpm"
 # define FW2		"xpm/bonus/left_wall.xpm"
@@ -61,10 +62,17 @@
 # define FW29		"xpm/bonus/corner_boundless_lower_right.xpm"
 # define FW30		"xpm/bonus/corner_boundless_upper_left.xpm"
 # define FW31		"xpm/bonus/corner_boundless_upper_right.xpm"
+
+//! Rest sprites
 # define FS1		"xpm/bonus/space.xpm"
 # define FC1		"xpm/coin.xpm"
 # define FE1		"xpm/exit.xpm"
 # define FP1		"xpm/player.xpm"
+
+# define DIFF		0
+# define SUM		1
+# define DIFFSUM	2 
+# define SUMDIFF	3 
 
 /**
  * @brief An enumerable type used to map a char to an entity
@@ -148,6 +156,6 @@ typedef enum e_index
 	CORNER_BDR,
 	CORNER_BUL,
 	CORNER_BUR,
-}				t_index;
+}				t_sprite_id;
 
 #endif
