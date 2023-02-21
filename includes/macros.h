@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/10 11:19:03 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/02/21 00:46:30 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/02/21 02:09:01 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +97,6 @@ typedef enum e_index
 	W3,
 	W4,
 	W5
-}				t_sprite_id;
+}				t_id;
 
 #endif

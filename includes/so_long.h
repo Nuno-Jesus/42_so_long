@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/07 11:00:17 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/02/21 00:45:07 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/02/21 02:30:49 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -224,7 +224,7 @@ bool		is_valid_movement(t_game *g);
  * @param x The x coordinate in the map array
  * @param y The y coordinate in the map array
  */
-void	render_tile(t_game *g, t_point p);
+void		render_tile(t_game *g, t_point p);
 
 /**
  * @brief Renders the map for the first time. This function is only called 

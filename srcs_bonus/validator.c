@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   validator.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/07 18:11:40 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/02/17 21:39:39 by crypto           ###   ########.fr       */
+/*   Updated: 2023/02/21 02:18:17 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,13 +85,13 @@ bool	has_valid_path(t_game *game)
 		dup[i] = ft_strdup(game->map->bytes[i]);
 		if (!dup[i])
 		{
-			matrix_delete(dup);
+			ft_delete_matrix(dup);
 			message(game, "Failed allocation on has_valid_path()\n");
 		}
 		i++;
 	}
 	is_valid = flood_fill(game->map, game->curr, dup);
-	matrix_delete(dup);
+	ft_delete_matrix(dup);
 	return (is_valid);
 }
 

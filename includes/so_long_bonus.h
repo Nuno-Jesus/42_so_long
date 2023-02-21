@@ -6,12 +6,12 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 21:38:07 by crypto            #+#    #+#             */
-/*   Updated: 2023/02/21 00:45:07 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/02/21 02:32:02 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SO_LONG_H
-# define SO_LONG_H
+#ifndef SO_LONG_BONUS_H
+# define SO_LONG_BONUS_H
 
 # include "macros_bonus.h"
 
@@ -126,6 +126,14 @@ bool		is_filename_valid(char *filename);
  * otherwise 
  */
 bool		flood_fill(t_map *map, t_point curr, char **maze);
+//!_/=\_/=\_/=\_/=\_/=\_/=\_/=\ BINARY_WALL_MAP /=\_/=\_/=\_/=\_/=\_/=\_/=\_
+bool		has_diags(int **mat, t_point *p, char *diagonals);
+
+bool		bin(t_point *p, int **mat, t_point vals, int op);
+
+void		fill_binary_matrix(t_game *g, int **mat);
+
+int			**create_binary_matrix(unsigned int y, unsigned int x);
 
 //!_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\ DESTROY _/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_ 
 
@@ -194,23 +202,23 @@ int			quit(t_game *game);
 int			move_handler(int keycode, t_game *game);
 //!_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/= LOAD_WALLS =\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
 
-void	load_walls_1(t_game *g);
+void		load_walls_1(t_game *g);
 
-void	load_walls_2(t_game *g);
+void		load_walls_2(t_game *g);
 
-void	load_walls_3(t_game *g);
+void		load_walls_3(t_game *g);
 
-void	load_walls(t_game *g);
+void		load_walls(t_game *g);
 
 //!_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/= LOAD_REST =\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
 
-void	load_players(t_game *g);
+void		load_players(t_game *g);
 
-void	load_coins(t_game *g);
+void		load_coins(t_game *g);
 
-void	load_exits(t_game *g);
+void		load_exits(t_game *g);
 
-void	load_spaces(t_game *g);
+void		load_spaces(t_game *g);
 //!_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/= MOVE_PLAYER =\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
 
 /**
@@ -234,6 +242,7 @@ bool		is_valid_movement(t_game *g);
 
 //!_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_ RENDER _/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_ 
 
+void		render_sprite(t_game *g, t_sprite *s, t_point p, t_point offset);
 /**
  * @brief Given a pair of coordinates, it renders a map tile. Depending on the
  * entity in that tile it renders a different image.
@@ -242,7 +251,7 @@ bool		is_valid_movement(t_game *g);
  * @param x The x coordinate in the map array
  * @param y The y coordinate in the map array
  */
-void	render_tile(t_game *g, t_point p);
+void		render_tile(t_game *g, t_point p);
 
 /**
  * @brief Renders the map for the first time. This function is only called 
@@ -292,8 +301,16 @@ int			get_num_lines(t_game *game, char *filename);
  */
 void		read_map(t_game *game, char *filename);
 
-//DEBUGGING PURPOSES
-void		map_print(t_map *map);
+//!_/=\_/=\_/=\_/=\_/=\_/=\_/=\_ RENDER_WALLS _/=\_/=\_/=\_/=\_/=\_/=\_/=\_ 
+t_id		pick_wall_sprite_3(t_point *p, int **mat);
+
+t_id		pick_wall_sprite_2(t_point *p, int **mat);
+
+t_id		pick_wall_sprite(t_point p, int **mat);
+
+void		render_inner_walls(t_game *g);
+
+void		render_outter_walls(t_game *g);
 
 //!_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\ VALIDATOR /=\_/=\_/=\_/=\_/=\_/=\_/=\_/=
 
@@ -348,7 +365,7 @@ void		validate_map(t_game *game);
  * @brief Deletes the memory associated to a char matrix
  * @param matrix The matrix to delete the memory from 
  */
-void		matrix_delete(char **matrix);
+void		ft_delete_matrix(void *matrix);
 
 /**
  * @brief It outputs the "Error\n" string followed by an error message to
@@ -370,16 +387,8 @@ void		message(t_game *game, char *text);
  */
 t_entity	at(t_game *g, t_point p);
 
-// DEBUGGING PURPOSES
-void		print_point(t_point *point);
+int			ft_todigit(int c);
 
-/**
- * @brief Checks if 2 points are the same by comparing the coordinates
- * 
- * @param p1 The first point to compare 
- * @param p2 The second point to compare
- * @return true if both points are the same, false otherwise 
- */
 bool		is_same_point(t_point p1, t_point p2);
 
 #endif

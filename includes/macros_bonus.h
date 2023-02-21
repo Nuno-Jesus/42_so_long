@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 02:39:20 by marvin            #+#    #+#             */
-/*   Updated: 2023/02/21 01:07:32 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/02/21 02:09:01 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,8 @@
 # define SUM		1
 # define DIFFSUM	2 
 # define SUMDIFF	3 
+
+# define NOT_USED	'N'
 
 /**
  * @brief An enumerable type used to map a char to an entity
@@ -156,6 +158,6 @@ typedef enum e_index
 	CORNER_BDR,
 	CORNER_BUL,
 	CORNER_BUR,
-}				t_sprite_id;
+}				t_id;
 
 #endif
