@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 02:39:20 by marvin            #+#    #+#             */
-/*   Updated: 2023/02/21 18:34:48 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/02/21 18:41:24 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@
 # include "get_next_line.h"
 # include "../mlx/mlx.h"
 
-# define NUM_SPRITES		34
+# define NUM_WALLS			34
 # define NUM_PLAYER_FRAMES	7
 # define CALLS				250
 # define FPS				8
@@ -75,18 +75,18 @@
 # define FW31		"images/bonus/walls/corner_boundless_upper_right.xpm"
 
 //! Player frames
-# define FP1		"xpm/bonus/player/player_1.xpm"
-# define FP2		"xpm/bonus/player/player_2.xpm"
-# define FP3		"xpm/bonus/player/player_3.xpm"
-# define FP4		"xpm/bonus/player/player_4.xpm"
-# define FP5		"xpm/bonus/player/player_5.xpm"
-# define FP6		"xpm/bonus/player/player_6.xpm"
-# define FP7		"xpm/bonus/player/player_7.xpm"
+# define FP1		"images/bonus/player/player_1.xpm"
+# define FP2		"images/bonus/player/player_2.xpm"
+# define FP3		"images/bonus/player/player_3.xpm"
+# define FP4		"images/bonus/player/player_4.xpm"
+# define FP5		"images/bonus/player/player_5.xpm"
+# define FP6		"images/bonus/player/player_6.xpm"
+# define FP7		"images/bonus/player/player_7.xpm"
 
 //! Rest sprites
-# define FS1		"xpm/bonus/space.xpm"
-# define FC1		"xpm/coin.xpm"
-# define FE1		"xpm/exit.xpm"
+# define FS1		"images/bonus/space.xpm"
+# define FC1		"images/coin.xpm"
+# define FE1		"images/exit.xpm"
 
 /**
  * @brief An enumerable type used to map a char to an entity

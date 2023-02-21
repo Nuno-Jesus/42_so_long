@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 02:39:13 by marvin            #+#    #+#             */
-/*   Updated: 2023/02/21 18:35:24 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/02/21 18:37:47 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,6 @@ void	render_counter(t_game *g)
 
 void	animate_player(t_game *g)
 {
-<<<<<<< HEAD
 	static int	calls = 0;
 	static int	fps = 0;
 	int			next;
@@ -79,20 +78,6 @@ void	animate_player(t_game *g)
 		next = g->pframe % NUM_PLAYER_FRAMES;
 		render_sprite(g, &g->sp[S1], g->curr, (t_point){-16, 0});
 		render_sprite(g, &g->player_frames[next], g->curr, (t_point){-16, 0});
-=======
-	static int	ticks = 0;
-	static int	fps = 0;
-	int			next_frame;
-
-	if (!(++ticks % TICKS))
-	{
-		if (!(++fps % RPT))
-			++g->pframe;
-		next_frame = g->pframe % NUM_PLAYER_FRAMES;
-		// printf("Next frame: %d\n", next_frame);
-		render_sprite(g, &g->sp[S1], g->curr, (t_point){-16, 0});
-		render_sprite(g, &g->player_frames[next_frame], g->curr, (t_point){-16, 0});		
->>>>>>> 7fb22f9da027f58500d77d186b2017b0d79caf44
 	}
 }
 
