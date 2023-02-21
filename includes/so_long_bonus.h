@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 21:38:07 by crypto            #+#    #+#             */
-/*   Updated: 2023/02/21 02:34:47 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/02/21 18:01:21 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,8 @@ typedef struct s_game
 	t_point			next;
 	t_graphics		disp;
 	t_sprite		*sp;
+	t_sprite		*player_frames;
+	int				pframe;
 	unsigned int	coins;
 	unsigned int	moves;
 }				t_game;

@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 02:39:20 by marvin            #+#    #+#             */
-/*   Updated: 2023/02/21 02:09:01 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/02/21 18:19:40 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,10 @@
 # include "get_next_line.h"
 # include "../mlx/mlx.h"
 
-# define NUM_SPRITES	35
+# define NUM_SPRITES		34
+# define NUM_PLAYER_FRAMES	7
+# define CALLS				250
+# define FPS				8
 
 //! Wall sprites
 # define ENTITIES	"01CEP"
@@ -63,11 +66,19 @@
 # define FW30		"xpm/bonus/corner_boundless_upper_left.xpm"
 # define FW31		"xpm/bonus/corner_boundless_upper_right.xpm"
 
+//! Player frames
+# define FP1		"xpm/bonus/player/player_1.xpm"
+# define FP2		"xpm/bonus/player/player_2.xpm"
+# define FP3		"xpm/bonus/player/player_3.xpm"
+# define FP4		"xpm/bonus/player/player_4.xpm"
+# define FP5		"xpm/bonus/player/player_5.xpm"
+# define FP6		"xpm/bonus/player/player_6.xpm"
+# define FP7		"xpm/bonus/player/player_7.xpm"
+
 //! Rest sprites
 # define FS1		"xpm/bonus/space.xpm"
 # define FC1		"xpm/coin.xpm"
 # define FE1		"xpm/exit.xpm"
-# define FP1		"xpm/player.xpm"
 
 # define DIFF		0
 # define SUM		1
@@ -126,7 +137,6 @@ typedef enum e_index
 	S1,
 	C1,
 	E1,
-	P1,
 	WALL_U,
 	WALL_L,
 	WALL_R,

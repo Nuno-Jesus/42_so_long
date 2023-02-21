@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 02:39:13 by marvin            #+#    #+#             */
-/*   Updated: 2023/02/21 02:29:13 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/02/21 18:19:23 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,16 +22,16 @@ void	render_tile(t_game *g, t_point p)
 {
 	t_sprite	sp;
 
-	if (g->map->bytes[p.y][p.x] == WALL)
-		return ;
-	else if (g->map->bytes[p.y][p.x] == COIN)
+	if (g->map->bytes[p.y][p.x] == COIN)
 		sp = g->sp[C1];
 	else if (g->map->bytes[p.y][p.x] == EXIT)
 		sp = g->sp[E1];
 	else if (g->map->bytes[p.y][p.x] == SPACE)
 		sp = g->sp[S1];
-	else if (g->map->bytes[p.y][p.x] == PLAYER)
-		sp = g->sp[P1];
+	else if (g->map->bytes[p.y][p.x] == SPACE)
+		sp = g->player_frames[0];
+	else
+		return ;
 	render_sprite(g, &sp, p, (t_point){-16, 0});
 }
 
@@ -65,8 +65,25 @@ void	render_counter(t_game *g)
 	free(str);
 }
 
+void	animate_player(t_game *g)
+{
+	static int	calls = 0;
+	static int	fps = 0;
+	int			next;
+
+	if (!(++calls % CALLS))
+	{
+		if (!(++fps % FPS))
+			++g->pframe;
+		next = g->pframe % NUM_PLAYER_FRAMES;
+		render_sprite(g, &g->sp[S1], g->curr, (t_point){-16, 0});
+		render_sprite(g, &g->player_frames[next], g->curr, (t_point){-16, 0});
+	}
+}
+
 int	render_frame(t_game *g)
 {
+	animate_player(g);
 	if (!is_valid_movement(g))
 		return (0);
 	render_counter(g);

@@ -113,5 +113,9 @@ $(NAME_BONUS): $(OBJ_DIR_BONUS) $(TARGET_BONUS)
 	
 	echo "$(GREEN)Done.$(RESET)"
 
-.SILENT:
+
 re: fclean all
+
+rebonus: fclean bonus
+
+.SILENT:
