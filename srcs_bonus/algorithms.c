@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   algorithms.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 14:20:49 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/01/20 14:30:45 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/02/17 21:39:03 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "so_long_bonus.h"
 
 bool	flood_fill(t_map *map, t_point curr, char **maze)
 {

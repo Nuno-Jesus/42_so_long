@@ -6,11 +6,11 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 14:13:49 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/01/21 05:56:58 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/02/21 00:45:07 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "so_long_bonus.h"
 
 int	quit(t_game *game)
 {
@@ -18,7 +18,7 @@ int	quit(t_game *game)
 	exit(EXIT_SUCCESS);
 }
 
-int	kb_hook(int keycode, t_game *game)
+int	move_handler(int keycode, t_game *game)
 {
 	if (keycode == ESC)
 		quit(game);
@@ -38,7 +38,7 @@ void	init_graphics(t_game *g)
 	g->disp.mlx = mlx_init();
 	if (!g->disp.mlx)
 		message(g, "Failed allocation on mlx pointer\n");
-	g->disp.win = mlx_new_window(g->disp.mlx, 32 * g->map->cols, \
+	g->disp.win = mlx_new_window(g->disp.mlx, 32 * (g->map->cols - 1), \
 		32 * g->map->rows + 32, "so_long");
 	if (!g->disp.win)
 		message(g, "Failed allocation on window pointer\n");
@@ -57,7 +57,7 @@ void	init_game(char *filename)
 	init_graphics(&g);
 	load_sprites(&g);
 	render_map(&g);
-	mlx_hook(g.disp.win, ON_KEYPRESS, KEYPRESS_MASK, kb_hook, &g);
+	mlx_hook(g.disp.win, ON_KEYPRESS, KEYPRESS_MASK, move_handler, &g);
 	mlx_hook(g.disp.win, ON_CLOSE, CLOSE_MASK, quit, &g);
 	mlx_loop_hook(g.disp.mlx, render_frame, &g);
 	mlx_loop(g.disp.mlx);
@@ -68,14 +68,9 @@ void	load_sprites(t_game *g)
 	g->sp = malloc(NUM_SPRITES * sizeof(t_sprite));
 	if (!g->sp)
 		message(g, "Failed allocation on sprites array\n");
-	g->sp[W1].img = mlx_xpm_file_to_image(g->disp.mlx, FW1,
-			&(g->sp[W1].width), &(g->sp[W1].height));
-	g->sp[S1].img = mlx_xpm_file_to_image(g->disp.mlx, FS1,
-			&(g->sp[S1].width), &(g->sp[S1].height));
-	g->sp[C1].img = mlx_xpm_file_to_image(g->disp.mlx, FC1,
-			&(g->sp[C1].width), &(g->sp[C1].height));
-	g->sp[E1].img = mlx_xpm_file_to_image(g->disp.mlx, FE1,
-			&(g->sp[E1].width), &(g->sp[E1].height));
-	g->sp[P1].img = mlx_xpm_file_to_image(g->disp.mlx, FP1,
-			&(g->sp[P1].width), &(g->sp[P1].height));
+	load_walls(g);
+	load_players(g);
+	load_coins(g);
+	load_exits(g);
+	load_spaces(g);
 }

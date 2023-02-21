@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/07 11:00:17 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/01/21 05:54:51 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/02/21 02:30:49 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -191,7 +191,7 @@ int			quit(t_game *game);
  * @param game The t_game struct to use
  * @return int (unused)
  */
-int			kb_hook(int keycode, t_game *game);
+int			move_handler(int keycode, t_game *game);
 
 //!_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/= MOVE_PLAYER =\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
 
@@ -224,7 +224,7 @@ bool		is_valid_movement(t_game *g);
  * @param x The x coordinate in the map array
  * @param y The y coordinate in the map array
  */
-void		render_tile(t_game *g, int x, int y);
+void		render_tile(t_game *g, t_point p);
 
 /**
  * @brief Renders the map for the first time. This function is only called 
@@ -277,7 +277,7 @@ void		read_map(t_game *game, char *filename);
 //DEBUGGING PURPOSES
 void		map_print(t_map *map);
 
-//!_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\ VALIDATOR /=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\
+//!_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\ VALIDATOR /=\_/=\_/=\_/=\_/=\_/=\_/=\_/=
 
 /**
  * @brief Given the read map, it checks if all lines have the same length

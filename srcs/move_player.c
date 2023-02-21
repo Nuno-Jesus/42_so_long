@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   move_player.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 14:54:58 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/01/20 21:01:25 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/02/12 11:39:34 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,7 @@
 
 bool	is_valid_movement(t_game *g)
 {
-	return (!is_same_point(g->curr, g->next) \
-		&& at(g, g->next) != WALL \
-		&& g->next.y >= 0 && g->next.y < g->map->rows \
-		&& g->next.x >= 0 && g->next.x < g->map->cols);
+	return (!is_same_point(g->curr, g->next) && at(g, g->next) != WALL);
 }
 
 void	move_player(t_game *g)
@@ -30,7 +27,7 @@ void	move_player(t_game *g)
 	else
 		previous = SPACE;
 	g->map->bytes[g->next.y][g->next.x] = PLAYER;
-	render_tile(g, g->curr.x, g->curr.y);
-	render_tile(g, g->next.x, g->next.y);
+	render_tile(g, (t_point){g->curr.x, g->curr.y});
+	render_tile(g, (t_point){g->next.x, g->next.y});
 	g->curr = g->next;
 }

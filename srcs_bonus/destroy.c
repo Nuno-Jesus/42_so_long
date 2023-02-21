@@ -6,11 +6,11 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/07 11:53:02 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/01/20 21:12:23 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/02/21 02:18:17 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "so_long_bonus.h"
 
 void	destroy_game(t_game *game)
 {
@@ -43,6 +43,6 @@ void	destroy_map(t_map *map)
 {
 	if (!map)
 		return ;
-	matrix_delete(map->bytes);
+	ft_delete_matrix(map->bytes);
 	free(map);
 }
