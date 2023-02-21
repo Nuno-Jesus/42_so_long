@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 02:39:13 by marvin            #+#    #+#             */
-/*   Updated: 2023/02/21 02:29:13 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/02/21 16:55:48 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	render_tile(t_game *g, t_point p)
 	else if (g->map->bytes[p.y][p.x] == SPACE)
 		sp = g->sp[S1];
 	else if (g->map->bytes[p.y][p.x] == PLAYER)
-		sp = g->sp[P1];
+		sp = g->player_frames[g->pframe];
 	render_sprite(g, &sp, p, (t_point){-16, 0});
 }
 
@@ -65,8 +65,26 @@ void	render_counter(t_game *g)
 	free(str);
 }
 
+void	animate_player(t_game *g)
+{
+	static int	ticks = 0;
+	static int	fps = 0;
+	int			next_frame;
+
+	if (!(++ticks % TICKS))
+	{
+		if (!(++fps % RPT))
+			++g->pframe;
+		next_frame = g->pframe % NUM_PLAYER_FRAMES;
+		printf("Next frame: %d\n", next_frame);
+		render_sprite(g, &g->sp[S1], g->curr, (t_point){-16, 0});
+		render_sprite(g, &g->player_frames[next_frame], g->curr, (t_point){-16, 0});		
+	}
+}
+
 int	render_frame(t_game *g)
 {
+	animate_player(g);
 	if (!is_valid_movement(g))
 		return (0);
 	render_counter(g);

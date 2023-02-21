@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 02:39:20 by marvin            #+#    #+#             */
-/*   Updated: 2023/02/21 03:00:13 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/02/21 16:56:30 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,15 +22,24 @@
 # include <sys/types.h>
 # include <sys/stat.h>
 # include <fcntl.h>
+# include <time.h>
 
 # include "libft.h"
 # include "get_next_line.h"
 # include "../mlx/mlx.h"
 
-# define NUM_SPRITES	35
+# define DIFF				0
+# define SUM				1
+# define DIFFSUM			2 
+# define SUMDIFF			3 
+# define NUM_WALLS			35
+# define NUM_PLAYER_FRAMES	7
+# define NOT_USED			'N'
+# define ENTITIES			"01CEP"
+# define TICKS				250
+# define RPT				4
 
 //! Wall sprites
-# define ENTITIES	"01CEP"
 # define FW1		"images/bonus/walls/upper_wall.xpm"
 # define FW2		"images/bonus/walls/left_wall.xpm"
 # define FW3		"images/bonus/walls/right_wall.xpm"
@@ -63,18 +72,19 @@
 # define FW30		"images/bonus/walls/corner_boundless_upper_left.xpm"
 # define FW31		"images/bonus/walls/corner_boundless_upper_right.xpm"
 
+//! Player frames
+# define FP1		"images/bonus/player/player_1.xpm"
+# define FP2		"images/bonus/player/player_2.xpm"
+# define FP3		"images/bonus/player/player_3.xpm"
+# define FP4		"images/bonus/player/player_4.xpm"
+# define FP5		"images/bonus/player/player_5.xpm"
+# define FP6		"images/bonus/player/player_6.xpm"
+# define FP7		"images/bonus/player/player_7.xpm"
+
 //! Rest sprites
 # define FS1		"images/bonus/space.xpm"
 # define FC1		"images/coin.xpm"
 # define FE1		"images/exit.xpm"
-# define FP1		"images/player.xpm"
-
-# define DIFF		0
-# define SUM		1
-# define DIFFSUM	2 
-# define SUMDIFF	3 
-
-# define NOT_USED	'N'
 
 /**
  * @brief An enumerable type used to map a char to an entity

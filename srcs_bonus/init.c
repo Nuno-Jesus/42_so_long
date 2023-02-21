@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 14:13:49 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/02/21 00:45:07 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/02/21 03:38:59 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ void	init_game(char *filename)
 
 void	load_sprites(t_game *g)
 {
-	g->sp = malloc(NUM_SPRITES * sizeof(t_sprite));
+	g->sp = malloc(NUM_WALLS * sizeof(t_sprite));
 	if (!g->sp)
 		message(g, "Failed allocation on sprites array\n");
 	load_walls(g);

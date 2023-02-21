@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   destroy.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/07 11:53:02 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/02/01 01:31:48 by crypto           ###   ########.fr       */
+/*   Updated: 2023/02/21 03:03:22 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	destroy_sprites(t_game *g)
 	int	i;
 
 	i = 0;
-	while (i < NUM_SPRITES)
+	while (i < NUM_WALLS)
 		mlx_destroy_image(g->disp.mlx, g->sp[i++].img);
 	free(g->sp);
 }
