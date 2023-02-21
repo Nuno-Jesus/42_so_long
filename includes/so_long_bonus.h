@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 21:38:07 by crypto            #+#    #+#             */
-/*   Updated: 2023/02/21 02:32:02 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/02/21 02:34:47 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -312,7 +312,7 @@ void		render_inner_walls(t_game *g);
 
 void		render_outter_walls(t_game *g);
 
-//!_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\ VALIDATOR /=\_/=\_/=\_/=\_/=\_/=\_/=\_/=
+//!_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/= MAP_VALIDATOR =\_/=\_/=\_/=\_/=\_/=\_/=\_/=
 
 /**
  * @brief Given the read map, it checks if all lines have the same length
