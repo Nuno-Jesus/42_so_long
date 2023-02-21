@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 21:38:07 by crypto            #+#    #+#             */
-/*   Updated: 2023/02/21 18:36:22 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/02/21 19:34:02 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ typedef struct s_sprite{
  * @param line_length (unused)
  * @param endian (unused)
  */
-typedef struct s_graphics {
+typedef struct s_display {
 	void	*mlx;
 	void	*win;
 	void	*img;
@@ -79,14 +79,14 @@ typedef struct s_graphics {
 	int		bpp;
 	int		line_length;
 	int		endian;
-}				t_graphics;
+}				t_display;
 
 /**
  * @brief The root of the so_long project encapsulating other structs
  * @param map The map struct
  * @param curr The current player's position
  * @param next The next player's position given the keyboard inputs
- * @param disp The t_graphics display
+ * @param disp The t_display display
  * @param sp The t_sprite array containing all the used sprites
  * @param coins The number of collected coins so far
  * @param moves The number of moves so far
@@ -96,10 +96,11 @@ typedef struct s_game
 	t_map			*map;	
 	t_point			curr;
 	t_point			next;
-	t_graphics		disp;
+	t_display		disp;
 	t_sprite		*sp;
-	t_sprite		*player_frames;
-	int				pframe;
+	t_sprite		**pframes;
+	t_direction		player_dir;
+	int				player_frame;
 	unsigned int	coins;
 	unsigned int	moves;
 }				t_game;
@@ -220,7 +221,9 @@ void		load_walls(t_game *g);
 
 //!_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/= LOAD_REST =\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
 
-void		load_players(t_game *g);
+void		load_left_player_frames(t_game *g);
+
+void		load_right_player_frames(t_game *g);
 
 void		load_coins(t_game *g);
 

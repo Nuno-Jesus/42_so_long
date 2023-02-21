@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 02:39:13 by marvin            #+#    #+#             */
-/*   Updated: 2023/02/21 18:37:47 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/02/21 19:36:06 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@ void	render_tile(t_game *g, t_point p)
 		sp = g->sp[E1];
 	else if (g->map->bytes[p.y][p.x] == SPACE)
 		sp = g->sp[S1];
-	else if (g->map->bytes[p.y][p.x] == SPACE)
-		sp = g->player_frames[0];
+	else if (g->map->bytes[p.y][p.x] == PLAYER)
+		sp = g->pframes[RIGHT][0];
 	else
 		return ;
 	render_sprite(g, &sp, p, (t_point){-16, 0});
@@ -74,10 +74,11 @@ void	animate_player(t_game *g)
 	if (!(++calls % CALLS))
 	{
 		if (!(++fps % FPS))
-			++g->pframe;
-		next = g->pframe % NUM_PLAYER_FRAMES;
+			++g->player_frame;
+		next = g->player_frame % NUM_PLAYER_FRAMES;
 		render_sprite(g, &g->sp[S1], g->curr, (t_point){-16, 0});
-		render_sprite(g, &g->player_frames[next], g->curr, (t_point){-16, 0});
+		render_sprite(g, &g->pframes[g->player_dir][next], \
+			g->curr, (t_point){-16, 0});
 	}
 }
 

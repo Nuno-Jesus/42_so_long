@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 02:39:20 by marvin            #+#    #+#             */
-/*   Updated: 2023/02/21 18:41:24 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/02/21 19:35:11 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@
 # define NUM_PLAYER_FRAMES	7
 # define CALLS				250
 # define FPS				8
+# define DIRECTIONS			2
 
 # define DIFF				0
 # define SUM				1
@@ -82,6 +83,13 @@
 # define FP5		"images/bonus/player/player_5.xpm"
 # define FP6		"images/bonus/player/player_6.xpm"
 # define FP7		"images/bonus/player/player_7.xpm"
+# define FP8		"images/bonus/player/left_player_1.xpm"
+# define FP9		"images/bonus/player/left_player_2.xpm"
+# define FP10		"images/bonus/player/left_player_3.xpm"
+# define FP11		"images/bonus/player/left_player_4.xpm"
+# define FP12		"images/bonus/player/left_player_5.xpm"
+# define FP13		"images/bonus/player/left_player_6.xpm"
+# define FP14		"images/bonus/player/left_player_7.xpm"
 
 //! Rest sprites
 # define FS1		"images/bonus/space.xpm"
@@ -100,6 +108,13 @@ typedef enum e_entity
 	PLAYER = 'P'
 }			t_entity;
 
+typedef	enum e_direction
+{
+	RIGHT,
+	LEFT,
+	UP,
+	DOWN
+}			t_direction;		
 /**
  * @brief Used to map a keyboard scancode to its given key
  */
