@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long_bonus.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 21:38:07 by crypto            #+#    #+#             */
-/*   Updated: 2023/02/17 21:38:58 by crypto           ###   ########.fr       */
+/*   Updated: 2023/02/21 00:37:15 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -192,7 +192,25 @@ int			quit(t_game *game);
  * @return int (unused)
  */
 int			kb_hook(int keycode, t_game *game);
+//!_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/= LOAD_WALLS =\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
 
+void	load_walls_1(t_game *g);
+
+void	load_walls_2(t_game *g);
+
+void	load_walls_3(t_game *g);
+
+void	load_walls(t_game *g);
+
+//!_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/= LOAD_REST =\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
+
+void	load_players(t_game *g);
+
+void	load_coins(t_game *g);
+
+void	load_exits(t_game *g);
+
+void	load_spaces(t_game *g);
 //!_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/= MOVE_PLAYER =\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
 
 /**

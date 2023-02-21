@@ -35,7 +35,8 @@ OBJ_DIR_BONUS	= objs_bonus
 
 #_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_ FILES _/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
 OBJS			= destroy.o map.o utils.o validator.o render.o init.o algorithms.o move_player.o
-OBJS_BONUS		= destroy.o map.o utils.o validator.o render.o init.o algorithms.o move_player.o
+OBJS_BONUS		= destroy.o map.o utils.o validator.o render.o init.o algorithms.o move_player.o \
+					load_rest.o load_walls.o
 NAME			= so_long
 NAME_BONUS		= so_long_bonus
 TARGET			= $(addprefix $(OBJ_DIR)/, $(OBJS))
