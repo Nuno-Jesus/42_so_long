@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 02:39:13 by marvin            #+#    #+#             */
-/*   Updated: 2023/02/21 16:55:48 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/02/21 17:21:10 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ void	animate_player(t_game *g)
 		if (!(++fps % RPT))
 			++g->pframe;
 		next_frame = g->pframe % NUM_PLAYER_FRAMES;
-		printf("Next frame: %d\n", next_frame);
+		// printf("Next frame: %d\n", next_frame);
 		render_sprite(g, &g->sp[S1], g->curr, (t_point){-16, 0});
 		render_sprite(g, &g->player_frames[next_frame], g->curr, (t_point){-16, 0});		
 	}

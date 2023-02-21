@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 02:39:20 by marvin            #+#    #+#             */
-/*   Updated: 2023/02/21 16:56:30 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/02/21 17:20:42 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@
 # define NOT_USED			'N'
 # define ENTITIES			"01CEP"
 # define TICKS				250
-# define RPT				4
+# define RPT				8
 
 //! Wall sprites
 # define FW1		"images/bonus/walls/upper_wall.xpm"

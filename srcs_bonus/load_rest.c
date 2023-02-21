@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 00:33:38 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/02/21 16:57:25 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/02/21 17:07:33 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,4 +51,4 @@ void	load_spaces(t_game *g)
 {
 	g->sp[S1].img = mlx_xpm_file_to_image(g->disp.mlx, FS1,
 			&(g->sp[S1].width), &(g->sp[S1].height));
-}q
+}
