@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 02:39:20 by marvin            #+#    #+#             */
-/*   Updated: 2023/02/21 19:35:11 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/02/21 20:06:44 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,13 +76,13 @@
 # define FW31		"images/bonus/walls/corner_boundless_upper_right.xpm"
 
 //! Player frames
-# define FP1		"images/bonus/player/player_1.xpm"
-# define FP2		"images/bonus/player/player_2.xpm"
-# define FP3		"images/bonus/player/player_3.xpm"
-# define FP4		"images/bonus/player/player_4.xpm"
-# define FP5		"images/bonus/player/player_5.xpm"
-# define FP6		"images/bonus/player/player_6.xpm"
-# define FP7		"images/bonus/player/player_7.xpm"
+# define FP1		"images/bonus/player/right_player_1.xpm"
+# define FP2		"images/bonus/player/right_player_2.xpm"
+# define FP3		"images/bonus/player/right_player_3.xpm"
+# define FP4		"images/bonus/player/right_player_4.xpm"
+# define FP5		"images/bonus/player/right_player_5.xpm"
+# define FP6		"images/bonus/player/right_player_6.xpm"
+# define FP7		"images/bonus/player/right_player_7.xpm"
 # define FP8		"images/bonus/player/left_player_1.xpm"
 # define FP9		"images/bonus/player/left_player_2.xpm"
 # define FP10		"images/bonus/player/left_player_3.xpm"
