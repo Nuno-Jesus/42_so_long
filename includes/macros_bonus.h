@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 02:39:20 by marvin            #+#    #+#             */
-/*   Updated: 2023/02/22 10:45:33 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/02/22 10:47:15 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,7 +113,7 @@ typedef enum e_entity
 	PLAYER = 'P'
 }			t_entity;
 
-typedef	enum e_direction
+typedef enum e_direction
 {
 	RIGHT,
 	LEFT,

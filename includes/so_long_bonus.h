@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 21:38:07 by crypto            #+#    #+#             */
-/*   Updated: 2023/02/21 19:34:02 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/02/22 10:47:24 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,9 +107,9 @@ typedef struct s_game
 
 //!_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/= ANIMATE =\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
 
-void	animate_player(t_game *g);
+void		animate_player(t_game *g);
 
-void	animate_coins(t_game *g);	
+void		animate_coins(t_game *g);	
 
 /**
  * @brief Given the filename passed as argument, it checks if the filename

@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 02:39:13 by marvin            #+#    #+#             */
-/*   Updated: 2023/02/22 10:43:51 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/02/22 10:49:21 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,23 +63,6 @@ void	render_counter(t_game *g)
 	mlx_put_image_to_window(g->disp.mlx, g->disp.win, g->disp.img, x, y - 20);
 	mlx_string_put(g->disp.mlx, g->disp.win, x, y, 0xFFFFFF, str);
 	free(str);
-}
-
-void	animate_player(t_game *g)
-{
-	static int	calls = 0;
-	static int	freq = 0;
-	int			next;
-
-	if (!(++calls % CALLS))
-	{
-		if (!(++freq % CALLS_PER_FRAME))
-			++g->player_frame;
-		next = g->player_frame % NUM_PLAYER_FRAMES;
-		render_sprite(g, &g->sp[S1], g->curr, (t_point){-16, 0});
-		render_sprite(g, &g->pframes[g->player_dir][next], \
-			g->curr, (t_point){-16, 0});
-	}
 }
 
 int	render_frame(t_game *g)

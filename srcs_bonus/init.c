@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 14:13:49 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/02/21 19:33:22 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/02/22 10:48:08 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,20 +23,14 @@ int	move_handler(int keycode, t_game *game)
 	if (keycode == ESC)
 		quit(game);
 	else if (keycode == W)
-	{
 		game->next = (t_point){game->curr.x, game->curr.y - 1};
-		//game->player_dir = UP;
-	}
 	else if (keycode == A)
 	{
 		game->next = (t_point){game->curr.x - 1, game->curr.y};
 		game->player_dir = LEFT;
 	}
 	else if (keycode == S)
-	{
 		game->next = (t_point){game->curr.x, game->curr.y + 1};
-		//game->player_dir = DOWN;
-	}
 	else if (keycode == D)
 	{
 		game->next = (t_point){game->curr.x + 1, game->curr.y};
@@ -82,7 +76,7 @@ void	load_sprites(t_game *g)
 		message(g, "Failed allocation on sprites array\n");
 	g->pframes = malloc(2 * sizeof(t_sprite *));
 	if (!g->pframes)
-		message(g, "Failed allocation on player frames array\n");	
+		message(g, "Failed allocation on player frames array\n");
 	load_walls(g);
 	load_right_player_frames(g);
 	load_left_player_frames(g);
