@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 02:39:20 by marvin            #+#    #+#             */
-/*   Updated: 2023/02/22 13:31:24 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/02/22 17:29:34 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@
 # include <sys/types.h>
 # include <sys/stat.h>
 # include <fcntl.h>
-# include <time.h>
 
 # include "libft.h"
 # include "get_next_line.h"
@@ -30,9 +29,10 @@
 
 # define DIRECTIONS			2
 # define ENTITIES			"01CEP"
+# define XOFFSET			-16
 
 //! Sprite counters
-# define NUM_WALLS			34
+# define NUM_WALLS			33
 # define NUM_PLAYER_FRAMES	7
 # define NUM_COIN_FRAMES	15
 
@@ -121,14 +121,14 @@
 /**
  * @brief An enumerable type used to map a char to an entity
  */
-typedef enum e_entity
+typedef enum e_type
 {
 	SPACE = '0',
 	WALL = '1',
 	COIN = 'C',
 	EXIT = 'E',
 	PLAYER = 'P'
-}			t_entity;
+}			t_type;
 
 typedef enum e_direction
 {
@@ -173,7 +173,6 @@ typedef enum e_mask
 typedef enum e_id
 {
 	S1,
-	C1,
 	E1,
 	WALL_U,
 	WALL_L,

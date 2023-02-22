@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/07 11:53:02 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/02/22 12:16:57 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/02/22 17:37:51 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,11 @@ void	destroy_game(t_game *game)
 {
 	if (!game)
 		return ;
-	if (game->coins_pos)
-		free(game->coins_pos);
-	if (game->sp)
-		destroy_sprites(game);
+	if (game->coins)
+		free(game->coins);
+	if (game->player)
+		free(game->player);
+	destroy_sprites(game);
 	if (game->disp.img)
 		mlx_destroy_image(game->disp.mlx, game->disp.img);
 	if (game->disp.win)
@@ -38,21 +39,21 @@ void	destroy_sprites(t_game *g)
 
 	i = 0;
 	while (i < NUM_WALLS)
-		mlx_destroy_image(g->disp.mlx, g->sp[i++].img);
+		mlx_destroy_image(g->disp.mlx, g->sp.img[i++]);
+	free(g->sp.img);
 	i = 0;
 	while (i < NUM_COIN_FRAMES)
-		mlx_destroy_image(g->disp.mlx, g->cframes[i++].img);
+		mlx_destroy_image(g->disp.mlx, g->cframes.img[i++]);
+	free(g->cframes.img);
 	k = -1;
 	while (++k < DIRECTIONS)
 	{
-		i = 0;
-		while (i < NUM_PLAYER_FRAMES)
-			mlx_destroy_image(g->disp.mlx, g->pframes[k][i++].img);
-		free(g->pframes[k]);
+		i = -1;
+		while (++i < NUM_PLAYER_FRAMES)
+			mlx_destroy_image(g->disp.mlx, g->pframes[k].img[i]);
+		free(g->pframes[k].img);			
 	}
-	free(g->cframes);
 	free(g->pframes);
-	free(g->sp);
 }
 
 void	destroy_map(t_map *map)

@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 21:38:07 by crypto            #+#    #+#             */
-/*   Updated: 2023/02/22 12:05:39 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/02/22 17:04:00 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ typedef struct s_point
  * @param bytes The char matrix with the char map
  * @param cols The number of columns of the map
  * @param rows The number of rows of the map
- * @param num_coins The number of coins in the map
+ * @param num_coins The number of collected in the map
  * @param num_exits The number of exits in the map
  * @param num_players The number of players in the map
  */
@@ -51,10 +51,13 @@ typedef struct s_map
  * @param width The width of the sprite
  * @param height The height of the sprite
  */
-typedef struct s_sprite{
-	void	*img;
+typedef struct s_sprite
+{
+	void	**img;
 	int		width;
 	int		height;
+	int 	nframes;
+	int		curr;
 }				t_sprite;
 
 /**
@@ -69,7 +72,8 @@ typedef struct s_sprite{
  * @param line_length (unused)
  * @param endian (unused)
  */
-typedef struct s_display {
+typedef struct s_display
+{
 	void	*mlx;
 	void	*win;
 	void	*img;
@@ -81,6 +85,13 @@ typedef struct s_display {
 	int		endian;
 }				t_display;
 
+
+typedef struct s_entity
+{
+	int			current_frame;
+	t_point		pos;
+}				t_entity;
+
 /**
  * @brief The root of the so_long project encapsulating other structs
  * @param map The map struct
@@ -88,7 +99,7 @@ typedef struct s_display {
  * @param next The next player's position given the keyboard inputs
  * @param disp The t_display display
  * @param sp The t_sprite array containing all the used sprites
- * @param coins The number of collected coins so far
+ * @param collected The number of collected collected so far
  * @param moves The number of moves so far
  */
 typedef struct s_game
@@ -97,16 +108,19 @@ typedef struct s_game
 	t_point			curr;
 	t_point			next;
 	t_display		disp;
-	t_point			*coins_pos;
-	t_sprite		*sp;
-	t_sprite		**pframes;
-	t_sprite		*cframes;
+	t_sprite		cframes;
+	t_sprite		sp;
+	t_sprite		*pframes;
+	t_entity		*coins;
+	t_entity		*player;
 	t_direction		player_dir;
 	int				player_frame;
 	int				coin_frame;
-	unsigned int	coins;
+	unsigned int	collected;
 	unsigned int	moves;
-}				t_game;
+}					t_game;
+
+// I was refactoring the sprite struct
 
 //!_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/= ANIMATE =\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
 
@@ -127,14 +141,14 @@ bool		is_filename_valid(char *filename);
 
 /**
  * @brief Given an auxiliary map it checks for a valid path between the 
- * player's position and the exit. It also counts the number of coins
+ * player's position and the exit. It also counts the number of collected
  * collected so far in the algorithm to match it against the total number
- * of coins. It works by recursively exploring the 4 adjacent positions.
+ * of collected. It works by recursively exploring the 4 adjacent positions.
  * 
- * @param map The map structure containing the number of coins to collect 
+ * @param map The map structure containing the number of collected to collect 
  * @param curr The current position to explore
  * @param maze The auxiliary map to fill
- * @return true if there is a valid path and all coins are collected, false 
+ * @return true if there is a valid path and all collected are collected, false 
  * otherwise 
  */
 bool		flood_fill(t_map *map, t_point curr, char **maze);
@@ -155,6 +169,8 @@ int			**create_binary_matrix(unsigned int y, unsigned int x);
  */
 void		destroy_game(t_game *game);
 
+void	init_position(t_game *g, t_point *pos, t_type type);
+
 /**
  * @brief Frees the memory from the sprite array inside the t_game struct
  * @param g The t_game struct to free the sprites memory from
@@ -169,8 +185,9 @@ void		destroy_map(t_map *map);
 
 //!_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/ INIT \_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_ 
 
-void		init_positions(t_game *g);
+void	init_entities(t_game *g);
 
+void	init_position(t_game *g, t_point *pos, t_type type);
 /**
  * @brief This function has several roles: to read and parse the map from
  * the file passed as argument, to initialize the graphical environment,
@@ -258,7 +275,7 @@ bool		is_valid_movement(t_game *g);
 
 //!_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_ RENDER _/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_ 
 
-void		render_sprite(t_game *g, t_sprite *s, t_point p, t_point offset);
+void	render_sprite(t_game *g, t_sprite *s, t_point p, int frame);
 /**
  * @brief Given a pair of coordinates, it renders a map tile. Depending on the
  * entity in that tile it renders a different image.
@@ -401,7 +418,7 @@ void		message(t_game *game, char *text);
  * @param p The coordinates to search on
  * @return The char containing the entity
  */
-t_entity	at(t_game *g, t_point p);
+t_type	at(t_game *g, t_point p);
 
 int			ft_todigit(int c);
 

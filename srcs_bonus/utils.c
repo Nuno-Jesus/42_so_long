@@ -6,13 +6,13 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/07 18:04:46 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/02/21 02:24:38 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/02/22 15:27:11 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long_bonus.h"
 
-t_entity	at(t_game *g, t_point p)
+t_type	at(t_game *g, t_point p)
 {
 	return (g->map->bytes[p.y][p.x]);
 }

@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 14:54:58 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/02/22 10:30:20 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/02/22 15:27:11 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ bool	is_valid_movement(t_game *g)
 
 void	move_player(t_game *g)
 {
-	static t_entity	previous = SPACE;
+	static t_type	previous = SPACE;
 
 	g->map->bytes[g->curr.y][g->curr.x] = previous;
 	render_tile(g, (t_point){g->curr.x, g->curr.y});
