@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 21:38:07 by crypto            #+#    #+#             */
-/*   Updated: 2023/02/21 02:34:47 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/02/22 10:47:24 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ typedef struct s_sprite{
  * @param line_length (unused)
  * @param endian (unused)
  */
-typedef struct s_graphics {
+typedef struct s_display {
 	void	*mlx;
 	void	*win;
 	void	*img;
@@ -79,14 +79,14 @@ typedef struct s_graphics {
 	int		bpp;
 	int		line_length;
 	int		endian;
-}				t_graphics;
+}				t_display;
 
 /**
  * @brief The root of the so_long project encapsulating other structs
  * @param map The map struct
  * @param curr The current player's position
  * @param next The next player's position given the keyboard inputs
- * @param disp The t_graphics display
+ * @param disp The t_display display
  * @param sp The t_sprite array containing all the used sprites
  * @param coins The number of collected coins so far
  * @param moves The number of moves so far
@@ -96,11 +96,20 @@ typedef struct s_game
 	t_map			*map;	
 	t_point			curr;
 	t_point			next;
-	t_graphics		disp;
+	t_display		disp;
 	t_sprite		*sp;
+	t_sprite		**pframes;
+	t_direction		player_dir;
+	int				player_frame;
 	unsigned int	coins;
 	unsigned int	moves;
 }				t_game;
+
+//!_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/= ANIMATE =\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
+
+void		animate_player(t_game *g);
+
+void		animate_coins(t_game *g);	
 
 /**
  * @brief Given the filename passed as argument, it checks if the filename
@@ -212,7 +221,9 @@ void		load_walls(t_game *g);
 
 //!_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/= LOAD_REST =\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
 
-void		load_players(t_game *g);
+void		load_left_player_frames(t_game *g);
+
+void		load_right_player_frames(t_game *g);
 
 void		load_coins(t_game *g);
 

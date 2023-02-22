@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 02:39:20 by marvin            #+#    #+#             */
-/*   Updated: 2023/02/21 02:09:01 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/02/22 10:47:15 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,59 +22,84 @@
 # include <sys/types.h>
 # include <sys/stat.h>
 # include <fcntl.h>
+# include <time.h>
 
 # include "libft.h"
 # include "get_next_line.h"
 # include "../mlx/mlx.h"
 
-# define NUM_SPRITES	35
+# define DIRECTIONS			2
+
+//! Sprite counters
+# define NUM_WALLS			34
+# define NUM_PLAYER_FRAMES	7
+
+//! Sprite refreshing frequency
+# define CALLS				250
+# define CALLS_PER_FRAME	48
+
+//! Binary map needed macros
+# define DIFF				0
+# define SUM				1
+# define DIFFSUM			2 
+# define SUMDIFF			3 
+# define NOT_USED			'N'
+
+# define ENTITIES			"01CEP"
 
 //! Wall sprites
-# define ENTITIES	"01CEP"
-# define FW1		"xpm/bonus/upper_wall.xpm"
-# define FW2		"xpm/bonus/left_wall.xpm"
-# define FW3		"xpm/bonus/right_wall.xpm"
-# define FW4		"xpm/bonus/left_corner_wall.xpm"
-# define FW5		"xpm/bonus/right_corner_wall.xpm"
-# define FW6		"xpm/bonus/lower_wall.xpm"
-# define FW7		"xpm/bonus/one_left_wall.xpm"
-# define FW8		"xpm/bonus/one_right_wall.xpm"
-# define FW9		"xpm/bonus/two_horizontal_wall.xpm"
-# define FW10		"xpm/bonus/two_vertical_wall.xpm"
-# define FW11		"xpm/bonus/edge_upper_wall.xpm"
-# define FW12		"xpm/bonus/edge_lower_wall.xpm"
-# define FW13		"xpm/bonus/edge_left_wall.xpm"
-# define FW14		"xpm/bonus/edge_right_wall.xpm"
-# define FW15		"xpm/bonus/bounded_wall.xpm"
-# define FW16		"xpm/bonus/boundless_wall.xpm"
-# define FW17		"xpm/bonus/corner_lower_left_wall.xpm"
-# define FW18		"xpm/bonus/corner_lower_right_wall.xpm"
-# define FW19		"xpm/bonus/corner_upper_left_wall_2.xpm"
-# define FW20		"xpm/bonus/corner_upper_right_wall_2.xpm"
-# define FW21		"xpm/bonus/corner_lower_left_wall_2.xpm"
-# define FW22		"xpm/bonus/corner_lower_right_wall_2.xpm"
-# define FW23		"xpm/bonus/boundless_2.xpm"
-# define FW24		"xpm/bonus/barrier_upper_2.xpm"
-# define FW25		"xpm/bonus/barrier_lower_2.xpm"
-# define FW26		"xpm/bonus/barrier_left_2.xpm"
-# define FW27		"xpm/bonus/barrier_right_2.xpm"
-# define FW28		"xpm/bonus/corner_boundless_lower_left.xpm"
-# define FW29		"xpm/bonus/corner_boundless_lower_right.xpm"
-# define FW30		"xpm/bonus/corner_boundless_upper_left.xpm"
-# define FW31		"xpm/bonus/corner_boundless_upper_right.xpm"
+# define FW1		"images/bonus/walls/upper_wall.xpm"
+# define FW2		"images/bonus/walls/left_wall.xpm"
+# define FW3		"images/bonus/walls/right_wall.xpm"
+# define FW4		"images/bonus/walls/left_corner_wall.xpm"
+# define FW5		"images/bonus/walls/right_corner_wall.xpm"
+# define FW6		"images/bonus/walls/lower_wall.xpm"
+# define FW7		"images/bonus/walls/one_left_wall.xpm"
+# define FW8		"images/bonus/walls/one_right_wall.xpm"
+# define FW9		"images/bonus/walls/two_horizontal_wall.xpm"
+# define FW10		"images/bonus/walls/two_vertical_wall.xpm"
+# define FW11		"images/bonus/walls/edge_upper_wall.xpm"
+# define FW12		"images/bonus/walls/edge_lower_wall.xpm"
+# define FW13		"images/bonus/walls/edge_left_wall.xpm"
+# define FW14		"images/bonus/walls/edge_right_wall.xpm"
+# define FW15		"images/bonus/walls/bounded_wall.xpm"
+# define FW16		"images/bonus/walls/boundless_wall.xpm"
+# define FW17		"images/bonus/walls/corner_lower_left_wall.xpm"
+# define FW18		"images/bonus/walls/corner_lower_right_wall.xpm"
+# define FW19		"images/bonus/walls/corner_upper_left_wall_2.xpm"
+# define FW20		"images/bonus/walls/corner_upper_right_wall_2.xpm"
+# define FW21		"images/bonus/walls/corner_lower_left_wall_2.xpm"
+# define FW22		"images/bonus/walls/corner_lower_right_wall_2.xpm"
+# define FW23		"images/bonus/walls/boundless_2.xpm"
+# define FW24		"images/bonus/walls/barrier_upper_2.xpm"
+# define FW25		"images/bonus/walls/barrier_lower_2.xpm"
+# define FW26		"images/bonus/walls/barrier_left_2.xpm"
+# define FW27		"images/bonus/walls/barrier_right_2.xpm"
+# define FW28		"images/bonus/walls/corner_boundless_lower_left.xpm"
+# define FW29		"images/bonus/walls/corner_boundless_lower_right.xpm"
+# define FW30		"images/bonus/walls/corner_boundless_upper_left.xpm"
+# define FW31		"images/bonus/walls/corner_boundless_upper_right.xpm"
+
+//! Player frames
+# define FP1		"images/bonus/player/right_player_1.xpm"
+# define FP2		"images/bonus/player/right_player_2.xpm"
+# define FP3		"images/bonus/player/right_player_3.xpm"
+# define FP4		"images/bonus/player/right_player_4.xpm"
+# define FP5		"images/bonus/player/right_player_5.xpm"
+# define FP6		"images/bonus/player/right_player_6.xpm"
+# define FP7		"images/bonus/player/right_player_7.xpm"
+# define FP8		"images/bonus/player/left_player_1.xpm"
+# define FP9		"images/bonus/player/left_player_2.xpm"
+# define FP10		"images/bonus/player/left_player_3.xpm"
+# define FP11		"images/bonus/player/left_player_4.xpm"
+# define FP12		"images/bonus/player/left_player_5.xpm"
+# define FP13		"images/bonus/player/left_player_6.xpm"
+# define FP14		"images/bonus/player/left_player_7.xpm"
 
 //! Rest sprites
-# define FS1		"xpm/bonus/space.xpm"
-# define FC1		"xpm/coin.xpm"
-# define FE1		"xpm/exit.xpm"
-# define FP1		"xpm/player.xpm"
-
-# define DIFF		0
-# define SUM		1
-# define DIFFSUM	2 
-# define SUMDIFF	3 
-
-# define NOT_USED	'N'
+# define FS1		"images/bonus/space.xpm"
+# define FC1		"images/coin.xpm"
+# define FE1		"images/exit.xpm"
 
 /**
  * @brief An enumerable type used to map a char to an entity
@@ -88,6 +113,13 @@ typedef enum e_entity
 	PLAYER = 'P'
 }			t_entity;
 
+typedef enum e_direction
+{
+	RIGHT,
+	LEFT,
+	UP,
+	DOWN
+}			t_direction;		
 /**
  * @brief Used to map a keyboard scancode to its given key
  */
@@ -121,12 +153,11 @@ typedef enum e_mask
 /**
  * @brief Used to access the right sprite when rendering and loading sprites
  */
-typedef enum e_index
+typedef enum e_id
 {
 	S1,
 	C1,
 	E1,
-	P1,
 	WALL_U,
 	WALL_L,
 	WALL_R,
