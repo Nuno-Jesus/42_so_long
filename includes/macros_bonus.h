@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 02:39:20 by marvin            #+#    #+#             */
-/*   Updated: 2023/02/22 10:47:15 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/02/22 22:15:13 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,13 @@
 # include "../mlx/mlx.h"
 
 # define DIRECTIONS			2
+# define XOFFSET			-16
+# define ENTITIES			"01CEP"
 
 //! Sprite counters
-# define NUM_WALLS			34
+# define NUM_WALLS			33
 # define NUM_PLAYER_FRAMES	7
+# define NUM_COIN_FRAMES	15
 
 //! Sprite refreshing frequency
 # define CALLS				250
@@ -44,8 +47,6 @@
 # define DIFFSUM			2 
 # define SUMDIFF			3 
 # define NOT_USED			'N'
-
-# define ENTITIES			"01CEP"
 
 //! Wall sprites
 # define FW1		"images/bonus/walls/upper_wall.xpm"
@@ -96,22 +97,39 @@
 # define FP13		"images/bonus/player/left_player_6.xpm"
 # define FP14		"images/bonus/player/left_player_7.xpm"
 
+//! Potion frames
+
+# define FC1 		"images/bonus/potions/potion_1.xpm"
+# define FC2 		"images/bonus/potions/potion_2.xpm"
+# define FC3 		"images/bonus/potions/potion_3.xpm"
+# define FC4 		"images/bonus/potions/potion_4.xpm"
+# define FC5 		"images/bonus/potions/potion_5.xpm"
+# define FC6 		"images/bonus/potions/potion_6.xpm"
+# define FC7 		"images/bonus/potions/potion_7.xpm"
+# define FC8 		"images/bonus/potions/potion_8.xpm"
+# define FC9 		"images/bonus/potions/potion_9.xpm"
+# define FC10 		"images/bonus/potions/potion_10.xpm"
+# define FC11 		"images/bonus/potions/potion_11.xpm"
+# define FC12 		"images/bonus/potions/potion_12.xpm"
+# define FC13 		"images/bonus/potions/potion_13.xpm"
+# define FC14 		"images/bonus/potions/potion_14.xpm"
+# define FC15 		"images/bonus/potions/potion_15.xpm"
+
 //! Rest sprites
 # define FS1		"images/bonus/space.xpm"
-# define FC1		"images/coin.xpm"
 # define FE1		"images/exit.xpm"
 
 /**
  * @brief An enumerable type used to map a char to an entity
  */
-typedef enum e_entity
+typedef enum e_type
 {
 	SPACE = '0',
 	WALL = '1',
 	COIN = 'C',
 	EXIT = 'E',
 	PLAYER = 'P'
-}			t_entity;
+}			t_type;
 
 typedef enum e_direction
 {
@@ -156,7 +174,6 @@ typedef enum e_mask
 typedef enum e_id
 {
 	S1,
-	C1,
 	E1,
 	WALL_U,
 	WALL_L,

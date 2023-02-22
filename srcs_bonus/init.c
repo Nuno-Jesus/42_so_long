@@ -6,17 +6,11 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 14:13:49 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/02/22 10:48:08 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/02/22 22:25:38 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long_bonus.h"
-
-int	quit(t_game *game)
-{
-	destroy_game(game);
-	exit(EXIT_SUCCESS);
-}
 
 int	move_handler(int keycode, t_game *game)
 {
@@ -61,6 +55,7 @@ void	init_game(char *filename)
 	read_map(&g, filename);
 	validate_map(&g);
 	init_graphics(&g);
+	init_entities(&g);
 	load_sprites(&g);
 	render_map(&g);
 	mlx_hook(g.disp.win, ON_KEYPRESS, KEYPRESS_MASK, move_handler, &g);
@@ -69,18 +64,46 @@ void	init_game(char *filename)
 	mlx_loop(g.disp.mlx);
 }
 
+void	init_entities(t_game *g)
+{
+	int		i;
+	t_point	p;
+
+	g->coins = malloc(g->map->num_coins * sizeof(t_entity));
+	if (!g->coins)
+		message(g, "Failed allocation on coins entity array\n");
+	g->player = malloc(sizeof(t_entity));
+	if (!g->player)
+		message(g, "Failed allocation on player entity array\n");
+	g->player->pos = g->curr;
+	g->player->current_frame = 0;
+	i = 0;
+	p = (t_point){-1, -1};
+	while (++p.y < g->map->rows)
+	{
+		p.x = -1;
+		while (++p.x < g->map->cols)
+		{
+			if (at(g, p) == COIN)
+			{
+				g->coins[i].current_frame = rand() % NUM_COIN_FRAMES;
+				g->coins[i++].pos = p;
+			}
+		}
+	}
+}
+
 void	load_sprites(t_game *g)
 {
-	g->sp = malloc(NUM_WALLS * sizeof(t_sprite));
-	if (!g->sp)
+	g->sp.img = malloc(NUM_WALLS * sizeof(void *));
+	if (!g->sp.img)
 		message(g, "Failed allocation on sprites array\n");
-	g->pframes = malloc(2 * sizeof(t_sprite *));
+	g->pframes = malloc(2 * sizeof(t_sprite));
 	if (!g->pframes)
 		message(g, "Failed allocation on player frames array\n");
 	load_walls(g);
-	load_right_player_frames(g);
-	load_left_player_frames(g);
-	load_coins(g);
+	load_player_frames(g);
+	load_coins_frames(g);
 	load_exits(g);
 	load_spaces(g);
 }
