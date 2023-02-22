@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 21:38:07 by crypto            #+#    #+#             */
-/*   Updated: 2023/02/22 22:26:00 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/02/22 23:19:32 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,6 +112,7 @@ typedef struct s_game
 	t_sprite		*pframes;
 	t_entity		*coins;
 	t_entity		*player;
+	t_entity		*enemies;
 	t_direction		player_dir;
 	int				player_frame;
 	int				coin_frame;
