@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 02:39:20 by marvin            #+#    #+#             */
-/*   Updated: 2023/02/22 17:29:34 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/02/22 21:15:56 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@
 # include "../mlx/mlx.h"
 
 # define DIRECTIONS			2
-# define ENTITIES			"01CEP"
 # define XOFFSET			-16
+# define ENTITIES			"01CEP"
 
 //! Sprite counters
 # define NUM_WALLS			33
@@ -38,7 +38,7 @@
 
 //! Sprite refreshing frequency
 # define CALLS				250
-# define CALLS_PER_FRAME	8
+# define CALLS_PER_FRAME	48
 
 //! Binary map needed macros
 # define DIFF				0
