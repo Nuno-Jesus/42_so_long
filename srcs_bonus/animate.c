@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 10:48:55 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/02/22 17:05:33 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/02/22 17:42:14 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,10 @@ void	animate_player(t_game *g)
 	if (!(++calls % CALLS))
 	{
 		if (!(++freq % CALLS_PER_FRAME))
-		{
-			g->pframes[RIGHT].curr = ++(g->pframes[RIGHT].curr) % NUM_PLAYER_FRAMES;
-			g->pframes[LEFT].curr = ++(g->pframes[LEFT].curr) % NUM_PLAYER_FRAMES;
-		}
+			g->player->current_frame = ++(g->player->current_frame) % NUM_PLAYER_FRAMES;
 		render_sprite(g, &g->sp, g->curr, S1);
 		render_sprite(g, &g->pframes[g->player_dir], \
-			g->curr, g->pframes[g->player_dir].curr);
+			g->curr, g->player->current_frame);
 	}
 }
 
