@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 02:39:13 by marvin            #+#    #+#             */
-/*   Updated: 2023/02/22 10:20:03 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/02/22 10:43:51 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,10 +73,9 @@ void	animate_player(t_game *g)
 
 	if (!(++calls % CALLS))
 	{
-		if (!(++freq % FREQUENCY))
+		if (!(++freq % CALLS_PER_FRAME))
 			++g->player_frame;
 		next = g->player_frame % NUM_PLAYER_FRAMES;
-		printf("Cleaning frame %d\n", (g->player_frame - 1) % NUM_PLAYER_FRAMES);
 		render_sprite(g, &g->sp[S1], g->curr, (t_point){-16, 0});
 		render_sprite(g, &g->pframes[g->player_dir][next], \
 			g->curr, (t_point){-16, 0});

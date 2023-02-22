@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 02:39:20 by marvin            #+#    #+#             */
-/*   Updated: 2023/02/22 10:16:20 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/02/22 10:45:33 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@
 
 //! Sprite refreshing frequency
 # define CALLS				250
-# define FREQUENCY			8
+# define CALLS_PER_FRAME	48
 
 //! Binary map needed macros
 # define DIFF				0
