@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 14:54:58 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/02/21 03:31:51 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/02/22 10:30:20 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,11 @@ void	move_player(t_game *g)
 	static t_entity	previous = SPACE;
 
 	g->map->bytes[g->curr.y][g->curr.x] = previous;
-	if (at(g, g->next) != COIN)
-		previous = g->map->bytes[g->next.y][g->next.x];
-	else
-		previous = SPACE;
-	g->map->bytes[g->next.y][g->next.x] = PLAYER;
 	render_tile(g, (t_point){g->curr.x, g->curr.y});
-	animate_player(g);
+	if (at(g, g->next) == COIN)
+		previous = SPACE;
+	else
+		previous = g->map->bytes[g->next.y][g->next.x];
+	g->map->bytes[g->next.y][g->next.x] = PLAYER;
 	g->curr = g->next;
 }

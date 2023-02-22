@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 02:39:20 by marvin            #+#    #+#             */
-/*   Updated: 2023/02/21 20:06:44 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/02/22 10:16:20 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,17 @@
 # include "get_next_line.h"
 # include "../mlx/mlx.h"
 
-# define NUM_WALLS			34
-# define NUM_PLAYER_FRAMES	7
-# define CALLS				250
-# define FPS				8
 # define DIRECTIONS			2
 
+//! Sprite counters
+# define NUM_WALLS			34
+# define NUM_PLAYER_FRAMES	7
+
+//! Sprite refreshing frequency
+# define CALLS				250
+# define FREQUENCY			8
+
+//! Binary map needed macros
 # define DIFF				0
 # define SUM				1
 # define DIFFSUM			2 
@@ -148,7 +153,7 @@ typedef enum e_mask
 /**
  * @brief Used to access the right sprite when rendering and loading sprites
  */
-typedef enum e_index
+typedef enum e_id
 {
 	S1,
 	C1,

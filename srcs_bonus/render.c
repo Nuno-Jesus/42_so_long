@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 02:39:13 by marvin            #+#    #+#             */
-/*   Updated: 2023/02/21 19:36:06 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/02/22 10:20:03 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,14 +68,15 @@ void	render_counter(t_game *g)
 void	animate_player(t_game *g)
 {
 	static int	calls = 0;
-	static int	fps = 0;
+	static int	freq = 0;
 	int			next;
 
 	if (!(++calls % CALLS))
 	{
-		if (!(++fps % FPS))
+		if (!(++freq % FREQUENCY))
 			++g->player_frame;
 		next = g->player_frame % NUM_PLAYER_FRAMES;
+		printf("Cleaning frame %d\n", (g->player_frame - 1) % NUM_PLAYER_FRAMES);
 		render_sprite(g, &g->sp[S1], g->curr, (t_point){-16, 0});
 		render_sprite(g, &g->pframes[g->player_dir][next], \
 			g->curr, (t_point){-16, 0});
