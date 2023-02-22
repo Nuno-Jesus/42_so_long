@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 21:38:07 by crypto            #+#    #+#             */
-/*   Updated: 2023/02/22 21:06:45 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/02/22 22:26:00 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ typedef struct s_sprite
 	void	**img;
 	int		width;
 	int		height;
-	int 	nframes;
+	int		nframes;
 	int		curr;
 }				t_sprite;
 
@@ -84,7 +84,6 @@ typedef struct s_display
 	int		line_length;
 	int		endian;
 }				t_display;
-
 
 typedef struct s_entity
 {
@@ -169,7 +168,7 @@ int			**create_binary_matrix(unsigned int y, unsigned int x);
  */
 void		destroy_game(t_game *game);
 
-void	init_position(t_game *g, t_point *pos, t_type type);
+void		init_position(t_game *g, t_point *pos, t_type type);
 
 /**
  * @brief Frees the memory from the sprite array inside the t_game struct
@@ -185,9 +184,9 @@ void		destroy_map(t_map *map);
 
 //!_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/ INIT \_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_ 
 
-void	init_entities(t_game *g);
+void		init_entities(t_game *g);
 
-void	init_position(t_game *g, t_point *pos, t_type type);
+void		init_position(t_game *g, t_point *pos, t_type type);
 /**
  * @brief This function has several roles: to read and parse the map from
  * the file passed as argument, to initialize the graphical environment,
@@ -243,11 +242,11 @@ void		load_walls(t_game *g);
 
 //!_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/= LOAD_REST =\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
 
-void		load_left_player_frames(t_game *g);
+void		load_player_frames_2(t_game *g);
 
-void		load_right_player_frames(t_game *g);
+void		load_player_frames(t_game *g);
 
-void		load_coins(t_game *g);
+void		load_coins_frames(t_game *g);
 
 void		load_exits(t_game *g);
 
@@ -275,7 +274,7 @@ bool		is_valid_movement(t_game *g);
 
 //!_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_ RENDER _/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_ 
 
-void	render_sprite(t_game *g, t_sprite *s, t_point p, int frame);
+void		render_sprite(t_game *g, t_sprite *s, t_point p, int frame);
 /**
  * @brief Given a pair of coordinates, it renders a map tile. Depending on the
  * entity in that tile it renders a different image.
@@ -418,7 +417,7 @@ void		message(t_game *game, char *text);
  * @param p The coordinates to search on
  * @return The char containing the entity
  */
-t_type	at(t_game *g, t_point p);
+t_type		at(t_game *g, t_point p);
 
 int			ft_todigit(int c);
 

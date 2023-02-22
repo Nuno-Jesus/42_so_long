@@ -6,12 +6,17 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/10 13:04:07 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/02/22 16:20:38 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/02/22 22:17:42 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-# include <time.h>
+
+int	quit(t_game *game)
+{
+	destroy_game(game);
+	exit(EXIT_SUCCESS);
+}
 
 bool	is_filename_valid(char *filename)
 {

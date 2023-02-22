@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 02:39:13 by marvin            #+#    #+#             */
-/*   Updated: 2023/02/22 17:43:32 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/02/22 22:27:59 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,6 @@ void	render_tile(t_game *g, t_point p)
 {
 	t_sprite	*sp;
 
-	// if (g->map->bytes[p.y][p.x] == COIN)
-	// 	sp = g->sp[C1];
 	sp = &g->sp;
 	if (g->map->bytes[p.y][p.x] == EXIT)
 		sp->curr = E1;
@@ -34,10 +32,13 @@ void	render_tile(t_game *g, t_point p)
 		sp = &g->pframes[RIGHT];
 		sp->curr = g->player->current_frame;
 	}
+	else if (g->map->bytes[p.y][p.x] == COIN)
+	{
+		sp = &g->cframes;
+		sp->curr = g->coins->current_frame;
+	}
 	else
 		return ;
-	// printf("Current sprite id: %d\n", sp->curr);
-	// printf("Sprite type: %d\n", at(g, p));
 	render_sprite(g, sp, p, sp->curr);
 }
 

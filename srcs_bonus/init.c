@@ -6,17 +6,11 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 14:13:49 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/02/22 17:37:28 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/02/22 22:25:38 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long_bonus.h"
-
-int	quit(t_game *game)
-{
-	destroy_game(game);
-	exit(EXIT_SUCCESS);
-}
 
 int	move_handler(int keycode, t_game *game)
 {
@@ -74,7 +68,7 @@ void	init_entities(t_game *g)
 {
 	int		i;
 	t_point	p;
-	
+
 	g->coins = malloc(g->map->num_coins * sizeof(t_entity));
 	if (!g->coins)
 		message(g, "Failed allocation on coins entity array\n");
@@ -108,9 +102,8 @@ void	load_sprites(t_game *g)
 	if (!g->pframes)
 		message(g, "Failed allocation on player frames array\n");
 	load_walls(g);
-	load_right_player_frames(g);
-	load_left_player_frames(g);
-	load_coins(g);
+	load_player_frames(g);
+	load_coins_frames(g);
 	load_exits(g);
 	load_spaces(g);
 }

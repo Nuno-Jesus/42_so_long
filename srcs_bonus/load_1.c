@@ -1,39 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   load_rest.c                                        :+:      :+:    :+:   */
+/*   load_1.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 00:33:38 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/02/22 17:29:06 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/02/22 22:26:47 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long_bonus.h"
 
-void	load_right_player_frames(t_game *g)
-{
-	g->pframes[RIGHT].img = malloc(NUM_PLAYER_FRAMES * sizeof(void *));
-	if (!g->pframes[RIGHT].img)
-		message(g, "Failed allocation on right player frames\n");
-	g->pframes[RIGHT].img[0] = mlx_xpm_file_to_image(g->disp.mlx, FP1,
-			&(g->pframes[RIGHT].width), &(g->pframes[RIGHT].height));
-	g->pframes[RIGHT].img[1] = mlx_xpm_file_to_image(g->disp.mlx, FP2,
-			&(g->pframes[RIGHT].width), &(g->pframes[RIGHT].height));
-	g->pframes[RIGHT].img[2] = mlx_xpm_file_to_image(g->disp.mlx, FP3,
-			&(g->pframes[RIGHT].width), &(g->pframes[RIGHT].height));
-	g->pframes[RIGHT].img[3] = mlx_xpm_file_to_image(g->disp.mlx, FP4,
-			&(g->pframes[RIGHT].width), &(g->pframes[RIGHT].height));
-	g->pframes[RIGHT].img[4] = mlx_xpm_file_to_image(g->disp.mlx, FP5,
-			&(g->pframes[RIGHT].width), &(g->pframes[RIGHT].height));
-	g->pframes[RIGHT].img[5] = mlx_xpm_file_to_image(g->disp.mlx, FP6,
-			&(g->pframes[RIGHT].width), &(g->pframes[RIGHT].height));
-	g->pframes[RIGHT].img[6] = mlx_xpm_file_to_image(g->disp.mlx, FP7,
-			&(g->pframes[RIGHT].width), &(g->pframes[RIGHT].height));
-}
-
-void	load_left_player_frames(t_game *g)
+void	load_player_frames_2(t_game *g)
 {
 	g->pframes[LEFT].img = malloc(NUM_PLAYER_FRAMES * sizeof(t_sprite));
 	if (!g->pframes[LEFT].img)
@@ -54,7 +33,47 @@ void	load_left_player_frames(t_game *g)
 			&(g->pframes[LEFT].width), &(g->pframes[LEFT].height));
 }
 
-void	load_coins(t_game *g)
+void	load_player_frames(t_game *g)
+{
+	g->pframes[RIGHT].img = malloc(NUM_PLAYER_FRAMES * sizeof(void *));
+	if (!g->pframes[RIGHT].img)
+		message(g, "Failed allocation on right player frames\n");
+	g->pframes[RIGHT].img[0] = mlx_xpm_file_to_image(g->disp.mlx, FP1,
+			&(g->pframes[RIGHT].width), &(g->pframes[RIGHT].height));
+	g->pframes[RIGHT].img[1] = mlx_xpm_file_to_image(g->disp.mlx, FP2,
+			&(g->pframes[RIGHT].width), &(g->pframes[RIGHT].height));
+	g->pframes[RIGHT].img[2] = mlx_xpm_file_to_image(g->disp.mlx, FP3,
+			&(g->pframes[RIGHT].width), &(g->pframes[RIGHT].height));
+	g->pframes[RIGHT].img[3] = mlx_xpm_file_to_image(g->disp.mlx, FP4,
+			&(g->pframes[RIGHT].width), &(g->pframes[RIGHT].height));
+	g->pframes[RIGHT].img[4] = mlx_xpm_file_to_image(g->disp.mlx, FP5,
+			&(g->pframes[RIGHT].width), &(g->pframes[RIGHT].height));
+	g->pframes[RIGHT].img[5] = mlx_xpm_file_to_image(g->disp.mlx, FP6,
+			&(g->pframes[RIGHT].width), &(g->pframes[RIGHT].height));
+	g->pframes[RIGHT].img[6] = mlx_xpm_file_to_image(g->disp.mlx, FP7,
+			&(g->pframes[RIGHT].width), &(g->pframes[RIGHT].height));
+	load_player_frames_2(g);
+}
+
+void	load_coins_frames_2(t_game *g)
+{
+	g->cframes.img[8] = mlx_xpm_file_to_image(g->disp.mlx, FC8,
+			&(g->cframes.width), &(g->cframes.height));
+	g->cframes.img[9] = mlx_xpm_file_to_image(g->disp.mlx, FC9,
+			&(g->cframes.width), &(g->cframes.height));
+	g->cframes.img[10] = mlx_xpm_file_to_image(g->disp.mlx, FC10,
+			&(g->cframes.width), &(g->cframes.height));
+	g->cframes.img[11] = mlx_xpm_file_to_image(g->disp.mlx, FC11,
+			&(g->cframes.width), &(g->cframes.height));
+	g->cframes.img[12] = mlx_xpm_file_to_image(g->disp.mlx, FC12,
+			&(g->cframes.width), &(g->cframes.height));
+	g->cframes.img[13] = mlx_xpm_file_to_image(g->disp.mlx, FC13,
+			&(g->cframes.width), &(g->cframes.height));
+	g->cframes.img[14] = mlx_xpm_file_to_image(g->disp.mlx, FC14,
+			&(g->cframes.width), &(g->cframes.height));
+}
+
+void	load_coins_frames(t_game *g)
 {
 	g->cframes.img = malloc(NUM_COIN_FRAMES * sizeof(t_sprite));
 	if (!g->cframes.img)
@@ -75,30 +94,11 @@ void	load_coins(t_game *g)
 			&(g->cframes.width), &(g->cframes.height));
 	g->cframes.img[7] = mlx_xpm_file_to_image(g->disp.mlx, FC7,
 			&(g->cframes.width), &(g->cframes.height));
-	g->cframes.img[8] = mlx_xpm_file_to_image(g->disp.mlx, FC8,
-			&(g->cframes.width), &(g->cframes.height));
-	g->cframes.img[9] = mlx_xpm_file_to_image(g->disp.mlx, FC9,
-			&(g->cframes.width), &(g->cframes.height));
-	g->cframes.img[10] = mlx_xpm_file_to_image(g->disp.mlx, FC10,
-			&(g->cframes.width), &(g->cframes.height));
-	g->cframes.img[11] = mlx_xpm_file_to_image(g->disp.mlx, FC11,
-			&(g->cframes.width), &(g->cframes.height));
-	g->cframes.img[12] = mlx_xpm_file_to_image(g->disp.mlx, FC12,
-			&(g->cframes.width), &(g->cframes.height));
-	g->cframes.img[13] = mlx_xpm_file_to_image(g->disp.mlx, FC13,
-			&(g->cframes.width), &(g->cframes.height));
-	g->cframes.img[14] = mlx_xpm_file_to_image(g->disp.mlx, FC14,
-			&(g->cframes.width), &(g->cframes.height));
+	load_coins_frames_2(g);
 }
 
 void	load_exits(t_game *g)
 {
 	g->sp.img[E1] = mlx_xpm_file_to_image(g->disp.mlx, FE1,
-			&(g->sp.width), &(g->sp.height));
-}
-
-void	load_spaces(t_game *g)
-{
-	g->sp.img[S1] = mlx_xpm_file_to_image(g->disp.mlx, FS1,
 			&(g->sp.width), &(g->sp.height));
 }

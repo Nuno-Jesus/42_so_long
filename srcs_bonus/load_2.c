@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   load_walls.c                                       :+:      :+:    :+:   */
+/*   load_.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 00:29:38 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/02/22 16:47:44 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/02/22 22:14:09 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,12 @@ void	load_walls_3(t_game *g)
 	g->sp.img[CORNER_BUL] = mlx_xpm_file_to_image(g->disp.mlx, FW30,
 			&(g->sp.width), &(g->sp.height));
 	g->sp.img[CORNER_BUR] = mlx_xpm_file_to_image(g->disp.mlx, FW31,
+			&(g->sp.width), &(g->sp.height));
+}
+
+void	load_spaces(t_game *g)
+{
+	g->sp.img[S1] = mlx_xpm_file_to_image(g->disp.mlx, FS1,
 			&(g->sp.width), &(g->sp.height));
 }
 

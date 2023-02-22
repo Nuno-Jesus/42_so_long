@@ -6,17 +6,11 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 14:13:49 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/02/22 10:24:27 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/02/22 22:18:22 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
-int	quit(t_game *game)
-{
-	destroy_game(game);
-	exit(EXIT_SUCCESS);
-}
 
 int	move_handler(int keycode, t_game *game)
 {

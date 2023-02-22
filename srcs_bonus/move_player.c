@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 14:54:58 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/02/22 21:12:17 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/02/22 22:03:52 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	move_player(t_game *g)
 			if (is_same_point(g->coins[i].pos, g->next))
 			{
 				g->coins[i].pos = (t_point){-1, -1};
-				break;
+				break ;
 			}
 		}
 	}
