@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 21:38:07 by crypto            #+#    #+#             */
-/*   Updated: 2023/02/22 10:47:24 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/02/22 12:05:39 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,10 +97,13 @@ typedef struct s_game
 	t_point			curr;
 	t_point			next;
 	t_display		disp;
+	t_point			*coins_pos;
 	t_sprite		*sp;
 	t_sprite		**pframes;
+	t_sprite		*cframes;
 	t_direction		player_dir;
 	int				player_frame;
+	int				coin_frame;
 	unsigned int	coins;
 	unsigned int	moves;
 }				t_game;
@@ -165,6 +168,8 @@ void		destroy_sprites(t_game *g);
 void		destroy_map(t_map *map);
 
 //!_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/ INIT \_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_ 
+
+void		init_positions(t_game *g);
 
 /**
  * @brief This function has several roles: to read and parse the map from

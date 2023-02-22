@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 02:39:13 by marvin            #+#    #+#             */
-/*   Updated: 2023/02/22 10:49:21 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/02/22 12:18:59 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ void	render_counter(t_game *g)
 int	render_frame(t_game *g)
 {
 	animate_player(g);
+	animate_coins(g);
 	if (!is_valid_movement(g))
 		return (0);
 	render_counter(g);

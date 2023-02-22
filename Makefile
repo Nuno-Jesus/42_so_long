@@ -67,7 +67,6 @@ $(OBJ_DIR)/%.o : $(SRCS)/%.c
 $(OBJ_DIR) :
 	mkdir -p $(OBJ_DIR)
 
-
 clean:
 	make clean $(MKFLAGS) -C $(LIBFT)
 	make clean $(MKFLAGS) -C $(GNL)
