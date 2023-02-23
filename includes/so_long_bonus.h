@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long_bonus.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 21:38:07 by crypto            #+#    #+#             */
-/*   Updated: 2023/02/23 21:41:52 by crypto           ###   ########.fr       */
+/*   Updated: 2023/02/23 22:19:18 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,8 +87,9 @@ typedef struct s_display
 
 typedef struct s_entity
 {
-	int		current_frame;
-	t_point	pos;
+	int			frame;
+	t_direction	dir;
+	t_point		pos;
 }				t_entity;
 
 /**
@@ -113,7 +114,6 @@ typedef struct s_game
 	t_entity		*coins;
 	t_entity		*player;
 	t_entity		*enemies;
-	t_direction		player_dir;
 	int				player_frame;
 	int				coin_frame;
 	unsigned int	collected;

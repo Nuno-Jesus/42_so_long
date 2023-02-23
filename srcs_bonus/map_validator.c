@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   validator.c                                        :+:      :+:    :+:   */
+/*   map_validator.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/07 18:11:40 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/02/21 02:18:17 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/02/23 22:06:57 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,6 @@ bool	has_valid_entities(t_game *g)
 			{
 				g->map->num_players++;
 				g->curr = (t_point){k, i};
-				g->next = g->curr;
 			}
 			else if (g->map->bytes[i][k] == EXIT)
 				g->map->num_exits++;

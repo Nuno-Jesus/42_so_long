@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 02:39:13 by marvin            #+#    #+#             */
-/*   Updated: 2023/02/22 22:27:59 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/02/23 22:04:26 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,12 @@ void	render_tile(t_game *g, t_point p)
 	else if (g->map->bytes[p.y][p.x] == PLAYER)
 	{
 		sp = &g->pframes[RIGHT];
-		sp->curr = g->player->current_frame;
+		sp->curr = g->player->frame;
 	}
 	else if (g->map->bytes[p.y][p.x] == COIN)
 	{
 		sp = &g->cframes;
-		sp->curr = g->coins->current_frame;
+		sp->curr = g->coins->frame;
 	}
 	else
 		return ;

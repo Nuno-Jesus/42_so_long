@@ -6,29 +6,29 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 14:13:49 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/02/22 22:25:38 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/02/23 22:17:30 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long_bonus.h"
 
-int	move_handler(int keycode, t_game *game)
+int	move_handler(int keycode, t_game *g)
 {
 	if (keycode == ESC)
-		quit(game);
+		quit(g);
 	else if (keycode == W)
-		game->next = (t_point){game->curr.x, game->curr.y - 1};
+		g->next = (t_point){g->curr.x, g->curr.y - 1};
 	else if (keycode == A)
 	{
-		game->next = (t_point){game->curr.x - 1, game->curr.y};
-		game->player_dir = LEFT;
+		g->next = (t_point){g->curr.x - 1, g->curr.y};
+		g->player->dir = LEFT;
 	}
 	else if (keycode == S)
-		game->next = (t_point){game->curr.x, game->curr.y + 1};
+		g->next = (t_point){g->curr.x, g->curr.y + 1};
 	else if (keycode == D)
 	{
-		game->next = (t_point){game->curr.x + 1, game->curr.y};
-		game->player_dir = RIGHT;
+		g->next = (t_point){g->curr.x + 1, g->curr.y};
+		g->player->dir = RIGHT;
 	}
 	return (keycode);
 }
@@ -72,11 +72,10 @@ void	init_entities(t_game *g)
 	g->coins = malloc(g->map->num_coins * sizeof(t_entity));
 	if (!g->coins)
 		message(g, "Failed allocation on coins entity array\n");
-	g->player = malloc(sizeof(t_entity));
+	g->player = ft_calloc(1, sizeof(t_entity));
 	if (!g->player)
 		message(g, "Failed allocation on player entity array\n");
 	g->player->pos = g->curr;
-	g->player->current_frame = 0;
 	i = 0;
 	p = (t_point){-1, -1};
 	while (++p.y < g->map->rows)
@@ -86,7 +85,7 @@ void	init_entities(t_game *g)
 		{
 			if (at(g, p) == COIN)
 			{
-				g->coins[i].current_frame = rand() % NUM_COIN_FRAMES;
+				g->coins[i].frame = rand() % NUM_COIN_FRAMES;
 				g->coins[i++].pos = p;
 			}
 		}
