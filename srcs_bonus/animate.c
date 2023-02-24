@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 10:48:55 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/02/24 06:44:52 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/02/24 07:11:52 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,10 @@ void	animate(t_game *g, t_entity *ent, t_sprite *frames, int n)
 	int	i;
 
 	i = -1;
-	if (++ent->curr_speed % ent->speed != 0)
-		return ;
 	while (++i < n)
 	{
+		if (++ent[i].curr_speed % ent[i].speed != 0)
+			continue ;
 		if (is_same_point(ent[i].pos, (t_point){-1, -1}))
 			continue ;
 		if (++ent[i].freq % ent[i].frame_freq == 0)
