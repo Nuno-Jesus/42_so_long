@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 00:33:38 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/02/24 04:45:34 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/02/24 06:04:00 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ void	load_player_frames_2(t_game *g)
 	g->pframes[LEFT].img = malloc(NUM_PLAYER_FRAMES * sizeof(t_sprite));
 	if (!g->pframes[LEFT].img)
 		message(g, "Failed allocation on left player frames\n");
+	g->pframes[LEFT].nframes = NUM_PLAYER_FRAMES;
 	g->pframes[LEFT].img[0] = mlx_xpm_file_to_image(g->disp.mlx, FP8,
 			&(g->pframes[LEFT].width), &(g->pframes[LEFT].height));
 	g->pframes[LEFT].img[1] = mlx_xpm_file_to_image(g->disp.mlx, FP9,
@@ -38,6 +39,7 @@ void	load_player_frames(t_game *g)
 	g->pframes[RIGHT].img = malloc(NUM_PLAYER_FRAMES * sizeof(void *));
 	if (!g->pframes[RIGHT].img)
 		message(g, "Failed allocation on right player frames\n");
+	g->pframes[RIGHT].nframes = NUM_PLAYER_FRAMES;
 	g->pframes[RIGHT].img[0] = mlx_xpm_file_to_image(g->disp.mlx, FP1,
 			&(g->pframes[RIGHT].width), &(g->pframes[RIGHT].height));
 	g->pframes[RIGHT].img[1] = mlx_xpm_file_to_image(g->disp.mlx, FP2,
@@ -78,6 +80,7 @@ void	load_coins_frames(t_game *g)
 	g->cframes.img = malloc(NUM_COIN_FRAMES * sizeof(t_sprite));
 	if (!g->cframes.img)
 		message(g, "Failed allocation on potions frames\n");
+	g->cframes.nframes = NUM_COIN_FRAMES;
 	g->cframes.img[0] = mlx_xpm_file_to_image(g->disp.mlx, FC1,
 			&(g->cframes.width), &(g->cframes.height));
 	g->cframes.img[1] = mlx_xpm_file_to_image(g->disp.mlx, FC1,

@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 14:13:49 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/02/24 04:56:29 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/02/24 05:47:52 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ void	init_enemies(t_game *g)
 		{
 			if (at(g, p) != ENEMY)
 				continue ;
-			g->enemies[i].frame = rand() % NUM_PLAYER_FRAMES;
+			g->enemies[i].frame = rand() % NUM_ENEMY_FRAMES;
 			g->enemies[i++].pos = p;
 		}
 	}

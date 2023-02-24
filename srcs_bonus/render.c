@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 02:39:13 by marvin            #+#    #+#             */
-/*   Updated: 2023/02/24 04:55:15 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/02/24 05:55:49 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,30 +21,23 @@ void	render_sprite(t_game *g, t_sprite *s, t_point p, int frame)
 void	render_tile(t_game *g, t_point p)
 {
 	t_sprite	*sp;
+	int			frame;
 
 	sp = &g->sp;
+	frame = 0;
 	if (g->map->bytes[p.y][p.x] == EXIT)
-		sp->curr = E1;
+		frame = E1;
 	else if (g->map->bytes[p.y][p.x] == SPACE)
-		sp->curr = S1;
+		frame = S1;
 	else if (g->map->bytes[p.y][p.x] == PLAYER)
-	{
 		sp = &g->pframes[RIGHT];
-		sp->curr = g->player.frame;
-	}
 	else if (g->map->bytes[p.y][p.x] == COIN)
-	{
 		sp = &g->cframes;
-		sp->curr = g->coins->frame;
-	}
 	else if (g->map->bytes[p.y][p.x] == ENEMY)
-	{
 		sp = &g->eframes[RIGHT];
-		sp->curr = g->enemies->frame;
-	}
 	else
 		return ;
-	render_sprite(g, sp, p, sp->curr);
+	render_sprite(g, sp, p, frame);
 }
 
 void	render_map(t_game *g)

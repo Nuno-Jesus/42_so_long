@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/07 11:53:02 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/02/24 03:12:43 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/02/24 05:31:12 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void	destroy_sprites(t_game *g)
 			mlx_destroy_image(g->disp.mlx, g->pframes[k].img[i]);
 		free(g->pframes[k].img);
 		i = -1;
-		while (++i < NUM_PLAYER_FRAMES)
+		while (++i < NUM_ENEMY_FRAMES)
 			mlx_destroy_image(g->disp.mlx, g->eframes[k].img[i]);
 		free(g->eframes[k].img);
 	}

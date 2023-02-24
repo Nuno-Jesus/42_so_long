@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 02:39:20 by marvin            #+#    #+#             */
-/*   Updated: 2023/02/24 04:03:44 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/02/24 05:28:11 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@
 # define NUM_WALLS			33
 # define NUM_PLAYER_FRAMES	7
 # define NUM_COIN_FRAMES	15
+# define NUM_ENEMY_FRAMES	4
 
 //! Sprite refreshing frequency
 # define ANIMATE_CALLS		250
@@ -99,7 +100,6 @@
 # define FP14		"images/bonus/player/left_player_7.xpm"
 
 //! Potion frames
-
 # define FC1 		"images/bonus/potions/potion_1.xpm"
 # define FC2 		"images/bonus/potions/potion_2.xpm"
 # define FC3 		"images/bonus/potions/potion_3.xpm"
@@ -115,6 +115,16 @@
 # define FC13 		"images/bonus/potions/potion_13.xpm"
 # define FC14 		"images/bonus/potions/potion_14.xpm"
 # define FC15 		"images/bonus/potions/potion_15.xpm"
+
+//! Enemy frames
+# define FM1		"images/bonus/enemies/left_enemy_1.xpm"
+# define FM2		"images/bonus/enemies/left_enemy_2.xpm"
+# define FM3		"images/bonus/enemies/left_enemy_3.xpm"
+# define FM4		"images/bonus/enemies/left_enemy_4.xpm"
+# define FM5		"images/bonus/enemies/right_enemy_1.xpm"
+# define FM6		"images/bonus/enemies/right_enemy_2.xpm"
+# define FM7		"images/bonus/enemies/right_enemy_3.xpm"
+# define FM8		"images/bonus/enemies/right_enemy_4.xpm"
 
 //! Rest sprites
 # define FS1		"images/bonus/space.xpm"
