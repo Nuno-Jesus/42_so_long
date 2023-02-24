@@ -6,12 +6,30 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 10:48:55 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/02/24 06:04:15 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/02/24 06:44:52 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long_bonus.h"
 
+void	animate(t_game *g, t_entity *ent, t_sprite *frames, int n)
+{
+	int	i;
+
+	i = -1;
+	if (++ent->curr_speed % ent->speed != 0)
+		return ;
+	while (++i < n)
+	{
+		if (is_same_point(ent[i].pos, (t_point){-1, -1}))
+			continue ;
+		if (++ent[i].freq % ent[i].frame_freq == 0)
+			ent[i].frame = (ent[i].frame + 1) % frames->nframes;
+		render(g, &g->sp, ent[i].pos, S1);
+		render(g, &frames[ent[i].dir], ent[i].pos, ent[i].frame);
+	}
+}
+/* 
 void	animate_player(t_game *g)
 {
 	static int	calls = 0;
@@ -22,10 +40,11 @@ void	animate_player(t_game *g)
 	if (++freq % CALLS_PER_FRAME == 0)
 		g->player.frame = \
 			(g->player.frame + 1) % g->pframes[g->player.dir].nframes;
-	render_sprite(g, &g->sp, g->player.pos, S1);
-	render_sprite(g, &g->pframes[g->player.dir], \
+	render(g, &g->sp, g->player.pos, S1);
+	render(g, &g->pframes[g->player.dir], \
 		g->player.pos, g->player.frame);
 }
+
 
 void	animate_coins(t_game *g)
 {
@@ -44,8 +63,8 @@ void	animate_coins(t_game *g)
 			continue ;
 		g->coins[i].frame = \
 			(g->coins[i].frame + 1) % g->cframes.nframes;
-		render_sprite(g, &g->sp, g->coins[i].pos, S1);
-		render_sprite(g, &g->cframes, \
+		render(g, &g->sp, g->coins[i].pos, S1);
+		render(g, &g->cframes, \
 			g->coins[i].pos, g->coins[i].frame);
 	}			
 }
@@ -67,8 +86,9 @@ void	animate_enemies(t_game *g)
 			continue ;
 		g->enemies[i].frame = \
 			(g->enemies[i].frame + 1) % g->eframes[g->enemies[i].dir].nframes;
-		render_sprite(g, &g->sp, g->enemies[i].pos, S1);
-		render_sprite(g, &g->eframes[g->enemies[i].dir], \
+		render(g, &g->sp, g->enemies[i].pos, S1);
+		render(g, &g->eframes[g->enemies[i].dir], \
 			g->enemies[i].pos, g->enemies[i].frame);
 	}
 }
+ */

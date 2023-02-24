@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 14:13:49 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/02/24 05:47:52 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/02/24 06:24:25 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,8 @@ void	init_coins(t_game *g)
 			if (at(g, p) != COIN)
 				continue ;
 			g->coins[i].frame = rand() % NUM_COIN_FRAMES;
+			g->coins[i].frame_freq = CALLS_PER_FRAME;
+			g->coins[i].speed = ANIMATE_CALLS;
 			g->coins[i++].pos = p;
 		}
 	}
@@ -88,9 +90,17 @@ void	init_enemies(t_game *g)
 			if (at(g, p) != ENEMY)
 				continue ;
 			g->enemies[i].frame = rand() % NUM_ENEMY_FRAMES;
+			g->enemies[i].frame_freq = CALLS_PER_FRAME;
+			g->enemies[i].speed = ANIMATE_CALLS;
 			g->enemies[i++].pos = p;
 		}
 	}
+}
+
+void	init_player(t_game *g)
+{
+	g->player.frame_freq = CALLS_PER_FRAME;
+	g->player.speed = ANIMATE_CALLS;
 }
 
 void	init_game(char *filename)
@@ -98,11 +108,13 @@ void	init_game(char *filename)
 	t_game	g;
 
 	ft_bzero(&g, sizeof(t_game));
+	ft_bzero(&g.player, sizeof(t_entity));
 	read_map(&g, filename);
 	validate_map(&g);
 	init_graphics(&g);
-	init_coins(&g);
+	init_player(&g);
 	init_enemies(&g);
+	init_coins(&g);
 	load_sprites(&g);
 	render_map(&g);
 	mlx_hook(g.disp.win, ON_KEYPRESS, KEYPRESS_MASK, move_handler, &g);

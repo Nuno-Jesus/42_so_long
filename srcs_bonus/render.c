@@ -6,13 +6,13 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 02:39:13 by marvin            #+#    #+#             */
-/*   Updated: 2023/02/24 05:55:49 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/02/24 06:26:26 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long_bonus.h"
 
-void	render_sprite(t_game *g, t_sprite *s, t_point p, int frame)
+void	render(t_game *g, t_sprite *s, t_point p, int frame)
 {
 	mlx_put_image_to_window(g->disp.mlx, g->disp.win, s->img[frame], \
 		p.x * s->width + XOFFSET, p.y * s->height);
@@ -37,7 +37,7 @@ void	render_tile(t_game *g, t_point p)
 		sp = &g->eframes[RIGHT];
 	else
 		return ;
-	render_sprite(g, sp, p, frame);
+	render(g, sp, p, frame);
 }
 
 void	render_map(t_game *g)
@@ -72,9 +72,12 @@ void	render_counter(t_game *g)
 
 int	render_frame(t_game *g)
 {
-	animate_player(g);
-	animate_enemies(g);
-	animate_coins(g);
+	// animate_player(g);
+	// animate_enemies(g);
+	// animate_coins(g);
+	animate(g, &g->player, g->pframes, 1);
+	animate(g, g->enemies, g->eframes, g->map->num_enemies);
+	animate(g, g->coins, &g->cframes, g->map->num_coins);
 	move_enemies(g);
 	if (can_player_move(g, &g->player))
 	{

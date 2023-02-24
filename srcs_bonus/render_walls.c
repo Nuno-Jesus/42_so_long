@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 02:14:19 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/02/22 17:07:07 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/02/24 06:08:35 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,7 @@ void	render_inner_walls(t_game *g)
 			if (at(g, p) != WALL)
 				continue ;
 			g->sp.curr = pick_wall_sprite((t_point){p.x + 1, p.y + 1}, mat);
-			render_sprite(g, &g->sp, p, g->sp.curr);
+			render(g, &g->sp, p, g->sp.curr);
 		}
 	}
 	ft_delete_matrix(mat);
@@ -111,14 +111,14 @@ void	render_outter_walls(t_game *g)
 
 	i = 0;
 	while (++i < g->map->cols - 1)
-		render_sprite(g, &g->sp, (t_point){i, 0}, WALL_U);
+		render(g, &g->sp, (t_point){i, 0}, WALL_U);
 	i = -1;
 	while (++i < g->map->cols)
-		render_sprite(g, &g->sp, (t_point){i, g->map->rows - 1}, WALL_U);
+		render(g, &g->sp, (t_point){i, g->map->rows - 1}, WALL_U);
 	i = -1;
 	while (++i < g->map->rows - 1)
 	{
-		render_sprite(g, &g->sp, (t_point){0, i}, WALL_L);
-		render_sprite(g, &g->sp, (t_point){g->map->cols - 1, i}, WALL_R);
+		render(g, &g->sp, (t_point){0, i}, WALL_L);
+		render(g, &g->sp, (t_point){g->map->cols - 1, i}, WALL_R);
 	}
 }

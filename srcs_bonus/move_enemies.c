@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 04:35:13 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/02/24 04:44:37 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/02/24 06:43:27 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,13 @@ void	generate_move(t_game *g, t_entity *e)
 	{
 		offset = 1 - (rand() % 3);
 		if (rand() % 2)
+		{
 			e->next = (t_point){e->pos.x + offset, e->pos.y};
+			if (offset < 0)
+				e->dir = LEFT;
+			else
+				e->dir = RIGHT;
+		}
 		else
 			e->next = (t_point){e->pos.x, e->pos.y + offset};
 		if (can_enemy_move(g, e))

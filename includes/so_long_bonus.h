@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 21:38:07 by crypto            #+#    #+#             */
-/*   Updated: 2023/02/24 04:55:45 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/02/24 06:33:40 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,10 @@ typedef struct s_display
 typedef struct s_entity
 {
 	int			frame;
+	int			freq;
+	int			frame_freq;
+	int			speed;
+	int			curr_speed;
 	t_direction	dir;
 	t_point		pos;
 	t_point		next;
@@ -111,12 +115,12 @@ typedef struct s_game
 	t_point			enext;
 	t_display		disp;
 	t_sprite		sp;
-	t_entity		*coins;
+	t_sprite		*pframes;
+	t_sprite		*eframes;
 	t_sprite		cframes;
 	t_entity		player;
-	t_sprite		*pframes;
 	t_entity		*enemies;
-	t_sprite		*eframes;
+	t_entity		*coins;
 	unsigned int	collected;
 	unsigned int	moves;
 }					t_game;
@@ -130,6 +134,8 @@ void		animate_player(t_game *g);
 void		animate_enemies(t_game *g);
 
 void		animate_coins(t_game *g);
+
+void	animate(t_game *g, t_entity *ent, t_sprite *frames, int n);
 
 /**
  * @brief Given the filename passed as argument, it checks if the filename
@@ -290,7 +296,7 @@ bool		can_player_move(t_game *g, t_entity *e);
 
 //!_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_ RENDER _/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_ 
 
-void		render_sprite(t_game *g, t_sprite *s, t_point p, int frame);
+void		render(t_game *g, t_sprite *s, t_point p, int frame);
 /**
  * @brief Given a pair of coordinates, it renders a map tile. Depending on the
  * entity in that tile it renders a different image.
