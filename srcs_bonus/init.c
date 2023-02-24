@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 14:13:49 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/02/23 22:17:30 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/02/24 01:56:16 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,17 +66,20 @@ void	init_game(char *filename)
 
 void	init_entities(t_game *g)
 {
-	int		i;
+	t_point	f;
 	t_point	p;
 
-	g->coins = malloc(g->map->num_coins * sizeof(t_entity));
+	g->coins = ft_calloc(g->map->num_coins, sizeof(t_entity));
 	if (!g->coins)
 		message(g, "Failed allocation on coins entity array\n");
+	g->enemies = ft_calloc(g->map->num_enemies, sizeof(t_entity)); 
+	if (!g->enemies)
+		message(g, "Failed allocation on enemies entity array\n");
 	g->player = ft_calloc(1, sizeof(t_entity));
 	if (!g->player)
 		message(g, "Failed allocation on player entity array\n");
 	g->player->pos = g->curr;
-	i = 0;
+	f = (t_point){0, 0};
 	p = (t_point){-1, -1};
 	while (++p.y < g->map->rows)
 	{
@@ -85,8 +88,13 @@ void	init_entities(t_game *g)
 		{
 			if (at(g, p) == COIN)
 			{
-				g->coins[i].frame = rand() % NUM_COIN_FRAMES;
-				g->coins[i++].pos = p;
+				g->coins[f.x].frame = rand() % NUM_COIN_FRAMES;
+				g->coins[f.x++].pos = p;
+			}
+			else if (at(g, p) == ENEMY)
+			{
+				g->enemies[f.y].frame = rand() % NUM_PLAYER_FRAMES;
+				g->enemies[f.y++].pos = p;
 			}
 		}
 	}
@@ -100,8 +108,12 @@ void	load_sprites(t_game *g)
 	g->pframes = malloc(2 * sizeof(t_sprite));
 	if (!g->pframes)
 		message(g, "Failed allocation on player frames array\n");
+	g->eframes = malloc(2 * sizeof(t_sprite));
+	if (!g->eframes)
+		message(g, "Failed allocation on enemy frames array\n");
 	load_walls(g);
 	load_player_frames(g);
+	load_enemy_frames(g);
 	load_coins_frames(g);
 	load_exits(g);
 	load_spaces(g);

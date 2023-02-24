@@ -6,7 +6,7 @@
 /*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 02:39:20 by marvin            #+#    #+#             */
-/*   Updated: 2023/02/23 21:44:26 by crypto           ###   ########.fr       */
+/*   Updated: 2023/02/24 00:01:44 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@
 
 # define DIRECTIONS			2
 # define XOFFSET			-16
-# define ENTITIES			"01CEP"
+# define ENTITIES			"01CEPM"
 
 //! Sprite counters
 # define NUM_WALLS			33
@@ -39,7 +39,7 @@
 
 //! Sprite refreshing frequency
 # define CALLS				250
-# define CALLS_PER_FRAME	48
+# define CALLS_PER_FRAME	16
 
 //! Binary map needed macros
 # define DIFF				0
@@ -128,7 +128,8 @@ typedef enum e_type
 	WALL = '1',
 	COIN = 'C',
 	EXIT = 'E',
-	PLAYER = 'P'
+	PLAYER = 'P',
+	ENEMY = 'M'
 }			t_type;
 
 typedef enum e_direction

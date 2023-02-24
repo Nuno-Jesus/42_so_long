@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long_bonus.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 21:38:07 by crypto            #+#    #+#             */
-/*   Updated: 2023/02/23 22:19:18 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/02/24 01:57:57 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ typedef struct s_map
 	unsigned int	num_coins;
 	unsigned int	num_exits;
 	unsigned int	num_players;
+	unsigned int	num_enemies;
 }				t_map;
 
 /**
@@ -90,6 +91,7 @@ typedef struct s_entity
 	int			frame;
 	t_direction	dir;
 	t_point		pos;
+	void		(*strategy)();
 }				t_entity;
 
 /**
@@ -107,15 +109,15 @@ typedef struct s_game
 	t_map			*map;	
 	t_point			curr;
 	t_point			next;
+	t_point			enext;
 	t_display		disp;
-	t_sprite		cframes;
 	t_sprite		sp;
-	t_sprite		*pframes;
 	t_entity		*coins;
+	t_sprite		cframes;
 	t_entity		*player;
+	t_sprite		*pframes;
 	t_entity		*enemies;
-	int				player_frame;
-	int				coin_frame;
+	t_sprite		*eframes;
 	unsigned int	collected;
 	unsigned int	moves;
 }					t_game;
@@ -126,7 +128,9 @@ typedef struct s_game
 
 void		animate_player(t_game *g);
 
-void		animate_coins(t_game *g);	
+void		animate_enemies(t_game *g);
+
+void		animate_coins(t_game *g);
 
 /**
  * @brief Given the filename passed as argument, it checks if the filename
@@ -152,6 +156,7 @@ bool		is_filename_valid(char *filename);
  * otherwise 
  */
 bool		flood_fill(t_map *map, t_point curr, char **maze);
+
 //!_/=\_/=\_/=\_/=\_/=\_/=\_/=\ BINARY_WALL_MAP /=\_/=\_/=\_/=\_/=\_/=\_/=\_
 bool		has_diags(int **mat, t_point *p, char *diagonals);
 
@@ -252,6 +257,8 @@ void		load_coins_frames(t_game *g);
 void		load_exits(t_game *g);
 
 void		load_spaces(t_game *g);
+
+void		load_enemy_frames(t_game *g);
 //!_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/= MOVE_PLAYER =\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
 
 /**

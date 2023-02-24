@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_validator.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/07 18:11:40 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/02/23 22:06:57 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/02/24 00:01:57 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,8 @@ bool	has_valid_entities(t_game *g)
 				g->map->num_exits++;
 			else if (g->map->bytes[i][k] == COIN)
 				g->map->num_coins++;
+			else if (g->map->bytes[i][k] == ENEMY)
+				g->map->num_enemies++;
 			else if (!ft_strchr(ENTITIES, g->map->bytes[i][k]))
 				return (false);
 		}

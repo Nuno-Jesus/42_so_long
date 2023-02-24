@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   animate.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 10:48:55 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/02/23 22:15:54 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/02/24 01:50:36 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,4 +48,27 @@ void	animate_coins(t_game *g)
 		render_sprite(g, &g->cframes, \
 			g->coins[i].pos, g->coins[i].frame);
 	}			
+}
+
+void	animate_enemies(t_game *g)
+{
+	static int		calls = 0;
+	static int		freq = 0;
+	unsigned int	i;
+
+	i = -1;
+	if (++calls % CALLS != 0)
+		return ;
+	if (++freq % CALLS_PER_FRAME != 0)
+		return ;
+	while (++i < g->map->num_enemies)
+	{
+		if (is_same_point(g->enemies[i].pos, (t_point){-1, -1}))
+			continue ;
+		g->enemies[i].frame = \
+			(g->enemies[i].frame + 1) % NUM_PLAYER_FRAMES;
+		render_sprite(g, &g->sp, g->enemies[i].pos, S1);
+		render_sprite(g, &g->eframes[g->enemies[i].dir], \
+			g->enemies[i].pos, g->enemies[i].frame);
+	}
 }
