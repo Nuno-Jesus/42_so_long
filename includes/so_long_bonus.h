@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long_bonus.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 21:38:07 by crypto            #+#    #+#             */
-/*   Updated: 2023/02/24 01:57:57 by crypto           ###   ########.fr       */
+/*   Updated: 2023/02/24 03:20:18 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,7 @@ typedef struct s_entity
 	int			frame;
 	t_direction	dir;
 	t_point		pos;
+	t_point		next;
 	void		(*strategy)();
 }				t_entity;
 
@@ -107,14 +108,12 @@ typedef struct s_entity
 typedef struct s_game
 {
 	t_map			*map;	
-	t_point			curr;
-	t_point			next;
 	t_point			enext;
 	t_display		disp;
 	t_sprite		sp;
 	t_entity		*coins;
 	t_sprite		cframes;
-	t_entity		*player;
+	t_entity		player;
 	t_sprite		*pframes;
 	t_entity		*enemies;
 	t_sprite		*eframes;
@@ -276,9 +275,10 @@ void		move_player(t_game *game);
  * move that's not necessary)
  * 
  * @param g The t_game struct to use
+ * @param e The entity that should be moved
  * @return true if the move is valid, false otherwise 
  */
-bool		is_valid_movement(t_game *g);
+bool	is_valid_movement(t_game *g, t_entity *e);
 
 //!_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_ RENDER _/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_ 
 
@@ -387,7 +387,7 @@ bool		has_valid_entities(t_game *g);
  * @param game The t_game struct to use
  * @return true if the map is playable, false otherwise 
  */
-bool		has_valid_path(t_game *game);
+bool		has_valid_path(t_game *g);
 
 /**
  * @brief This function is used merely to call the other validator
@@ -397,7 +397,7 @@ bool		has_valid_path(t_game *game);
  * 
  * @param game The t_game struct to use
  */
-void		validate_map(t_game *game);
+void		validate_map(t_game *g);
 
 //!_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\ UTILS _/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_ 
 

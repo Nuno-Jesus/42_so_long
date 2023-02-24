@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   macros_bonus.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 02:39:20 by marvin            #+#    #+#             */
-/*   Updated: 2023/02/24 00:01:44 by crypto           ###   ########.fr       */
+/*   Updated: 2023/02/24 02:51:03 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@
 
 //! Sprite refreshing frequency
 # define CALLS				250
-# define CALLS_PER_FRAME	16
+# define CALLS_PER_FRAME	48
 
 //! Binary map needed macros
 # define DIFF				0

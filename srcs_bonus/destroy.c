@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   destroy.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/07 11:53:02 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/02/24 01:54:43 by crypto           ###   ########.fr       */
+/*   Updated: 2023/02/24 03:12:43 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,6 @@ void	destroy_game(t_game *game)
 		return ;
 	if (game->coins)
 		free(game->coins);
-	if (game->player)
-		free(game->player);
 	if (game->enemies)
 		free(game->enemies);
 	destroy_sprites(game);

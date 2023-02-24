@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   animate.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 10:48:55 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/02/24 01:50:36 by crypto           ###   ########.fr       */
+/*   Updated: 2023/02/24 03:10:47 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,11 @@ void	animate_player(t_game *g)
 	if (++calls % CALLS != 0)
 		return ;
 	if (++freq % CALLS_PER_FRAME == 0)
-		g->player->frame = \
-			(g->player->frame + 1) % NUM_PLAYER_FRAMES;
-	render_sprite(g, &g->sp, g->curr, S1);
-	render_sprite(g, &g->pframes[g->player->dir], \
-		g->curr, g->player->frame);
+		g->player.frame = \
+			(g->player.frame + 1) % NUM_PLAYER_FRAMES;
+	render_sprite(g, &g->sp, g->player.pos, S1);
+	render_sprite(g, &g->pframes[g->player.dir], \
+		g->player.pos, g->player.frame);
 }
 
 void	animate_coins(t_game *g)

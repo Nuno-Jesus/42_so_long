@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 02:39:13 by marvin            #+#    #+#             */
-/*   Updated: 2023/02/24 01:52:58 by crypto           ###   ########.fr       */
+/*   Updated: 2023/02/24 03:13:13 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	render_tile(t_game *g, t_point p)
 	else if (g->map->bytes[p.y][p.x] == PLAYER)
 	{
 		sp = &g->pframes[RIGHT];
-		sp->curr = g->player->frame;
+		sp->curr = g->player.frame;
 	}
 	else if (g->map->bytes[p.y][p.x] == COIN)
 	{
@@ -82,17 +82,17 @@ int	render_frame(t_game *g)
 	animate_player(g);
 	animate_enemies(g);
 	animate_coins(g);
-	if (!is_valid_movement(g))
+	if (!is_valid_movement(g, &g->player))
 		return (0);
 	render_counter(g);
-	if (at(g, g->next) == COIN)
+	if (at(g, g->player.next) == COIN)
 		g->collected++;
-	else if (at(g, g->next) == ENEMY)
+	else if (at(g, g->player.next) == ENEMY)
 	{
 		ft_putstr_fd("Game over.\n", STDOUT_FILENO);
 		quit(g);
 	}
-	else if (at(g, g->next) == EXIT && g->collected == g->map->num_coins)
+	else if (at(g, g->player.next) == EXIT && g->collected == g->map->num_coins)
 		quit(g);
 	move_player(g);
 	return (0);

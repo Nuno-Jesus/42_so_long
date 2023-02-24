@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 14:13:49 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/02/24 01:56:16 by crypto           ###   ########.fr       */
+/*   Updated: 2023/02/24 03:19:48 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,18 +17,18 @@ int	move_handler(int keycode, t_game *g)
 	if (keycode == ESC)
 		quit(g);
 	else if (keycode == W)
-		g->next = (t_point){g->curr.x, g->curr.y - 1};
+		g->player.next = (t_point){g->player.pos.x, g->player.pos.y - 1};
 	else if (keycode == A)
 	{
-		g->next = (t_point){g->curr.x - 1, g->curr.y};
-		g->player->dir = LEFT;
+		g->player.next = (t_point){g->player.pos.x - 1, g->player.pos.y};
+		g->player.dir = LEFT;
 	}
 	else if (keycode == S)
-		g->next = (t_point){g->curr.x, g->curr.y + 1};
+		g->player.next = (t_point){g->player.pos.x, g->player.pos.y + 1};
 	else if (keycode == D)
 	{
-		g->next = (t_point){g->curr.x + 1, g->curr.y};
-		g->player->dir = RIGHT;
+		g->player.next = (t_point){g->player.pos.x + 1, g->player.pos.y};
+		g->player.dir = RIGHT;
 	}
 	return (keycode);
 }
@@ -75,10 +75,6 @@ void	init_entities(t_game *g)
 	g->enemies = ft_calloc(g->map->num_enemies, sizeof(t_entity)); 
 	if (!g->enemies)
 		message(g, "Failed allocation on enemies entity array\n");
-	g->player = ft_calloc(1, sizeof(t_entity));
-	if (!g->player)
-		message(g, "Failed allocation on player entity array\n");
-	g->player->pos = g->curr;
 	f = (t_point){0, 0};
 	p = (t_point){-1, -1};
 	while (++p.y < g->map->rows)
