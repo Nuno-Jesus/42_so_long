@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 14:13:49 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/02/24 03:19:48 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/02/24 04:56:29 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,52 @@ void	init_graphics(t_game *g)
 		message(g, "Failed allocation on mlx image pointer\n");
 }
 
+void	init_coins(t_game *g)
+{
+	int		i;
+	t_point	p;
+
+	i = 0;
+	p = (t_point){-1, -1};
+	g->coins = ft_calloc(g->map->num_coins, sizeof(t_entity));
+	if (!g->coins)
+		message(g, "Failed allocation on coins entity array\n");
+	while (++p.y < g->map->rows)
+	{
+		p.x = -1;
+		while (++p.x < g->map->cols)
+		{
+			if (at(g, p) != COIN)
+				continue ;
+			g->coins[i].frame = rand() % NUM_COIN_FRAMES;
+			g->coins[i++].pos = p;
+		}
+	}
+}
+
+void	init_enemies(t_game *g)
+{
+	int		i;
+	t_point	p;
+
+	i = 0;
+	p = (t_point){-1, -1};
+	g->enemies = ft_calloc(g->map->num_enemies, sizeof(t_entity));
+	if (!g->enemies)
+		message(g, "Failed allocation on coins entity array\n");
+	while (++p.y < g->map->rows)
+	{
+		p.x = -1;
+		while (++p.x < g->map->cols)
+		{
+			if (at(g, p) != ENEMY)
+				continue ;
+			g->enemies[i].frame = rand() % NUM_PLAYER_FRAMES;
+			g->enemies[i++].pos = p;
+		}
+	}
+}
+
 void	init_game(char *filename)
 {
 	t_game	g;
@@ -55,62 +101,12 @@ void	init_game(char *filename)
 	read_map(&g, filename);
 	validate_map(&g);
 	init_graphics(&g);
-	init_entities(&g);
+	init_coins(&g);
+	init_enemies(&g);
 	load_sprites(&g);
 	render_map(&g);
 	mlx_hook(g.disp.win, ON_KEYPRESS, KEYPRESS_MASK, move_handler, &g);
 	mlx_hook(g.disp.win, ON_CLOSE, CLOSE_MASK, quit, &g);
 	mlx_loop_hook(g.disp.mlx, render_frame, &g);
 	mlx_loop(g.disp.mlx);
-}
-
-void	init_entities(t_game *g)
-{
-	t_point	f;
-	t_point	p;
-
-	g->coins = ft_calloc(g->map->num_coins, sizeof(t_entity));
-	if (!g->coins)
-		message(g, "Failed allocation on coins entity array\n");
-	g->enemies = ft_calloc(g->map->num_enemies, sizeof(t_entity)); 
-	if (!g->enemies)
-		message(g, "Failed allocation on enemies entity array\n");
-	f = (t_point){0, 0};
-	p = (t_point){-1, -1};
-	while (++p.y < g->map->rows)
-	{
-		p.x = -1;
-		while (++p.x < g->map->cols)
-		{
-			if (at(g, p) == COIN)
-			{
-				g->coins[f.x].frame = rand() % NUM_COIN_FRAMES;
-				g->coins[f.x++].pos = p;
-			}
-			else if (at(g, p) == ENEMY)
-			{
-				g->enemies[f.y].frame = rand() % NUM_PLAYER_FRAMES;
-				g->enemies[f.y++].pos = p;
-			}
-		}
-	}
-}
-
-void	load_sprites(t_game *g)
-{
-	g->sp.img = malloc(NUM_WALLS * sizeof(void *));
-	if (!g->sp.img)
-		message(g, "Failed allocation on sprites array\n");
-	g->pframes = malloc(2 * sizeof(t_sprite));
-	if (!g->pframes)
-		message(g, "Failed allocation on player frames array\n");
-	g->eframes = malloc(2 * sizeof(t_sprite));
-	if (!g->eframes)
-		message(g, "Failed allocation on enemy frames array\n");
-	load_walls(g);
-	load_player_frames(g);
-	load_enemy_frames(g);
-	load_coins_frames(g);
-	load_exits(g);
-	load_spaces(g);
 }

@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 21:38:07 by crypto            #+#    #+#             */
-/*   Updated: 2023/02/24 04:07:15 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/02/24 04:55:45 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -260,6 +260,8 @@ void		load_spaces(t_game *g);
 void		load_enemy_frames(t_game *g);
 //!_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/= MOVE_PLAYER =\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
 
+void		player_controller(t_game *g);
+
 /**
  * @brief Depending on the next position of the player, this function updates
  * the char map with the new chars. It also renders the new images and saves
@@ -284,7 +286,7 @@ void		move_enemies(t_game *g);
  * @param e The entity that should be moved
  * @return true if the move is valid, false otherwise 
  */
-bool	can_player_move(t_game *g, t_entity *e);
+bool		can_player_move(t_game *g, t_entity *e);
 
 //!_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_ RENDER _/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_ 
 
@@ -316,6 +318,15 @@ void		render_map(t_game *g);
  * @return int (Unused)
  */
 int			render_frame(t_game *g);
+
+//!_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/= MOVE_ENEMIES =\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
+bool		can_enemy_move(t_game *g, t_entity *e);
+
+bool		enemy_has_possible_moves(t_game *g, t_entity *e);
+
+void		generate_move(t_game *g, t_entity *e);
+
+void		move_enemies(t_game *g);
 
 //!_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_ MAP _/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_ 
 

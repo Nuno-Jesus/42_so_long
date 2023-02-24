@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 02:39:13 by marvin            #+#    #+#             */
-/*   Updated: 2023/02/24 04:07:15 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/02/24 04:55:15 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	render_tile(t_game *g, t_point p)
 	else if (g->map->bytes[p.y][p.x] == COIN)
 	{
 		sp = &g->cframes;
-		sp->curr = g->coins->frame;	
+		sp->curr = g->coins->frame;
 	}
 	else if (g->map->bytes[p.y][p.x] == ENEMY)
 	{
@@ -83,18 +83,11 @@ int	render_frame(t_game *g)
 	animate_enemies(g);
 	animate_coins(g);
 	move_enemies(g);
-	if (!can_player_move(g, &g->player))
-		return (0);
-	render_counter(g);
-	if (at(g, g->player.next) == COIN)
-		g->collected++;
-	else if (at(g, g->player.next) == ENEMY)
+	if (can_player_move(g, &g->player))
 	{
-		ft_putstr_fd("Game over.\n", STDOUT_FILENO);
-		quit(g);
+		render_counter(g);
+		player_controller(g);
+		move_player(g);
 	}
-	else if (at(g, g->player.next) == EXIT && g->collected == g->map->num_coins)
-		quit(g);
-	move_player(g);
 	return (0);
 }

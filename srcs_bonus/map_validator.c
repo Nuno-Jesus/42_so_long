@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/07 18:11:40 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/02/24 03:16:51 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/02/24 04:48:56 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,27 +43,26 @@ bool	is_map_bounded(t_map *map)
 
 bool	has_valid_entities(t_game *g)
 {
-	unsigned int	i;
-	unsigned int	k;
+	t_point	p;
 
-	i = -1;
-	while (++i < g->map->rows)
+	p.y = -1;
+	while (++p.y < g->map->rows)
 	{
-		k = -1;
-		while (++k < g->map->cols)
+		p.x = -1;
+		while (++p.x < g->map->cols)
 		{
-			if (g->map->bytes[i][k] == PLAYER)
+			if (at(g, p) == PLAYER)
 			{
-				g->player.pos = (t_point){k, i};
+				g->player.pos = p;
 				g->map->num_players++;
 			}
-			else if (g->map->bytes[i][k] == EXIT)
+			else if (at(g, p) == EXIT)
 				g->map->num_exits++;
-			else if (g->map->bytes[i][k] == COIN)
+			else if (at(g, p) == COIN)
 				g->map->num_coins++;
-			else if (g->map->bytes[i][k] == ENEMY)
+			else if (at(g, p) == ENEMY)
 				g->map->num_enemies++;
-			else if (!ft_strchr(ENTITIES, g->map->bytes[i][k]))
+			else if (!ft_strchr(ENTITIES, g->map->bytes[p.y][p.x]))
 				return (false);
 		}
 	}
