@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 02:39:13 by marvin            #+#    #+#             */
-/*   Updated: 2023/02/24 03:13:13 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/02/24 04:07:15 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,8 @@ int	render_frame(t_game *g)
 	animate_player(g);
 	animate_enemies(g);
 	animate_coins(g);
-	if (!is_valid_movement(g, &g->player))
+	move_enemies(g);
+	if (!can_player_move(g, &g->player))
 		return (0);
 	render_counter(g);
 	if (at(g, g->player.next) == COIN)

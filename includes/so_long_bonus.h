@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 21:38:07 by crypto            #+#    #+#             */
-/*   Updated: 2023/02/24 03:20:18 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/02/24 04:07:15 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -270,6 +270,12 @@ void		load_enemy_frames(t_game *g);
 void		move_player(t_game *game);
 
 /**
+ * @brief 
+ * 
+ * @param g 
+ */
+void		move_enemies(t_game *g);
+/**
  * @brief Given a keyboard event it checks if the next movement is inside the
  * map bounds and if it is necessary to render the player again (if he didn't
  * move that's not necessary)
@@ -278,7 +284,7 @@ void		move_player(t_game *game);
  * @param e The entity that should be moved
  * @return true if the move is valid, false otherwise 
  */
-bool	is_valid_movement(t_game *g, t_entity *e);
+bool	can_player_move(t_game *g, t_entity *e);
 
 //!_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_ RENDER _/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_ 
 

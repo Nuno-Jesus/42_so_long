@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 10:48:55 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/02/24 03:10:47 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/02/24 04:01:32 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	animate_player(t_game *g)
 	static int	calls = 0;
 	static int	freq = 0;
 
-	if (++calls % CALLS != 0)
+	if (++calls % ANIMATE_CALLS != 0)
 		return ;
 	if (++freq % CALLS_PER_FRAME == 0)
 		g->player.frame = \
@@ -34,7 +34,7 @@ void	animate_coins(t_game *g)
 	unsigned int	i;
 
 	i = -1;
-	if (++calls % CALLS != 0)
+	if (++calls % ANIMATE_CALLS != 0)
 		return ;
 	if (++freq % CALLS_PER_FRAME != 0)
 		return ;
@@ -57,7 +57,7 @@ void	animate_enemies(t_game *g)
 	unsigned int	i;
 
 	i = -1;
-	if (++calls % CALLS != 0)
+	if (++calls % ANIMATE_CALLS != 0)
 		return ;
 	if (++freq % CALLS_PER_FRAME != 0)
 		return ;
