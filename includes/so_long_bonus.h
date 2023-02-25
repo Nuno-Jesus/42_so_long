@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 21:38:07 by crypto            #+#    #+#             */
-/*   Updated: 2023/02/25 19:57:30 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/02/25 20:00:42 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,7 @@ typedef struct s_entity
 	int			move_freq;
 	int			animate_speed;
 	int			curr_speed;
+	t_status	status;
 	t_direction	dir;
 	t_point		pos;
 	t_point		next;
@@ -127,7 +128,7 @@ typedef struct s_game
 	unsigned int	moves;
 }					t_game;
 
-void		change_enemies_strategy(t_game *g, void (*strategy)(), int freq);
+void		change_enemies_strategy(t_game *g, void (*strategy)(), int freq, t_status status);
 
 //!_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/= ANIMATE =\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
 

@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 02:39:20 by marvin            #+#    #+#             */
-/*   Updated: 2023/02/25 15:48:50 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/02/25 20:01:37 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,14 @@ typedef enum e_direction
 	LEFT,
 	UP,
 	DOWN
-}			t_direction;		
+}			t_direction;
+
+typedef enum e_status
+{
+	NORMAL,
+	ENRAGED,
+	AFRAID,
+} t_status;
 /**
  * @brief Used to map a keyboard scancode to its given key
  */

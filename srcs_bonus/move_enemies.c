@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 04:35:13 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/02/25 19:57:41 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/02/25 20:03:15 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ void	rage_move(t_game *g, t_entity *enemy)
 
 	tmp = enemy->next;
 	pos = enemy->pos;
+	enemy->dir = LEFT;
 	if (g->player.pos.x < pos.x)
 	{
 		enemy->next = (t_point){pos.x - 1, pos.y};
@@ -80,7 +81,7 @@ void	rage_move(t_game *g, t_entity *enemy)
 	enemy->next = tmp;
 }
 
-void		change_enemies_strategy(t_game *g, void (*strategy)(), int freq)
+void		change_enemies_strategy(t_game *g, void (*strategy)(), int freq, t_status status)
 {
 	unsigned int	i;
 
@@ -89,6 +90,7 @@ void		change_enemies_strategy(t_game *g, void (*strategy)(), int freq)
 	{
 		g->enemies[i].strategy = strategy;
 		g->enemies[i].move_freq = freq;
+		g->enemies[i].status = status;
 	}
 }
 
@@ -100,13 +102,7 @@ void	random_move(t_game *g, t_entity *enemy)
 	{
 		offset = 1 - (rand() % 3);
 		if (rand() % 2)
-		{
 			enemy->next = (t_point){enemy->pos.x + offset, enemy->pos.y};
-			if (offset < 0)
-				enemy->dir = LEFT;
-			else
-				enemy->dir = RIGHT;
-		}
 		else
 			enemy->next = (t_point){enemy->pos.x, enemy->pos.y + offset};
 		if (can_enemy_move(g, &enemy->next))
