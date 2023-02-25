@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 02:39:13 by marvin            #+#    #+#             */
-/*   Updated: 2023/02/24 06:26:26 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/02/25 12:27:36 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,9 +72,6 @@ void	render_counter(t_game *g)
 
 int	render_frame(t_game *g)
 {
-	// animate_player(g);
-	// animate_enemies(g);
-	// animate_coins(g);
 	animate(g, &g->player, g->pframes, 1);
 	animate(g, g->enemies, g->eframes, g->map->num_enemies);
 	animate(g, g->coins, &g->cframes, g->map->num_coins);

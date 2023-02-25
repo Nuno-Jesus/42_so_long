@@ -6,32 +6,11 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 14:13:49 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/02/24 06:51:47 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/02/25 12:27:02 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long_bonus.h"
-
-int	move_handler(int keycode, t_game *g)
-{
-	if (keycode == ESC)
-		quit(g);
-	else if (keycode == W)
-		g->player.next = (t_point){g->player.pos.x, g->player.pos.y - 1};
-	else if (keycode == A)
-	{
-		g->player.next = (t_point){g->player.pos.x - 1, g->player.pos.y};
-		g->player.dir = LEFT;
-	}
-	else if (keycode == S)
-		g->player.next = (t_point){g->player.pos.x, g->player.pos.y + 1};
-	else if (keycode == D)
-	{
-		g->player.next = (t_point){g->player.pos.x + 1, g->player.pos.y};
-		g->player.dir = RIGHT;
-	}
-	return (keycode);
-}
 
 void	init_graphics(t_game *g)
 {
