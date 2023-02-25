@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   validator.c                                        :+:      :+:    :+:   */
+/*   map_validator.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/07 18:11:40 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/02/21 02:18:17 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/02/24 04:48:56 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,26 +43,26 @@ bool	is_map_bounded(t_map *map)
 
 bool	has_valid_entities(t_game *g)
 {
-	unsigned int	i;
-	unsigned int	k;
+	t_point	p;
 
-	i = -1;
-	while (++i < g->map->rows)
+	p.y = -1;
+	while (++p.y < g->map->rows)
 	{
-		k = -1;
-		while (++k < g->map->cols)
+		p.x = -1;
+		while (++p.x < g->map->cols)
 		{
-			if (g->map->bytes[i][k] == PLAYER)
+			if (at(g, p) == PLAYER)
 			{
+				g->player.pos = p;
 				g->map->num_players++;
-				g->curr = (t_point){k, i};
-				g->next = g->curr;
 			}
-			else if (g->map->bytes[i][k] == EXIT)
+			else if (at(g, p) == EXIT)
 				g->map->num_exits++;
-			else if (g->map->bytes[i][k] == COIN)
+			else if (at(g, p) == COIN)
 				g->map->num_coins++;
-			else if (!ft_strchr(ENTITIES, g->map->bytes[i][k]))
+			else if (at(g, p) == ENEMY)
+				g->map->num_enemies++;
+			else if (!ft_strchr(ENTITIES, g->map->bytes[p.y][p.x]))
 				return (false);
 		}
 	}
@@ -70,41 +70,41 @@ bool	has_valid_entities(t_game *g)
 		&& g->map->num_coins >= 1);
 }
 
-bool	has_valid_path(t_game *game)
+bool	has_valid_path(t_game *g)
 {
 	char			**dup;
 	bool			is_valid;
 	unsigned int	i;
 
 	i = 0;
-	dup = ft_calloc(game->map->rows + 1, sizeof(char *));
+	dup = ft_calloc(g->map->rows + 1, sizeof(char *));
 	if (!dup)
-		message(game, "Failed allocation on has_valid_path()\n");
-	while (i < game->map->rows)
+		message(g, "Failed allocation on has_valid_path()\n");
+	while (i < g->map->rows)
 	{
-		dup[i] = ft_strdup(game->map->bytes[i]);
+		dup[i] = ft_strdup(g->map->bytes[i]);
 		if (!dup[i])
 		{
 			ft_delete_matrix(dup);
-			message(game, "Failed allocation on has_valid_path()\n");
+			message(g, "Failed allocation on has_valid_path()\n");
 		}
 		i++;
 	}
-	is_valid = flood_fill(game->map, game->curr, dup);
+	is_valid = flood_fill(g->map, g->player.pos, dup);
 	ft_delete_matrix(dup);
 	return (is_valid);
 }
 
-void	validate_map(t_game *game)
+void	validate_map(t_game *g)
 {
-	if (game->map->rows == 0)
-		message(game, "Map is empty.\n");
-	if (!is_map_rectangular(game->map))
-		message(game, "Map is not rectangular.\n");
-	if (!is_map_bounded(game->map))
-		message(game, "Map is not bounded by walls.\n");
-	if (!has_valid_entities(game))
-		message(game, "Map has invalid entities.\n");
-	if (!has_valid_path(game))
-		message(game, "Map has not a traversable path to end the level.\n");
+	if (g->map->rows == 0)
+		message(g, "Map is empty.\n");
+	if (!is_map_rectangular(g->map))
+		message(g, "Map is not rectangular.\n");
+	if (!is_map_bounded(g->map))
+		message(g, "Map is not bounded by walls.\n");
+	if (!has_valid_entities(g))
+		message(g, "Map has invalid entities.\n");
+	if (!has_valid_path(g))
+		message(g, "Map has not a traversable path to end the level.\n");
 }

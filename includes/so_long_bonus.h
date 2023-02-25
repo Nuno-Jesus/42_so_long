@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 21:38:07 by crypto            #+#    #+#             */
-/*   Updated: 2023/02/22 22:26:00 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/02/25 15:52:27 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ typedef struct s_map
 	unsigned int	num_coins;
 	unsigned int	num_exits;
 	unsigned int	num_players;
+	unsigned int	num_enemies;
 }				t_map;
 
 /**
@@ -87,8 +88,15 @@ typedef struct s_display
 
 typedef struct s_entity
 {
-	int			current_frame;
+	int			frame;
+	int			freq;
+	int			frame_freq;
+	int			speed;
+	int			curr_speed;
+	t_direction	dir;
 	t_point		pos;
+	t_point		next;
+	void		(*strategy)();
 }				t_entity;
 
 /**
@@ -104,17 +112,15 @@ typedef struct s_entity
 typedef struct s_game
 {
 	t_map			*map;	
-	t_point			curr;
-	t_point			next;
+	t_point			enext;
 	t_display		disp;
-	t_sprite		cframes;
 	t_sprite		sp;
 	t_sprite		*pframes;
+	t_sprite		*eframes;
+	t_sprite		cframes;
+	t_entity		player;
+	t_entity		*enemies;
 	t_entity		*coins;
-	t_entity		*player;
-	t_direction		player_dir;
-	int				player_frame;
-	int				coin_frame;
 	unsigned int	collected;
 	unsigned int	moves;
 }					t_game;
@@ -123,9 +129,7 @@ typedef struct s_game
 
 //!_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/= ANIMATE =\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
 
-void		animate_player(t_game *g);
-
-void		animate_coins(t_game *g);	
+void		animate(t_game *g, t_entity *ent, t_sprite *frames, int n);
 
 /**
  * @brief Given the filename passed as argument, it checks if the filename
@@ -151,6 +155,7 @@ bool		is_filename_valid(char *filename);
  * otherwise 
  */
 bool		flood_fill(t_map *map, t_point curr, char **maze);
+
 //!_/=\_/=\_/=\_/=\_/=\_/=\_/=\ BINARY_WALL_MAP /=\_/=\_/=\_/=\_/=\_/=\_/=\_
 bool		has_diags(int **mat, t_point *p, char *diagonals);
 
@@ -232,26 +237,32 @@ int			quit(t_game *game);
 int			move_handler(int keycode, t_game *game);
 //!_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/= LOAD_WALLS =\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
 
+void		load_xpm(t_game *g, t_sprite *s, char *prefix, int n);
+
 void		load_walls_1(t_game *g);
 
 void		load_walls_2(t_game *g);
 
 void		load_walls_3(t_game *g);
 
-void		load_walls(t_game *g);
+void		load_rest(t_game *g);
 
 //!_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/= LOAD_REST =\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
 
 void		load_player_frames_2(t_game *g);
 
-void		load_player_frames(t_game *g);
+void		load_player(t_game *g);
 
-void		load_coins_frames(t_game *g);
+void		load_coins(t_game *g);
 
 void		load_exits(t_game *g);
 
 void		load_spaces(t_game *g);
+
+void		load_enemies(t_game *g);
 //!_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/= MOVE_PLAYER =\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
+
+void		player_controller(t_game *g);
 
 /**
  * @brief Depending on the next position of the player, this function updates
@@ -263,18 +274,25 @@ void		load_spaces(t_game *g);
 void		move_player(t_game *game);
 
 /**
+ * @brief 
+ * 
+ * @param g 
+ */
+void		move_enemies(t_game *g);
+/**
  * @brief Given a keyboard event it checks if the next movement is inside the
  * map bounds and if it is necessary to render the player again (if he didn't
  * move that's not necessary)
  * 
  * @param g The t_game struct to use
+ * @param e The entity that should be moved
  * @return true if the move is valid, false otherwise 
  */
-bool		is_valid_movement(t_game *g);
+bool		can_player_move(t_game *g, t_entity *e);
 
 //!_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_ RENDER _/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_ 
 
-void		render_sprite(t_game *g, t_sprite *s, t_point p, int frame);
+void		render(t_game *g, t_sprite *s, t_point p, int frame);
 /**
  * @brief Given a pair of coordinates, it renders a map tile. Depending on the
  * entity in that tile it renders a different image.
@@ -302,6 +320,15 @@ void		render_map(t_game *g);
  * @return int (Unused)
  */
 int			render_frame(t_game *g);
+
+//!_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/= MOVE_ENEMIES =\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
+bool		can_enemy_move(t_game *g, t_entity *e);
+
+bool		enemy_has_possible_moves(t_game *g, t_entity *e);
+
+void		generate_move(t_game *g, t_entity *e);
+
+void		move_enemies(t_game *g);
 
 //!_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_ MAP _/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_ 
 
@@ -379,7 +406,7 @@ bool		has_valid_entities(t_game *g);
  * @param game The t_game struct to use
  * @return true if the map is playable, false otherwise 
  */
-bool		has_valid_path(t_game *game);
+bool		has_valid_path(t_game *g);
 
 /**
  * @brief This function is used merely to call the other validator
@@ -389,7 +416,7 @@ bool		has_valid_path(t_game *game);
  * 
  * @param game The t_game struct to use
  */
-void		validate_map(t_game *game);
+void		validate_map(t_game *g);
 
 //!_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\ UTILS _/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_ 
 
@@ -419,7 +446,9 @@ void		message(t_game *game, char *text);
  */
 t_type		at(t_game *g, t_point p);
 
-int			ft_todigit(int c);
+int			ft_tosymbol(int c);
+
+int			ft_tochar(int c);
 
 bool		is_same_point(t_point p1, t_point p2);
 

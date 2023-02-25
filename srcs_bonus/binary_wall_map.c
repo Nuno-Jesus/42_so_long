@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 02:16:40 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/02/21 02:27:36 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/02/25 15:52:27 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,13 @@ bool	has_diags(int **mat, t_point *p, char *diagonals)
 
 	has_diags = true;
 	if (diagonals[0] != NOT_USED)
-		has_diags &= (mat[p->y + 1][p->x + 1] == ft_todigit(diagonals[0]));
+		has_diags &= (mat[p->y + 1][p->x + 1] == ft_tosymbol(diagonals[0]));
 	if (diagonals[1] != NOT_USED)
-		has_diags &= (mat[p->y - 1][p->x - 1] == ft_todigit(diagonals[1]));
+		has_diags &= (mat[p->y - 1][p->x - 1] == ft_tosymbol(diagonals[1]));
 	if (diagonals[2] != NOT_USED)
-		has_diags &= (mat[p->y + 1][p->x - 1] == ft_todigit(diagonals[2]));
+		has_diags &= (mat[p->y + 1][p->x - 1] == ft_tosymbol(diagonals[2]));
 	if (diagonals[3] != NOT_USED)
-		has_diags &= (mat[p->y - 1][p->x + 1] == ft_todigit(diagonals[3]));
+		has_diags &= (mat[p->y - 1][p->x + 1] == ft_tosymbol(diagonals[3]));
 	return (has_diags);
 }
 

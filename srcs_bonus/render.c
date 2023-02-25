@@ -6,13 +6,13 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 02:39:13 by marvin            #+#    #+#             */
-/*   Updated: 2023/02/22 22:27:59 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/02/25 12:27:36 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long_bonus.h"
 
-void	render_sprite(t_game *g, t_sprite *s, t_point p, int frame)
+void	render(t_game *g, t_sprite *s, t_point p, int frame)
 {
 	mlx_put_image_to_window(g->disp.mlx, g->disp.win, s->img[frame], \
 		p.x * s->width + XOFFSET, p.y * s->height);
@@ -21,25 +21,23 @@ void	render_sprite(t_game *g, t_sprite *s, t_point p, int frame)
 void	render_tile(t_game *g, t_point p)
 {
 	t_sprite	*sp;
+	int			frame;
 
 	sp = &g->sp;
+	frame = 0;
 	if (g->map->bytes[p.y][p.x] == EXIT)
-		sp->curr = E1;
+		frame = E1;
 	else if (g->map->bytes[p.y][p.x] == SPACE)
-		sp->curr = S1;
+		frame = S1;
 	else if (g->map->bytes[p.y][p.x] == PLAYER)
-	{
 		sp = &g->pframes[RIGHT];
-		sp->curr = g->player->current_frame;
-	}
 	else if (g->map->bytes[p.y][p.x] == COIN)
-	{
 		sp = &g->cframes;
-		sp->curr = g->coins->current_frame;
-	}
+	else if (g->map->bytes[p.y][p.x] == ENEMY)
+		sp = &g->eframes[RIGHT];
 	else
 		return ;
-	render_sprite(g, sp, p, sp->curr);
+	render(g, sp, p, frame);
 }
 
 void	render_map(t_game *g)
@@ -74,15 +72,15 @@ void	render_counter(t_game *g)
 
 int	render_frame(t_game *g)
 {
-	animate_player(g);
-	animate_coins(g);
-	if (!is_valid_movement(g))
-		return (0);
-	render_counter(g);
-	if (at(g, g->next) == COIN)
-		g->collected++;
-	else if (at(g, g->next) == EXIT && g->collected == g->map->num_coins)
-		quit(g);
-	move_player(g);
+	animate(g, &g->player, g->pframes, 1);
+	animate(g, g->enemies, g->eframes, g->map->num_enemies);
+	animate(g, g->coins, &g->cframes, g->map->num_coins);
+	move_enemies(g);
+	if (can_player_move(g, &g->player))
+	{
+		render_counter(g);
+		player_controller(g);
+		move_player(g);
+	}
 	return (0);
 }

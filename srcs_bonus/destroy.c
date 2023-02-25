@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/07 11:53:02 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/02/22 22:04:05 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/02/25 15:47:09 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@ void	destroy_game(t_game *game)
 		return ;
 	if (game->coins)
 		free(game->coins);
-	if (game->player)
-		free(game->player);
+	if (game->enemies)
+		free(game->enemies);
 	destroy_sprites(game);
 	if (game->disp.img)
 		mlx_destroy_image(game->disp.mlx, game->disp.img);
@@ -38,7 +38,7 @@ void	destroy_sprites(t_game *g)
 	int	k;
 
 	i = 0;
-	while (i < NUM_WALLS)
+	while (i < NUM_WALLS + NUM_REST)
 		mlx_destroy_image(g->disp.mlx, g->sp.img[i++]);
 	free(g->sp.img);
 	i = 0;
@@ -52,7 +52,12 @@ void	destroy_sprites(t_game *g)
 		while (++i < NUM_PLAYER_FRAMES)
 			mlx_destroy_image(g->disp.mlx, g->pframes[k].img[i]);
 		free(g->pframes[k].img);
+		i = -1;
+		while (++i < NUM_ENEMY_FRAMES)
+			mlx_destroy_image(g->disp.mlx, g->eframes[k].img[i]);
+		free(g->eframes[k].img);
 	}
+	free(g->eframes);
 	free(g->pframes);
 }
 

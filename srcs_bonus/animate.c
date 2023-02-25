@@ -6,46 +6,26 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 10:48:55 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/02/22 22:16:10 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/02/25 13:04:32 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long_bonus.h"
 
-void	animate_player(t_game *g)
+void	animate(t_game *g, t_entity *ent, t_sprite *frames, int n)
 {
-	static int	calls = 0;
-	static int	freq = 0;
-
-	if (++calls % CALLS != 0)
-		return ;
-	if (++freq % CALLS_PER_FRAME == 0)
-		g->player->current_frame = \
-			++(g->player->current_frame) % NUM_PLAYER_FRAMES;
-	render_sprite(g, &g->sp, g->curr, S1);
-	render_sprite(g, &g->pframes[g->player_dir], \
-		g->curr, g->player->current_frame);
-}
-
-void	animate_coins(t_game *g)
-{
-	static int		calls = 0;
-	static int		freq = 0;
-	unsigned int	i;
+	int	i;
 
 	i = -1;
-	if (++calls % CALLS != 0)
-		return ;
-	if (++freq % CALLS_PER_FRAME != 0)
-		return ;
-	while (++i < g->map->num_coins)
+	while (++i < n)
 	{
-		if (is_same_point(g->coins[i].pos, (t_point){-1, -1}))
+		if (++ent[i].curr_speed % ent[i].speed != 0)
 			continue ;
-		g->coins[i].current_frame = \
-			++g->coins[i].current_frame % NUM_COIN_FRAMES;
-		render_sprite(g, &g->sp, g->coins[i].pos, S1);
-		render_sprite(g, &g->cframes, \
-			g->coins[i].pos, g->coins[i].current_frame);
-	}			
+		if (is_same_point(ent[i].pos, (t_point){-1, -1}))
+			continue ;
+		if (++ent[i].freq % ent[i].frame_freq == 0)
+			ent[i].frame = (ent[i].frame + 1) % frames->nframes;
+		render(g, &g->sp, ent[i].pos, S1);
+		render(g, &frames[ent[i].dir], ent[i].pos, ent[i].frame);
+	}
 }
