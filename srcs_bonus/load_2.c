@@ -6,12 +6,11 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 00:29:38 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/02/25 15:44:41 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/02/25 15:52:49 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long_bonus.h"
-
 
 void	load_enemies(t_game *g)
 {

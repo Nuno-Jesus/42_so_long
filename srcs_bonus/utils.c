@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/07 18:04:46 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/02/25 13:17:50 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/02/25 15:53:05 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,15 +42,10 @@ void	message(t_game *game, char *text)
 	exit(EXIT_FAILURE);
 }
 
-int	ft_todigit(int c)
+int	ft_tosymbol(int c)
 {
 	if (ft_isdigit(c))
 		return (c - '0');
-	return (c);
-}
-
-int	ft_tochar(int c)
-{
 	if (c >= 0 && c <= 9)
 		return (c + '0');
 	return (c);

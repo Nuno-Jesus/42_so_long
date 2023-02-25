@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 00:33:38 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/02/25 15:42:52 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/02/25 15:54:08 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	load_xpm(t_game *g, t_sprite *s, char *prefix, int n)
 {
-	size_t len;
+	size_t	len;
 	int		i;
 	char	path[200];
 
@@ -25,9 +25,10 @@ void	load_xpm(t_game *g, t_sprite *s, char *prefix, int n)
 	len = ft_strlen(path);
 	while (++i <= n)
 	{
-		path[len - 6] = ft_tochar(i / 10);
-		path[len - 5] = ft_tochar(i % 10);
-		s->img[i - 1] = mlx_xpm_file_to_image(g->disp.mlx, path, &(s->width), &(s->height));
+		path[len - 6] = ft_tosymbol(i / 10);
+		path[len - 5] = ft_tosymbol(i % 10);
+		s->img[i - 1] = mlx_xpm_file_to_image(g->disp.mlx, \
+				path, &(s->width), &(s->height));
 	}
 }
 
@@ -41,9 +42,8 @@ void	load_rest(t_game *g)
 	g->sp.img[S1] = mlx_xpm_file_to_image(g->disp.mlx, FS1,
 			&(g->sp.width), &(g->sp.height));
 	g->sp.img[E1] = mlx_xpm_file_to_image(g->disp.mlx, FE1,
-		&(g->sp.width), &(g->sp.height));
+			&(g->sp.width), &(g->sp.height));
 }
-
 
 void	load_coins(t_game *g)
 {

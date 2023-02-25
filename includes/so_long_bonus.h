@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 21:38:07 by crypto            #+#    #+#             */
-/*   Updated: 2023/02/25 15:41:20 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/02/25 15:52:27 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -446,7 +446,7 @@ void		message(t_game *game, char *text);
  */
 t_type		at(t_game *g, t_point p);
 
-int			ft_todigit(int c);
+int			ft_tosymbol(int c);
 
 int			ft_tochar(int c);
 
