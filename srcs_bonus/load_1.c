@@ -6,11 +6,31 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 00:33:38 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/02/24 06:04:00 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/02/25 13:53:52 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long_bonus.h"
+
+void	load_xpm(t_game *g, t_sprite *s, char *prefix, int n)
+{
+	size_t len;
+	int		i;
+	char	path[200];
+
+	i = 0;
+	ft_bzero(path, 200);
+	ft_strlcpy(path, prefix, ft_strlen(prefix) + 1);
+	ft_strlcat(path, "00.xpm", 200);
+	len = ft_strlen(path);
+	while (++i <= n)
+	{
+		path[len - 6] = ft_tochar(i / 10);
+		path[len - 5] = ft_tochar(i % 10);
+		printf("Filename: %s\n", path);
+		s->img[i - 1] = mlx_xpm_file_to_image(g->disp.mlx, path, &(s->width), &(s->height));
+	}
+}
 
 void	load_player_frames_2(t_game *g)
 {
@@ -18,7 +38,8 @@ void	load_player_frames_2(t_game *g)
 	if (!g->pframes[LEFT].img)
 		message(g, "Failed allocation on left player frames\n");
 	g->pframes[LEFT].nframes = NUM_PLAYER_FRAMES;
-	g->pframes[LEFT].img[0] = mlx_xpm_file_to_image(g->disp.mlx, FP8,
+	load_xpm(g, &g->pframes[LEFT], PLAYER_LEFT_PATH, NUM_PLAYER_FRAMES);
+	/* g->pframes[LEFT].img[0] = mlx_xpm_file_to_image(g->disp.mlx, FP8,
 			&(g->pframes[LEFT].width), &(g->pframes[LEFT].height));
 	g->pframes[LEFT].img[1] = mlx_xpm_file_to_image(g->disp.mlx, FP9,
 			&(g->pframes[LEFT].width), &(g->pframes[LEFT].height));
@@ -31,7 +52,7 @@ void	load_player_frames_2(t_game *g)
 	g->pframes[LEFT].img[5] = mlx_xpm_file_to_image(g->disp.mlx, FP13,
 			&(g->pframes[LEFT].width), &(g->pframes[LEFT].height));
 	g->pframes[LEFT].img[6] = mlx_xpm_file_to_image(g->disp.mlx, FP14,
-			&(g->pframes[LEFT].width), &(g->pframes[LEFT].height));
+			&(g->pframes[LEFT].width), &(g->pframes[LEFT].height)); */
 }
 
 void	load_player_frames(t_game *g)
@@ -40,7 +61,8 @@ void	load_player_frames(t_game *g)
 	if (!g->pframes[RIGHT].img)
 		message(g, "Failed allocation on right player frames\n");
 	g->pframes[RIGHT].nframes = NUM_PLAYER_FRAMES;
-	g->pframes[RIGHT].img[0] = mlx_xpm_file_to_image(g->disp.mlx, FP1,
+	load_xpm(g, &g->pframes[RIGHT], PLAYER_RIGHT_PATH, NUM_PLAYER_FRAMES);
+	/* g->pframes[RIGHT].img[0] = mlx_xpm_file_to_image(g->disp.mlx, FP1,
 			&(g->pframes[RIGHT].width), &(g->pframes[RIGHT].height));
 	g->pframes[RIGHT].img[1] = mlx_xpm_file_to_image(g->disp.mlx, FP2,
 			&(g->pframes[RIGHT].width), &(g->pframes[RIGHT].height));
@@ -53,13 +75,14 @@ void	load_player_frames(t_game *g)
 	g->pframes[RIGHT].img[5] = mlx_xpm_file_to_image(g->disp.mlx, FP6,
 			&(g->pframes[RIGHT].width), &(g->pframes[RIGHT].height));
 	g->pframes[RIGHT].img[6] = mlx_xpm_file_to_image(g->disp.mlx, FP7,
-			&(g->pframes[RIGHT].width), &(g->pframes[RIGHT].height));
+			&(g->pframes[RIGHT].width), &(g->pframes[RIGHT].height)); */
 	load_player_frames_2(g);
 }
 
 void	load_coins_frames_2(t_game *g)
 {
-	g->cframes.img[8] = mlx_xpm_file_to_image(g->disp.mlx, FC8,
+	(void) g;
+	/* g->cframes.img[8] = mlx_xpm_file_to_image(g->disp.mlx, FC8,
 			&(g->cframes.width), &(g->cframes.height));
 	g->cframes.img[9] = mlx_xpm_file_to_image(g->disp.mlx, FC9,
 			&(g->cframes.width), &(g->cframes.height));
@@ -72,7 +95,7 @@ void	load_coins_frames_2(t_game *g)
 	g->cframes.img[13] = mlx_xpm_file_to_image(g->disp.mlx, FC13,
 			&(g->cframes.width), &(g->cframes.height));
 	g->cframes.img[14] = mlx_xpm_file_to_image(g->disp.mlx, FC14,
-			&(g->cframes.width), &(g->cframes.height));
+			&(g->cframes.width), &(g->cframes.height)); */
 }
 
 void	load_coins_frames(t_game *g)
@@ -81,6 +104,8 @@ void	load_coins_frames(t_game *g)
 	if (!g->cframes.img)
 		message(g, "Failed allocation on potions frames\n");
 	g->cframes.nframes = NUM_COIN_FRAMES;
+	load_xpm(g, &g->cframes, COIN_PATH, NUM_COIN_FRAMES);
+/* 
 	g->cframes.img[0] = mlx_xpm_file_to_image(g->disp.mlx, FC1,
 			&(g->cframes.width), &(g->cframes.height));
 	g->cframes.img[1] = mlx_xpm_file_to_image(g->disp.mlx, FC1,
@@ -96,8 +121,8 @@ void	load_coins_frames(t_game *g)
 	g->cframes.img[6] = mlx_xpm_file_to_image(g->disp.mlx, FC6,
 			&(g->cframes.width), &(g->cframes.height));
 	g->cframes.img[7] = mlx_xpm_file_to_image(g->disp.mlx, FC7,
-			&(g->cframes.width), &(g->cframes.height));
-	load_coins_frames_2(g);
+			&(g->cframes.width), &(g->cframes.height)); */
+	// load_coins_frames_2(g);
 }
 
 void	load_exits(t_game *g)

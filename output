@@ -1,0 +1,15 @@
+==62803== Memcheck, a memory error detector
+==62803== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==62803== Using Valgrind-3.15.0 and LibVEX; rerun with -h for copyright info
+==62803== Command: ./so_long_bonus maps/valid8.ber
+==62803== Parent PID: 23234
+==62803== 
+==62803== 
+==62803== HEAP SUMMARY:
+==62803==     in use at exit: 0 bytes in 0 blocks
+==62803==   total heap usage: 305,990 allocs, 305,990 frees, 12,303,105 bytes allocated
+==62803== 
+==62803== All heap blocks were freed -- no leaks are possible
+==62803== 
+==62803== For lists of detected and suppressed errors, rerun with: -s
+==62803== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 385 from 1)

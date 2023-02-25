@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 21:38:07 by crypto            #+#    #+#             */
-/*   Updated: 2023/02/25 12:30:55 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/02/25 15:03:06 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -237,6 +237,8 @@ int			quit(t_game *game);
 int			move_handler(int keycode, t_game *game);
 //!_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/= LOAD_WALLS =\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
 
+void		load_xpm(t_game *g, t_sprite *s, char *prefix, int n);
+
 void		load_walls_1(t_game *g);
 
 void		load_walls_2(t_game *g);
@@ -445,6 +447,8 @@ void		message(t_game *game, char *text);
 t_type		at(t_game *g, t_point p);
 
 int			ft_todigit(int c);
+
+int			ft_tochar(int c);
 
 bool		is_same_point(t_point p1, t_point p2);
 

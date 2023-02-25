@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 04:45:10 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/02/24 06:03:34 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/02/25 15:13:32 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,15 @@ void	load_enemy_frames_2(t_game *g)
 	if (!g->eframes[LEFT].img)
 		message(g, "Failed allocation on left enemy frames\n");
 	g->eframes[LEFT].nframes = NUM_ENEMY_FRAMES;
-	g->eframes[LEFT].img[0] = mlx_xpm_file_to_image(g->disp.mlx, FM1,
+	load_xpm(g, &g->eframes[LEFT], ENEMY_CALM_PATH, NUM_ENEMY_FRAMES);
+	/* g->eframes[LEFT].img[0] = mlx_xpm_file_to_image(g->disp.mlx, FM1,
 			&(g->eframes[LEFT].width), &(g->eframes[LEFT].height));
 	g->eframes[LEFT].img[1] = mlx_xpm_file_to_image(g->disp.mlx, FM2,
 			&(g->eframes[LEFT].width), &(g->eframes[LEFT].height));
 	g->eframes[LEFT].img[2] = mlx_xpm_file_to_image(g->disp.mlx, FM3,
 			&(g->eframes[LEFT].width), &(g->eframes[LEFT].height));
 	g->eframes[LEFT].img[3] = mlx_xpm_file_to_image(g->disp.mlx, FM4,
-			&(g->eframes[LEFT].width), &(g->eframes[LEFT].height));
+			&(g->eframes[LEFT].width), &(g->eframes[LEFT].height)); */
 }
 
 void	load_enemy_frames(t_game *g)
@@ -34,14 +35,15 @@ void	load_enemy_frames(t_game *g)
 	if (!g->eframes[RIGHT].img)
 		message(g, "Failed allocation on right enemy frames\n");
 	g->eframes[RIGHT].nframes = NUM_ENEMY_FRAMES;
-	g->eframes[RIGHT].img[0] = mlx_xpm_file_to_image(g->disp.mlx, FM5,
+	load_xpm(g, &g->eframes[RIGHT], ENEMY_RAGE_PATH, NUM_ENEMY_FRAMES);
+	/* g->eframes[RIGHT].img[0] = mlx_xpm_file_to_image(g->disp.mlx, FM5,
 			&(g->eframes[RIGHT].width), &(g->eframes[RIGHT].height));
 	g->eframes[RIGHT].img[1] = mlx_xpm_file_to_image(g->disp.mlx, FM6,
 			&(g->eframes[RIGHT].width), &(g->eframes[RIGHT].height));
 	g->eframes[RIGHT].img[2] = mlx_xpm_file_to_image(g->disp.mlx, FM7,
 			&(g->eframes[RIGHT].width), &(g->eframes[RIGHT].height));
 	g->eframes[RIGHT].img[3] = mlx_xpm_file_to_image(g->disp.mlx, FM8,
-			&(g->eframes[RIGHT].width), &(g->eframes[RIGHT].height));
+			&(g->eframes[RIGHT].width), &(g->eframes[RIGHT].height)); */
 	load_enemy_frames_2(g);
 }
 

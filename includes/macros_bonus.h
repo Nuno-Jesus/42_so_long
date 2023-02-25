@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 02:39:20 by marvin            #+#    #+#             */
-/*   Updated: 2023/02/24 06:52:22 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/02/25 15:12:59 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@
 # define NUM_WALLS			33
 # define NUM_PLAYER_FRAMES	7
 # define NUM_COIN_FRAMES	15
-# define NUM_ENEMY_FRAMES	4
+# define NUM_ENEMY_FRAMES	8
 
 //! Sprite refreshing frequency
 # define ANIMATE_CALLS		250
@@ -49,6 +49,14 @@
 # define DIFFSUM			2 
 # define SUMDIFF			3 
 # define NOT_USED			'N'
+
+//! File paths
+
+# define PLAYER_RIGHT_PATH	"images/bonus/player/right/player_"
+# define PLAYER_LEFT_PATH	"images/bonus/player/left/player_"
+# define ENEMY_CALM_PATH	"images/bonus/enemies/calm/enemy_"
+# define ENEMY_RAGE_PATH	"images/bonus/enemies/rage/enemy_"
+# define COIN_PATH			"images/bonus/potions/potion_"
 
 //! Wall sprites
 # define FW1		"images/bonus/walls/upper_wall.xpm"
