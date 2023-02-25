@@ -15,7 +15,7 @@ RM = rm -rf
 AR = ar -rcs
 
 #_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_ FLAGS _/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
-CFLAGS		= -Wall -Wextra -Werror -g -fsanitize=address
+CFLAGS		= -Wall -Wextra -Werror -g #-fsanitize=address
 MKFLAGS		= --no-print-directory
 MLXFLAGS	= -L ./mlx -lmlx -Ilmlx -lXext -lX11 -lm 
 LIBFTFLAGS	= -L ./libft -lft
@@ -115,6 +115,9 @@ $(NAME_BONUS): $(OBJ_DIR_BONUS) $(TARGET_BONUS)
 
 re: fclean all
 
-reb: fclean bonus
+run: 
+	./$(NAME_BONUS) maps/valid8.ber
+
+reb: fclean bonus run
 
 .SILENT:

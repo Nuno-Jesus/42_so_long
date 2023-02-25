@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 02:39:13 by marvin            #+#    #+#             */
-/*   Updated: 2023/02/25 12:27:36 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/02/25 19:12:30 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,15 +59,17 @@ void	render_map(t_game *g)
 void	render_counter(t_game *g)
 {
 	char	*str;
-	int		x;
-	int		y;
+	char	*str2;
+	t_point	p;
 
-	x = (g->map->cols - 1) * 16;
-	y = g->map->rows * 32 + 20;
-	str = ft_itoa(++g->moves);
-	mlx_put_image_to_window(g->disp.mlx, g->disp.win, g->disp.img, x, y - 20);
-	mlx_string_put(g->disp.mlx, g->disp.win, x, y, 0xFFFFFF, str);
+	p.x = (g->map->cols - 1) * 16;
+	p.y = g->map->rows * 32 + 20;
+	str = ft_itoa(g->moves);
+	str2 = ft_itoa(++g->moves);
+	mlx_string_put(g->disp.mlx, g->disp.win, p.x, p.y, 0x000000, str);
+	mlx_string_put(g->disp.mlx, g->disp.win, p.x, p.y, 0xFFFFFF, str2);
 	free(str);
+	free(str2);
 }
 
 int	render_frame(t_game *g)

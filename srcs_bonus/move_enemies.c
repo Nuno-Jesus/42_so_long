@@ -6,15 +6,15 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 04:35:13 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/02/24 06:43:27 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/02/25 19:57:41 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long_bonus.h"
 
-bool	can_enemy_move(t_game *g, t_entity *e)
+bool	can_enemy_move(t_game *g, t_point *p)
 {
-	return (at(g, e->next) == SPACE || at(g, e->next) == PLAYER);
+	return (at(g, *p) == SPACE || at(g, *p) == PLAYER);
 }
 
 bool	enemy_has_possible_moves(t_game *g, t_entity *e)
@@ -33,7 +33,66 @@ bool	enemy_has_possible_moves(t_game *g, t_entity *e)
 	return (can_move);
 }
 
-void	generate_move(t_game *g, t_entity *e)
+
+void	rage_move(t_game *g, t_entity *enemy)
+{
+	t_point	tmp;
+	t_point	pos;
+
+	tmp = enemy->next;
+	pos = enemy->pos;
+	if (g->player.pos.x < pos.x)
+	{
+		enemy->next = (t_point){pos.x - 1, pos.y};
+		#ifdef DEBUG
+			printf("Moving to %d %d\n", enemy->next.x, enemy->next.y);		
+		#endif
+	}
+	if (can_enemy_move(g, &enemy->next))
+		return ;
+	if (g->player.pos.x > pos.x)
+	{
+		enemy->next = (t_point){pos.x + 1, pos.y};
+		#ifdef DEBUG
+			printf("Moving to %d %d\n", enemy->next.x, enemy->next.y);		
+		#endif
+	}
+	if (can_enemy_move(g, &enemy->next))
+		return ;
+	if (g->player.pos.y < pos.y)
+	{
+		enemy->next = (t_point){pos.x, pos.y - 1};
+		#ifdef DEBUG
+			printf("Moving to %d %d\n", enemy->next.x, enemy->next.y);		
+		#endif
+	}
+	if (can_enemy_move(g, &enemy->next))
+		return ;
+	if (g->player.pos.y > pos.y)
+	{
+		enemy->next = (t_point){pos.x, pos.y + 1};
+		#ifdef DEBUG
+			printf("Moving to %d %d\n", enemy->next.x, enemy->next.y);		
+		#endif
+	}
+	if (can_enemy_move(g, &enemy->next))
+		return ;
+	enemy->next = tmp;
+}
+
+void		change_enemies_strategy(t_game *g, void (*strategy)(), int freq)
+{
+	unsigned int	i;
+
+	i = -1;
+	while (++i < g->map->num_enemies)
+	{
+		g->enemies[i].strategy = strategy;
+		g->enemies[i].move_freq = freq;
+	}
+}
+
+void	random_move(t_game *g, t_entity *enemy)
 {
 	int	offset;
 
@@ -42,32 +101,31 @@ void	generate_move(t_game *g, t_entity *e)
 		offset = 1 - (rand() % 3);
 		if (rand() % 2)
 		{
-			e->next = (t_point){e->pos.x + offset, e->pos.y};
+			enemy->next = (t_point){enemy->pos.x + offset, enemy->pos.y};
 			if (offset < 0)
-				e->dir = LEFT;
+				enemy->dir = LEFT;
 			else
-				e->dir = RIGHT;
+				enemy->dir = RIGHT;
 		}
 		else
-			e->next = (t_point){e->pos.x, e->pos.y + offset};
-		if (can_enemy_move(g, e))
+			enemy->next = (t_point){enemy->pos.x, enemy->pos.y + offset};
+		if (can_enemy_move(g, &enemy->next))
 			break ;
 	}
 }
 
 void	move_enemies(t_game *g)
 {
-	static int		calls = 0;
 	unsigned int	i;
 
 	i = -1;
-	if (++calls % MOVE_CALLS != 0)
-		return ;
 	while (++i < g->map->num_enemies)
 	{
+		if (++g->enemies[i].move_counter % g->enemies[i].move_freq != 0)
+			continue ;
 		if (!enemy_has_possible_moves(g, &g->enemies[i]))
 			continue ;
-		generate_move(g, &g->enemies[i]);
+		(*g->enemies[i].strategy)(g, &g->enemies[i]);
 		if (at(g, g->enemies[i].next) == PLAYER)
 		{
 			ft_putstr_fd("Game over.\n", STDOUT_FILENO);

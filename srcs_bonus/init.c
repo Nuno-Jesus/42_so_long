@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 14:13:49 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/02/25 14:54:33 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/02/25 19:52:29 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	init_coins(t_game *g)
 				continue ;
 			g->coins[i].frame = rand() % NUM_COIN_FRAMES;
 			g->coins[i].frame_freq = CALLS_PER_FRAME;
-			g->coins[i].speed = ANIMATE_CALLS;
+			g->coins[i].animate_speed = ANIMATE_CALLS;
 			g->coins[i++].pos = p;
 		}
 	}
@@ -70,8 +70,11 @@ void	init_enemies(t_game *g)
 				continue ;
 			g->enemies[i].frame = rand() % NUM_ENEMY_FRAMES;
 			g->enemies[i].frame_freq = CALLS_PER_FRAME;
-			g->enemies[i].speed = ANIMATE_CALLS;
-			g->enemies[i++].pos = p;
+			g->enemies[i].move_freq = rand () % MOVE_CALLS + MOVE_CALLS;
+			g->enemies[i].animate_speed = ANIMATE_CALLS;
+			g->enemies[i].strategy = &random_move;
+			g->enemies[i].pos = p;
+			g->enemies[i++].next = p;
 		}
 	}
 }
@@ -79,7 +82,7 @@ void	init_enemies(t_game *g)
 void	init_player(t_game *g)
 {
 	g->player.frame_freq = CALLS_PER_FRAME;
-	g->player.speed = ANIMATE_CALLS;
+	g->player.animate_speed = ANIMATE_CALLS;
 }
 
 void	init_game(char *filename)

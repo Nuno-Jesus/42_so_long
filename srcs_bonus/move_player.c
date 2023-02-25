@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 14:54:58 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/02/25 12:27:10 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/02/25 19:56:26 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,8 @@ void	move_player(t_game *g)
 				break ;
 			}
 		}
+		if (g->collected == g->map->num_coins)
+			change_enemies_strategy(g, &rage_move, g->enemies[0].move_freq / 2);		
 	}
 	else
 		previous = g->map->bytes[g->player.next.y][g->player.next.x];

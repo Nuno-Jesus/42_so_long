@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 21:38:07 by crypto            #+#    #+#             */
-/*   Updated: 2023/02/25 15:52:27 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/02/25 19:57:30 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,9 +89,11 @@ typedef struct s_display
 typedef struct s_entity
 {
 	int			frame;
-	int			freq;
 	int			frame_freq;
-	int			speed;
+	int			curr_freq;
+	int			move_counter;
+	int			move_freq;
+	int			animate_speed;
 	int			curr_speed;
 	t_direction	dir;
 	t_point		pos;
@@ -125,7 +127,7 @@ typedef struct s_game
 	unsigned int	moves;
 }					t_game;
 
-// I was refactoring the sprite struct
+void		change_enemies_strategy(t_game *g, void (*strategy)(), int freq);
 
 //!_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/= ANIMATE =\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
 
@@ -322,14 +324,15 @@ void		render_map(t_game *g);
 int			render_frame(t_game *g);
 
 //!_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/= MOVE_ENEMIES =\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
-bool		can_enemy_move(t_game *g, t_entity *e);
+bool		can_enemy_move(t_game *g, t_point *p);
 
 bool		enemy_has_possible_moves(t_game *g, t_entity *e);
 
-void		generate_move(t_game *g, t_entity *e);
+void		random_move(t_game *g, t_entity *e);
 
 void		move_enemies(t_game *g);
 
+void		rage_move(t_game *g, t_entity *enemy);
 //!_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_ MAP _/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_ 
 
 /**
