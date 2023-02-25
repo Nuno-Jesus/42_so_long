@@ -15,7 +15,7 @@ RM = rm -rf
 AR = ar -rcs
 
 #_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_ FLAGS _/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
-CFLAGS		= -Wall -Wextra -Werror -g
+CFLAGS		= -Wall -Wextra -Werror -g -fsanitize=address
 MKFLAGS		= --no-print-directory
 MLXFLAGS	= -L ./mlx -lmlx -Ilmlx -lXext -lX11 -lm 
 LIBFTFLAGS	= -L ./libft -lft
@@ -36,7 +36,7 @@ OBJ_DIR_BONUS	= objs_bonus
 #_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_ FILES _/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
 OBJS			= destroy.o map.o utils.o validator.o render.o init.o algorithms.o move_player.o
 OBJS_BONUS		= destroy.o map.o utils.o map_validator.o render.o init.o algorithms.o move_player.o \
-					load_1.o load_2.o load_3.o render_walls.o binary_wall_map.o animate.o \
+					load_1.o load_2.o render_walls.o binary_wall_map.o animate.o \
 					move_enemies.o
 NAME			= so_long
 NAME_BONUS		= so_long_bonus

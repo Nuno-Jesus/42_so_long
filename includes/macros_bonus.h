@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 02:39:20 by marvin            #+#    #+#             */
-/*   Updated: 2023/02/25 15:12:59 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/02/25 15:48:50 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,8 @@
 # define ENTITIES			"01CEPM"
 
 //! Sprite counters
-# define NUM_WALLS			33
+# define NUM_WALLS			31
+# define NUM_REST			2
 # define NUM_PLAYER_FRAMES	7
 # define NUM_COIN_FRAMES	15
 # define NUM_ENEMY_FRAMES	8
@@ -51,88 +52,12 @@
 # define NOT_USED			'N'
 
 //! File paths
-
 # define PLAYER_RIGHT_PATH	"images/bonus/player/right/player_"
 # define PLAYER_LEFT_PATH	"images/bonus/player/left/player_"
 # define ENEMY_CALM_PATH	"images/bonus/enemies/calm/enemy_"
 # define ENEMY_RAGE_PATH	"images/bonus/enemies/rage/enemy_"
 # define COIN_PATH			"images/bonus/potions/potion_"
-
-//! Wall sprites
-# define FW1		"images/bonus/walls/upper_wall.xpm"
-# define FW2		"images/bonus/walls/left_wall.xpm"
-# define FW3		"images/bonus/walls/right_wall.xpm"
-# define FW4		"images/bonus/walls/left_corner_wall.xpm"
-# define FW5		"images/bonus/walls/right_corner_wall.xpm"
-# define FW6		"images/bonus/walls/lower_wall.xpm"
-# define FW7		"images/bonus/walls/one_left_wall.xpm"
-# define FW8		"images/bonus/walls/one_right_wall.xpm"
-# define FW9		"images/bonus/walls/two_horizontal_wall.xpm"
-# define FW10		"images/bonus/walls/two_vertical_wall.xpm"
-# define FW11		"images/bonus/walls/edge_upper_wall.xpm"
-# define FW12		"images/bonus/walls/edge_lower_wall.xpm"
-# define FW13		"images/bonus/walls/edge_left_wall.xpm"
-# define FW14		"images/bonus/walls/edge_right_wall.xpm"
-# define FW15		"images/bonus/walls/bounded_wall.xpm"
-# define FW16		"images/bonus/walls/boundless_wall.xpm"
-# define FW17		"images/bonus/walls/corner_lower_left_wall.xpm"
-# define FW18		"images/bonus/walls/corner_lower_right_wall.xpm"
-# define FW19		"images/bonus/walls/corner_upper_left_wall_2.xpm"
-# define FW20		"images/bonus/walls/corner_upper_right_wall_2.xpm"
-# define FW21		"images/bonus/walls/corner_lower_left_wall_2.xpm"
-# define FW22		"images/bonus/walls/corner_lower_right_wall_2.xpm"
-# define FW23		"images/bonus/walls/boundless_2.xpm"
-# define FW24		"images/bonus/walls/barrier_upper_2.xpm"
-# define FW25		"images/bonus/walls/barrier_lower_2.xpm"
-# define FW26		"images/bonus/walls/barrier_left_2.xpm"
-# define FW27		"images/bonus/walls/barrier_right_2.xpm"
-# define FW28		"images/bonus/walls/corner_boundless_lower_left.xpm"
-# define FW29		"images/bonus/walls/corner_boundless_lower_right.xpm"
-# define FW30		"images/bonus/walls/corner_boundless_upper_left.xpm"
-# define FW31		"images/bonus/walls/corner_boundless_upper_right.xpm"
-
-//! Player frames
-# define FP1		"images/bonus/player/right_player_1.xpm"
-# define FP2		"images/bonus/player/right_player_2.xpm"
-# define FP3		"images/bonus/player/right_player_3.xpm"
-# define FP4		"images/bonus/player/right_player_4.xpm"
-# define FP5		"images/bonus/player/right_player_5.xpm"
-# define FP6		"images/bonus/player/right_player_6.xpm"
-# define FP7		"images/bonus/player/right_player_7.xpm"
-# define FP8		"images/bonus/player/left_player_1.xpm"
-# define FP9		"images/bonus/player/left_player_2.xpm"
-# define FP10		"images/bonus/player/left_player_3.xpm"
-# define FP11		"images/bonus/player/left_player_4.xpm"
-# define FP12		"images/bonus/player/left_player_5.xpm"
-# define FP13		"images/bonus/player/left_player_6.xpm"
-# define FP14		"images/bonus/player/left_player_7.xpm"
-
-//! Potion frames
-# define FC1 		"images/bonus/potions/potion_1.xpm"
-# define FC2 		"images/bonus/potions/potion_2.xpm"
-# define FC3 		"images/bonus/potions/potion_3.xpm"
-# define FC4 		"images/bonus/potions/potion_4.xpm"
-# define FC5 		"images/bonus/potions/potion_5.xpm"
-# define FC6 		"images/bonus/potions/potion_6.xpm"
-# define FC7 		"images/bonus/potions/potion_7.xpm"
-# define FC8 		"images/bonus/potions/potion_8.xpm"
-# define FC9 		"images/bonus/potions/potion_9.xpm"
-# define FC10 		"images/bonus/potions/potion_10.xpm"
-# define FC11 		"images/bonus/potions/potion_11.xpm"
-# define FC12 		"images/bonus/potions/potion_12.xpm"
-# define FC13 		"images/bonus/potions/potion_13.xpm"
-# define FC14 		"images/bonus/potions/potion_14.xpm"
-# define FC15 		"images/bonus/potions/potion_15.xpm"
-
-//! Enemy frames
-# define FM1		"images/bonus/enemies/left_enemy_1.xpm"
-# define FM2		"images/bonus/enemies/left_enemy_2.xpm"
-# define FM3		"images/bonus/enemies/left_enemy_3.xpm"
-# define FM4		"images/bonus/enemies/left_enemy_4.xpm"
-# define FM5		"images/bonus/enemies/right_enemy_1.xpm"
-# define FM6		"images/bonus/enemies/right_enemy_2.xpm"
-# define FM7		"images/bonus/enemies/right_enemy_3.xpm"
-# define FM8		"images/bonus/enemies/right_enemy_4.xpm"
+# define WALL_PATH			"images/bonus/walls/wall_"
 
 //! Rest sprites
 # define FS1		"images/bonus/space.xpm"
@@ -193,8 +118,6 @@ typedef enum e_mask
  */
 typedef enum e_id
 {
-	S1,
-	E1,
 	WALL_U,
 	WALL_L,
 	WALL_R,
@@ -226,6 +149,8 @@ typedef enum e_id
 	CORNER_BDR,
 	CORNER_BUL,
 	CORNER_BUR,
+	E1,
+	S1
 }				t_id;
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 21:38:07 by crypto            #+#    #+#             */
-/*   Updated: 2023/02/25 15:03:06 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/02/25 15:41:20 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -245,21 +245,21 @@ void		load_walls_2(t_game *g);
 
 void		load_walls_3(t_game *g);
 
-void		load_walls(t_game *g);
+void		load_rest(t_game *g);
 
 //!_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/= LOAD_REST =\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
 
 void		load_player_frames_2(t_game *g);
 
-void		load_player_frames(t_game *g);
+void		load_player(t_game *g);
 
-void		load_coins_frames(t_game *g);
+void		load_coins(t_game *g);
 
 void		load_exits(t_game *g);
 
 void		load_spaces(t_game *g);
 
-void		load_enemy_frames(t_game *g);
+void		load_enemies(t_game *g);
 //!_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/= MOVE_PLAYER =\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
 
 void		player_controller(t_game *g);

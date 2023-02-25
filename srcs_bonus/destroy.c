@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/07 11:53:02 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/02/24 05:31:12 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/02/25 15:47:09 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	destroy_sprites(t_game *g)
 	int	k;
 
 	i = 0;
-	while (i < NUM_WALLS)
+	while (i < NUM_WALLS + NUM_REST)
 		mlx_destroy_image(g->disp.mlx, g->sp.img[i++]);
 	free(g->sp.img);
 	i = 0;
