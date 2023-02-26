@@ -6,7 +6,7 @@
 /*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 04:35:13 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/02/26 23:33:45 by crypto           ###   ########.fr       */
+/*   Updated: 2023/02/26 23:50:42 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,39 +43,19 @@ void	rage_move(t_game *g, t_entity *enemy)
 	pos = enemy->pos;
 	enemy->dir = LEFT;
 	if (g->player.pos.x < pos.x)
-	{
 		enemy->next = (t_point){pos.x - 1, pos.y};
-		#ifdef DEBUG
-			printf("Moving to %d %d\n", enemy->next.x, enemy->next.y);		
-		#endif
-	}
-	if (can_enemy_move(g, &enemy->next))
-		return ;
-	if (g->player.pos.x > pos.x)
-	{
-		enemy->next = (t_point){pos.x + 1, pos.y};
-		#ifdef DEBUG
-			printf("Moving to %d %d\n", enemy->next.x, enemy->next.y);		
-		#endif
-	}
 	if (can_enemy_move(g, &enemy->next))
 		return ;
 	if (g->player.pos.y < pos.y)
-	{
 		enemy->next = (t_point){pos.x, pos.y - 1};
-		#ifdef DEBUG
-			printf("Moving to %d %d\n", enemy->next.x, enemy->next.y);		
-		#endif
-	}
+	if (can_enemy_move(g, &enemy->next))
+		return ;
+	if (g->player.pos.x > pos.x)
+		enemy->next = (t_point){pos.x + 1, pos.y};
 	if (can_enemy_move(g, &enemy->next))
 		return ;
 	if (g->player.pos.y > pos.y)
-	{
 		enemy->next = (t_point){pos.x, pos.y + 1};
-		#ifdef DEBUG
-			printf("Moving to %d %d\n", enemy->next.x, enemy->next.y);		
-		#endif
-	}
 	if (can_enemy_move(g, &enemy->next))
 		return ;
 	enemy->next = tmp;
@@ -127,9 +107,10 @@ void	move_enemies(t_game *g)
 			quit(g);
 		}
 		set(g, g->enemies[i].pos, SPACE);
-		render_tile(g, g->enemies[i].pos);
+		render(g, &g->sp, g->enemies[i].pos, S1);
 		set(g, g->enemies[i].next, ENEMY);
-		render_tile(g, g->enemies[i].next);
+		render(g, &g->eframes[g->enemy_status], \
+			g->enemies[i].next, g->enemies[i].frame);
 		g->enemies[i].pos = g->enemies[i].next;
 	}
 }
