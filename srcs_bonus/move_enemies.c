@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   move_enemies.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 04:35:13 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/02/25 20:03:15 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/02/26 23:33:45 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,17 +81,16 @@ void	rage_move(t_game *g, t_entity *enemy)
 	enemy->next = tmp;
 }
 
-void		change_enemies_strategy(t_game *g, void (*strategy)(), int freq, t_status status)
+void		change_enemies_strategy(t_game *g, void (*strategy)(), t_status status)
 {
 	unsigned int	i;
 
 	i = -1;
-	while (++i < g->map->num_enemies)
-	{
-		g->enemies[i].strategy = strategy;
-		g->enemies[i].move_freq = freq;
-		g->enemies[i].status = status;
-	}
+	g->enemy_strategy = strategy;
+	g->enemy_status = status;
+	if (status == ENRAGED)
+		while (++i < g->map->num_enemies)
+			g->enemies[i].move_freq = g->enemies[i].move_freq / 2;
 }
 
 void	random_move(t_game *g, t_entity *enemy)
@@ -121,15 +120,15 @@ void	move_enemies(t_game *g)
 			continue ;
 		if (!enemy_has_possible_moves(g, &g->enemies[i]))
 			continue ;
-		(*g->enemies[i].strategy)(g, &g->enemies[i]);
+		(*g->enemy_strategy)(g, &g->enemies[i]);
 		if (at(g, g->enemies[i].next) == PLAYER)
 		{
 			ft_putstr_fd("Game over.\n", STDOUT_FILENO);
 			quit(g);
 		}
-		g->map->bytes[g->enemies[i].pos.y][g->enemies[i].pos.x] = SPACE;
+		set(g, g->enemies[i].pos, SPACE);
 		render_tile(g, g->enemies[i].pos);
-		g->map->bytes[g->enemies[i].next.y][g->enemies[i].next.x] = ENEMY;
+		set(g, g->enemies[i].next, ENEMY);
 		render_tile(g, g->enemies[i].next);
 		g->enemies[i].pos = g->enemies[i].next;
 	}

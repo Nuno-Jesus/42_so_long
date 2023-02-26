@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 14:13:49 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/02/25 19:52:29 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/02/26 23:14:12 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ void	init_enemies(t_game *g)
 	g->enemies = ft_calloc(g->map->num_enemies, sizeof(t_entity));
 	if (!g->enemies)
 		message(g, "Failed allocation on coins entity array\n");
+	g->enemy_strategy = &random_move;
 	while (++p.y < g->map->rows)
 	{
 		p.x = -1;
@@ -72,7 +73,6 @@ void	init_enemies(t_game *g)
 			g->enemies[i].frame_freq = CALLS_PER_FRAME;
 			g->enemies[i].move_freq = rand () % MOVE_CALLS + MOVE_CALLS;
 			g->enemies[i].animate_speed = ANIMATE_CALLS;
-			g->enemies[i].strategy = &random_move;
 			g->enemies[i].pos = p;
 			g->enemies[i++].next = p;
 		}

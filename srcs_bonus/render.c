@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 02:39:13 by marvin            #+#    #+#             */
-/*   Updated: 2023/02/25 19:12:30 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/02/26 23:38:58 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,15 +25,15 @@ void	render_tile(t_game *g, t_point p)
 
 	sp = &g->sp;
 	frame = 0;
-	if (g->map->bytes[p.y][p.x] == EXIT)
+	if (at(g, p) == EXIT)
 		frame = E1;
-	else if (g->map->bytes[p.y][p.x] == SPACE)
+	else if (at(g, p) == SPACE)
 		frame = S1;
-	else if (g->map->bytes[p.y][p.x] == PLAYER)
+	else if (at(g, p) == PLAYER)
 		sp = &g->pframes[RIGHT];
-	else if (g->map->bytes[p.y][p.x] == COIN)
+	else if (at(g, p) == COIN)
 		sp = &g->cframes;
-	else if (g->map->bytes[p.y][p.x] == ENEMY)
+	else if (at(g, p) == ENEMY)
 		sp = &g->eframes[RIGHT];
 	else
 		return ;

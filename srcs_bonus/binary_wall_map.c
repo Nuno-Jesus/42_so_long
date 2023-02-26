@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   binary_wall_map.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 02:16:40 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/02/25 15:52:27 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/02/26 23:32:57 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,18 +46,15 @@ bool	bin(t_point *p, int **mat, t_point vals, int op)
 
 void	fill_binary_matrix(t_game *g, int **mat)
 {
-	unsigned int	y;
-	unsigned int	x;
+	t_point	p;
 
-	y = -1;
-	while (++y < g->map->rows)
+	p.y = -1;
+	while (++p.y < g->map->rows)
 	{
-		x = -1;
-		while (++x < g->map->cols)
-		{
-			if (g->map->bytes[y][x] == WALL)
-				mat[y + 1][x + 1] = 1;
-		}
+		p.x = -1;
+		while (++p.x < g->map->cols)
+			if (at(g, p) == WALL)
+				mat[p.y + 1][p.x + 1] = 1;
 	}
 }
 

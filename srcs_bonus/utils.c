@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/07 18:04:46 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/02/25 15:53:05 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/02/26 23:28:12 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,11 @@
 t_type	at(t_game *g, t_point p)
 {
 	return (g->map->bytes[p.y][p.x]);
+}
+
+void	set(t_game *g, t_point p, t_type type)
+{
+	g->map->bytes[p.y][p.x] = type;
 }
 
 bool	is_same_point(t_point p1, t_point p2)

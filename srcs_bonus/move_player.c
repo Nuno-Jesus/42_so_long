@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   move_player.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 14:54:58 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/02/25 20:01:30 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/02/26 23:39:37 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,43 +38,49 @@ bool	can_player_move(t_game *g, t_entity *e)
 	return (!is_same_point(e->pos, e->next) && at(g, e->next) != WALL);
 }
 
+void	collect_coins(t_game *g, t_point *p)
+{
+	unsigned int	i;
+	
+	i = -1;
+	while (++i < g->map->num_coins)
+	{
+		if (!is_same_point(g->coins[i].pos, *p))
+			continue ;
+		g->coins[i].pos = (t_point){-1, -1};
+		break ;
+	}
+	g->collected++;
+}
+
 void	move_player(t_game *g)
 {
 	static t_type	previous = SPACE;
-	unsigned int	i;
 
-	g->map->bytes[g->player.pos.y][g->player.pos.x] = previous;
+	set(g, g->player.pos, previous);
 	render_tile(g, g->player.pos);
 	if (at(g, g->player.next) == COIN)
-	{
 		previous = SPACE;
-		i = -1;
-		while (++i < g->map->num_coins)
-		{
-			if (is_same_point(g->coins[i].pos, g->player.next))
-			{
-				g->coins[i].pos = (t_point){-1, -1};
-				break ;
-			}
-		}
-		if (g->collected == g->map->num_coins)
-			change_enemies_strategy(g, &rage_move, g->enemies[0].move_freq / 2, ENRAGED);		
-	}
 	else
-		previous = g->map->bytes[g->player.next.y][g->player.next.x];
-	g->map->bytes[g->player.next.y][g->player.next.x] = PLAYER;
+		previous = at(g, g->player.next);
+	set(g, g->player.next, PLAYER);
 	g->player.pos = g->player.next;
 }
 
 void	player_controller(t_game *g)
 {
 	if (at(g, g->player.next) == COIN)
-		g->collected++;
+		collect_coins(g, &g->player.next);
 	else if (at(g, g->player.next) == ENEMY)
 	{
 		ft_putstr_fd("Game over.\n", STDOUT_FILENO);
 		quit(g);
 	}
-	else if (at(g, g->player.next) == EXIT && g->collected == g->map->num_coins)
-		quit(g);
+	else if (g->collected == g->map->num_coins)
+	{
+		if (at(g, g->player.next) == EXIT)
+			quit(g);
+		if (g->enemy_status != ENRAGED)
+			change_enemies_strategy(g, &rage_move, ENRAGED);		
+	}
 }
