@@ -6,7 +6,7 @@
 /*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 14:54:58 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/02/26 23:39:37 by crypto           ###   ########.fr       */
+/*   Updated: 2023/02/27 00:04:45 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,12 +57,11 @@ void	move_player(t_game *g)
 {
 	static t_type	previous = SPACE;
 
-	set(g, g->player.pos, previous);
-	render_tile(g, g->player.pos);
+	previous = at(g, g->player.next);
 	if (at(g, g->player.next) == COIN)
 		previous = SPACE;
-	else
-		previous = at(g, g->player.next);
+	set(g, g->player.pos, previous);
+	render_tile(g, g->player.pos);
 	set(g, g->player.next, PLAYER);
 	g->player.pos = g->player.next;
 }
