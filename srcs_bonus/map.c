@@ -6,7 +6,7 @@
 /*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/07 18:03:57 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/02/27 20:44:00 by crypto           ###   ########.fr       */
+/*   Updated: 2023/02/27 23:22:29 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,18 +78,12 @@ void	read_map(t_game *game, char *filename)
 	close(fd);
 }
 
-/* 
-void	map_print(t_map *map)
+t_type	at(t_game *g, t_point p)
 {
-	unsigned int	i;
-
-	i = 0;
-	printf("Length: %u\n", map->cols);
-	printf("Width: %u\n", map->rows);
-	printf("Players: %u\n", map->num_players);
-	printf("Exits: %u\n", map->num_exits);
-	printf("Coins: %u\n", map->num_potions);
-	while (i < map->rows)
-		printf("%s\n", map->bytes[i++]);
+	return (g->map->bytes[p.y][p.x]);
 }
- */
+
+void	set(t_game *g, t_point p, t_type type)
+{
+	g->map->bytes[p.y][p.x] = type;
+}

@@ -37,7 +37,7 @@ OBJ_DIR_BONUS	= objs_bonus
 OBJS			= destroy.o map.o utils.o validator.o render.o init.o algorithms.o move_player.o
 OBJS_BONUS		= destroy.o map.o utils.o map_validator.o render.o init.o algorithms.o move_player.o \
 					load_sprites.o render_walls.o binary_wall_map.o animate.o \
-					move_enemies.o
+					move_enemies.o strategy.o
 NAME			= so_long
 NAME_BONUS		= so_long_bonus
 TARGET			= $(addprefix $(OBJ_DIR)/, $(OBJS))

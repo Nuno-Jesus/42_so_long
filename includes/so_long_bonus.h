@@ -6,7 +6,7 @@
 /*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 21:38:07 by crypto            #+#    #+#             */
-/*   Updated: 2023/02/27 21:21:36 by crypto           ###   ########.fr       */
+/*   Updated: 2023/02/27 23:21:08 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,7 +128,7 @@ typedef struct s_game
 	unsigned int	moves;
 }					t_game;
 
-void		change_enemies_strategy(t_game *g, void (*strategy)(), t_status status);
+void		change_strategy(t_game *g, void (*strategy)(), t_status status);
 
 //!_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/= ANIMATE =\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
 
@@ -164,9 +164,9 @@ bool		diags(int **mat, t_point *p, char *diagonals);
 
 bool		sides(t_point *p, int **mat, t_point vals, int op);
 
-void		fill_binary_matrix(t_game *g, int **mat);
+void		fill_bin_matrix(t_game *g, int **mat);
 
-int			**create_binary_matrix(unsigned int y, unsigned int x);
+int			**new_matrix(unsigned int y, unsigned int x);
 
 //!_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\ DESTROY _/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_ 
 
@@ -313,11 +313,14 @@ bool		enemy_can_move(t_game *g, t_point p);
 
 bool		enemy_has_possible_moves(t_game *g, t_point *pos);
 
-void		normal_move(t_game *g, t_entity *enemy);
-
-void		rage_move(t_game *g, t_entity *enemy);
-
 void		move_enemies(t_game *g);
+
+//!_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/= STRATEGY =\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
+
+void		random_strategy(t_game *g, t_entity *enemy);
+
+void		chase_strategy(t_game *g, t_entity *enemy);
+
 //!_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_ MAP _/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_ 
 
 /**

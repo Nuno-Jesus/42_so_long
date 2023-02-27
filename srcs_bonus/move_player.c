@@ -6,7 +6,7 @@
 /*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 14:54:58 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/02/27 21:26:24 by crypto           ###   ########.fr       */
+/*   Updated: 2023/02/27 23:13:44 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ bool	player_can_move(t_game *g, t_entity *e)
 void	collect_coins(t_game *g, t_point *p)
 {
 	unsigned int	i;
-	
+
 	i = -1;
 	while (++i < g->map->num_potions)
 	{
@@ -80,6 +80,6 @@ void	player_controller(t_game *g)
 		if (at(g, g->player.next) == EXIT)
 			quit(g);
 		if (g->enemy_status != ENRAGED)
-			change_enemies_strategy(g, &rage_move, ENRAGED);		
+			change_strategy(g, &chase_strategy, ENRAGED);
 	}
 }

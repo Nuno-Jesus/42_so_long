@@ -6,7 +6,7 @@
 /*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 02:39:13 by marvin            #+#    #+#             */
-/*   Updated: 2023/02/27 21:19:21 by crypto           ###   ########.fr       */
+/*   Updated: 2023/02/27 23:12:26 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	render_tile(t_game *g, t_point p)
 void	render_map(t_game *g)
 {
 	t_point	p;
-	
+
 	render_outter_walls(g);
 	render_inner_walls(g);
 	p.y = 0;

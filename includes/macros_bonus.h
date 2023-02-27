@@ -6,7 +6,7 @@
 /*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 02:39:20 by marvin            #+#    #+#             */
-/*   Updated: 2023/02/27 20:48:14 by crypto           ###   ########.fr       */
+/*   Updated: 2023/02/27 23:15:52 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,18 +62,17 @@
 # define EXIT_PATH			"images/bonus/exit/exit_"
 # define FLOOR_PATH			"images/bonus/floor/floor_"
 
-
 /**
  * @brief An enumerable type used to map a char to an entity
  */
 typedef enum e_type
 {
+	POTION = 'C',
 	FLOOR = '0',
 	WALL = '1',
-	POTION = 'C',
 	EXIT = 'E',
+	ENEMY = 'M',
 	PLAYER = 'P',
-	ENEMY = 'M'
 }			t_type;
 
 typedef enum e_direction
@@ -89,7 +88,8 @@ typedef enum e_status
 	NORMAL,
 	ENRAGED,
 	AFRAID,
-} t_status;
+}t_status;
+
 /**
  * @brief Used to map a keyboard scancode to its given key
  */

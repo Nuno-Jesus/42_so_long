@@ -6,7 +6,7 @@
 /*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 02:14:19 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/02/27 21:10:03 by crypto           ###   ########.fr       */
+/*   Updated: 2023/02/27 23:21:08 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,10 +86,11 @@ t_id	pick_wall_sprite(t_point p, int **mat)
 void	render_inner_walls(t_game *g)
 {
 	int		**mat;
+	int		frame;
 	t_point	p;
 
-	mat = create_binary_matrix(g->map->rows + 2, g->map->cols + 2);
-	fill_binary_matrix(g, mat);
+	mat = new_matrix(g->map->rows + 2, g->map->cols + 2);
+	fill_bin_matrix(g, mat);
 	p.y = 0;
 	while (++p.y < g->map->rows - 1)
 	{
@@ -98,8 +99,8 @@ void	render_inner_walls(t_game *g)
 		{
 			if (at(g, p) != WALL)
 				continue ;
-			g->walls_sp.curr = pick_wall_sprite((t_point){p.x + 1, p.y + 1}, mat);
-			render(g, &g->walls_sp, p, g->walls_sp.curr);
+			frame = pick_wall_sprite((t_point){p.x + 1, p.y + 1}, mat);
+			render(g, &g->walls_sp, p, frame);
 		}
 	}
 	destroy_matrix(mat);

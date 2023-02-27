@@ -6,21 +6,11 @@
 /*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/07 18:04:46 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/02/27 21:11:07 by crypto           ###   ########.fr       */
+/*   Updated: 2023/02/27 23:22:25 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long_bonus.h"
-
-t_type	at(t_game *g, t_point p)
-{
-	return (g->map->bytes[p.y][p.x]);
-}
-
-void	set(t_game *g, t_point p, t_type type)
-{
-	g->map->bytes[p.y][p.x] = type;
-}
 
 bool	is_same_point(t_point p1, t_point p2)
 {

@@ -6,7 +6,7 @@
 /*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 02:16:40 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/02/27 21:10:03 by crypto           ###   ########.fr       */
+/*   Updated: 2023/02/27 23:21:08 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ bool	sides(t_point *p, int **mat, t_point vals, int op)
 			&& (int)vals.x == (mat[p->y][p->x - 1] + mat[p->y][p->x + 1]));
 }
 
-void	fill_binary_matrix(t_game *g, int **mat)
+void	fill_bin_matrix(t_game *g, int **mat)
 {
 	t_point	p;
 
@@ -58,7 +58,7 @@ void	fill_binary_matrix(t_game *g, int **mat)
 	}
 }
 
-int	**create_binary_matrix(unsigned int y, unsigned int x)
+int	**new_matrix(unsigned int y, unsigned int x)
 {
 	int				**mat;
 	unsigned int	i;
