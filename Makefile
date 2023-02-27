@@ -29,15 +29,17 @@ LIBFT			= libft
 GNL				= get_next_line
 MLX 			= mlx
 PRINTF			= ft_printf
-VPATH			= srcs_bonus
+SUBFOLDERS		= logic map render utils
+VPATH			= srcs_bonus srcs_bonus/logic srcs_bonus/map srcs_bonus/render srcs_bonus/utils
 OBJ_DIR			= objs
 OBJ_DIR_BONUS	= objs_bonus
 
 #_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_ FILES _/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
-OBJS			= destroy.o map.o utils.o validator.o render.o init.o algorithms.o move_player.o
-OBJS_BONUS		= destroy.o map.o utils.o map_validator.o render.o init.o algorithms.o move_player.o \
-					load_sprites.o render_walls.o binary_wall_map.o animate.o \
-					move_enemies.o strategy.o
+_FILES			= destroy map utils validator render init algorithms move_player
+_FILES_BONUS	= move_enemies move_player strategy algorithms map_validator read_map animate \
+				binary_wall_map destroy load_sprites render_walls render utils debug init 
+OBJS			= $(_FILES:%=%.o)
+OBJS_BONUS		= $(_FILES_BONUS:%=%.o)
 NAME			= so_long
 NAME_BONUS		= so_long_bonus
 TARGET			= $(addprefix $(OBJ_DIR)/, $(OBJS))
@@ -89,7 +91,7 @@ fclean: clean
 	echo "[$(RED) Deleted $(RESET)] $(GREEN)$(NAME_BONUS)$(RESET)"
 	$(RM) $(NAME_BONUS) 
 
-$(OBJ_DIR_BONUS)/%.o : $(SRCS_BONUS)/%.c 
+$(OBJ_DIR_BONUS)/%.o : %.c 
 	echo "[$(CYAN)Compiling$(RESET)] $(CFLAGS) $(GREEN)$<$(RESET)"
 	$(CC) $(CFLAGS) -c $< -o $@ -I $(DEPS)
 
