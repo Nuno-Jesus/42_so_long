@@ -6,7 +6,7 @@
 /*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 14:19:00 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/02/12 11:38:51 by crypto           ###   ########.fr       */
+/*   Updated: 2023/02/27 20:44:00 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,11 @@ void	render_tile(t_game *g, t_point p)
 
 	if (g->map->bytes[p.y][p.x] == WALL)
 		sp = g->sp[W1];
-	else if (g->map->bytes[p.y][p.x] == COIN)
+	else if (g->map->bytes[p.y][p.x] == POTION)
 		sp = g->sp[C1];
 	else if (g->map->bytes[p.y][p.x] == EXIT)
 		sp = g->sp[E1];
-	else if (g->map->bytes[p.y][p.x] == SPACE)
+	else if (g->map->bytes[p.y][p.x] == FLOOR)
 		sp = g->sp[S1];
 	else if (g->map->bytes[p.y][p.x] == PLAYER)
 		sp = g->sp[P1];
@@ -51,9 +51,9 @@ int	render_frame(t_game *g)
 	ft_putstr_fd("Number of movements: ", STDOUT_FILENO);
 	ft_putnbr_fd(++g->moves, STDOUT_FILENO);
 	ft_putchar_fd('\n', STDOUT_FILENO);
-	if (at(g, g->next) == COIN)
+	if (at(g, g->next) == POTION)
 		g->coins++;
-	else if (at(g, g->next) == EXIT && g->coins == g->map->num_coins)
+	else if (at(g, g->next) == EXIT && g->coins == g->map->num_potions)
 		quit(g);
 	move_player(g);
 	return (0);

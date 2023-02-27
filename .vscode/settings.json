@@ -1,7 +1,5 @@
 {
-	"files.associations": {
-		"*.pl": "prolog",
-		"time.h": "c",
-		"stdlib.h": "c"
-	}
+    "files.associations": {
+        "numbers": "c"
+    }
 }

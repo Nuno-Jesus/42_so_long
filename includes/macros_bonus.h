@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   macros_bonus.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 02:39:20 by marvin            #+#    #+#             */
-/*   Updated: 2023/02/25 15:48:50 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/02/27 23:15:52 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,21 +28,22 @@
 # include "get_next_line.h"
 # include "../mlx/mlx.h"
 
-# define DIRECTIONS			2
-# define XOFFSET			-16
-# define ENTITIES			"01CEPM"
+# define NUM_SPRITE_VERSIONS	2
+# define XOFFSET				-16
+# define ENTITIES				"01CEPM"
 
 //! Sprite counters
 # define NUM_WALLS			31
-# define NUM_REST			2
 # define NUM_PLAYER_FRAMES	7
 # define NUM_COIN_FRAMES	15
 # define NUM_ENEMY_FRAMES	8
+# define NUM_EXIT_FRAMES	1
+# define NUM_FLOOR_FRAMES	1
 
 //! Sprite refreshing frequency
 # define ANIMATE_CALLS		250
-# define CALLS_PER_FRAME	40
-# define MOVE_CALLS			100000
+# define CALLS_PER_FRAME	8
+# define MOVE_CALLS			50000
 
 //! Binary map needed macros
 # define DIFF				0
@@ -56,24 +57,22 @@
 # define PLAYER_LEFT_PATH	"images/bonus/player/left/player_"
 # define ENEMY_CALM_PATH	"images/bonus/enemies/calm/enemy_"
 # define ENEMY_RAGE_PATH	"images/bonus/enemies/rage/enemy_"
-# define COIN_PATH			"images/bonus/potions/potion_"
+# define POTION_PATH		"images/bonus/potions/potion_"
 # define WALL_PATH			"images/bonus/walls/wall_"
-
-//! Rest sprites
-# define FS1		"images/bonus/space.xpm"
-# define FE1		"images/exit.xpm"
+# define EXIT_PATH			"images/bonus/exit/exit_"
+# define FLOOR_PATH			"images/bonus/floor/floor_"
 
 /**
  * @brief An enumerable type used to map a char to an entity
  */
 typedef enum e_type
 {
-	SPACE = '0',
+	POTION = 'C',
+	FLOOR = '0',
 	WALL = '1',
-	COIN = 'C',
 	EXIT = 'E',
+	ENEMY = 'M',
 	PLAYER = 'P',
-	ENEMY = 'M'
 }			t_type;
 
 typedef enum e_direction
@@ -82,7 +81,15 @@ typedef enum e_direction
 	LEFT,
 	UP,
 	DOWN
-}			t_direction;		
+}			t_direction;
+
+typedef enum e_status
+{
+	NORMAL,
+	ENRAGED,
+	AFRAID,
+}t_status;
+
 /**
  * @brief Used to map a keyboard scancode to its given key
  */
@@ -149,8 +156,6 @@ typedef enum e_id
 	CORNER_BDR,
 	CORNER_BUL,
 	CORNER_BUR,
-	E1,
-	S1
 }				t_id;
 
 #endif

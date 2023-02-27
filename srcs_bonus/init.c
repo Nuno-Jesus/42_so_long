@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 14:13:49 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/02/25 14:54:33 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/02/27 23:13:55 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,6 @@ void	init_graphics(t_game *g)
 		32 * g->map->rows + 32, "so_long");
 	if (!g->disp.win)
 		message(g, "Failed allocation on window pointer\n");
-	g->disp.img = mlx_new_image(g->disp.mlx, 8 * g->map->cols, 32);
-	if (!g->disp.img)
-		message(g, "Failed allocation on mlx image pointer\n");
 }
 
 void	init_coins(t_game *g)
@@ -33,7 +30,7 @@ void	init_coins(t_game *g)
 
 	i = 0;
 	p = (t_point){-1, -1};
-	g->coins = ft_calloc(g->map->num_coins, sizeof(t_entity));
+	g->coins = ft_calloc(g->map->num_potions, sizeof(t_entity));
 	if (!g->coins)
 		message(g, "Failed allocation on coins entity array\n");
 	while (++p.y < g->map->rows)
@@ -41,11 +38,12 @@ void	init_coins(t_game *g)
 		p.x = -1;
 		while (++p.x < g->map->cols)
 		{
-			if (at(g, p) != COIN)
+			if (at(g, p) != POTION)
 				continue ;
 			g->coins[i].frame = rand() % NUM_COIN_FRAMES;
 			g->coins[i].frame_freq = CALLS_PER_FRAME;
-			g->coins[i].speed = ANIMATE_CALLS;
+			g->coins[i].animate_speed = ANIMATE_CALLS;
+			g->coins[i].type = POTION;
 			g->coins[i++].pos = p;
 		}
 	}
@@ -61,6 +59,7 @@ void	init_enemies(t_game *g)
 	g->enemies = ft_calloc(g->map->num_enemies, sizeof(t_entity));
 	if (!g->enemies)
 		message(g, "Failed allocation on coins entity array\n");
+	g->enemy_strategy = &random_strategy;
 	while (++p.y < g->map->rows)
 	{
 		p.x = -1;
@@ -70,8 +69,11 @@ void	init_enemies(t_game *g)
 				continue ;
 			g->enemies[i].frame = rand() % NUM_ENEMY_FRAMES;
 			g->enemies[i].frame_freq = CALLS_PER_FRAME;
-			g->enemies[i].speed = ANIMATE_CALLS;
-			g->enemies[i++].pos = p;
+			g->enemies[i].move_freq = rand () % MOVE_CALLS + MOVE_CALLS;
+			g->enemies[i].animate_speed = ANIMATE_CALLS;
+			g->enemies[i].type = ENEMY;
+			g->enemies[i].pos = p;
+			g->enemies[i++].next = p;
 		}
 	}
 }
@@ -79,7 +81,8 @@ void	init_enemies(t_game *g)
 void	init_player(t_game *g)
 {
 	g->player.frame_freq = CALLS_PER_FRAME;
-	g->player.speed = ANIMATE_CALLS;
+	g->player.animate_speed = ANIMATE_CALLS;
+	g->player.type = PLAYER;
 }
 
 void	init_game(char *filename)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long_bonus.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 21:38:07 by crypto            #+#    #+#             */
-/*   Updated: 2023/02/25 15:52:27 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/02/27 23:21:08 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ typedef struct s_point
  * @param bytes The char matrix with the char map
  * @param cols The number of columns of the map
  * @param rows The number of rows of the map
- * @param num_coins The number of collected in the map
+ * @param num_potions The number of collected in the map
  * @param num_exits The number of exits in the map
  * @param num_players The number of players in the map
  */
@@ -40,7 +40,7 @@ typedef struct s_map
 	char			**bytes;
 	unsigned int	cols;
 	unsigned int	rows;
-	unsigned int	num_coins;
+	unsigned int	num_potions;
 	unsigned int	num_exits;
 	unsigned int	num_players;
 	unsigned int	num_enemies;
@@ -77,7 +77,6 @@ typedef struct s_display
 {
 	void	*mlx;
 	void	*win;
-	void	*img;
 	char	*addr;
 	int		height;
 	int		width;
@@ -89,16 +88,17 @@ typedef struct s_display
 typedef struct s_entity
 {
 	int			frame;
-	int			freq;
 	int			frame_freq;
-	int			speed;
+	int			curr_freq;
+	int			move_counter;
+	int			move_freq;
+	int			animate_speed;
 	int			curr_speed;
+	t_type		type;
 	t_direction	dir;
 	t_point		pos;
 	t_point		next;
-	void		(*strategy)();
 }				t_entity;
-
 /**
  * @brief The root of the so_long project encapsulating other structs
  * @param map The map struct
@@ -112,20 +112,23 @@ typedef struct s_entity
 typedef struct s_game
 {
 	t_map			*map;	
-	t_point			enext;
 	t_display		disp;
-	t_sprite		sp;
-	t_sprite		*pframes;
-	t_sprite		*eframes;
-	t_sprite		cframes;
+	t_sprite		*player_sp;
+	t_sprite		*enemy_sp;
+	t_sprite		floor_sp;
+	t_sprite		walls_sp;
+	t_sprite		exit_sp;
+	t_sprite		potions_sp;
 	t_entity		player;
 	t_entity		*enemies;
 	t_entity		*coins;
+	t_status		enemy_status;
+	void			(*enemy_strategy)();
 	unsigned int	collected;
 	unsigned int	moves;
 }					t_game;
 
-// I was refactoring the sprite struct
+void		change_strategy(t_game *g, void (*strategy)(), t_status status);
 
 //!_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/= ANIMATE =\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
 
@@ -157,13 +160,13 @@ bool		is_filename_valid(char *filename);
 bool		flood_fill(t_map *map, t_point curr, char **maze);
 
 //!_/=\_/=\_/=\_/=\_/=\_/=\_/=\ BINARY_WALL_MAP /=\_/=\_/=\_/=\_/=\_/=\_/=\_
-bool		has_diags(int **mat, t_point *p, char *diagonals);
+bool		diags(int **mat, t_point *p, char *diagonals);
 
-bool		bin(t_point *p, int **mat, t_point vals, int op);
+bool		sides(t_point *p, int **mat, t_point vals, int op);
 
-void		fill_binary_matrix(t_game *g, int **mat);
+void		fill_bin_matrix(t_game *g, int **mat);
 
-int			**create_binary_matrix(unsigned int y, unsigned int x);
+int			**new_matrix(unsigned int y, unsigned int x);
 
 //!_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\ DESTROY _/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_ 
 
@@ -179,7 +182,7 @@ void		init_position(t_game *g, t_point *pos, t_type type);
  * @brief Frees the memory from the sprite array inside the t_game struct
  * @param g The t_game struct to free the sprites memory from
  */
-void		destroy_sprites(t_game *g);
+void		destroy_all_sprites(t_game *g);
 
 /**
  * @brief Frees the memory associated with a t_map struct
@@ -235,31 +238,15 @@ int			quit(t_game *game);
  * @return int (unused)
  */
 int			move_handler(int keycode, t_game *game);
-//!_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/= LOAD_WALLS =\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
+//!_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/= LOAD_SPRITES =\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
 
 void		load_xpm(t_game *g, t_sprite *s, char *prefix, int n);
 
-void		load_walls_1(t_game *g);
+void		load_static_entites_frames(t_game *g);
 
-void		load_walls_2(t_game *g);
+void		load_player_frames(t_game *g);
 
-void		load_walls_3(t_game *g);
-
-void		load_rest(t_game *g);
-
-//!_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/= LOAD_REST =\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
-
-void		load_player_frames_2(t_game *g);
-
-void		load_player(t_game *g);
-
-void		load_coins(t_game *g);
-
-void		load_exits(t_game *g);
-
-void		load_spaces(t_game *g);
-
-void		load_enemies(t_game *g);
+void		load_enemies_frames(t_game *g);
 //!_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/= MOVE_PLAYER =\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
 
 void		player_controller(t_game *g);
@@ -288,7 +275,7 @@ void		move_enemies(t_game *g);
  * @param e The entity that should be moved
  * @return true if the move is valid, false otherwise 
  */
-bool		can_player_move(t_game *g, t_entity *e);
+bool		player_can_move(t_game *g, t_entity *e);
 
 //!_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_ RENDER _/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_ 
 
@@ -322,13 +309,17 @@ void		render_map(t_game *g);
 int			render_frame(t_game *g);
 
 //!_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/= MOVE_ENEMIES =\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
-bool		can_enemy_move(t_game *g, t_entity *e);
+bool		enemy_can_move(t_game *g, t_point p);
 
-bool		enemy_has_possible_moves(t_game *g, t_entity *e);
-
-void		generate_move(t_game *g, t_entity *e);
+bool		enemy_has_possible_moves(t_game *g, t_point *pos);
 
 void		move_enemies(t_game *g);
+
+//!_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/= STRATEGY =\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
+
+void		random_strategy(t_game *g, t_entity *enemy);
+
+void		chase_strategy(t_game *g, t_entity *enemy);
 
 //!_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_ MAP _/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_ 
 
@@ -424,7 +415,7 @@ void		validate_map(t_game *g);
  * @brief Deletes the memory associated to a char matrix
  * @param matrix The matrix to delete the memory from 
  */
-void		ft_delete_matrix(void *matrix);
+void		destroy_matrix(void *matrix);
 
 /**
  * @brief It outputs the "Error\n" string followed by an error message to
@@ -446,10 +437,14 @@ void		message(t_game *game, char *text);
  */
 t_type		at(t_game *g, t_point p);
 
-int			ft_tosymbol(int c);
+void		set(t_game *g, t_point p, t_type type);
 
 int			ft_tochar(int c);
 
+int			ft_tonum(int c);
+
 bool		is_same_point(t_point p1, t_point p2);
+
+void		ft_free(void *ptr);
 
 #endif

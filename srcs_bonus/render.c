@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 02:39:13 by marvin            #+#    #+#             */
-/*   Updated: 2023/02/25 12:27:36 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/02/27 23:12:26 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,62 +21,60 @@ void	render(t_game *g, t_sprite *s, t_point p, int frame)
 void	render_tile(t_game *g, t_point p)
 {
 	t_sprite	*sp;
-	int			frame;
 
-	sp = &g->sp;
-	frame = 0;
-	if (g->map->bytes[p.y][p.x] == EXIT)
-		frame = E1;
-	else if (g->map->bytes[p.y][p.x] == SPACE)
-		frame = S1;
-	else if (g->map->bytes[p.y][p.x] == PLAYER)
-		sp = &g->pframes[RIGHT];
-	else if (g->map->bytes[p.y][p.x] == COIN)
-		sp = &g->cframes;
-	else if (g->map->bytes[p.y][p.x] == ENEMY)
-		sp = &g->eframes[RIGHT];
+	sp = &g->walls_sp;
+	if (at(g, p) == EXIT)
+		sp = &g->exit_sp;
+	else if (at(g, p) == FLOOR)
+		sp = &g->floor_sp;
+	else if (at(g, p) == PLAYER)
+		sp = &g->player_sp[RIGHT];
+	else if (at(g, p) == POTION)
+		sp = &g->potions_sp;
+	else if (at(g, p) == ENEMY)
+		sp = &g->enemy_sp[NORMAL];
 	else
 		return ;
-	render(g, sp, p, frame);
+	render(g, sp, p, 0);
 }
 
 void	render_map(t_game *g)
 {
-	unsigned int	x;
-	unsigned int	y;
+	t_point	p;
 
-	y = 0;
 	render_outter_walls(g);
 	render_inner_walls(g);
-	while (++y < g->map->rows - 1)
+	p.y = 0;
+	while (++p.y < g->map->rows - 1)
 	{
-		x = 0;
-		while (++x < g->map->cols - 1)
-			render_tile(g, (t_point){x, y});
+		p.x = 0;
+		while (++p.x < g->map->cols - 1)
+			render_tile(g, p);
 	}
 }
 
 void	render_counter(t_game *g)
 {
-	char	*str;
-	int		x;
-	int		y;
+	char	*str[2];
+	t_point	p;
 
-	x = (g->map->cols - 1) * 16;
-	y = g->map->rows * 32 + 20;
-	str = ft_itoa(++g->moves);
-	mlx_put_image_to_window(g->disp.mlx, g->disp.win, g->disp.img, x, y - 20);
-	mlx_string_put(g->disp.mlx, g->disp.win, x, y, 0xFFFFFF, str);
-	free(str);
+	p.x = (g->map->cols - 1) * 16;
+	p.y = g->map->rows * 32 + 20;
+	str[0] = ft_itoa(g->moves);
+	str[1] = ft_itoa(++g->moves);
+	mlx_string_put(g->disp.mlx, g->disp.win, p.x, p.y, 0x000000, str[0]);
+	mlx_string_put(g->disp.mlx, g->disp.win, p.x, p.y, 0xFFFFFF, str[1]);
+	free(str[0]);
+	free(str[1]);
 }
 
 int	render_frame(t_game *g)
 {
-	animate(g, &g->player, g->pframes, 1);
-	animate(g, g->enemies, g->eframes, g->map->num_enemies);
-	animate(g, g->coins, &g->cframes, g->map->num_coins);
+	animate(g, &g->player, g->player_sp, 1);
+	animate(g, g->enemies, g->enemy_sp, g->map->num_enemies);
+	animate(g, g->coins, &g->potions_sp, g->map->num_potions);
 	move_enemies(g);
-	if (can_player_move(g, &g->player))
+	if (player_can_move(g, &g->player))
 	{
 		render_counter(g);
 		player_controller(g);

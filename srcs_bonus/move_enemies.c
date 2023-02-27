@@ -3,80 +3,78 @@
 /*                                                        :::      ::::::::   */
 /*   move_enemies.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 04:35:13 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/02/24 06:43:27 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/02/27 23:14:02 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long_bonus.h"
 
-bool	can_enemy_move(t_game *g, t_entity *e)
+bool	enemy_can_move(t_game *g, t_point p)
 {
-	return (at(g, e->next) == SPACE || at(g, e->next) == PLAYER);
+	return (at(g, p) == FLOOR || at(g, p) == PLAYER);
 }
 
-bool	enemy_has_possible_moves(t_game *g, t_entity *e)
+bool	enemy_has_possible_moves(t_game *g, t_point *pos)
 {
 	bool	can_move;
 
 	can_move = false;
-	can_move |= (at(g, (t_point){e->pos.x + 1, e->pos.y}) == SPACE
-			|| at(g, (t_point){e->pos.x + 1, e->pos.y}) == PLAYER);
-	can_move |= (at(g, (t_point){e->pos.x - 1, e->pos.y}) == SPACE
-			|| at(g, (t_point){e->pos.x - 1, e->pos.y}) == PLAYER);
-	can_move |= (at(g, (t_point){e->pos.x, e->pos.y + 1}) == SPACE
-			|| at(g, (t_point){e->pos.x, e->pos.y + 1}) == PLAYER);
-	can_move |= (at(g, (t_point){e->pos.x, e->pos.y - 1}) == SPACE
-			|| at(g, (t_point){e->pos.x, e->pos.y - 1}) == PLAYER);
+	can_move |= enemy_can_move(g, (t_point){pos->x + 1, pos->y});
+	can_move |= enemy_can_move(g, (t_point){pos->x - 1, pos->y});
+	can_move |= enemy_can_move(g, (t_point){pos->x, pos->y + 1});
+	can_move |= enemy_can_move(g, (t_point){pos->x, pos->y - 1});
 	return (can_move);
 }
 
-void	generate_move(t_game *g, t_entity *e)
+void	chase_strategy(t_game *g, t_entity *enemy)
 {
-	int	offset;
+	t_point	tmp;
+	t_point	pos;
 
-	while (1)
-	{
-		offset = 1 - (rand() % 3);
-		if (rand() % 2)
-		{
-			e->next = (t_point){e->pos.x + offset, e->pos.y};
-			if (offset < 0)
-				e->dir = LEFT;
-			else
-				e->dir = RIGHT;
-		}
-		else
-			e->next = (t_point){e->pos.x, e->pos.y + offset};
-		if (can_enemy_move(g, e))
-			break ;
-	}
+	tmp = enemy->next;
+	pos = enemy->pos;
+	if (g->player.pos.x < pos.x)
+		enemy->next = (t_point){pos.x - 1, pos.y};
+	if (enemy_can_move(g, enemy->next))
+		return ;
+	if (g->player.pos.y < pos.y)
+		enemy->next = (t_point){pos.x, pos.y - 1};
+	if (enemy_can_move(g, enemy->next))
+		return ;
+	if (g->player.pos.x > pos.x)
+		enemy->next = (t_point){pos.x + 1, pos.y};
+	if (enemy_can_move(g, enemy->next))
+		return ;
+	if (g->player.pos.y > pos.y)
+		enemy->next = (t_point){pos.x, pos.y + 1};
+	if (enemy_can_move(g, enemy->next))
+		return ;
+	enemy->next = tmp;
 }
 
 void	move_enemies(t_game *g)
 {
-	static int		calls = 0;
 	unsigned int	i;
 
 	i = -1;
-	if (++calls % MOVE_CALLS != 0)
-		return ;
 	while (++i < g->map->num_enemies)
 	{
-		if (!enemy_has_possible_moves(g, &g->enemies[i]))
+		if (++g->enemies[i].move_counter % g->enemies[i].move_freq != 0)
 			continue ;
-		generate_move(g, &g->enemies[i]);
+		if (!enemy_has_possible_moves(g, &g->enemies[i].pos))
+			continue ;
+		(*g->enemy_strategy)(g, &g->enemies[i]);
 		if (at(g, g->enemies[i].next) == PLAYER)
 		{
 			ft_putstr_fd("Game over.\n", STDOUT_FILENO);
 			quit(g);
 		}
-		g->map->bytes[g->enemies[i].pos.y][g->enemies[i].pos.x] = SPACE;
-		render_tile(g, g->enemies[i].pos);
-		g->map->bytes[g->enemies[i].next.y][g->enemies[i].next.x] = ENEMY;
-		render_tile(g, g->enemies[i].next);
+		set(g, g->enemies[i].pos, FLOOR);
+		render(g, &g->floor_sp, g->enemies[i].pos, 0);
+		set(g, g->enemies[i].next, ENEMY);
 		g->enemies[i].pos = g->enemies[i].next;
 	}
 }

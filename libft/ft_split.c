@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/02 18:44:06 by ncarvalh          #+#    #+#             */
-/*   Updated: 2022/11/06 12:52:09 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/02/27 21:10:03 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ static int	ft_count_words(char const *s, char delim)
 	return (n);
 }
 
-static void	*ft_delete_matrix(char **mat)
+static void	*destroy_matrix(char **mat)
 {
 	int	i;
 
@@ -74,7 +74,7 @@ char	**ft_split(char const *s, char c)
 			i++;
 		words[k] = ft_substr(s, i, ft_strlen_delim(s + i, c));
 		if (!words[k])
-			return (ft_delete_matrix(words));
+			return (destroy_matrix(words));
 		i += ft_strlen_delim(s + i, c);
 	}
 	words[num] = NULL;
@@ -93,6 +93,6 @@ int main(int argc, char **argv)
 		printf("words[%d] = \'%s\'\n", i, words[i]);
 	printf("words[%d] = NULL\n", i);
 
-	ft_delete_matrix(words);
+	destroy_matrix(words);
 }
  */

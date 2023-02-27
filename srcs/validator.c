@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   validator.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/07 18:11:40 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/01/20 15:45:54 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/02/27 20:44:00 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,14 +60,14 @@ bool	has_valid_entities(t_game *g)
 			}
 			else if (g->map->bytes[i][k] == EXIT)
 				g->map->num_exits++;
-			else if (g->map->bytes[i][k] == COIN)
-				g->map->num_coins++;
+			else if (g->map->bytes[i][k] == POTION)
+				g->map->num_potions++;
 			else if (!ft_strchr(ENTITIES, g->map->bytes[i][k]))
 				return (false);
 		}
 	}
 	return (g->map->num_players == 1 && g->map->num_exits == 1
-		&& g->map->num_coins >= 1);
+		&& g->map->num_potions >= 1);
 }
 
 bool	has_valid_path(t_game *game)

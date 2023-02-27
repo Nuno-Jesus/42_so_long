@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/07 11:00:17 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/02/21 02:30:49 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/02/27 20:44:00 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ typedef struct s_point
  * @param bytes The char matrix with the char map
  * @param cols The number of columns of the map
  * @param rows The number of rows of the map
- * @param num_coins The number of coins in the map
+ * @param num_potions The number of coins in the map
  * @param num_exits The number of exits in the map
  * @param num_players The number of players in the map
  */
@@ -40,7 +40,7 @@ typedef struct s_map
 	char			**bytes;
 	unsigned int	cols;
 	unsigned int	rows;
-	unsigned int	num_coins;
+	unsigned int	num_potions;
 	unsigned int	num_exits;
 	unsigned int	num_players;
 }				t_map;

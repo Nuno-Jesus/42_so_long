@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_validator.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/07 18:11:40 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/02/24 04:48:56 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/02/27 21:10:03 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,16 +58,16 @@ bool	has_valid_entities(t_game *g)
 			}
 			else if (at(g, p) == EXIT)
 				g->map->num_exits++;
-			else if (at(g, p) == COIN)
-				g->map->num_coins++;
+			else if (at(g, p) == POTION)
+				g->map->num_potions++;
 			else if (at(g, p) == ENEMY)
 				g->map->num_enemies++;
-			else if (!ft_strchr(ENTITIES, g->map->bytes[p.y][p.x]))
+			else if (!ft_strchr(ENTITIES, at(g, p)))
 				return (false);
 		}
 	}
 	return (g->map->num_players == 1 && g->map->num_exits == 1
-		&& g->map->num_coins >= 1);
+		&& g->map->num_potions >= 1);
 }
 
 bool	has_valid_path(t_game *g)
@@ -85,13 +85,13 @@ bool	has_valid_path(t_game *g)
 		dup[i] = ft_strdup(g->map->bytes[i]);
 		if (!dup[i])
 		{
-			ft_delete_matrix(dup);
+			destroy_matrix(dup);
 			message(g, "Failed allocation on has_valid_path()\n");
 		}
 		i++;
 	}
 	is_valid = flood_fill(g->map, g->player.pos, dup);
-	ft_delete_matrix(dup);
+	destroy_matrix(dup);
 	return (is_valid);
 }
 
