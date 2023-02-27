@@ -6,7 +6,7 @@
 /*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/07 18:11:40 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/02/26 23:30:20 by crypto           ###   ########.fr       */
+/*   Updated: 2023/02/27 20:44:00 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,8 @@ bool	has_valid_entities(t_game *g)
 			}
 			else if (at(g, p) == EXIT)
 				g->map->num_exits++;
-			else if (at(g, p) == COIN)
-				g->map->num_coins++;
+			else if (at(g, p) == POTION)
+				g->map->num_potions++;
 			else if (at(g, p) == ENEMY)
 				g->map->num_enemies++;
 			else if (!ft_strchr(ENTITIES, at(g, p)))
@@ -67,7 +67,7 @@ bool	has_valid_entities(t_game *g)
 		}
 	}
 	return (g->map->num_players == 1 && g->map->num_exits == 1
-		&& g->map->num_coins >= 1);
+		&& g->map->num_potions >= 1);
 }
 
 bool	has_valid_path(t_game *g)

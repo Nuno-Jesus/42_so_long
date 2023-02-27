@@ -6,7 +6,7 @@
 /*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 04:35:13 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/02/27 00:04:57 by crypto           ###   ########.fr       */
+/*   Updated: 2023/02/27 20:47:00 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 bool	can_enemy_move(t_game *g, t_point *p)
 {
-	return (at(g, *p) == SPACE || at(g, *p) == PLAYER);
+	return (at(g, *p) == FLOOR || at(g, *p) == PLAYER);
 }
 
 bool	enemy_has_possible_moves(t_game *g, t_entity *e)
@@ -22,13 +22,13 @@ bool	enemy_has_possible_moves(t_game *g, t_entity *e)
 	bool	can_move;
 
 	can_move = false;
-	can_move |= (at(g, (t_point){e->pos.x + 1, e->pos.y}) == SPACE
+	can_move |= (at(g, (t_point){e->pos.x + 1, e->pos.y}) == FLOOR
 			|| at(g, (t_point){e->pos.x + 1, e->pos.y}) == PLAYER);
-	can_move |= (at(g, (t_point){e->pos.x - 1, e->pos.y}) == SPACE
+	can_move |= (at(g, (t_point){e->pos.x - 1, e->pos.y}) == FLOOR
 			|| at(g, (t_point){e->pos.x - 1, e->pos.y}) == PLAYER);
-	can_move |= (at(g, (t_point){e->pos.x, e->pos.y + 1}) == SPACE
+	can_move |= (at(g, (t_point){e->pos.x, e->pos.y + 1}) == FLOOR
 			|| at(g, (t_point){e->pos.x, e->pos.y + 1}) == PLAYER);
-	can_move |= (at(g, (t_point){e->pos.x, e->pos.y - 1}) == SPACE
+	can_move |= (at(g, (t_point){e->pos.x, e->pos.y - 1}) == FLOOR
 			|| at(g, (t_point){e->pos.x, e->pos.y - 1}) == PLAYER);
 	return (can_move);
 }
@@ -104,8 +104,8 @@ void	move_enemies(t_game *g)
 			ft_putstr_fd("Game over.\n", STDOUT_FILENO);
 			quit(g);
 		}
-		set(g, g->enemies[i].pos, SPACE);
-		render(g, &g->sp, g->enemies[i].pos, S1);
+		set(g, g->enemies[i].pos, FLOOR);
+		render(g, &g->floor_sp, g->enemies[i].pos, 0);
 		set(g, g->enemies[i].next, ENEMY);
 		g->enemies[i].pos = g->enemies[i].next;
 	}

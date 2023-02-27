@@ -6,7 +6,7 @@
 /*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/07 18:03:57 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/02/17 21:39:19 by crypto           ###   ########.fr       */
+/*   Updated: 2023/02/27 20:44:00 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ void	map_print(t_map *map)
 	printf("Width: %u\n", map->rows);
 	printf("Players: %u\n", map->num_players);
 	printf("Exits: %u\n", map->num_exits);
-	printf("Coins: %u\n", map->num_coins);
+	printf("Coins: %u\n", map->num_potions);
 	while (i < map->rows)
 		printf("%s\n", map->bytes[i++]);
 }

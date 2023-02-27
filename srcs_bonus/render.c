@@ -6,7 +6,7 @@
 /*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 02:39:13 by marvin            #+#    #+#             */
-/*   Updated: 2023/02/26 23:54:49 by crypto           ###   ########.fr       */
+/*   Updated: 2023/02/27 20:44:00 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,23 +21,21 @@ void	render(t_game *g, t_sprite *s, t_point p, int frame)
 void	render_tile(t_game *g, t_point p)
 {
 	t_sprite	*sp;
-	int			frame;
 
-	sp = &g->sp;
-	frame = 0;
+	sp = &g->walls_sp;
 	if (at(g, p) == EXIT)
-		frame = E1;
-	else if (at(g, p) == SPACE)
-		frame = S1;
+		sp = &g->exit_sp;
+	else if (at(g, p) == FLOOR)
+		sp = &g->floor_sp;
 	else if (at(g, p) == PLAYER)
-		sp = &g->pframes[RIGHT];
-	else if (at(g, p) == COIN)
-		sp = &g->cframes;
+		sp = &g->player_sp[RIGHT];
+	else if (at(g, p) == POTION)
+		sp = &g->potions_sp;
 	else if (at(g, p) == ENEMY)
-		sp = &g->eframes[RIGHT];
+		sp = &g->enemy_sp[RIGHT];
 	else
 		return ;
-	render(g, sp, p, frame);
+	render(g, sp, p, 0);
 }
 
 void	render_map(t_game *g)
@@ -72,9 +70,9 @@ void	render_counter(t_game *g)
 
 int	render_frame(t_game *g)
 {
-	animate(g, &g->player, g->pframes, 1);
-	animate(g, g->enemies, g->eframes, g->map->num_enemies);
-	animate(g, g->coins, &g->cframes, g->map->num_coins);
+	animate(g, &g->player, g->player_sp, 1);
+	animate(g, g->enemies, g->enemy_sp, g->map->num_enemies);
+	animate(g, g->coins, &g->potions_sp, g->map->num_potions);
 	move_enemies(g);
 	if (can_player_move(g, &g->player))
 	{

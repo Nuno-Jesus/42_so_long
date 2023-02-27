@@ -6,7 +6,7 @@
 /*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 14:13:49 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/02/27 00:01:31 by crypto           ###   ########.fr       */
+/*   Updated: 2023/02/27 20:44:00 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,6 @@ void	init_graphics(t_game *g)
 		32 * g->map->rows + 32, "so_long");
 	if (!g->disp.win)
 		message(g, "Failed allocation on window pointer\n");
-	g->disp.img = mlx_new_image(g->disp.mlx, 8 * g->map->cols, 32);
-	if (!g->disp.img)
-		message(g, "Failed allocation on mlx image pointer\n");
 }
 
 void	init_coins(t_game *g)
@@ -33,7 +30,7 @@ void	init_coins(t_game *g)
 
 	i = 0;
 	p = (t_point){-1, -1};
-	g->coins = ft_calloc(g->map->num_coins, sizeof(t_entity));
+	g->coins = ft_calloc(g->map->num_potions, sizeof(t_entity));
 	if (!g->coins)
 		message(g, "Failed allocation on coins entity array\n");
 	while (++p.y < g->map->rows)
@@ -41,12 +38,12 @@ void	init_coins(t_game *g)
 		p.x = -1;
 		while (++p.x < g->map->cols)
 		{
-			if (at(g, p) != COIN)
+			if (at(g, p) != POTION)
 				continue ;
 			g->coins[i].frame = rand() % NUM_COIN_FRAMES;
 			g->coins[i].frame_freq = CALLS_PER_FRAME;
 			g->coins[i].animate_speed = ANIMATE_CALLS;
-			g->coins[i].type = COIN;
+			g->coins[i].type = POTION;
 			g->coins[i++].pos = p;
 		}
 	}

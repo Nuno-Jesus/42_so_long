@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   load_2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 00:29:38 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/02/25 15:52:49 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/02/27 20:26:42 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,36 +14,36 @@
 
 void	load_enemies(t_game *g)
 {
-	g->eframes = malloc(2 * sizeof(t_sprite));
-	if (!g->eframes)
+	g->enemy_sp = malloc(NUM_SPRITE_VERSIONS * sizeof(t_sprite));
+	if (!g->enemy_sp)
 		message(g, "Failed allocation on enemy frames array\n");
-	g->eframes[RIGHT].img = malloc(NUM_ENEMY_FRAMES * sizeof(void *));
-	g->eframes[LEFT].img = malloc(NUM_ENEMY_FRAMES * sizeof(void *));
-	if (!g->eframes[RIGHT].img)
-		message(g, "Failed allocation on right enemy frames\n");
-	if (!g->eframes[LEFT].img)
-		message(g, "Failed allocation on left enemy frames\n");
-	g->eframes[LEFT].nframes = NUM_ENEMY_FRAMES;
-	g->eframes[RIGHT].nframes = NUM_ENEMY_FRAMES;
-	load_xpm(g, &g->eframes[LEFT], ENEMY_CALM_PATH, NUM_ENEMY_FRAMES);
-	load_xpm(g, &g->eframes[RIGHT], ENEMY_RAGE_PATH, NUM_ENEMY_FRAMES);
+	g->enemy_sp[NORMAL].img = malloc(NUM_ENEMY_FRAMES * sizeof(void *));
+	g->enemy_sp[ENRAGED].img = malloc(NUM_ENEMY_FRAMES * sizeof(void *));
+	if (!g->enemy_sp[NORMAL].img)
+		message(g, "Failed allocation on normal enemy frames\n");
+	if (!g->enemy_sp[ENRAGED].img)
+		message(g, "Failed allocation on enraged enemy frames\n");
+	g->enemy_sp[NORMAL].nframes = NUM_ENEMY_FRAMES;
+	g->enemy_sp[ENRAGED].nframes = NUM_ENEMY_FRAMES;
+	load_xpm(g, &g->enemy_sp[NORMAL], ENEMY_CALM_PATH, NUM_ENEMY_FRAMES);
+	load_xpm(g, &g->enemy_sp[ENRAGED], ENEMY_RAGE_PATH, NUM_ENEMY_FRAMES);
 }
 
 void	load_player(t_game *g)
 {
-	g->pframes = malloc(2 * sizeof(t_sprite));
-	if (!g->pframes)
+	g->player_sp = malloc(NUM_SPRITE_VERSIONS * sizeof(t_sprite));
+	if (!g->player_sp)
 		message(g, "Failed allocation on player frames array\n");
-	g->pframes[RIGHT].img = malloc(NUM_PLAYER_FRAMES * sizeof(void *));
-	g->pframes[LEFT].img = malloc(NUM_PLAYER_FRAMES * sizeof(t_sprite));
-	if (!g->pframes[RIGHT].img)
+	g->player_sp[RIGHT].img = malloc(NUM_PLAYER_FRAMES * sizeof(void *));
+	g->player_sp[LEFT].img = malloc(NUM_PLAYER_FRAMES * sizeof(void *));
+	if (!g->player_sp[RIGHT].img)
 		message(g, "Failed allocation on right player frames\n");
-	if (!g->pframes[LEFT].img)
+	if (!g->player_sp[LEFT].img)
 		message(g, "Failed allocation on left player frames\n");
-	g->pframes[RIGHT].nframes = NUM_PLAYER_FRAMES;
-	g->pframes[LEFT].nframes = NUM_PLAYER_FRAMES;
-	load_xpm(g, &g->pframes[RIGHT], PLAYER_RIGHT_PATH, NUM_PLAYER_FRAMES);
-	load_xpm(g, &g->pframes[LEFT], PLAYER_LEFT_PATH, NUM_PLAYER_FRAMES);
+	g->player_sp[RIGHT].nframes = NUM_PLAYER_FRAMES;
+	g->player_sp[LEFT].nframes = NUM_PLAYER_FRAMES;
+	load_xpm(g, &g->player_sp[RIGHT], PLAYER_RIGHT_PATH, NUM_PLAYER_FRAMES);
+	load_xpm(g, &g->player_sp[LEFT], PLAYER_LEFT_PATH, NUM_PLAYER_FRAMES);
 }
 
 void	load_sprites(t_game *g)

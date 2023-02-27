@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   algorithms.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 14:20:49 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/02/22 15:30:02 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/02/27 20:44:00 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ bool	flood_fill(t_map *map, t_point curr, char **maze)
 
 	if (maze[curr.y][curr.x] == WALL)
 		return (false);
-	else if (maze[curr.y][curr.x] == COIN)
+	else if (maze[curr.y][curr.x] == POTION)
 		collected++;
 	else if (maze[curr.y][curr.x] == EXIT)
 		found_exit = true;
@@ -28,5 +28,5 @@ bool	flood_fill(t_map *map, t_point curr, char **maze)
 	flood_fill(map, (t_point){curr.x - 1, curr.y}, maze);
 	flood_fill(map, (t_point){curr.x, curr.y + 1}, maze);
 	flood_fill(map, (t_point){curr.x, curr.y - 1}, maze);
-	return (collected == map->num_coins && found_exit);
+	return (collected == map->num_potions && found_exit);
 }

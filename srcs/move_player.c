@@ -6,7 +6,7 @@
 /*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 14:54:58 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/02/12 11:39:34 by crypto           ###   ########.fr       */
+/*   Updated: 2023/02/27 20:20:15 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,13 @@ bool	is_valid_movement(t_game *g)
 
 void	move_player(t_game *g)
 {
-	static t_entity	previous = SPACE;
+	static t_entity	previous = FLOOR;
 
 	g->map->bytes[g->curr.y][g->curr.x] = previous;
-	if (at(g, g->next) != COIN)
+	if (at(g, g->next) != POTION)
 		previous = g->map->bytes[g->next.y][g->next.x];
 	else
-		previous = SPACE;
+		previous = FLOOR;
 	g->map->bytes[g->next.y][g->next.x] = PLAYER;
 	render_tile(g, (t_point){g->curr.x, g->curr.y});
 	render_tile(g, (t_point){g->next.x, g->next.y});

@@ -6,7 +6,7 @@
 /*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 02:39:20 by marvin            #+#    #+#             */
-/*   Updated: 2023/02/26 23:25:44 by crypto           ###   ########.fr       */
+/*   Updated: 2023/02/27 20:48:14 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,16 +28,17 @@
 # include "get_next_line.h"
 # include "../mlx/mlx.h"
 
-# define DIRECTIONS			2
-# define XOFFSET			-16
-# define ENTITIES			"01CEPM"
+# define NUM_SPRITE_VERSIONS	2
+# define XOFFSET				-16
+# define ENTITIES				"01CEPM"
 
 //! Sprite counters
 # define NUM_WALLS			31
-# define NUM_REST			2
 # define NUM_PLAYER_FRAMES	7
 # define NUM_COIN_FRAMES	15
 # define NUM_ENEMY_FRAMES	8
+# define NUM_EXIT_FRAMES	1
+# define NUM_FLOOR_FRAMES	1
 
 //! Sprite refreshing frequency
 # define ANIMATE_CALLS		250
@@ -56,21 +57,20 @@
 # define PLAYER_LEFT_PATH	"images/bonus/player/left/player_"
 # define ENEMY_CALM_PATH	"images/bonus/enemies/calm/enemy_"
 # define ENEMY_RAGE_PATH	"images/bonus/enemies/rage/enemy_"
-# define COIN_PATH			"images/bonus/potions/potion_"
+# define POTION_PATH		"images/bonus/potions/potion_"
 # define WALL_PATH			"images/bonus/walls/wall_"
+# define EXIT_PATH			"images/bonus/exit/exit_"
+# define FLOOR_PATH			"images/bonus/floor/floor_"
 
-//! Rest sprites
-# define FS1		"images/bonus/space.xpm"
-# define FE1		"images/exit.xpm"
 
 /**
  * @brief An enumerable type used to map a char to an entity
  */
 typedef enum e_type
 {
-	SPACE = '0',
+	FLOOR = '0',
 	WALL = '1',
-	COIN = 'C',
+	POTION = 'C',
 	EXIT = 'E',
 	PLAYER = 'P',
 	ENEMY = 'M'
@@ -156,8 +156,6 @@ typedef enum e_id
 	CORNER_BDR,
 	CORNER_BUL,
 	CORNER_BUR,
-	E1,
-	S1
 }				t_id;
 
 #endif

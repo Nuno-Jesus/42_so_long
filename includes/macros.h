@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   macros.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/10 11:19:03 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/02/22 22:18:03 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/02/27 20:20:15 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,9 +47,9 @@
  */
 typedef enum e_entity
 {
-	SPACE = '0',
+	FLOOR = '0',
 	WALL = '1',
-	COIN = 'C',
+	POTION = 'C',
 	EXIT = 'E',
 	PLAYER = 'P'
 }			t_entity;

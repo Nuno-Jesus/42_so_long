@@ -3,62 +3,49 @@
 /*                                                        :::      ::::::::   */
 /*   destroy.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/07 11:53:02 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/02/25 15:47:09 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/02/27 20:50:15 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long_bonus.h"
 
-void	destroy_game(t_game *game)
+void	ft_free(void *ptr)
 {
-	if (!game)
-		return ;
-	if (game->coins)
-		free(game->coins);
-	if (game->enemies)
-		free(game->enemies);
-	destroy_sprites(game);
-	if (game->disp.img)
-		mlx_destroy_image(game->disp.mlx, game->disp.img);
-	if (game->disp.win)
-		mlx_destroy_window(game->disp.mlx, game->disp.win);
-	if (game->disp.mlx)
-		mlx_destroy_display(game->disp.mlx);
-	if (game->map)
-		destroy_map(game->map);
-	free(game->disp.mlx);
+	if (ptr)
+		free(ptr);
 }
 
-void	destroy_sprites(t_game *g)
+void	destroy_sprite(t_game *g, t_sprite *sp, int n)
 {
 	int	i;
-	int	k;
 
 	i = 0;
-	while (i < NUM_WALLS + NUM_REST)
-		mlx_destroy_image(g->disp.mlx, g->sp.img[i++]);
-	free(g->sp.img);
-	i = 0;
-	while (i < NUM_COIN_FRAMES)
-		mlx_destroy_image(g->disp.mlx, g->cframes.img[i++]);
-	free(g->cframes.img);
+	if (!sp || !sp->img)
+		return ;
+	while (i < n)
+		mlx_destroy_image(g->disp.mlx, sp->img[i++]);
+	ft_free(sp->img);
+}
+
+void	destroy_all_sprites(t_game *g)
+{
+	int	k;
+
 	k = -1;
-	while (++k < DIRECTIONS)
+	destroy_sprite(g, &g->walls_sp, NUM_WALLS);
+	destroy_sprite(g, &g->exit_sp, NUM_EXIT_FRAMES);
+	destroy_sprite(g, &g->floor_sp, NUM_FLOOR_FRAMES);
+	destroy_sprite(g, &g->potions_sp, NUM_COIN_FRAMES);
+	while (++k < NUM_SPRITE_VERSIONS)
 	{
-		i = -1;
-		while (++i < NUM_PLAYER_FRAMES)
-			mlx_destroy_image(g->disp.mlx, g->pframes[k].img[i]);
-		free(g->pframes[k].img);
-		i = -1;
-		while (++i < NUM_ENEMY_FRAMES)
-			mlx_destroy_image(g->disp.mlx, g->eframes[k].img[i]);
-		free(g->eframes[k].img);
+		destroy_sprite(g, &g->player_sp[k], NUM_PLAYER_FRAMES);
+		destroy_sprite(g, &g->enemy_sp[k], NUM_ENEMY_FRAMES);
 	}
-	free(g->eframes);
-	free(g->pframes);
+	ft_free(g->player_sp);
+	ft_free(g->enemy_sp);
 }
 
 void	destroy_map(t_map *map)
@@ -66,5 +53,21 @@ void	destroy_map(t_map *map)
 	if (!map)
 		return ;
 	ft_delete_matrix(map->bytes);
-	free(map);
+	ft_free(map);
+}
+
+void	destroy_game(t_game *game)
+{
+	if (!game)
+		return ;
+	ft_free(game->coins);
+	ft_free(game->enemies);
+	destroy_all_sprites(game);
+	if (game->disp.win)
+		mlx_destroy_window(game->disp.mlx, game->disp.win);
+	if (game->disp.mlx)
+		mlx_destroy_display(game->disp.mlx);
+	if (game->map)
+		destroy_map(game->map);
+	ft_free(game->disp.mlx);
 }
