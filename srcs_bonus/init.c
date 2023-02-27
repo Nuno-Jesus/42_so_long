@@ -6,7 +6,7 @@
 /*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 14:13:49 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/02/27 20:44:00 by crypto           ###   ########.fr       */
+/*   Updated: 2023/02/27 21:13:20 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void	init_enemies(t_game *g)
 	g->enemies = ft_calloc(g->map->num_enemies, sizeof(t_entity));
 	if (!g->enemies)
 		message(g, "Failed allocation on coins entity array\n");
-	g->enemy_strategy = &random_move;
+	g->enemy_strategy = &normal_move;
 	while (++p.y < g->map->rows)
 	{
 		p.x = -1;

@@ -6,7 +6,7 @@
 /*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 02:39:13 by marvin            #+#    #+#             */
-/*   Updated: 2023/02/27 20:44:00 by crypto           ###   ########.fr       */
+/*   Updated: 2023/02/27 21:19:21 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	render_tile(t_game *g, t_point p)
 	else if (at(g, p) == POTION)
 		sp = &g->potions_sp;
 	else if (at(g, p) == ENEMY)
-		sp = &g->enemy_sp[RIGHT];
+		sp = &g->enemy_sp[NORMAL];
 	else
 		return ;
 	render(g, sp, p, 0);
@@ -74,7 +74,7 @@ int	render_frame(t_game *g)
 	animate(g, g->enemies, g->enemy_sp, g->map->num_enemies);
 	animate(g, g->coins, &g->potions_sp, g->map->num_potions);
 	move_enemies(g);
-	if (can_player_move(g, &g->player))
+	if (player_can_move(g, &g->player))
 	{
 		render_counter(g);
 		player_controller(g);

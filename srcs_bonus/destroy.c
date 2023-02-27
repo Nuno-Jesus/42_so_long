@@ -6,16 +6,22 @@
 /*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/07 11:53:02 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/02/27 20:50:15 by crypto           ###   ########.fr       */
+/*   Updated: 2023/02/27 21:11:13 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long_bonus.h"
 
-void	ft_free(void *ptr)
-{
-	if (ptr)
-		free(ptr);
+void	destroy_matrix(void *matrix)
+{	
+	size_t	i;
+
+	i = 0;
+	if (!matrix)
+		return ;
+	while (((char **)matrix)[i])
+		free(((char **)matrix)[i++]);
+	free(matrix);
 }
 
 void	destroy_sprite(t_game *g, t_sprite *sp, int n)
@@ -52,7 +58,7 @@ void	destroy_map(t_map *map)
 {
 	if (!map)
 		return ;
-	ft_delete_matrix(map->bytes);
+	destroy_matrix(map->bytes);
 	ft_free(map);
 }
 

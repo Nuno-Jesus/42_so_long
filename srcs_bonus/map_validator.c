@@ -6,7 +6,7 @@
 /*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/07 18:11:40 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/02/27 20:44:00 by crypto           ###   ########.fr       */
+/*   Updated: 2023/02/27 21:10:03 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,13 +85,13 @@ bool	has_valid_path(t_game *g)
 		dup[i] = ft_strdup(g->map->bytes[i]);
 		if (!dup[i])
 		{
-			ft_delete_matrix(dup);
+			destroy_matrix(dup);
 			message(g, "Failed allocation on has_valid_path()\n");
 		}
 		i++;
 	}
 	is_valid = flood_fill(g->map, g->player.pos, dup);
-	ft_delete_matrix(dup);
+	destroy_matrix(dup);
 	return (is_valid);
 }
 

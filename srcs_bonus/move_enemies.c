@@ -6,30 +6,26 @@
 /*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 04:35:13 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/02/27 20:47:00 by crypto           ###   ########.fr       */
+/*   Updated: 2023/02/27 21:21:06 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long_bonus.h"
 
-bool	can_enemy_move(t_game *g, t_point *p)
+bool	enemy_can_move(t_game *g, t_point p)
 {
-	return (at(g, *p) == FLOOR || at(g, *p) == PLAYER);
+	return (at(g, p) == FLOOR || at(g, p) == PLAYER);
 }
 
-bool	enemy_has_possible_moves(t_game *g, t_entity *e)
+bool	enemy_has_possible_moves(t_game *g, t_point *pos)
 {
 	bool	can_move;
 
 	can_move = false;
-	can_move |= (at(g, (t_point){e->pos.x + 1, e->pos.y}) == FLOOR
-			|| at(g, (t_point){e->pos.x + 1, e->pos.y}) == PLAYER);
-	can_move |= (at(g, (t_point){e->pos.x - 1, e->pos.y}) == FLOOR
-			|| at(g, (t_point){e->pos.x - 1, e->pos.y}) == PLAYER);
-	can_move |= (at(g, (t_point){e->pos.x, e->pos.y + 1}) == FLOOR
-			|| at(g, (t_point){e->pos.x, e->pos.y + 1}) == PLAYER);
-	can_move |= (at(g, (t_point){e->pos.x, e->pos.y - 1}) == FLOOR
-			|| at(g, (t_point){e->pos.x, e->pos.y - 1}) == PLAYER);
+	can_move |= enemy_can_move(g, (t_point){pos->x + 1, pos->y});
+	can_move |= enemy_can_move(g, (t_point){pos->x - 1, pos->y});
+	can_move |= enemy_can_move(g, (t_point){pos->x, pos->y + 1});
+	can_move |= enemy_can_move(g, (t_point){pos->x, pos->y - 1});
 	return (can_move);
 }
 
@@ -42,19 +38,19 @@ void	rage_move(t_game *g, t_entity *enemy)
 	pos = enemy->pos;
 	if (g->player.pos.x < pos.x)
 		enemy->next = (t_point){pos.x - 1, pos.y};
-	if (can_enemy_move(g, &enemy->next))
+	if (enemy_can_move(g, enemy->next))
 		return ;
 	if (g->player.pos.y < pos.y)
 		enemy->next = (t_point){pos.x, pos.y - 1};
-	if (can_enemy_move(g, &enemy->next))
+	if (enemy_can_move(g, enemy->next))
 		return ;
 	if (g->player.pos.x > pos.x)
 		enemy->next = (t_point){pos.x + 1, pos.y};
-	if (can_enemy_move(g, &enemy->next))
+	if (enemy_can_move(g, enemy->next))
 		return ;
 	if (g->player.pos.y > pos.y)
 		enemy->next = (t_point){pos.x, pos.y + 1};
-	if (can_enemy_move(g, &enemy->next))
+	if (enemy_can_move(g, enemy->next))
 		return ;
 	enemy->next = tmp;
 }
@@ -71,7 +67,7 @@ void		change_enemies_strategy(t_game *g, void (*strategy)(), t_status status)
 			g->enemies[i].move_freq = g->enemies[i].move_freq / 2;
 }
 
-void	random_move(t_game *g, t_entity *enemy)
+void	normal_move(t_game *g, t_entity *enemy)
 {
 	int	offset;
 
@@ -82,7 +78,7 @@ void	random_move(t_game *g, t_entity *enemy)
 			enemy->next = (t_point){enemy->pos.x + offset, enemy->pos.y};
 		else
 			enemy->next = (t_point){enemy->pos.x, enemy->pos.y + offset};
-		if (can_enemy_move(g, &enemy->next))
+		if (enemy_can_move(g, enemy->next))
 			break ;
 	}
 }
@@ -96,7 +92,7 @@ void	move_enemies(t_game *g)
 	{
 		if (++g->enemies[i].move_counter % g->enemies[i].move_freq != 0)
 			continue ;
-		if (!enemy_has_possible_moves(g, &g->enemies[i]))
+		if (!enemy_has_possible_moves(g, &g->enemies[i].pos))
 			continue ;
 		(*g->enemy_strategy)(g, &g->enemies[i]);
 		if (at(g, g->enemies[i].next) == PLAYER)

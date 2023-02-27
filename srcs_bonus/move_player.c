@@ -6,7 +6,7 @@
 /*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 14:54:58 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/02/27 20:44:00 by crypto           ###   ########.fr       */
+/*   Updated: 2023/02/27 21:19:21 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	move_handler(int keycode, t_game *g)
 	return (keycode);
 }
 
-bool	can_player_move(t_game *g, t_entity *e)
+bool	player_can_move(t_game *g, t_entity *e)
 {
 	return (!is_same_point(e->pos, e->next) && at(g, e->next) != WALL);
 }
