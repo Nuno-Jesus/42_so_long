@@ -6,7 +6,7 @@
 /*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 14:54:58 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/02/27 21:19:21 by crypto           ###   ########.fr       */
+/*   Updated: 2023/02/27 21:26:24 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ void	player_controller(t_game *g)
 		ft_putstr_fd("Game over.\n", STDOUT_FILENO);
 		quit(g);
 	}
-	else if (g->collected == g->map->num_potions)
+	if (g->collected == g->map->num_potions)
 	{
 		if (at(g, g->player.next) == EXIT)
 			quit(g);
