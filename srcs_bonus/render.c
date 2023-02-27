@@ -6,7 +6,7 @@
 /*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 02:39:13 by marvin            #+#    #+#             */
-/*   Updated: 2023/02/26 23:38:58 by crypto           ###   ########.fr       */
+/*   Updated: 2023/02/26 23:54:49 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,34 +42,32 @@ void	render_tile(t_game *g, t_point p)
 
 void	render_map(t_game *g)
 {
-	unsigned int	x;
-	unsigned int	y;
-
-	y = 0;
+	t_point	p;
+	
 	render_outter_walls(g);
 	render_inner_walls(g);
-	while (++y < g->map->rows - 1)
+	p.y = 0;
+	while (++p.y < g->map->rows - 1)
 	{
-		x = 0;
-		while (++x < g->map->cols - 1)
-			render_tile(g, (t_point){x, y});
+		p.x = 0;
+		while (++p.x < g->map->cols - 1)
+			render_tile(g, p);
 	}
 }
 
 void	render_counter(t_game *g)
 {
-	char	*str;
-	char	*str2;
+	char	*str[2];
 	t_point	p;
 
 	p.x = (g->map->cols - 1) * 16;
 	p.y = g->map->rows * 32 + 20;
-	str = ft_itoa(g->moves);
-	str2 = ft_itoa(++g->moves);
-	mlx_string_put(g->disp.mlx, g->disp.win, p.x, p.y, 0x000000, str);
-	mlx_string_put(g->disp.mlx, g->disp.win, p.x, p.y, 0xFFFFFF, str2);
-	free(str);
-	free(str2);
+	str[0] = ft_itoa(g->moves);
+	str[1] = ft_itoa(++g->moves);
+	mlx_string_put(g->disp.mlx, g->disp.win, p.x, p.y, 0x000000, str[0]);
+	mlx_string_put(g->disp.mlx, g->disp.win, p.x, p.y, 0xFFFFFF, str[1]);
+	free(str[0]);
+	free(str[1]);
 }
 
 int	render_frame(t_game *g)

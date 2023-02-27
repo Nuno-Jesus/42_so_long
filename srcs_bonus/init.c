@@ -6,7 +6,7 @@
 /*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 14:13:49 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/02/26 23:14:12 by crypto           ###   ########.fr       */
+/*   Updated: 2023/02/27 00:01:31 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ void	init_coins(t_game *g)
 			g->coins[i].frame = rand() % NUM_COIN_FRAMES;
 			g->coins[i].frame_freq = CALLS_PER_FRAME;
 			g->coins[i].animate_speed = ANIMATE_CALLS;
+			g->coins[i].type = COIN;
 			g->coins[i++].pos = p;
 		}
 	}
@@ -73,6 +74,7 @@ void	init_enemies(t_game *g)
 			g->enemies[i].frame_freq = CALLS_PER_FRAME;
 			g->enemies[i].move_freq = rand () % MOVE_CALLS + MOVE_CALLS;
 			g->enemies[i].animate_speed = ANIMATE_CALLS;
+			g->enemies[i].type = ENEMY;
 			g->enemies[i].pos = p;
 			g->enemies[i++].next = p;
 		}
@@ -83,6 +85,7 @@ void	init_player(t_game *g)
 {
 	g->player.frame_freq = CALLS_PER_FRAME;
 	g->player.animate_speed = ANIMATE_CALLS;
+	g->player.type = PLAYER;
 }
 
 void	init_game(char *filename)

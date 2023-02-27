@@ -6,7 +6,7 @@
 /*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 21:38:07 by crypto            #+#    #+#             */
-/*   Updated: 2023/02/26 23:28:56 by crypto           ###   ########.fr       */
+/*   Updated: 2023/02/26 23:58:18 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,7 @@ typedef struct s_entity
 	int			move_freq;
 	int			animate_speed;
 	int			curr_speed;
+	t_type		type;
 	t_direction	dir;
 	t_point		pos;
 	t_point		next;

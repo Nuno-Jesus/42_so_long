@@ -6,7 +6,7 @@
 /*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 04:35:13 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/02/26 23:50:42 by crypto           ###   ########.fr       */
+/*   Updated: 2023/02/27 00:00:45 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@ void	rage_move(t_game *g, t_entity *enemy)
 
 	tmp = enemy->next;
 	pos = enemy->pos;
-	enemy->dir = LEFT;
 	if (g->player.pos.x < pos.x)
 		enemy->next = (t_point){pos.x - 1, pos.y};
 	if (can_enemy_move(g, &enemy->next))
