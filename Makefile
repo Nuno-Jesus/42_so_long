@@ -15,34 +15,36 @@ RM = rm -rf
 AR = ar -rcs
 
 #_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_ FLAGS _/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
-CFLAGS		= -Wall -Wextra -Werror #-fsanitize=address #-g
-MKFLAGS		= --no-print-directory
-MLXFLAGS	= -L ./mlx -lmlx -Ilmlx -lXext -lX11 -lm 
-LIBFTFLAGS	= -L ./libft -lft
-GNLFLAGS	= -L ./get_next_line -lgnl
+CFLAGS	= -Wall -Wextra -Werror -fsanitize=address #-g
+MK		= --no-print-directory
+MLX		= -L ./mlx -lmlx -Ilmlx -lXext -lX11 -lm 
+LIBFT	= -L ./libft -lft
+GNL		= -L ./get_next_line -lgnl
+PRINTF	= -L ./ft_printf -lftprintf
 
 #_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_ FOLDERS _/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
 DEPS			= includes 
 SRCS			= srcs
 SRCS_BONUS		= srcs_bonus
-LIBFT			= libft
-GNL				= get_next_line
-MLX 			= mlx
-PRINTF			= ft_printf
-SUBFOLDERS		= logic map render utils
-VPATH			= srcs_bonus srcs_bonus/logic srcs_bonus/map srcs_bonus/render srcs_bonus/utils
+LIBFT_PATH		= libft
+GNL_PATH		= get_next_line
+PRINTF_PATH		= ft_printf
+MLX_PATH 		= mlx
+_SUBFOLDERS		= logic map render utils
+VPATH			= srcs_bonus $(addprefix srcs_bonus/, $(_SUBFOLDERS))
 OBJ_DIR			= objs
 OBJ_DIR_BONUS	= objs_bonus
 
 #_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_ FILES _/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
-_FILES			= destroy map utils validator render init algorithms move_player
-_FILES_BONUS	= move_enemies move_player strategy algorithms map_validator read_map animate \
-				binary_wall_map destroy load_sprites render_walls render utils debug init 
-OBJS			= $(_FILES:%=%.o)
-OBJS_BONUS		= $(_FILES_BONUS:%=%.o)
 NAME			= so_long
-NAME_BONUS		= so_long_bonus
+_FILES			= destroy map utils validator render init algorithms move_player
+OBJS			= $(_FILES:%=%.o)
 TARGET			= $(addprefix $(OBJ_DIR)/, $(OBJS))
+
+NAME_BONUS		= so_long_bonus
+_FILES_BONUS	= move_enemies move_player strategy algorithms map_validator read_map animate \
+					binary_wall_map destroy load_sprites render_walls render utils debug init 
+OBJS_BONUS		= $(_FILES_BONUS:%=%.o)
 TARGET_BONUS	= $(addprefix $(OBJ_DIR_BONUS)/, $(OBJS_BONUS))
 
 #_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_ RULES _/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
@@ -50,16 +52,16 @@ all: $(NAME)
 
 $(NAME): $(OBJ_DIR) $(TARGET)
 	echo "[$(CYAN)Compiling$(RESET)] $(CFLAGS) $(GREEN)libft/*$(RESET)"
-	make $(MKFLAGS) -C $(LIBFT)
+	make $(MK) -C $(LIBFT_PATH)
 	
 	echo "[$(CYAN)Compiling$(RESET)] $(CFLAGS) $(GREEN)get_next_line/*$(RESET)"
-	make $(MKFLAGS) -C $(GNL)
+	make $(MK) -C $(GNL_PATH)
 	
 	echo "[$(CYAN)Compiling$(RESET)] $(CFLAGS) $(GREEN)mlx/*$(RESET)"
-	make $(MKFLAGS) -sC $(MLX)
+	make $(MK) -sC $(MLX_PATH)
 	
 	echo "[$(CYAN) Linking $(RESET)] $(GREEN)*$(RESET)"
-	$(CC) $(CFLAGS) main.c $(TARGET) $(LIBFTFLAGS) $(GNLFLAGS) $(MLXFLAGS) -o $(NAME) -I $(DEPS)
+	$(CC) $(CFLAGS) main.c $(TARGET) $(LIBFT) $(GNL) $(MLX) -o $(NAME) -I $(DEPS)
 	
 	echo "$(GREEN)Done.$(RESET)"
 	
@@ -71,9 +73,9 @@ $(OBJ_DIR) :
 	mkdir -p $(OBJ_DIR)
 
 clean:
-	make clean $(MKFLAGS) -C $(LIBFT)
-	make clean $(MKFLAGS) -C $(GNL)
-	make clean $(MKFLAGS) -C $(MLX)
+	make clean $(MK) -C $(LIBFT_PATH)
+	make clean $(MK) -C $(GNL_PATH)
+	make clean $(MK) -C $(MLX_PATH)
 	
 	echo "[$(RED) Deleted $(RESET)] $(GREEN)$(OBJ_DIR)$(RESET)"
 	$(RM) $(OBJ_DIR)
@@ -82,8 +84,8 @@ clean:
 	$(RM) $(OBJ_DIR_BONUS)
 
 fclean: clean
-	make fclean $(MKFLAGS) -C $(LIBFT)
-	make fclean $(MKFLAGS) -C $(GNL)
+	make fclean $(MK) -C $(LIBFT_PATH)
+	make fclean $(MK) -C $(GNL_PATH)
 	
 	echo "[$(RED) Deleted $(RESET)] $(GREEN)$(NAME)$(RESET)"
 	$(RM) $(NAME)
@@ -102,16 +104,16 @@ bonus: $(NAME_BONUS)
 
 $(NAME_BONUS): $(OBJ_DIR_BONUS) $(TARGET_BONUS)
 	echo "[$(CYAN)Compiling$(RESET)] $(CFLAGS) $(GREEN)libft/*$(RESET)"
-	make $(MKFLAGS) -C $(LIBFT)
+	make $(MK) -C $(LIBFT_PATH)
 	
 	echo "[$(CYAN)Compiling$(RESET)] $(CFLAGS) $(GREEN)get_next_line/*$(RESET)"
-	make $(MKFLAGS) -C $(GNL)
+	make $(MK) -C $(GNL_PATH)
 
 	echo "[$(CYAN)Compiling$(RESET)] $(CFLAGS) $(GREEN)mlx/*$(RESET)"
-	make $(MKFLAGS) -C $(MLX) 
+	make $(MK) -C $(MLX_PATH) 
 	
 	echo "[$(CYAN) Linking $(RESET)] $(GREEN)*$(RESET)"
-	$(CC) $(CFLAGS) main.c $(TARGET_BONUS) $(LIBFTFLAGS) $(GNLFLAGS) $(MLXFLAGS) -o $(NAME_BONUS) -I $(DEPS)
+	$(CC) $(CFLAGS) main.c $(TARGET_BONUS) $(LIBFT) $(GNL) $(MLX) -o $(NAME_BONUS) -I $(DEPS)
 	
 	echo "$(GREEN)Done.$(RESET)"
 
