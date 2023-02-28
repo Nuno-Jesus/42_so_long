@@ -6,7 +6,7 @@
 /*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 02:16:40 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/02/27 23:21:08 by crypto           ###   ########.fr       */
+/*   Updated: 2023/02/28 20:22:33 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,22 @@ bool	diags(int **mat, t_point *p, char *diagonals)
 	return (diags);
 }
 
+bool	sides(int **mat, t_point *p, char *diagonals)
+{
+	bool	sides;
+
+	sides = true;
+	if (diagonals[0] != NOT_USED)
+		sides &= (mat[p->y - 1][p->x] == ft_tonum(diagonals[0]));
+	if (diagonals[1] != NOT_USED)
+		sides &= (mat[p->y + 1][p->x] == ft_tonum(diagonals[1]));
+	if (diagonals[2] != NOT_USED)
+		sides &= (mat[p->y][p->x - 1] == ft_tonum(diagonals[2]));
+	if (diagonals[3] != NOT_USED)
+		sides &= (mat[p->y][p->x + 1] == ft_tonum(diagonals[3]));
+	return (sides);
+}
+/* 
 bool	sides(t_point *p, int **mat, t_point vals, int op)
 {
 	if (op == DIFF)
@@ -42,7 +58,7 @@ bool	sides(t_point *p, int **mat, t_point vals, int op)
 	else
 		return ((int)vals.y == (mat[p->y - 1][p->x] - mat[p->y + 1][p->x])
 			&& (int)vals.x == (mat[p->y][p->x - 1] + mat[p->y][p->x + 1]));
-}
+} */
 
 void	fill_bin_matrix(t_game *g, int **mat)
 {

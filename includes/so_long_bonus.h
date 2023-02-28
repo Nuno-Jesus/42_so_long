@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long_bonus.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 21:38:07 by crypto            #+#    #+#             */
-/*   Updated: 2023/02/28 20:13:52 by marvin           ###   ########.fr       */
+/*   Updated: 2023/02/28 20:20:50 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -197,7 +197,7 @@ bool		diags(int **mat, t_point *p, char *diagonals);
  * @param op The operation to perform
  * @return true if the sides match, false otherwise
  */
-bool		sides(t_point *p, int **mat, t_point vals, int op);
+bool		sides(int **mat, t_point *p, char *diagonals);
 /**
  * @brief Given a map, it creates a binary matrix with 1s for walls and 0s for
  * empty spaces.
