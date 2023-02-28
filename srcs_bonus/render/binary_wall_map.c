@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   binary_wall_map.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 02:16:40 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/02/28 20:22:33 by crypto           ###   ########.fr       */
+/*   Updated: 2023/02/28 23:30:40 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,34 +14,34 @@
 
 bool	diags(int **mat, t_point *p, char *diagonals)
 {
-	bool	diags;
+	bool	has_diags;
 
-	diags = true;
+	has_diags = true;
 	if (diagonals[0] != NOT_USED)
-		diags &= (mat[p->y + 1][p->x + 1] == ft_tonum(diagonals[0]));
+		has_diags &= (mat[p->y + 1][p->x + 1] == ft_tonum(diagonals[0]));
 	if (diagonals[1] != NOT_USED)
-		diags &= (mat[p->y - 1][p->x - 1] == ft_tonum(diagonals[1]));
+		has_diags &= (mat[p->y - 1][p->x - 1] == ft_tonum(diagonals[1]));
 	if (diagonals[2] != NOT_USED)
-		diags &= (mat[p->y + 1][p->x - 1] == ft_tonum(diagonals[2]));
+		has_diags &= (mat[p->y + 1][p->x - 1] == ft_tonum(diagonals[2]));
 	if (diagonals[3] != NOT_USED)
-		diags &= (mat[p->y - 1][p->x + 1] == ft_tonum(diagonals[3]));
-	return (diags);
+		has_diags &= (mat[p->y - 1][p->x + 1] == ft_tonum(diagonals[3]));
+	return (has_diags);
 }
 
 bool	sides(int **mat, t_point *p, char *diagonals)
 {
-	bool	sides;
+	bool	has_sides;
 
-	sides = true;
+	has_sides = true;
 	if (diagonals[0] != NOT_USED)
-		sides &= (mat[p->y - 1][p->x] == ft_tonum(diagonals[0]));
+		has_sides &= (mat[p->y - 1][p->x] == ft_tonum(diagonals[0]));
 	if (diagonals[1] != NOT_USED)
-		sides &= (mat[p->y + 1][p->x] == ft_tonum(diagonals[1]));
+		has_sides &= (mat[p->y][p->x - 1] == ft_tonum(diagonals[1]));
 	if (diagonals[2] != NOT_USED)
-		sides &= (mat[p->y][p->x - 1] == ft_tonum(diagonals[2]));
+		has_sides &= (mat[p->y + 1][p->x] == ft_tonum(diagonals[2]));
 	if (diagonals[3] != NOT_USED)
-		sides &= (mat[p->y][p->x + 1] == ft_tonum(diagonals[3]));
-	return (sides);
+		has_sides &= (mat[p->y][p->x + 1] == ft_tonum(diagonals[3]));
+	return (has_sides);
 }
 /* 
 bool	sides(t_point *p, int **mat, t_point vals, int op)

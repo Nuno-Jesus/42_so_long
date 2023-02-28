@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 02:39:20 by marvin            #+#    #+#             */
-/*   Updated: 2023/02/28 20:18:20 by marvin           ###   ########.fr       */
+/*   Updated: 2023/02/28 23:35:34 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,12 @@
 //! walls to make them look like smaller walls)
 # define XOFFSET				-16
 
-//! Considered valid entities
+//! Entities that can be in the .ber maps
 # define ENTITIES				"01CEPM"
+
+//! Macro used to know which cells are being checked to render the right
+//! wall sprite frame. A cell with 'N' is not being considered
+# define NOT_USED			'N'
 
 //! Sprite counters
 # define NUM_WALLS			31
@@ -51,12 +55,6 @@
 # define CALLS_PER_FRAME	8
 # define MOVE_CALLS			50000
 
-//! Binary map needed macros
-# define DIFF				0
-# define SUM				1
-# define DIFFSUM			2 
-# define SUMDIFF			3 
-# define NOT_USED			'N'
 
 //! File paths
 # define PLAYER_RIGHT_PATH	"images/bonus/player/right/player_"
@@ -100,7 +98,7 @@ typedef enum e_status
 	NORMAL,
 	ENRAGED,
 	AFRAID,
-}t_status;
+}			t_status;
 
 /**
  * @brief Used to map a keyboard scancode to its given key
