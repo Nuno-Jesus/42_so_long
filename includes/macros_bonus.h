@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   macros_bonus.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 02:39:20 by marvin            #+#    #+#             */
-/*   Updated: 2023/02/27 23:15:52 by crypto           ###   ########.fr       */
+/*   Updated: 2023/02/28 20:03:21 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,7 +123,7 @@ typedef enum e_mask
 /**
  * @brief Used to access the right sprite when rendering and loading sprites
  */
-typedef enum e_id
+typedef enum e_wall
 {
 	WALL_U,
 	WALL_L,
@@ -156,6 +156,6 @@ typedef enum e_id
 	CORNER_BDR,
 	CORNER_BUL,
 	CORNER_BUR,
-}				t_id;
+}				t_wall;
 
 #endif

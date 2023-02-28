@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   render_walls.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 02:14:19 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/02/27 23:21:08 by crypto           ###   ########.fr       */
+/*   Updated: 2023/02/28 20:03:21 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long_bonus.h"
 
-t_id	pick_wall_sprite_3(t_point *p, int **mat)
+t_wall	pick_wall_sprite_3(t_point *p, int **mat)
 {
 	if (sides(p, mat, (t_point){2, 1}, SUMDIFF))
 		return (WALL_D);
@@ -33,7 +33,7 @@ t_id	pick_wall_sprite_3(t_point *p, int **mat)
 	return (WALL_U);
 }
 
-t_id	pick_wall_sprite_2(t_point *p, int **mat)
+t_wall	pick_wall_sprite_2(t_point *p, int **mat)
 {
 	if (sides(p, mat, (t_point){0, 0}, DIFF) && diags(mat, p, "1011"))
 		return (CORNER_BUL);
@@ -58,7 +58,7 @@ t_id	pick_wall_sprite_2(t_point *p, int **mat)
 	return (pick_wall_sprite_3(p, mat));
 }
 
-t_id	pick_wall_sprite(t_point p, int **mat)
+t_wall	pick_wall_sprite(t_point p, int **mat)
 {
 	if (sides(&p, mat, (t_point){-1, 1}, DIFF) && mat[p.y - 1][p.x + 1])
 		return (CORNER_DL);

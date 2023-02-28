@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   move_player.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 14:54:58 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/02/27 23:13:44 by crypto           ###   ########.fr       */
+/*   Updated: 2023/02/28 19:47:17 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ bool	player_can_move(t_game *g, t_entity *e)
 	return (!is_same_point(e->pos, e->next) && at(g, e->next) != WALL);
 }
 
-void	collect_coins(t_game *g, t_point *p)
+void	collect_potions(t_game *g, t_point *p)
 {
 	unsigned int	i;
 
@@ -69,7 +69,7 @@ void	move_player(t_game *g)
 void	player_controller(t_game *g)
 {
 	if (at(g, g->player.next) == POTION)
-		collect_coins(g, &g->player.next);
+		collect_potions(g, &g->player.next);
 	else if (at(g, g->player.next) == ENEMY)
 	{
 		ft_putstr_fd("Game over.\n", STDOUT_FILENO);
