@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 02:39:20 by marvin            #+#    #+#             */
-/*   Updated: 2023/02/28 20:03:21 by marvin           ###   ########.fr       */
+/*   Updated: 2023/02/28 20:18:20 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,14 @@
 # include "get_next_line.h"
 # include "../mlx/mlx.h"
 
+//! Number of sprite versions for enemies and player
 # define NUM_SPRITE_VERSIONS	2
+
+//! X offset to render tiles correctly (it cuts the sprite of the side
+//! walls to make them look like smaller walls)
 # define XOFFSET				-16
+
+//! Considered valid entities
 # define ENTITIES				"01CEPM"
 
 //! Sprite counters
@@ -75,6 +81,9 @@ typedef enum e_type
 	PLAYER = 'P',
 }			t_type;
 
+/**
+ * @brief An enumerable type used to map an integer to a direction
+ */
 typedef enum e_direction
 {
 	RIGHT,
@@ -83,6 +92,9 @@ typedef enum e_direction
 	DOWN
 }			t_direction;
 
+/**
+ * @brief An enumerable type used to map an integer to a status used on enemies
+ */
 typedef enum e_status
 {
 	NORMAL,
