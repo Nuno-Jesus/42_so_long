@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_walls.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 02:14:19 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/02/28 23:33:37 by marvin           ###   ########.fr       */
+/*   Updated: 2023/02/28 23:39:38 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,32 +32,7 @@ t_wall	pick_wall_sprite_3(t_point *p, int **mat)
 		return (BOUNDLESS);
 	return (WALL_U);
 }
-/* 
-t_wall	pick_wall_sprite_2(t_point *p, int **mat)
-{
-	if (sides(mat, p, (t_point){0, 0}, DIFF) && diags(mat, p, "1011"))
-		return (CORNER_BUL);
-	if (sides(mat, p, (t_point){0, 0}, DIFF) && diags(mat, p, "1110"))
-		return (CORNER_BUR);
-	if (sides(mat, p, (t_point){0, 0}, DIFF) && diags(mat, p, "1101"))
-		return (CORNER_BDL);
-	if (sides(mat, p, (t_point){0, 0}, DIFF) && diags(mat, p, "0111"))
-		return (CORNER_BDR);
-	if (sides(mat, p, (t_point){-1, 2}, DIFFSUM) && diags(mat, p, "0NN0"))
-		return (BARRIER_L_2);
-	if (sides(mat, p, (t_point){1, 2}, DIFFSUM) && diags(mat, p, "N00N"))
-		return (BARRIER_R_2);
-	if (sides(mat, p, (t_point){0, -1}, DIFF) && diags(mat, p, "0N0N"))
-		return (BARRIER_U_2);
-	if (sides(mat, p, (t_point){0, 1}, DIFF) && diags(mat, p, "N0N0"))
-		return (BARRIER_D_2);
-	if (sides(mat, p, (t_point){-1, -1}, DIFF))
-		return (CORNER_L);
-	if (sides(mat, p, (t_point){1, -1}, DIFF))
-		return (CORNER_R);
-	return (pick_wall_sprite_3(p, mat));
-}
- */
+
 t_wall	pick_wall_sprite_2(t_point *p, int **mat)
 {
 	if (sides(mat, p, "1111") && diags(mat, p, "1011"))
@@ -83,30 +58,6 @@ t_wall	pick_wall_sprite_2(t_point *p, int **mat)
 	return (pick_wall_sprite_3(p, mat));
 }
 
-/* t_wall	pick_wall_sprite(t_point p, int **mat)
-{
-	if (sides(mat, &p, (t_point){-1, 1}, DIFF) && mat[p.y - 1][p.x + 1])
-		return (CORNER_DL);
-	if (sides(mat, &p, (t_point){1, 1}, DIFF) && mat[p.y - 1][p.x - 1])
-		return (CORNER_DR);
-	if (sides(mat, &p, (t_point){-1, -1}, DIFF) && !mat[p.y + 1][p.x + 1])
-		return (CORNER_UL_2);
-	if (sides(mat, &p, (t_point){1, -1}, DIFF) && !mat[p.y + 1][p.x - 1])
-		return (CORNER_UR_2);
-	if (sides(mat, &p, (t_point){-1, 1}, DIFF) && !mat[p.y - 1][p.x + 1])
-		return (CORNER_DL_2);
-	if (sides(mat, &p, (t_point){1, 1}, DIFF) && !mat[p.y - 1][p.x - 1])
-		return (CORNER_DR_2);
-	if (sides(mat, &p, (t_point){0, -1}, SUMDIFF))
-		return (EDGE_U);
-	if (sides(mat, &p, (t_point){0, 1}, SUMDIFF))
-		return (EDGE_D);
-	if (sides(mat, &p, (t_point){-1, 0}, DIFFSUM))
-		return (EDGE_L);
-	if (sides(mat, &p, (t_point){1, 0}, DIFFSUM))
-		return (EDGE_R);
-	return (pick_wall_sprite_2(&p, mat));
-} */
 t_wall	pick_wall_sprite(t_point p, int **mat)
 {
 	if (sides(mat, &p, "1001") && diags(mat, &p, "NNN1"))

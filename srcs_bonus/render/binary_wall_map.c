@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   binary_wall_map.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 02:16:40 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/02/28 23:30:40 by marvin           ###   ########.fr       */
+/*   Updated: 2023/02/28 23:39:45 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,22 +43,6 @@ bool	sides(int **mat, t_point *p, char *diagonals)
 		has_sides &= (mat[p->y][p->x + 1] == ft_tonum(diagonals[3]));
 	return (has_sides);
 }
-/* 
-bool	sides(t_point *p, int **mat, t_point vals, int op)
-{
-	if (op == DIFF)
-		return ((int)vals.y == (mat[p->y - 1][p->x] - mat[p->y + 1][p->x])
-			&& (int)vals.x == (mat[p->y][p->x - 1] - mat[p->y][p->x + 1]));
-	else if (op == SUM)
-		return ((int)vals.y == (mat[p->y - 1][p->x] + mat[p->y + 1][p->x])
-			&& (int)vals.x == (mat[p->y][p->x - 1] + mat[p->y][p->x + 1]));
-	else if (op == DIFFSUM)
-		return ((int)vals.y == (mat[p->y - 1][p->x] + mat[p->y + 1][p->x])
-			&& (int)vals.x == (mat[p->y][p->x - 1] - mat[p->y][p->x + 1]));
-	else
-		return ((int)vals.y == (mat[p->y - 1][p->x] - mat[p->y + 1][p->x])
-			&& (int)vals.x == (mat[p->y][p->x - 1] + mat[p->y][p->x + 1]));
-} */
 
 void	fill_bin_matrix(t_game *g, int **mat)
 {
