@@ -15,7 +15,7 @@ RM = rm -rf
 AR = ar -rcs
 
 #_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_ FLAGS _/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
-CFLAGS	= -Wall -Wextra -Werror #-fsanitize=address #-g
+CFLAGS	= -Wall -Wextra -Werror -fsanitize=address #-g
 MK		= --no-print-directory
 MLX		= -L ./mlx -lmlx -Ilmlx -lXext -lX11 -lm 
 LIBFT	= -L ./libft -lft
@@ -31,7 +31,7 @@ GNL_PATH		= get_next_line
 PRINTF_PATH		= ft_printf
 MLX_PATH 		= mlx
 _SUBFOLDERS		= logic map render utils
-VPATH			= srcs_bonus $(addprefix srcs_bonus/, $(_SUBFOLDERS))
+VPATH			= srcs_bonus $(addprefix $(SRCS_BONUS)/, $(_SUBFOLDERS))
 OBJ_DIR			= objs
 OBJ_DIR_BONUS	= objs_bonus
 
@@ -57,11 +57,14 @@ $(NAME): $(OBJ_DIR) $(TARGET)
 	echo "[$(CYAN)Compiling$(RESET)] $(CFLAGS) $(GREEN)get_next_line/*$(RESET)"
 	make $(MK) -C $(GNL_PATH)
 	
+	echo "[$(CYAN)Compiling$(RESET)] $(CFLAGS) $(GREEN)ft_printf/*$(RESET)"
+	make $(MK) -C $(PRINTF_PATH)
+
 	echo "[$(CYAN)Compiling$(RESET)] $(CFLAGS) $(GREEN)mlx/*$(RESET)"
 	make $(MK) -sC $(MLX_PATH)
 	
 	echo "[$(CYAN) Linking $(RESET)] $(GREEN)*$(RESET)"
-	$(CC) $(CFLAGS) main.c $(TARGET) $(LIBFT) $(GNL) $(MLX) -o $(NAME) -I $(DEPS)
+	$(CC) $(CFLAGS) main.c $(TARGET) $(LIBFT) $(GNL) $(MLX) $(PRINTF) -o $(NAME) -I $(DEPS)
 	
 	echo "$(GREEN)Done.$(RESET)"
 	
@@ -75,6 +78,7 @@ $(OBJ_DIR) :
 clean:
 	make clean $(MK) -C $(LIBFT_PATH)
 	make clean $(MK) -C $(GNL_PATH)
+	make clean $(MK) -C $(PRINTF_PATH)	
 	make clean $(MK) -C $(MLX_PATH)
 	
 	echo "[$(RED) Deleted $(RESET)] $(GREEN)$(OBJ_DIR)$(RESET)"
@@ -86,6 +90,7 @@ clean:
 fclean: clean
 	make fclean $(MK) -C $(LIBFT_PATH)
 	make fclean $(MK) -C $(GNL_PATH)
+	make fclean $(MK) -C $(PRINTF_PATH)	
 	
 	echo "[$(RED) Deleted $(RESET)] $(GREEN)$(NAME)$(RESET)"
 	$(RM) $(NAME)
@@ -109,11 +114,14 @@ $(NAME_BONUS): $(OBJ_DIR_BONUS) $(TARGET_BONUS)
 	echo "[$(CYAN)Compiling$(RESET)] $(CFLAGS) $(GREEN)get_next_line/*$(RESET)"
 	make $(MK) -C $(GNL_PATH)
 
+	echo "[$(CYAN)Compiling$(RESET)] $(CFLAGS) $(GREEN)ft_printf/*$(RESET)"
+	make $(MK) -C $(PRINTF_PATH)
+
 	echo "[$(CYAN)Compiling$(RESET)] $(CFLAGS) $(GREEN)mlx/*$(RESET)"
 	make $(MK) -C $(MLX_PATH) 
 	
 	echo "[$(CYAN) Linking $(RESET)] $(GREEN)*$(RESET)"
-	$(CC) $(CFLAGS) main.c $(TARGET_BONUS) $(LIBFT) $(GNL) $(MLX) -o $(NAME_BONUS) -I $(DEPS)
+	$(CC) $(CFLAGS) main.c $(TARGET_BONUS) $(LIBFT) $(GNL) $(MLX) $(PRINTF) -o $(NAME_BONUS) -I $(DEPS)
 	
 	echo "$(GREEN)Done.$(RESET)"
 

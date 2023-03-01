@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   move_enemies.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 04:35:13 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/02/28 19:39:53 by marvin           ###   ########.fr       */
+/*   Updated: 2023/03/01 00:21:28 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	move_enemies(t_game *g)
 		(*g->enemy_strategy)(g, &g->enemies[i]);
 		if (at(g, g->enemies[i].next) == PLAYER)
 		{
-			ft_putstr_fd("Game over.\n", STDOUT_FILENO);
+			ft_printf("Game over.\n");
 			quit(g);
 		}
 		set(g, g->enemies[i].pos, FLOOR);

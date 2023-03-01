@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   move_player.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 14:54:58 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/02/28 19:47:17 by marvin           ###   ########.fr       */
+/*   Updated: 2023/03/01 00:21:36 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ void	player_controller(t_game *g)
 		collect_potions(g, &g->player.next);
 	else if (at(g, g->player.next) == ENEMY)
 	{
-		ft_putstr_fd("Game over.\n", STDOUT_FILENO);
+		ft_printf("Game over.\n", STDOUT_FILENO);
 		quit(g);
 	}
 	if (g->collected == g->map->num_potions)

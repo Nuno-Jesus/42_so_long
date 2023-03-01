@@ -6,7 +6,7 @@
 /*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/07 18:04:46 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/02/27 23:22:25 by crypto           ###   ########.fr       */
+/*   Updated: 2023/03/01 00:23:01 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@ void	ft_free(void *ptr)
 void	message(t_game *game, char *text)
 {
 	destroy_game(game);
-	ft_putstr_fd("Error\n", STDERR_FILENO);
-	ft_putstr_fd(text, STDERR_FILENO);
+	ft_printf("Error\n");
+	ft_printf(text);
 	exit(EXIT_FAILURE);
 }
 

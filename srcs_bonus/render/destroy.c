@@ -6,7 +6,7 @@
 /*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/07 11:53:02 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/02/28 23:54:19 by crypto           ###   ########.fr       */
+/*   Updated: 2023/03/01 00:20:55 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,9 +65,9 @@ void	destroy_matrix(void *matrix, size_t rows)
 	i = 0;
 	if (!matrix)
 		return ;
-	while (i < rows && ((char **)matrix)[i])
-		free(((char **)matrix)[i++]);
-	free(matrix);
+	while (i < rows)
+		ft_free(((char **)matrix)[i++]);
+	ft_free(matrix);
 }
 
 void	destroy_map(t_map *map)

@@ -6,7 +6,7 @@
 /*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 02:39:20 by marvin            #+#    #+#             */
-/*   Updated: 2023/03/01 00:00:57 by crypto           ###   ########.fr       */
+/*   Updated: 2023/03/01 00:22:37 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@
 
 # include "libft.h"
 # include "get_next_line.h"
+# include "ft_printf.h"
 # include "../mlx/mlx.h"
 
 //! Number of sprite versions for enemies and player
