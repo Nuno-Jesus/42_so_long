@@ -6,7 +6,7 @@
 /*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 02:16:40 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/02/28 23:39:45 by crypto           ###   ########.fr       */
+/*   Updated: 2023/03/01 00:02:46 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,21 +58,21 @@ void	fill_bin_matrix(t_game *g, int **mat)
 	}
 }
 
-int	**new_matrix(unsigned int y, unsigned int x)
+void	*ft_new_matrix(int rows, int cols, size_t size)
 {
-	int				**mat;
-	unsigned int	i;
+	int	**mat;
+	int	i;
 
 	i = -1;
-	mat = ft_calloc(y + 1, sizeof(int *));
+	mat = ft_calloc(rows, sizeof(void *));
 	if (!mat)
 		return (NULL);
-	while (++i < y)
+	while (++i < rows)
 	{
-		mat[i] = ft_calloc(x + 2, sizeof(int));
+		mat[i] = ft_calloc(cols, size);
 		if (!mat[i])
 		{
-			destroy_matrix(mat);
+			destroy_matrix(mat, rows);
 			return (NULL);
 		}
 	}

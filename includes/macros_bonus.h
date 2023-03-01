@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   macros_bonus.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 02:39:20 by marvin            #+#    #+#             */
-/*   Updated: 2023/02/28 23:35:34 by marvin           ###   ########.fr       */
+/*   Updated: 2023/03/01 00:00:57 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,6 @@
 # define ANIMATE_CALLS		250
 # define CALLS_PER_FRAME	8
 # define MOVE_CALLS			50000
-
 
 //! File paths
 # define PLAYER_RIGHT_PATH	"images/bonus/player/right/player_"

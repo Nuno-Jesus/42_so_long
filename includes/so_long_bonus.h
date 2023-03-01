@@ -6,7 +6,7 @@
 /*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 21:38:07 by crypto            #+#    #+#             */
-/*   Updated: 2023/02/28 20:20:50 by crypto           ###   ########.fr       */
+/*   Updated: 2023/03/01 00:02:46 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -208,11 +208,12 @@ void		fill_bin_matrix(t_game *g, int **mat);
 
 /**
  * @brief Creates a new matrix of size y * x
- * @param y The number of rows
- * @param x The number of columns
+ * @param rows The number of rows
+ * @param cols The number of columns
+ * @param size The size of each element of each pointer
  * @return The new matrix
  */
-int			**new_matrix(unsigned int y, unsigned int x);
+void		*ft_new_matrix(int rows, int cols, size_t size);
 
 //!_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\ DEBUG _/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
 
@@ -246,8 +247,9 @@ void		destroy_sprite(t_game *g, t_sprite *sp);
 /**
  * @brief Frees the memory from a matrix
  * @param matrix The matrix to free the memory from
+ * @param rows The number of rows of the matrix
  */
-void		destroy_matrix(void *matrix);
+void		destroy_matrix(void *matrix, size_t rows);
 
 /**
  * @brief Frees the memory associated with a t_map struct

@@ -6,7 +6,7 @@
 /*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 02:14:19 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/02/28 23:39:38 by crypto           ###   ########.fr       */
+/*   Updated: 2023/03/01 00:02:46 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ void	render_inner_walls(t_game *g)
 	int		frame;
 	t_point	p;
 
-	mat = new_matrix(g->map->rows + 2, g->map->cols + 2);
+	mat = ft_new_matrix(g->map->rows + 2, g->map->cols + 2, sizeof(int));
 	fill_bin_matrix(g, mat);
 	p.y = 0;
 	while (++p.y < g->map->rows - 1)
@@ -103,7 +103,7 @@ void	render_inner_walls(t_game *g)
 			render(g, &g->walls_sp, p, frame);
 		}
 	}
-	destroy_matrix(mat);
+	destroy_matrix(mat, g->map->rows + 2);
 }
 
 void	render_outter_walls(t_game *g)
