@@ -6,7 +6,7 @@
 /*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 21:38:07 by crypto            #+#    #+#             */
-/*   Updated: 2023/03/01 00:02:46 by crypto           ###   ########.fr       */
+/*   Updated: 2023/03/01 00:42:38 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,19 +66,11 @@ typedef struct s_sprite
  * @brief Data structure containing mlx related data
  * @param mlx The mlx pointer
  * @param win The mlx window pointer
- * @param img The mlx img pointer
- * @param addr An mlx image address pointer
  */
 typedef struct s_display
 {
 	void	*mlx;
 	void	*win;
-	char	*addr;
-	int		height;
-	int		width;
-	int		bpp;
-	int		line_length;
-	int		endian;
 }				t_display;
 
 /**
