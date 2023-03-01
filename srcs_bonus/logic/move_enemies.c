@@ -6,7 +6,7 @@
 /*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 04:35:13 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/02/27 23:14:02 by crypto           ###   ########.fr       */
+/*   Updated: 2023/03/01 00:21:28 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,32 +29,6 @@ bool	enemy_has_possible_moves(t_game *g, t_point *pos)
 	return (can_move);
 }
 
-void	chase_strategy(t_game *g, t_entity *enemy)
-{
-	t_point	tmp;
-	t_point	pos;
-
-	tmp = enemy->next;
-	pos = enemy->pos;
-	if (g->player.pos.x < pos.x)
-		enemy->next = (t_point){pos.x - 1, pos.y};
-	if (enemy_can_move(g, enemy->next))
-		return ;
-	if (g->player.pos.y < pos.y)
-		enemy->next = (t_point){pos.x, pos.y - 1};
-	if (enemy_can_move(g, enemy->next))
-		return ;
-	if (g->player.pos.x > pos.x)
-		enemy->next = (t_point){pos.x + 1, pos.y};
-	if (enemy_can_move(g, enemy->next))
-		return ;
-	if (g->player.pos.y > pos.y)
-		enemy->next = (t_point){pos.x, pos.y + 1};
-	if (enemy_can_move(g, enemy->next))
-		return ;
-	enemy->next = tmp;
-}
-
 void	move_enemies(t_game *g)
 {
 	unsigned int	i;
@@ -69,7 +43,7 @@ void	move_enemies(t_game *g)
 		(*g->enemy_strategy)(g, &g->enemies[i]);
 		if (at(g, g->enemies[i].next) == PLAYER)
 		{
-			ft_putstr_fd("Game over.\n", STDOUT_FILENO);
+			ft_printf("Game over.\n");
 			quit(g);
 		}
 		set(g, g->enemies[i].pos, FLOOR);

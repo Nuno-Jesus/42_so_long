@@ -6,7 +6,7 @@
 /*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/07 18:11:40 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/02/27 21:10:03 by crypto           ###   ########.fr       */
+/*   Updated: 2023/03/01 00:02:46 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,22 +76,14 @@ bool	has_valid_path(t_game *g)
 	bool			is_valid;
 	unsigned int	i;
 
-	i = 0;
-	dup = ft_calloc(g->map->rows + 1, sizeof(char *));
+	i = -1;
+	dup = ft_new_matrix(g->map->rows, g->map->cols + 1, sizeof(char));
 	if (!dup)
-		message(g, "Failed allocation on has_valid_path()\n");
-	while (i < g->map->rows)
-	{
-		dup[i] = ft_strdup(g->map->bytes[i]);
-		if (!dup[i])
-		{
-			destroy_matrix(dup);
-			message(g, "Failed allocation on has_valid_path()\n");
-		}
-		i++;
-	}
+		message(g, "Failed allocation on duplicate map\n");
+	while (++i < g->map->rows)
+		ft_memcpy(dup[i], g->map->bytes[i], g->map->cols);
 	is_valid = flood_fill(g->map, g->player.pos, dup);
-	destroy_matrix(dup);
+	destroy_matrix(dup, g->map->rows);
 	return (is_valid);
 }
 

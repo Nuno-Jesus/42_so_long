@@ -6,7 +6,7 @@
 /*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 02:16:40 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/02/27 23:21:08 by crypto           ###   ########.fr       */
+/*   Updated: 2023/03/01 00:04:09 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,34 +14,34 @@
 
 bool	diags(int **mat, t_point *p, char *diagonals)
 {
-	bool	diags;
+	bool	has_diags;
 
-	diags = true;
+	has_diags = true;
 	if (diagonals[0] != NOT_USED)
-		diags &= (mat[p->y + 1][p->x + 1] == ft_tonum(diagonals[0]));
+		has_diags &= (mat[p->y + 1][p->x + 1] == ft_tonum(diagonals[0]));
 	if (diagonals[1] != NOT_USED)
-		diags &= (mat[p->y - 1][p->x - 1] == ft_tonum(diagonals[1]));
+		has_diags &= (mat[p->y - 1][p->x - 1] == ft_tonum(diagonals[1]));
 	if (diagonals[2] != NOT_USED)
-		diags &= (mat[p->y + 1][p->x - 1] == ft_tonum(diagonals[2]));
+		has_diags &= (mat[p->y + 1][p->x - 1] == ft_tonum(diagonals[2]));
 	if (diagonals[3] != NOT_USED)
-		diags &= (mat[p->y - 1][p->x + 1] == ft_tonum(diagonals[3]));
-	return (diags);
+		has_diags &= (mat[p->y - 1][p->x + 1] == ft_tonum(diagonals[3]));
+	return (has_diags);
 }
 
-bool	sides(t_point *p, int **mat, t_point vals, int op)
+bool	sides(int **mat, t_point *p, char *diagonals)
 {
-	if (op == DIFF)
-		return ((int)vals.y == (mat[p->y - 1][p->x] - mat[p->y + 1][p->x])
-			&& (int)vals.x == (mat[p->y][p->x - 1] - mat[p->y][p->x + 1]));
-	else if (op == SUM)
-		return ((int)vals.y == (mat[p->y - 1][p->x] + mat[p->y + 1][p->x])
-			&& (int)vals.x == (mat[p->y][p->x - 1] + mat[p->y][p->x + 1]));
-	else if (op == DIFFSUM)
-		return ((int)vals.y == (mat[p->y - 1][p->x] + mat[p->y + 1][p->x])
-			&& (int)vals.x == (mat[p->y][p->x - 1] - mat[p->y][p->x + 1]));
-	else
-		return ((int)vals.y == (mat[p->y - 1][p->x] - mat[p->y + 1][p->x])
-			&& (int)vals.x == (mat[p->y][p->x - 1] + mat[p->y][p->x + 1]));
+	bool	has_sides;
+
+	has_sides = true;
+	if (diagonals[0] != NOT_USED)
+		has_sides &= (mat[p->y - 1][p->x] == ft_tonum(diagonals[0]));
+	if (diagonals[1] != NOT_USED)
+		has_sides &= (mat[p->y][p->x - 1] == ft_tonum(diagonals[1]));
+	if (diagonals[2] != NOT_USED)
+		has_sides &= (mat[p->y + 1][p->x] == ft_tonum(diagonals[2]));
+	if (diagonals[3] != NOT_USED)
+		has_sides &= (mat[p->y][p->x + 1] == ft_tonum(diagonals[3]));
+	return (has_sides);
 }
 
 void	fill_bin_matrix(t_game *g, int **mat)
@@ -58,21 +58,21 @@ void	fill_bin_matrix(t_game *g, int **mat)
 	}
 }
 
-int	**new_matrix(unsigned int y, unsigned int x)
+void	*ft_new_matrix(int rows, int cols, size_t size)
 {
-	int				**mat;
-	unsigned int	i;
+	void	**mat;
+	int		i;
 
 	i = -1;
-	mat = ft_calloc(y + 1, sizeof(int *));
+	mat = ft_calloc(rows, sizeof(void *));
 	if (!mat)
 		return (NULL);
-	while (++i < y)
+	while (++i < rows)
 	{
-		mat[i] = ft_calloc(x + 2, sizeof(int));
+		mat[i] = ft_calloc(cols, size);
 		if (!mat[i])
 		{
-			destroy_matrix(mat);
+			destroy_matrix(mat, rows);
 			return (NULL);
 		}
 	}

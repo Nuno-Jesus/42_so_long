@@ -6,7 +6,7 @@
 /*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 02:39:13 by marvin            #+#    #+#             */
-/*   Updated: 2023/02/27 23:12:26 by crypto           ###   ########.fr       */
+/*   Updated: 2023/03/01 00:42:38 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,8 +64,8 @@ void	render_counter(t_game *g)
 	str[1] = ft_itoa(++g->moves);
 	mlx_string_put(g->disp.mlx, g->disp.win, p.x, p.y, 0x000000, str[0]);
 	mlx_string_put(g->disp.mlx, g->disp.win, p.x, p.y, 0xFFFFFF, str[1]);
-	free(str[0]);
-	free(str[1]);
+	ft_free(str[0]);
+	ft_free(str[1]);
 }
 
 int	render_frame(t_game *g)

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map.c                                              :+:      :+:    :+:   */
+/*   read_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/07 18:03:57 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/02/27 23:22:29 by crypto           ###   ########.fr       */
+/*   Updated: 2023/03/01 00:20:40 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ t_map	*map_new(unsigned int cols, unsigned int rows)
 	map->bytes = ft_calloc(rows + 1, sizeof(char *));
 	if (!map->bytes)
 	{
-		free(map);
+		ft_free(map);
 		return (NULL);
 	}
 	map->cols = cols;
@@ -46,7 +46,7 @@ int	get_num_lines(t_game *game, char *filename)
 		if (!tmp)
 			break ;
 		lines++;
-		free(tmp);
+		ft_free(tmp);
 	}
 	close(fd);
 	return (lines);
@@ -73,7 +73,7 @@ void	read_map(t_game *game, char *filename)
 		game->map->bytes[i] = ft_strtrim(tmp, "\n");
 		if (!game->map->bytes[i++])
 			message(game, "Allocation failed on map lines 2.\n");
-		free(tmp);
+		ft_free(tmp);
 	}
 	close(fd);
 }

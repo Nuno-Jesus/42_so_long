@@ -6,7 +6,7 @@
 /*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 02:39:20 by marvin            #+#    #+#             */
-/*   Updated: 2023/02/27 23:15:52 by crypto           ###   ########.fr       */
+/*   Updated: 2023/03/01 00:22:37 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,22 @@
 
 # include "libft.h"
 # include "get_next_line.h"
+# include "ft_printf.h"
 # include "../mlx/mlx.h"
 
+//! Number of sprite versions for enemies and player
 # define NUM_SPRITE_VERSIONS	2
+
+//! X offset to render tiles correctly (it cuts the sprite of the side
+//! walls to make them look like smaller walls)
 # define XOFFSET				-16
+
+//! Entities that can be in the .ber maps
 # define ENTITIES				"01CEPM"
+
+//! Macro used to know which cells are being checked to render the right
+//! wall sprite frame. A cell with 'N' is not being considered
+# define NOT_USED			'N'
 
 //! Sprite counters
 # define NUM_WALLS			31
@@ -44,13 +55,6 @@
 # define ANIMATE_CALLS		250
 # define CALLS_PER_FRAME	8
 # define MOVE_CALLS			50000
-
-//! Binary map needed macros
-# define DIFF				0
-# define SUM				1
-# define DIFFSUM			2 
-# define SUMDIFF			3 
-# define NOT_USED			'N'
 
 //! File paths
 # define PLAYER_RIGHT_PATH	"images/bonus/player/right/player_"
@@ -75,6 +79,9 @@ typedef enum e_type
 	PLAYER = 'P',
 }			t_type;
 
+/**
+ * @brief An enumerable type used to map an integer to a direction
+ */
 typedef enum e_direction
 {
 	RIGHT,
@@ -83,12 +90,15 @@ typedef enum e_direction
 	DOWN
 }			t_direction;
 
+/**
+ * @brief An enumerable type used to map an integer to a status used on enemies
+ */
 typedef enum e_status
 {
 	NORMAL,
 	ENRAGED,
 	AFRAID,
-}t_status;
+}			t_status;
 
 /**
  * @brief Used to map a keyboard scancode to its given key
@@ -123,7 +133,7 @@ typedef enum e_mask
 /**
  * @brief Used to access the right sprite when rendering and loading sprites
  */
-typedef enum e_id
+typedef enum e_wall
 {
 	WALL_U,
 	WALL_L,
@@ -156,6 +166,6 @@ typedef enum e_id
 	CORNER_BDR,
 	CORNER_BUL,
 	CORNER_BUR,
-}				t_id;
+}				t_wall;
 
 #endif
