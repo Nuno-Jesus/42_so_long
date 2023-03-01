@@ -51,16 +51,16 @@ TARGET_BONUS	= $(addprefix $(OBJ_DIR_BONUS)/, $(OBJS_BONUS))
 all: $(NAME)
 
 $(NAME): $(OBJ_DIR) $(TARGET)
-	echo "[$(CYAN)Compiling$(RESET)] $(CFLAGS) $(GREEN)libft/*$(RESET)"
+	echo "[$(CYAN)Compiling$(RESET)] $(CFLAGS) $(GREEN)libft$(RESET)"
 	make $(MK) -C $(LIBFT_PATH)
 	
-	echo "[$(CYAN)Compiling$(RESET)] $(CFLAGS) $(GREEN)get_next_line/*$(RESET)"
+	echo "[$(CYAN)Compiling$(RESET)] $(CFLAGS) $(GREEN)get_next_line$(RESET)"
 	make $(MK) -C $(GNL_PATH)
 	
-	echo "[$(CYAN)Compiling$(RESET)] $(CFLAGS) $(GREEN)ft_printf/*$(RESET)"
+	echo "[$(CYAN)Compiling$(RESET)] $(CFLAGS) $(GREEN)ft_printf$(RESET)"
 	make $(MK) -C $(PRINTF_PATH)
 
-	echo "[$(CYAN)Compiling$(RESET)] $(CFLAGS) $(GREEN)mlx/*$(RESET)"
+	echo "[$(CYAN)Compiling$(RESET)] $(CFLAGS) $(GREEN)mlx$(RESET)"
 	make $(MK) -sC $(MLX_PATH)
 	
 	echo "[$(CYAN) Linking $(RESET)] $(GREEN)*$(RESET)"
@@ -108,16 +108,16 @@ $(OBJ_DIR_BONUS) :
 bonus: $(NAME_BONUS) 
 
 $(NAME_BONUS): $(OBJ_DIR_BONUS) $(TARGET_BONUS)
-	echo "[$(CYAN)Compiling$(RESET)] $(CFLAGS) $(GREEN)libft/*$(RESET)"
+	echo "[$(CYAN)Compiling$(RESET)] $(CFLAGS) $(GREEN)libft$(RESET)"
 	make $(MK) -C $(LIBFT_PATH)
 	
-	echo "[$(CYAN)Compiling$(RESET)] $(CFLAGS) $(GREEN)get_next_line/*$(RESET)"
+	echo "[$(CYAN)Compiling$(RESET)] $(CFLAGS) $(GREEN)get_next_line$(RESET)"
 	make $(MK) -C $(GNL_PATH)
 
-	echo "[$(CYAN)Compiling$(RESET)] $(CFLAGS) $(GREEN)ft_printf/*$(RESET)"
+	echo "[$(CYAN)Compiling$(RESET)] $(CFLAGS) $(GREEN)ft_printf$(RESET)"
 	make $(MK) -C $(PRINTF_PATH)
 
-	echo "[$(CYAN)Compiling$(RESET)] $(CFLAGS) $(GREEN)mlx/*$(RESET)"
+	echo "[$(CYAN)Compiling$(RESET)] $(CFLAGS) $(GREEN)mlx$(RESET)"
 	make $(MK) -C $(MLX_PATH) 
 	
 	echo "[$(CYAN) Linking $(RESET)] $(GREEN)*$(RESET)"
