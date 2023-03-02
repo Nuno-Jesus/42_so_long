@@ -10,7 +10,7 @@ TARGET = 	ft_printf.o ft_printf_utils.o ft_convert_char.o ft_convert_string.o ft
 NAME = libftprintf.a
 
 %.o : %.c 
-	$(CC) $(FLAGS) -c $< -o $@ -I $(DEPS) -L ../libft -lft
+	$(CC) $(FLAGS) -c $< -o $@ -I $(DEPS)
 
 all: $(NAME)
 

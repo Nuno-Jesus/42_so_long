@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   macros_bonus.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 02:39:20 by marvin            #+#    #+#             */
-/*   Updated: 2023/03/01 00:22:37 by crypto           ###   ########.fr       */
+/*   Updated: 2023/03/02 11:27:23 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@
 
 //! Sprite refreshing frequency
 # define ANIMATE_CALLS		250
-# define CALLS_PER_FRAME	8
+# define CALLS_PER_FRAME	40
 # define MOVE_CALLS			50000
 
 //! File paths
