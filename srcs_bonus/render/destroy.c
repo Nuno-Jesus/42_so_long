@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/07 11:53:02 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/03/04 10:36:22 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/03/04 11:13:02 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,10 @@ void	destroy_all_sprites(t_game *g)
 	destroy_sprite(g, &g->potions_sp);
 	while (++k < NUM_SPRITE_VERSIONS)
 	{
-		destroy_sprite(g, &g->player_sp[k]);
-		destroy_sprite(g, &g->enemy_sp[k]);
+		if (g->player_sp)
+			destroy_sprite(g, &g->player_sp[k]);
+		if (g->enemy_sp)
+			destroy_sprite(g, &g->enemy_sp[k]);
 	}
 	ft_free(g->player_sp);
 	ft_free(g->enemy_sp);
