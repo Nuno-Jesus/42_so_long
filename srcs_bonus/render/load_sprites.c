@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   load_sprites.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 00:33:38 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/02/27 23:11:10 by crypto           ###   ########.fr       */
+/*   Updated: 2023/03/04 05:28:02 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,24 +27,23 @@ void	load_xpm(t_game *g, t_sprite *s, char *prefix, int n)
 	{
 		path[len - 6] = ft_tochar(i / 10);
 		path[len - 5] = ft_tochar(i % 10);
-		s->img[i - 1] = mlx_xpm_file_to_image(g->disp.mlx, \
-				path, &(s->width), &(s->height));
+		s->frames[i - 1] = new_image(g, path);
 	}
 }
 
 void	load_static_entites_frames(t_game *g)
 {
-	g->walls_sp.img = malloc(NUM_WALLS * sizeof(void *));
-	if (!g->walls_sp.img)
+	g->walls_sp.frames = malloc(NUM_WALLS * sizeof(t_img));
+	if (!g->walls_sp.frames)
 		message(g, "Failed allocation on wall frames\n");
-	g->floor_sp.img = malloc(NUM_FLOOR_FRAMES * sizeof(void *));
-	if (!g->floor_sp.img)
+	g->floor_sp.frames = malloc(NUM_FLOOR_FRAMES * sizeof(t_img));
+	if (!g->floor_sp.frames)
 		message(g, "Failed allocation on floor frames\n");
-	g->exit_sp.img = malloc(NUM_EXIT_FRAMES * sizeof(void *));
-	if (!g->exit_sp.img)
+	g->exit_sp.frames = malloc(NUM_EXIT_FRAMES * sizeof(t_img));
+	if (!g->exit_sp.frames)
 		message(g, "Failed allocation on exit frames\n");
-	g->potions_sp.img = malloc(NUM_COIN_FRAMES * sizeof(void *));
-	if (!g->potions_sp.img)
+	g->potions_sp.frames = malloc(NUM_COIN_FRAMES * sizeof(t_img));
+	if (!g->potions_sp.frames)
 		message(g, "Failed allocation on potions frames\n");
 	g->walls_sp.nframes = NUM_WALLS;
 	g->floor_sp.nframes = NUM_FLOOR_FRAMES;
@@ -61,11 +60,11 @@ void	load_enemies_frames(t_game *g)
 	g->enemy_sp = malloc(NUM_SPRITE_VERSIONS * sizeof(t_sprite));
 	if (!g->enemy_sp)
 		message(g, "Failed allocation on enemy frames array\n");
-	g->enemy_sp[NORMAL].img = malloc(NUM_ENEMY_FRAMES * sizeof(void *));
-	g->enemy_sp[ENRAGED].img = malloc(NUM_ENEMY_FRAMES * sizeof(void *));
-	if (!g->enemy_sp[NORMAL].img)
+	g->enemy_sp[NORMAL].frames = malloc(NUM_ENEMY_FRAMES * sizeof(t_img));
+	g->enemy_sp[ENRAGED].frames = malloc(NUM_ENEMY_FRAMES * sizeof(t_img));
+	if (!g->enemy_sp[NORMAL].frames)
 		message(g, "Failed allocation on normal enemy frames\n");
-	if (!g->enemy_sp[ENRAGED].img)
+	if (!g->enemy_sp[ENRAGED].frames)
 		message(g, "Failed allocation on enraged enemy frames\n");
 	g->enemy_sp[NORMAL].nframes = NUM_ENEMY_FRAMES;
 	g->enemy_sp[ENRAGED].nframes = NUM_ENEMY_FRAMES;
@@ -78,11 +77,11 @@ void	load_player_frames(t_game *g)
 	g->player_sp = malloc(NUM_SPRITE_VERSIONS * sizeof(t_sprite));
 	if (!g->player_sp)
 		message(g, "Failed allocation on player frames array\n");
-	g->player_sp[RIGHT].img = malloc(NUM_PLAYER_FRAMES * sizeof(void *));
-	g->player_sp[LEFT].img = malloc(NUM_PLAYER_FRAMES * sizeof(void *));
-	if (!g->player_sp[RIGHT].img)
+	g->player_sp[RIGHT].frames = malloc(NUM_PLAYER_FRAMES * sizeof(t_img));
+	g->player_sp[LEFT].frames = malloc(NUM_PLAYER_FRAMES * sizeof(t_img));
+	if (!g->player_sp[RIGHT].frames)
 		message(g, "Failed allocation on right player frames\n");
-	if (!g->player_sp[LEFT].img)
+	if (!g->player_sp[LEFT].frames)
 		message(g, "Failed allocation on left player frames\n");
 	g->player_sp[RIGHT].nframes = NUM_PLAYER_FRAMES;
 	g->player_sp[LEFT].nframes = NUM_PLAYER_FRAMES;

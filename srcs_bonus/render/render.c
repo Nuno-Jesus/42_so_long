@@ -3,19 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 02:39:13 by marvin            #+#    #+#             */
-/*   Updated: 2023/03/01 00:42:38 by crypto           ###   ########.fr       */
+/*   Updated: 2023/03/04 05:30:26 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long_bonus.h"
 
-void	render(t_game *g, t_sprite *s, t_point p, int frame)
+void	render(t_game *g, t_sprite *s, t_point p, int n)
 {
-	mlx_put_image_to_window(g->disp.mlx, g->disp.win, s->img[frame], \
-		p.x * s->width + XOFFSET, p.y * s->height);
+	mlx_put_image_to_window(g->disp.mlx, g->disp.win, s->frames[n].img, \
+		p.x * s->frames[n].width + XOFFSET, p.y * s->frames[n].height);
 }
 
 void	render_tile(t_game *g, t_point p)

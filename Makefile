@@ -15,7 +15,7 @@ RM = rm -rf
 AR = ar -rcs
 
 #_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_ FLAGS _/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
-CFLAGS	= -Wall -Wextra -Werror -fsanitize=address #-g
+CFLAGS	= -Wall -Wextra -Werror #-fsanitize=address #-g
 MK		= --no-print-directory
 MLX		= -L ./mlx -lmlx -Ilmlx -lXext -lX11 -lm 
 LIBFT	= -L ./libft -lft
@@ -43,7 +43,7 @@ TARGET			= $(addprefix $(OBJ_DIR)/, $(OBJS))
 
 NAME_BONUS		= so_long_bonus
 _FILES_BONUS	= move_enemies move_player strategy algorithms map_validator read_map animate \
-					binary_wall_map destroy load_sprites render_walls render utils debug init 
+					binary_wall_map destroy load_sprites render_walls render utils debug init image
 OBJS_BONUS		= $(_FILES_BONUS:%=%.o)
 TARGET_BONUS	= $(addprefix $(OBJ_DIR_BONUS)/, $(OBJS_BONUS))
 

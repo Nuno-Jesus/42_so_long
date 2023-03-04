@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 14:13:49 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/02/28 19:29:29 by marvin           ###   ########.fr       */
+/*   Updated: 2023/03/04 05:35:56 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ void	init_game(char *filename)
 	read_map(&g, filename);
 	validate_map(&g);
 	init_graphics(&g);
+	
 	init_player(&g);
 	init_enemies(&g);
 	init_coins(&g);
@@ -39,6 +40,7 @@ void	init_graphics(t_game *g)
 		message(g, "Failed allocation on mlx pointer\n");
 	g->disp.win = mlx_new_window(g->disp.mlx, 32 * (g->map->cols - 1), \
 		32 * g->map->rows + 32, "so_long");
+	g->disp.dims = (t_point){32 * (g->map->cols - 1), 32 * g->map->rows};
 	if (!g->disp.win)
 		message(g, "Failed allocation on window pointer\n");
 }

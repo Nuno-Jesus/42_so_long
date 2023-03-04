@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   destroy.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/07 11:53:02 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/03/01 00:20:55 by crypto           ###   ########.fr       */
+/*   Updated: 2023/03/04 05:27:20 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,11 +51,11 @@ void	destroy_sprite(t_game *g, t_sprite *sp)
 	int	i;
 
 	i = 0;
-	if (!sp || !sp->img)
+	if (!sp || !sp->frames)
 		return ;
 	while (i < sp->nframes)
-		mlx_destroy_image(g->disp.mlx, sp->img[i++]);
-	ft_free(sp->img);
+		mlx_destroy_image(g->disp.mlx, sp->frames[i++].img);
+	ft_free(sp->frames);
 }
 
 void	destroy_matrix(void *matrix, size_t rows)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long_bonus.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 21:38:07 by crypto            #+#    #+#             */
-/*   Updated: 2023/03/01 00:42:38 by crypto           ###   ########.fr       */
+/*   Updated: 2023/03/04 05:31:29 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,17 @@ typedef struct s_map
 	unsigned int	num_enemies;
 }				t_map;
 
+typedef struct s_img
+{
+	void	*img;
+	char	*addr;
+	int		bpp;
+	int		line_len;
+	int		endian;
+	int		width;
+	int		height;
+}t_img;
+
 /**
  * @brief A struct sprite related data
  * @param img The mlx pointer of the sprite image
@@ -56,9 +67,7 @@ typedef struct s_map
  */
 typedef struct s_sprite
 {
-	void	**img;
-	int		width;
-	int		height;
+	t_img	*frames;
 	int		nframes;
 }				t_sprite;
 
@@ -66,11 +75,13 @@ typedef struct s_sprite
  * @brief Data structure containing mlx related data
  * @param mlx The mlx pointer
  * @param win The mlx window pointer
+ * @param dims The dimensions of the window
  */
 typedef struct s_display
 {
 	void	*mlx;
 	void	*win;
+	t_point	dims;
 }				t_display;
 
 /**
@@ -135,10 +146,16 @@ typedef struct s_game
 	t_entity		*enemies;
 	t_entity		*coins;
 	t_status		enemy_status;
+	void			*background;
+	char 			*back_addr;
 	void			(*enemy_strategy)();
 	unsigned int	collected;
 	unsigned int	moves;
 }					t_game;
+
+//!_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/= IMAGE =\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
+
+t_img		new_image(t_game *g, char *path);
 
 //!_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/= ANIMATE =\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
 
@@ -544,19 +561,22 @@ int			render_frame(t_game *g);
 
 /**
  * @brief Picks a wall sprite depending on the surrounding tiles
- * @param g The t_game struct to use
+ * @param p The position of the wall
+ * @param mat The map matrix
  */
 t_wall		pick_wall_sprite_3(t_point *p, int **mat);
 
 /**
  * @brief Picks a wall sprite depending on the surrounding tiles
- * @param g The t_game struct to use
+ * @param p The position of the wall
+ * @param mat The map matrix
  */
 t_wall		pick_wall_sprite_2(t_point *p, int **mat);
 
 /**
  * @brief Picks a wall sprite depending on the surrounding tiles
- * @param g The t_game struct to use
+ * @param p The position of the wall
+ * @param mat The map matrix
  */
 t_wall		pick_wall_sprite(t_point p, int **mat);
 
