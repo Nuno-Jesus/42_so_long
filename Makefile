@@ -127,9 +127,6 @@ $(NAME_BONUS): $(OBJ_DIR_BONUS) $(TARGET_BONUS)
 
 re: fclean all
 
-run: 
-	./$(NAME_BONUS) maps/valid8.ber
-
-reb: fclean bonus run
+reb: fclean bonus
 
 .SILENT:

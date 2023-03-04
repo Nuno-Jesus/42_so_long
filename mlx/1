@@ -1,0 +1,5 @@
+mlx_new_image.c: In function ‘shm_att_pb’:
+mlx_new_image.c:27:5: warning: ignoring return value of ‘write’ declared with attribute ‘warn_unused_result’ [-Wunused-result]
+   27 |     write(2,WARN_SHM_ATTACH,strlen(WARN_SHM_ATTACH));
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ar: creating libmlx.a

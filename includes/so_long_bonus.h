@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 21:38:07 by crypto            #+#    #+#             */
-/*   Updated: 2023/03/04 08:02:28 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/03/04 10:35:44 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,22 +47,30 @@ typedef struct s_map
 	unsigned int	num_enemies;
 }				t_map;
 
+/**
+ * @brief The sctruct used to represent an xpm file
+ * @param img The mlx image pointer
+ * @param addr The beginning address of the image pixels
+ * @param width The width of the image
+ * @param height The height of the image
+ * @param bpp The number of bits per pixel
+ * @param line_len The length of a line in bytes (unused)
+ * @param endian The endianess of the image (unused)
+ */
 typedef struct s_img
 {
 	void	*img;
 	char	*addr;
+	int		width;
+	int		height;
 	int		bpp;
 	int		line_len;
 	int		endian;
-	int		width;
-	int		height;
 }t_img;
 
 /**
  * @brief A struct sprite related data
- * @param img The mlx pointer of the sprite image
- * @param width The width of the sprite
- * @param height The height of the sprite
+ * @param frames The array of t_img containing the xpm of the sprite
  * @param nframes The number of frames of the sprite
  */
 typedef struct s_sprite
@@ -146,19 +154,10 @@ typedef struct s_game
 	t_entity		*enemies;
 	t_entity		*coins;
 	t_status		enemy_status;
-	t_img			background;
 	void			(*enemy_strategy)();
 	unsigned int	collected;
 	unsigned int	moves;
 }					t_game;
-
-void		binary_map_print(t_game *g, int **mat);
-
-//!_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/= IMAGE =\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
-
-t_img		new_image(t_game *g, t_point dims);
-
-t_img		new_file_image(t_game *g, char *path);
 
 //!_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/= ANIMATE =\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
 
@@ -236,6 +235,13 @@ void		*ft_new_matrix(int rows, int cols, size_t size);
  */
 void		map_print(t_map *map);
 
+/**
+ * @brief Prints the binary wall map to the standard output
+ * @param g The game structure
+ * @param mat The binary wall map
+ */
+void		binary_map_print(t_game *g, int **mat);
+
 //!_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\ DESTROY _/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
 
 /**
@@ -308,6 +314,24 @@ void		init_coins(t_game *g);
  * @param g The t_game struct to use
  */
 void		init_graphics(t_game *g);
+
+//!_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/= IMAGE =\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
+
+/**
+ * @brief It creates a new mlx image with the given dimensions
+ * @param g The t_game struct to use
+ * @param dims The dimensions of the new image
+ * @return The new image
+ */
+t_img		new_image(t_game *g, t_point dims);
+
+/**
+ * @brief It creates a new mlx image from a file
+ * @param g The t_game struct to use
+ * @param path The path to the file to load
+ * @return The new image
+ */
+t_img		new_file_image(t_game *g, char *path);
 
 //!_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/= LOAD_SPRITES =\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
 /**
