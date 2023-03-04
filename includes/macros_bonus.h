@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 02:39:20 by marvin            #+#    #+#             */
-/*   Updated: 2023/03/02 11:27:23 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/03/04 06:04:11 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@
 # include "get_next_line.h"
 # include "ft_printf.h"
 # include "../mlx/mlx.h"
+
+# define DEBUG
 
 //! Number of sprite versions for enemies and player
 # define NUM_SPRITE_VERSIONS	2

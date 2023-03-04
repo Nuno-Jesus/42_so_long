@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 00:33:38 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/03/04 05:28:02 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/03/04 05:42:24 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	load_xpm(t_game *g, t_sprite *s, char *prefix, int n)
 	{
 		path[len - 6] = ft_tochar(i / 10);
 		path[len - 5] = ft_tochar(i % 10);
-		s->frames[i - 1] = new_image(g, path);
+		s->frames[i - 1] = new_file_image(g, path);
 	}
 }
 

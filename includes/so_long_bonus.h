@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 21:38:07 by crypto            #+#    #+#             */
-/*   Updated: 2023/03/04 05:31:29 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/03/04 06:54:44 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -146,16 +146,19 @@ typedef struct s_game
 	t_entity		*enemies;
 	t_entity		*coins;
 	t_status		enemy_status;
-	void			*background;
-	char 			*back_addr;
+	t_img			background;
 	void			(*enemy_strategy)();
 	unsigned int	collected;
 	unsigned int	moves;
 }					t_game;
 
+void		binary_map_print(t_game *g, int **mat);
+
 //!_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/= IMAGE =\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
 
-t_img		new_image(t_game *g, char *path);
+t_img		new_image(t_game *g, t_point dims);
+
+t_img		new_file_image(t_game *g, char *path);
 
 //!_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/= ANIMATE =\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
 

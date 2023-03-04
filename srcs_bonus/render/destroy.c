@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/07 11:53:02 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/03/04 05:27:20 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/03/04 07:26:41 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ void	destroy_game(t_game *game)
 	ft_free(game->coins);
 	ft_free(game->enemies);
 	destroy_all_sprites(game);
+	if (game->background.img)
+		mlx_destroy_image(game->disp.mlx, game->background.img);
 	if (game->disp.win)
 		mlx_destroy_window(game->disp.mlx, game->disp.win);
 	if (game->disp.mlx)
@@ -54,7 +56,8 @@ void	destroy_sprite(t_game *g, t_sprite *sp)
 	if (!sp || !sp->frames)
 		return ;
 	while (i < sp->nframes)
-		mlx_destroy_image(g->disp.mlx, sp->frames[i++].img);
+		if (sp->frames[i].img)
+			mlx_destroy_image(g->disp.mlx, sp->frames[i++].img);
 	ft_free(sp->frames);
 }
 
