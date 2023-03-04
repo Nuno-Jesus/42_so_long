@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   macros.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/10 11:19:03 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/02/27 20:20:15 by crypto           ###   ########.fr       */
+/*   Updated: 2023/03/04 11:33:24 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,15 +32,11 @@
 # define NUM_SPRITES_BONUS	9
 
 # define ENTITIES	"01CEP"
-# define FW1		"images/wall.xpm"
-# define FW2		"images/left_wall.xpm"
-# define FW3		"images/right_wall.xpm"
-# define FW4		"images/upper_left_corner_wall.xpm"
-# define FW5		"images/upper_right_corner_wall.xpm"
-# define FS1		"images/space.xpm"
-# define FC1		"images/coin.xpm"
-# define FE1		"images/exit.xpm"
-# define FP1		"images/player.xpm"
+# define FW1		"images/mandatory/wall.xpm"
+# define FS1		"images/mandatory/space.xpm"
+# define FC1		"images/mandatory/coin.xpm"
+# define FE1		"images/mandatory/exit.xpm"
+# define FP1		"images/mandatory/player.xpm"
 
 /**
  * @brief An enumerable type used to map a char to an entity
@@ -94,10 +90,6 @@ typedef enum e_index
 	C1,
 	E1,
 	P1,
-	W2,
-	W3,
-	W4,
-	W5
 }				t_id;
 
 #endif
