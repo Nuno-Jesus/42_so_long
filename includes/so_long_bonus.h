@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 21:38:07 by crypto            #+#    #+#             */
-/*   Updated: 2023/03/04 06:54:44 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/03/04 08:02:28 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -525,8 +525,7 @@ void		set(t_game *g, t_point p, t_type type);
  * @param p The position to render the sprite
  * @param frame The index of the sprite to render
  */
-void		render(t_game *g, t_sprite *s, t_point p, int frame);
-
+void		render(t_game *g, t_img *img, t_point p);
 /**
  * @brief Given a pair of coordinates, it renders a map tile. Depending on the
  * entity in that tile it renders a different image.

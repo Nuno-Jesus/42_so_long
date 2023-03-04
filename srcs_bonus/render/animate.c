@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   animate.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 10:48:55 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/03/01 00:42:38 by crypto           ###   ########.fr       */
+/*   Updated: 2023/03/04 08:02:58 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,11 @@ void	animate(t_game *g, t_entity *ent, t_sprite *frames, int n)
 			continue ;
 		if (++ent[i].curr_freq % ent[i].frame_freq == 0)
 			ent[i].frame = (ent[i].frame + 1) % frames->nframes;
-		render(g, &g->floor_sp, ent[i].pos, 0);
+		render(g, &g->floor_sp.frames[0], ent[i].pos);
 		if (ent[i].type == ENEMY)
 			frame_set = g->enemy_status;
 		else
 			frame_set = ent[i].dir;
-		render(g, &frames[frame_set], ent[i].pos, ent[i].frame);
+		render(g, &frames[frame_set].frames[ent[i].frame], ent[i].pos);
 	}
 }

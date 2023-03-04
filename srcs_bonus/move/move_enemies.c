@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   move_enemies.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 04:35:13 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/03/01 00:21:28 by crypto           ###   ########.fr       */
+/*   Updated: 2023/03/04 08:02:41 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	move_enemies(t_game *g)
 			quit(g);
 		}
 		set(g, g->enemies[i].pos, FLOOR);
-		render(g, &g->floor_sp, g->enemies[i].pos, 0);
+		render(g, &g->floor_sp.frames[0], g->enemies[i].pos);
 		set(g, g->enemies[i].next, ENEMY);
 		g->enemies[i].pos = g->enemies[i].next;
 	}

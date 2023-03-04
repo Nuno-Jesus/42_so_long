@@ -6,36 +6,36 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 02:39:13 by marvin            #+#    #+#             */
-/*   Updated: 2023/03/04 05:30:26 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/03/04 08:05:59 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long_bonus.h"
 
-void	render(t_game *g, t_sprite *s, t_point p, int n)
+void	render(t_game *g, t_img *img, t_point p)
 {
-	mlx_put_image_to_window(g->disp.mlx, g->disp.win, s->frames[n].img, \
-		p.x * s->frames[n].width + XOFFSET, p.y * s->frames[n].height);
+	mlx_put_image_to_window(g->disp.mlx, g->disp.win, img->img, \
+		p.x * img->width + XOFFSET, p.y * img->height);
 }
 
 void	render_tile(t_game *g, t_point p)
 {
-	t_sprite	*sp;
+	t_img	*img;
 
-	sp = &g->walls_sp;
+	img = &g->walls_sp.frames[0];
 	if (at(g, p) == EXIT)
-		sp = &g->exit_sp;
+		img = &g->exit_sp.frames[0];
 	else if (at(g, p) == FLOOR)
-		sp = &g->floor_sp;
+		img = &g->floor_sp.frames[0];
 	else if (at(g, p) == PLAYER)
-		sp = &g->player_sp[RIGHT];
+		img = &g->player_sp[RIGHT].frames[0];
 	else if (at(g, p) == POTION)
-		sp = &g->potions_sp;
+		img = &g->potions_sp.frames[0];
 	else if (at(g, p) == ENEMY)
-		sp = &g->enemy_sp[NORMAL];
+		img = &g->enemy_sp[NORMAL].frames[0];
 	else
 		return ;
-	render(g, sp, p, 0);
+	render(g, img, p);
 }
 
 void	render_map(t_game *g)
