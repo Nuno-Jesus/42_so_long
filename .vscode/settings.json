@@ -1,6 +1,0 @@
-{
-	"files.associations": {
-		"*.pl": "prolog",
-		"macros_bonus.h": "c"
-	}
-}

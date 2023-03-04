@@ -6,15 +6,41 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/04 05:13:54 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/03/04 08:07:21 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/03/04 10:24:23 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long_bonus.h"
+
+t_img	new_image(t_game *g, t_point dims)
+{
+	t_img	img;
+
+	img.width = dims.x;
+	img.height = dims.y;
+	img.img = mlx_new_image(g->disp.mlx, dims.x, dims.y);
+	img.addr = mlx_get_data_addr(img.img, &img.bpp, \
+		&img.line_len, &img.endian);
+	return (img);
+}
+
+t_img	new_file_image(t_game *g, char *path)
+{
+	t_img	img;
+
+	if (path)
+		img.img = mlx_xpm_file_to_image(g->disp.mlx, \
+			path, &(img.width), &(img.height));
+	img.addr = mlx_get_data_addr(img.img, &img.bpp, \
+		&img.line_len, &img.endian);
+	return (img);
+}
+
 /* 
 unsigned int	get_pixel(t_img *img, t_point p)
 {	
-	return (*(unsigned int *)(img->addr + (p.y * img->line_len + p.x * (img->bpp / 8))));
+	return (*(unsigned int *)(img->addr + \
+		(p.y * img->line_len + p.x * (img->bpp / 8))));
 }
 
 void	my_pixel_put(t_img *img, t_point p, int color)
@@ -50,16 +76,14 @@ void	init_background (t_game *g)
 	mat = ft_new_matrix(g->map->rows + 2, g->map->cols + 2, sizeof(int));
 	fill_bin_matrix(g, mat);
 	binary_map_print(g, mat);
-	g->background = new_image(g, (t_point){g->disp.dims.x + 32, g->disp.dims.y + 32});
+	g->background = new_image(g, (t_point){g->disp.dims.x + 32, \
+		g->disp.dims.y + 32});
 	while (++p.y < g->map->rows)
 	{
 		p.x = -1;
 		while (++p.x < g->map->cols)
 		{
 			pix = (t_point){p.x * 32, p.y * 32};
-			#ifdef DEBUG
-				printf("p.x: %d, p.y: %d, pix.x: %d, pix.y: %d\n", p.x, p.y, pix.x, pix.y);
-			#endif
 			if(at (g, p) == WALL)
 			{
 				int n = pick_wall_sprite((t_point){p.x + 1, p.y + 1}, mat);
@@ -72,26 +96,3 @@ void	init_background (t_game *g)
 	destroy_matrix(mat, g->map->rows + 2);
 }
  */
-t_img	new_image(t_game *g, t_point dims)
-{
-	t_img	img;
-
-	img.width = dims.x;
-	img.height = dims.y;
-	img.img = mlx_new_image(g->disp.mlx, dims.x, dims.y);	
-	img.addr = mlx_get_data_addr(img.img, &img.bpp, \
-		&img.line_len, &img.endian);
-	return (img);
-}
-
-t_img	new_file_image(t_game *g, char *path)
-{
-	t_img	img;
-	
-	if (path)
-		img.img = mlx_xpm_file_to_image(g->disp.mlx, \
-			path, &(img.width), &(img.height));
-	img.addr = mlx_get_data_addr(img.img, &img.bpp, \
-		&img.line_len, &img.endian);
-	return (img);
-}

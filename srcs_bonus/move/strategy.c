@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 23:14:15 by crypto            #+#    #+#             */
-/*   Updated: 2023/03/04 10:19:46 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/03/04 10:23:09 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,13 @@ void	change_strategy(t_game *g, void (*strategy)(), t_status status)
 
 int	distance(t_point p1, t_point p2)
 {
-	return (sqrt(pow(((int)p1.x - (int)p2.x), 2) + pow(((int)p1.y - (int)p2.y), 2)));
+	return (sqrt(pow(((int)p1.x - (int)p2.x), 2) + \
+		pow(((int)p1.y - (int)p2.y), 2)));
 }
 
 void	chase_strategy(t_game *g, t_entity *enemy)
 {
-	t_point dirs[4];
+	t_point	dirs[4];
 	t_point	chosen;
 	int		min_dist;
 	int		i;
