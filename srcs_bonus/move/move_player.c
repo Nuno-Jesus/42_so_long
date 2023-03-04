@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   move_player.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 14:54:58 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/03/01 00:21:36 by crypto           ###   ########.fr       */
+/*   Updated: 2023/03/04 04:15:20 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,10 +57,10 @@ void	move_player(t_game *g)
 {
 	static t_type	previous = FLOOR;
 
+	set(g, g->player.pos, previous);
 	previous = at(g, g->player.next);
 	if (at(g, g->player.next) == POTION)
 		previous = FLOOR;
-	set(g, g->player.pos, previous);
 	render_tile(g, g->player.pos);
 	set(g, g->player.next, PLAYER);
 	g->player.pos = g->player.next;
