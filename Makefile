@@ -15,7 +15,7 @@ RM = rm -rf
 AR = ar -rcs
 
 #_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_ FLAGS _/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
-CFLAGS	= -Wall -Wextra -Werror #-fsanitize=address #-g
+CFLAGS	= -Wall -Wextra -Werror #-fsanitize=address -g
 MK		= --no-print-directory
 MLX		= -L ./mlx -lmlx -Ilmlx -lXext -lX11 -lm 
 LIBFT	= -L ./libft -lft

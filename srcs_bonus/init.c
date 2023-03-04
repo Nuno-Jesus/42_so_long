@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 14:13:49 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/03/04 08:06:51 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/03/04 08:52:22 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ void	init_game(char *filename)
 	init_enemies(&g);
 	init_coins(&g);
 	load_sprites(&g);
-	// init_background(&g);
 	render_map(&g);
 	mlx_hook(g.disp.win, ON_KEYPRESS, KEYPRESS_MASK, move_handler, &g);
 	mlx_hook(g.disp.win, ON_CLOSE, CLOSE_MASK, quit, &g);
