@@ -1,4 +1,3 @@
-
 # **so_long**
 This project was graded <strong>125/100</strong>.
 
@@ -9,15 +8,15 @@ This project is one of the 3 possible graphical projects to develop in Rank 02. 
 
 <p align=center>
 
-![image](https://user-images.githubusercontent.com/93390807/215877174-71fa5ecb-d5ec-4c92-885f-c506902c32e2.png)
+![mandatory](https://user-images.githubusercontent.com/93390807/223617088-f065df7b-ee8b-41c9-bc0e-45d7027cdad1.gif)
 
 </p>
 
 <p align=center>
 
-|![player](https://user-images.githubusercontent.com/93390807/223611394-8fca35c8-00d7-4501-813b-aa500fb8d060.gif)|![potion](https://user-images.githubusercontent.com/93390807/223611395-5375f42b-6ad4-4caf-96bc-f1b174734abf.gif)|![enemy](https://user-images.githubusercontent.com/93390807/223611386-9d5ac4e9-6e33-4965-ad02-31e117ef1620.gif)|![enemy2](https://user-images.githubusercontent.com/93390807/223611391-4d6759f8-c101-4689-b22c-4e4f9dd446d0.gif)|![exit](https://user-images.githubusercontent.com/93390807/223611577-b72649c6-239a-4aa7-9282-ad0dba45bbc3.png)|
+|![player](https://user-images.githubusercontent.com/93390807/223616745-00fa689c-6503-4be7-a7b9-6152fcaf4219.png)|![coin](https://user-images.githubusercontent.com/93390807/223617101-57d53f5f-1b76-43f2-96c3-6b4c8b4c990f.png)|![space](https://user-images.githubusercontent.com/93390807/223616742-34534528-4a9a-4171-aeb7-859d1f0182ed.png)|![wall](https://user-images.githubusercontent.com/93390807/223616739-74a3ff81-a58e-4899-9d7d-d2e309c6cec6.png)|![exit](https://user-images.githubusercontent.com/93390807/223616748-2a04ada7-cb8c-4c94-8f32-876ec1539984.png)|
 |:--:|:--:|:--:|:--:|:--:|
-|Player|Collectable|Enemy|Enemy Stage 2|Exit|
+|Player|Collectable|Empty|Wall|Exit|
 
 </p>
 
