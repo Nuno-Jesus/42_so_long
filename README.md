@@ -8,13 +8,10 @@ This project is one of the 3 possible graphical projects to develop in Rank 02. 
 
 <div align=center>
 
-|![mandatory](https://user-images.githubusercontent.com/93390807/223617088-f065df7b-ee8b-41c9-bc0e-45d7027cdad1.gif)|
-|:--:|
-|Level 3|
+![mandatory](https://user-images.githubusercontent.com/93390807/223617088-f065df7b-ee8b-41c9-bc0e-45d7027cdad1.gif)
+
 
 </div>
-
-### **Entities**
 
 <div align=center>
 
@@ -29,13 +26,10 @@ This project is one of the 3 possible graphical projects to develop in Rank 02. 
 
 <div align=center>
 
-|![bonus](https://user-images.githubusercontent.com/93390807/223605965-6dd26c72-4f38-4c80-b294-af8a2cb54dd8.gif)|
-|:--:|
-|Level 3|
+![bonus](https://user-images.githubusercontent.com/93390807/223605965-6dd26c72-4f38-4c80-b294-af8a2cb54dd8.gif)
+
 
 </div>
-
-### **Entities**
 
 <div align=center>
 
