@@ -1,5 +1,5 @@
 # **so_long**
-This project was graded <strong>100/100</strong>.
+This project was graded <strong>125/100</strong>.
 
 ## 📒 **About**
 This project is one of the 3 possible graphical projects to develop in Rank 02. You'll learn about rendering, sprites, animations, color schemes and game development in 2D. One of the coolest projects in my opinion!
@@ -8,7 +8,7 @@ This project is one of the 3 possible graphical projects to develop in Rank 02. 
 ![image](https://user-images.githubusercontent.com/93390807/215877174-71fa5ecb-d5ec-4c92-885f-c506902c32e2.png)
 
 ## **Bonus Part**
-> Still in development eheheh...
+![bonus](https://user-images.githubusercontent.com/93390807/223605965-6dd26c72-4f38-4c80-b294-af8a2cb54dd8.gif)
 
 ## 🚨 **Disclaimer**
 At 42, the C projects are built following a bunch of rules that enforce good coding style. Some of them are:
