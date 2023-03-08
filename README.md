@@ -10,6 +10,16 @@ This project is one of the 3 possible graphical projects to develop in Rank 02. 
 ## **Bonus Part**
 ![bonus](https://user-images.githubusercontent.com/93390807/223605965-6dd26c72-4f38-4c80-b294-af8a2cb54dd8.gif)
 
+||||||
+|:--:|:--:|:--:|:--:|:--:|
+|Player|Collectable|Enemy|Enemy (Enraged State)|Exit|
+
+### **Extra features**
+- Different xpm images for inner and outter walls, depending on the surrounding walls (not covering all cases yet)
+- Enemies start by moving randomly. After collecting every potion, the enemies become angry, turning blue. At this point, they half their moving frequency and start chasing the player.
+- More might come...
+
+
 ## 🚨 **Disclaimer**
 At 42, the C projects are built following a bunch of rules that enforce good coding style. Some of them are:
 
@@ -63,6 +73,28 @@ At 42, the C projects are built following a bunch of rules that enforce good cod
 			<td>main.c</td>
 			<td>Where the project is launched from</td>
 		</tr>
+		<tr>
+			<td rowspan = 5><strong>Bonus</strong></td>
+			<td>map/</td>
+			<td>Responsible for reading, parsing and assembling the map</td>
+		</tr>
+		<tr>
+			<td>move/</td>
+			<td>Has the logic to move both player and enemies. It also contains the enemies strategies.</td>
+		</tr>
+		<tr>
+			<td>render/</td>
+			<td>Files that handle the rendering process, including animations and choosing the walls images</td>
+		</tr>
+		<tr>
+			<td>utils/</td>
+			<td>Generic and debugging functions</td>
+		</tr>
+		<tr>
+			<td>init.c</td>
+			<td>Contains the starting loop function and allocates all necessary memory for the program to work.</td>
+		</tr>
+
 	</tbody>
 </table>
 
