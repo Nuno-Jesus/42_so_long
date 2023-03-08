@@ -12,6 +12,8 @@ This project is one of the 3 possible graphical projects to develop in Rank 02. 
 
 </p>
 
+### **Entities**
+
 <p align=center>
 
 |![player](https://user-images.githubusercontent.com/93390807/223616745-00fa689c-6503-4be7-a7b9-6152fcaf4219.png)|![coin](https://user-images.githubusercontent.com/93390807/223617101-57d53f5f-1b76-43f2-96c3-6b4c8b4c990f.png)|![space](https://user-images.githubusercontent.com/93390807/223616742-34534528-4a9a-4171-aeb7-859d1f0182ed.png)|![wall](https://user-images.githubusercontent.com/93390807/223616739-74a3ff81-a58e-4899-9d7d-d2e309c6cec6.png)|![exit](https://user-images.githubusercontent.com/93390807/223616748-2a04ada7-cb8c-4c94-8f32-876ec1539984.png)|
@@ -40,67 +42,6 @@ This project is one of the 3 possible graphical projects to develop in Rank 02. 
 |Player|Collectable|Enemy|Enemy Stage 2|Exit|
 
 </p>
-
-This is an example of what the following map renders and what each character represents
-
-<table align="center">
-	<tr>
-		<td>
-			<h3 align="center">
-				Valid Characters
-			</h3>
-			<table align="center">
-				<tr>
-					<td align="center">Character</td><td align="center">Element</td>
-				</tr>
-				<tr>
-					<td align="center"><code>0</code></td><td align="center">Empty</td>
-				</tr>
-				<tr>
-					<td align="center"><code>1</code></td><td align="center">Wall</td>
-				</tr>
-				<tr>
-					<td align="center"><code>C</code></td><td align="center">Collectible</td>
-				</tr>
-				<tr>
-					<td align="center"><code>E</code></td><td align="center">Exit</td>
-				</tr>
-				<tr>
-					<td align="center"><code>P</code></td><td align="center">Player</td>
-				</tr>
-				<tr>
-					<td align="center"><code>M</code></td><td align="center">Enemy</td>
-				</tr>
-			</table>
-		</td>
-		<td>
-			<table align="center">
-				<h3 align="center">
-					Map Example
-				</h3>
-				<tr>
-					<td><br><br>
-						<pre align="center">
-111111111
-1110M0111
-1P00C00E1
-1110M0111
-111111111</pre><br><br>
-						<p align="center">
-							<i>Content .ber file</i>
-						</p>
-					</td>
-					<td>
-						<img src="https://i.goopics.net/uc1ily.png">
-						<p align="center">
-							<i>Render in game</i>
-						</p>
-					</td>
-				</tr>
-			</table>
-		</td>
-	</tr>
-</table>
 
 ### **Extra features**
 - Different xpm images for inner and outter walls, depending on the surrounding walls (not covering all cases yet)
