@@ -1,3 +1,4 @@
+
 # **so_long**
 This project was graded <strong>125/100</strong>.
 
@@ -10,7 +11,11 @@ This project is one of the 3 possible graphical projects to develop in Rank 02. 
 ## **Bonus Part**
 ![bonus](https://user-images.githubusercontent.com/93390807/223605965-6dd26c72-4f38-4c80-b294-af8a2cb54dd8.gif)
 
-||||||
+
+
+
+
+|![player](https://user-images.githubusercontent.com/93390807/223611394-8fca35c8-00d7-4501-813b-aa500fb8d060.gif)|![potion](https://user-images.githubusercontent.com/93390807/223611395-5375f42b-6ad4-4caf-96bc-f1b174734abf.gif)|![enemy](https://user-images.githubusercontent.com/93390807/223611386-9d5ac4e9-6e33-4965-ad02-31e117ef1620.gif)|![enemy2](https://user-images.githubusercontent.com/93390807/223611391-4d6759f8-c101-4689-b22c-4e4f9dd446d0.gif)|![exit](https://user-images.githubusercontent.com/93390807/223611577-b72649c6-239a-4aa7-9282-ad0dba45bbc3.png)|
 |:--:|:--:|:--:|:--:|:--:|
 |Player|Collectable|Enemy|Enemy (Enraged State)|Exit|
 
@@ -31,7 +36,7 @@ At 42, the C projects are built following a bunch of rules that enforce good cod
 
 ## 🔧 **Implementation**
 
-<table>
+<table align=center>
 	<thead>
 		<tr>
 			<th>Part</th>
