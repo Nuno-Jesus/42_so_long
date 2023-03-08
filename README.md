@@ -8,7 +8,9 @@ This project is one of the 3 possible graphical projects to develop in Rank 02. 
 
 <p align=center>
 
-![mandatory](https://user-images.githubusercontent.com/93390807/223617088-f065df7b-ee8b-41c9-bc0e-45d7027cdad1.gif)
+|![mandatory](https://user-images.githubusercontent.com/93390807/223617088-f065df7b-ee8b-41c9-bc0e-45d7027cdad1.gif)|
+|:--:|
+|Level 3|
 
 </p>
 
